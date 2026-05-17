@@ -47,18 +47,6 @@ export function getRelatedByNeighbourhood(outlet: Supermarket, allOutlets: Super
     .slice(0, 4);
 }
 
-export function parseDeliveryLinks(value: string) {
-  return value
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line) => {
-      const [label, ...rest] = line.split(/:\s+/);
-      const url = rest.join(": ");
-      return url.startsWith("http") ? { label, url } : { label: line, url: line };
-    });
-}
-
 export function pageDescription(title: string, count?: number) {
   if (typeof count === "number") {
     return `${title} with ${formatCount(count, "published supermarket outlet")} across Singapore.`;

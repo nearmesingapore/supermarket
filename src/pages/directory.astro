@@ -4,6 +4,37 @@ import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
 import SearchBox from "@/components/SearchBox.astro";
 import { getDirectoryData } from "@/lib/airtable";
+
 const data = await getDirectoryData();
 ---
-<Layout title="Supermarket Directory Singapore" description="Browse all published supermarket outlets in Singapore with filters for brand, neighbourhood, category, MRT station, mall, halal status, and price range." canonical="/directory"><section class="container-page py-16"><div class="max-w-4xl"><p class="eyebrow">Directory</p><h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">All supermarkets in Singapore</h1><p class="mt-6 text-lg leading-8 text-muted">Filter the full Airtable-powered directory by the details that matter: location, brand, MRT station, category, halal status, and price.</p><div class="mt-8"><SearchBox compact /></div></div></section><section class="container-page pb-8"><FilterBar data={data} /></section><section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" data-pagefind-body data-pagefind-meta="title:Singapore Supermarket Directory">{data.supermarkets.map((outlet) => <ListingCard outlet={outlet} />)}</section></Layout>
+
+<Layout
+  title="Supermarket Directory Singapore"
+  description="Browse all published supermarket outlets in Singapore with filters for brand, neighbourhood, category, MRT station, and mall."
+  canonical="/directory"
+>
+  <section class="container-page py-16">
+    <div class="max-w-4xl">
+      <p class="eyebrow">Directory</p>
+      <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">All supermarkets in Singapore</h1>
+      <p class="mt-6 text-lg leading-8 text-muted">
+        Filter the full Airtable-powered directory by the details that matter: location, brand, MRT station, category, and mall.
+      </p>
+      <div class="mt-8">
+        <SearchBox compact />
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page pb-8">
+    <FilterBar data={data} />
+  </section>
+
+  <section
+    class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    data-pagefind-body
+    data-pagefind-meta="title:Singapore Supermarket Directory"
+  >
+    {data.supermarkets.map((outlet) => <ListingCard outlet={outlet} />)}
+  </section>
+</Layout>
