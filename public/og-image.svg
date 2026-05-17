@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Singapore Supermarket Directory">
+  <rect width="1200" height="630" fill="#fbfaf8"/>
+  <rect x="72" y="72" width="1056" height="486" fill="#ffffff" stroke="#e8e2da"/>
+  <text x="120" y="250" fill="#1f1d1a" font-family="Georgia, serif" font-size="86">SG Supermarkets</text>
+  <text x="124" y="330" fill="#706b63" font-family="Arial, sans-serif" font-size="34">A curated supermarket directory for Singapore</text>
+  <line x1="124" y1="390" x2="520" y2="390" stroke="#9a7a3f" stroke-width="4"/>
+</svg>

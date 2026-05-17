@@ -1,0 +1,13 @@
+---
+import Layout from "@/components/Layout.astro";
+import ListingCard from "@/components/ListingCard.astro";
+import { getDirectoryData, type TaxonomyItem } from "@/lib/airtable";
+import { formatCount, pageDescription } from "@/lib/content";
+export async function getStaticPaths() { const data = await getDirectoryData(); return data.neighbourhoods.map((neighbourhood) => ({ params: { slug: neighbourhood.slug }, props: { neighbourhood } })); }
+const { neighbourhood } = Astro.props as { neighbourhood: TaxonomyItem };
+const data = await getDirectoryData();
+const outlets = data.supermarkets.filter((outlet) => outlet.neighbourhood.some((item) => item.id === neighbourhood.id));
+const brands = data.brands.filter((brand) => outlets.some((outlet) => outlet.brand.some((item) => item.id === brand.id)));
+const title = `Supermarkets in ${neighbourhood.name}`;
+---
+<Layout title={title} description={pageDescription(title, outlets.length)} canonical={`/neighbourhoods/${neighbourhood.slug}`}><section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${title};neighbourhood:${neighbourhood.name}`}><p class="eyebrow">Neighbourhood</p><h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{title}</h1><p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>{brands.length > 0 && <div class="mt-10 border-y border-line py-6"><p class="text-sm font-semibold uppercase tracking-[0.16em] text-brass">Brands here</p><div class="mt-4 flex flex-wrap gap-3">{brands.map((brand) => <a class="rounded-full border border-line bg-white px-4 py-2 text-sm transition hover:border-ink" href={`/brands/${brand.slug}`}>{brand.name}</a>)}</div></div>}</section><section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{outlets.map((outlet) => <ListingCard outlet={outlet} />)}</section></Layout>

@@ -1,0 +1,15 @@
+---
+import type { TaxonomyItem } from "@/lib/airtable";
+import { formatCount } from "@/lib/content";
+
+interface Props {
+  brand: TaxonomyItem;
+}
+
+const { brand } = Astro.props;
+---
+
+<a class="group block border border-line bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-editorial" href={`/brands/${brand.slug}`}>
+  <p class="font-serif text-3xl leading-tight transition group-hover:text-brass">{brand.name}</p>
+  <p class="mt-5 text-sm text-muted">{formatCount(brand.count, "outlet")}</p>
+</a>

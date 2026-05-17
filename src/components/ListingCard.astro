@@ -1,0 +1,11 @@
+---
+import { getFirstInitial, type Supermarket } from "@/lib/airtable";
+import { getPrimary } from "@/lib/content";
+interface Props { outlet: Supermarket; }
+const { outlet } = Astro.props;
+const brand = getPrimary(outlet.brand); const neighbourhood = getPrimary(outlet.neighbourhood); const mall = getPrimary(outlet.mall); const mrt = getPrimary(outlet.mrt); const initial = getFirstInitial(brand?.name || "", outlet.outletName);
+---
+<article class="group flex h-full flex-col overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial" data-card data-brand={brand?.slug || ""} data-brand-name={brand?.name || ""} data-neighbourhood={neighbourhood?.slug || ""} data-category={outlet.category} data-mrt={mrt?.slug || ""} data-mall={mall?.slug || ""} data-halal={outlet.halal} data-price={outlet.priceRange}>
+  <a href={`/supermarkets/${outlet.slug}`} class="block"><div class="aspect-[4/3] overflow-hidden bg-[#f1eee8]">{outlet.imageUrl ? <img src={outlet.imageUrl} alt={`${outlet.outletName} storefront`} class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" /> : <div class="flex h-full w-full items-center justify-center bg-[#f2efe9] font-serif text-7xl text-brass">{initial}</div>}</div></a>
+  <div class="flex flex-1 flex-col p-5"><p class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">{brand?.name || "Independent"}</p><h2 class="mt-3 font-serif text-2xl leading-tight"><a class="transition hover:text-brass" href={`/supermarkets/${outlet.slug}`}>{outlet.outletName}</a></h2><div class="mt-4 space-y-1 text-sm leading-6 text-muted">{neighbourhood && <p>{neighbourhood.name}</p>}{mall && <p>{mall.name}</p>}{mrt && <p>{mrt.name} MRT</p>}</div><div class="mt-5 flex flex-wrap gap-2">{outlet.halal && <span class="rounded-full border border-line px-3 py-1 text-xs font-medium text-ink">{outlet.halal}</span>}{outlet.priceRange && <span class="rounded-full border border-line px-3 py-1 text-xs font-medium text-ink">{outlet.priceRange}</span>}</div></div>
+</article>

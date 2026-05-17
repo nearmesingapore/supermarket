@@ -1,0 +1,13 @@
+---
+import Layout from "@/components/Layout.astro";
+import ListingCard from "@/components/ListingCard.astro";
+import { getDirectoryData, type TaxonomyItem } from "@/lib/airtable";
+import { formatCount, pageDescription } from "@/lib/content";
+export async function getStaticPaths() { const data = await getDirectoryData(); return data.brands.map((brand) => ({ params: { slug: brand.slug }, props: { brand } })); }
+const { brand } = Astro.props as { brand: TaxonomyItem };
+const data = await getDirectoryData();
+const outlets = data.supermarkets.filter((outlet) => outlet.brand.some((item) => item.id === brand.id)).sort((a,b)=>a.outletName.localeCompare(b.outletName));
+const neighbourhoods = data.neighbourhoods.filter((neighbourhood) => outlets.some((outlet) => outlet.neighbourhood.some((item) => item.id === neighbourhood.id)));
+const title = `${brand.name} Supermarkets in Singapore`;
+---
+<Layout title={title} description={pageDescription(title, outlets.length)} canonical={`/brands/${brand.slug}`}><section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${brand.name};brand:${brand.name}`}><p class="eyebrow">Brand</p><h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{brand.name}</h1><p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>{neighbourhoods.length > 0 && <div class="mt-10 border-y border-line py-6"><p class="text-sm font-semibold uppercase tracking-[0.16em] text-brass">Neighbourhoods</p><div class="mt-4 flex flex-wrap gap-3">{neighbourhoods.map((item) => <a class="rounded-full border border-line bg-white px-4 py-2 text-sm transition hover:border-ink" href={`/neighbourhoods/${item.slug}`}>{item.name}</a>)}</div></div>}</section><section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{outlets.map((outlet) => <ListingCard outlet={outlet} />)}</section></Layout>
