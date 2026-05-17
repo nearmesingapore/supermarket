@@ -1,0 +1,7 @@
+---
+import BrandCard from "@/components/BrandCard.astro";
+import Layout from "@/components/Layout.astro";
+import { getDirectoryData } from "@/lib/airtable";
+const data = await getDirectoryData();
+---
+<Layout title="Supermarket Brands in Singapore" description="Browse Singapore supermarket brands and their published outlet counts." canonical="/brands"><section class="container-page py-16" data-pagefind-body data-pagefind-meta="title:Supermarket Brands in Singapore"><p class="eyebrow">Brands</p><h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">Supermarket brands</h1><div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">{data.brands.map((brand) => <BrandCard brand={brand} />)}</div></section></Layout>
