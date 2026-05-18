@@ -102,11 +102,11 @@ const FIELDS = {
 let directoryCache: Promise<DirectoryData> | undefined;
 
 export function assertAirtableEnv(env: EnvSource = process.env) {
-  const apiKey = env.AIRTABLE_API_KEY;
+  const apiKey = env.AIRTABLE_API_KEY || env.AIRTABLE_PERSONAL_ACCESS_TOKEN;
   const baseId = env.AIRTABLE_BASE_ID || DEFAULT_BASE_ID;
 
   if (!apiKey) {
-    throw new Error("Missing AIRTABLE_API_KEY. Copy .env.example to .env and add your key.");
+    throw new Error("Missing AIRTABLE_API_KEY or AIRTABLE_PERSONAL_ACCESS_TOKEN. Copy .env.example to .env and add your key.");
   }
 
   return { apiKey, baseId };

@@ -18,7 +18,16 @@ describe("assertAirtableEnv", () => {
   test("throws a clear setup error when the API key is missing", () => {
     expect(() =>
       assertAirtableEnv({ AIRTABLE_BASE_ID: "base" })
-    ).toThrow("Missing AIRTABLE_API_KEY. Copy .env.example to .env and add your key.");
+    ).toThrow("Missing AIRTABLE_API_KEY or AIRTABLE_PERSONAL_ACCESS_TOKEN. Copy .env.example to .env and add your key.");
+  });
+
+  test("accepts the Airtable personal access token env name used by the local site", () => {
+    expect(
+      assertAirtableEnv({
+        AIRTABLE_PERSONAL_ACCESS_TOKEN: "pat-key",
+        AIRTABLE_BASE_ID: "base"
+      })
+    ).toEqual({ apiKey: "pat-key", baseId: "base" });
   });
 });
 
