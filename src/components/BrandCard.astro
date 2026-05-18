@@ -24,7 +24,6 @@ const { brand } = Astro.props;
   }
   <div class="flex flex-1 flex-col p-6">
     <p class="font-serif text-3xl leading-tight transition group-hover:text-brass">{brand.name}</p>
-    {brand.description && <p class="mt-4 text-sm leading-6 text-muted">{brand.description}</p>}
     <p class="mt-auto pt-5 text-sm text-muted">{formatCount(brand.count, "outlet")}</p>
   </div>
 </a>
