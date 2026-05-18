@@ -9,8 +9,9 @@ const data = await getDirectoryData();
 const outlets = data.supermarkets.filter((outlet) => outlet.neighbourhood.some((item) => item.id === neighbourhood.id));
 const brands = data.brands.filter((brand) => outlets.some((outlet) => outlet.brand.some((item) => item.id === brand.id)));
 const title = `Supermarkets in ${neighbourhood.name}`;
+const description = neighbourhood.description || pageDescription(title, outlets.length);
 ---
-<Layout title={title} description={pageDescription(title, outlets.length)} image={neighbourhood.imageUrl} canonical={`/neighbourhoods/${neighbourhood.slug}`}>
+<Layout title={title} description={description} image={neighbourhood.imageUrl} canonical={`/neighbourhoods/${neighbourhood.slug}`}>
   <section
     class="container-page grid gap-10 py-16 lg:grid-cols-[1fr_0.78fr] lg:items-center"
     data-pagefind-body
@@ -19,6 +20,7 @@ const title = `Supermarkets in ${neighbourhood.name}`;
     <div>
       <p class="eyebrow">Neighbourhood</p>
       <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{title}</h1>
+      {neighbourhood.description && <p class="mt-6 max-w-3xl text-lg leading-8 text-muted">{neighbourhood.description}</p>}
       <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>
       {brands.length > 0 && (
         <div class="mt-10 border-y border-line py-6">

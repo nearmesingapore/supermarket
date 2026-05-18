@@ -8,6 +8,7 @@ export type LinkedItem = {
   name: string;
   slug: string;
   imageUrl?: string;
+  description?: string;
 };
 
 export type TaxonomyItem = LinkedItem & {
@@ -83,13 +84,16 @@ const FIELDS = {
     published: ["fldKtJIAHMLqSCEeP", "Published"]
   },
   brands: {
-    name: ["fldPwU2iFk9wEsmba", "Name"],
-    slug: ["fldA09ghMk1pINerc", "Slug"]
+    name: ["fldPwU2iFk9wEsmba", "Brand Name", "Name"],
+    slug: ["fldA09ghMk1pINerc", "Slug"],
+    imageUrl: ["fldp86xMlykctfvv0", "Image URL"],
+    description: ["fldgNoZbK2EY6KFWJ", "Brand Description"]
   },
   neighbourhoods: {
-    name: ["fld9PsIecu0V0LYkd", "Name"],
+    name: ["fld9PsIecu0V0LYkd", "Neighbourhood Name", "Name"],
     slug: ["fldEFQ1jysfxziqfM", "Slug"],
-    imageUrl: ["fldhOHgO7KBCTidHJ", "Image URL"]
+    imageUrl: ["fldhOHgO7KBCTidHJ", "Image URL"],
+    description: ["fldAVsFHnsfOYcDOZ", "Neighbourhood Description"]
   },
   malls: {
     name: ["fldiH8RSpJ81XjnTB", "Name"],
@@ -189,12 +193,19 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     fetchAirtableRecords(baseId, TABLES.mrtStations, apiKey)
   ]);
 
-  const brands = createLookup(brandRecords, FIELDS.brands.name, FIELDS.brands.slug);
+  const brands = createLookup(
+    brandRecords,
+    FIELDS.brands.name,
+    FIELDS.brands.slug,
+    FIELDS.brands.imageUrl,
+    FIELDS.brands.description
+  );
   const neighbourhoods = createLookup(
     neighbourhoodRecords.filter((record) => isValidNeighbourhoodName(readFieldString(record.fields, FIELDS.neighbourhoods.name))),
     FIELDS.neighbourhoods.name,
     FIELDS.neighbourhoods.slug,
-    FIELDS.neighbourhoods.imageUrl
+    FIELDS.neighbourhoods.imageUrl,
+    FIELDS.neighbourhoods.description
   );
   const malls = createLookup(mallRecords, FIELDS.malls.name, FIELDS.malls.slug);
   const mrtStations = createLookup(mrtRecords, FIELDS.mrtStations.name, FIELDS.mrtStations.slug);
@@ -228,13 +239,20 @@ async function loadDirectoryData(): Promise<DirectoryData> {
   };
 }
 
-function createLookup(records: AirtableRecord[], nameField: readonly string[], slugField: readonly string[], imageUrlField?: readonly string[]) {
+function createLookup(
+  records: AirtableRecord[],
+  nameField: readonly string[],
+  slugField: readonly string[],
+  imageUrlField?: readonly string[],
+  descriptionField?: readonly string[]
+) {
   const items = records
     .map((record) => ({
       id: record.id,
       name: readFieldString(record.fields, nameField),
       slug: readFieldString(record.fields, slugField),
-      imageUrl: imageUrlField ? readFieldString(record.fields, imageUrlField) : undefined
+      imageUrl: imageUrlField ? readFieldString(record.fields, imageUrlField) : undefined,
+      description: descriptionField ? readFieldString(record.fields, descriptionField) : undefined
     }))
     .filter((item) => item.name && item.slug);
 

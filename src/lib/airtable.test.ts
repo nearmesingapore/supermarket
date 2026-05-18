@@ -77,7 +77,17 @@ describe("getDirectoryData", () => {
     fetchMock.mockResolvedValueOnce({
       ok: true,
       json: async () => ({
-        records: [{ id: "brand-1", fields: { fldPwU2iFk9wEsmba: "Brand", fldA09ghMk1pINerc: "brand" } }]
+        records: [
+          {
+            id: "brand-1",
+            fields: {
+              fldPwU2iFk9wEsmba: "Brand",
+              fldA09ghMk1pINerc: "brand",
+              fldp86xMlykctfvv0: "https://example.com/brand.jpg",
+              fldgNoZbK2EY6KFWJ: "A useful brand description."
+            }
+          }
+        ]
       })
     } as Response);
     fetchMock.mockResolvedValueOnce({
@@ -89,7 +99,8 @@ describe("getDirectoryData", () => {
             fields: {
               fld9PsIecu0V0LYkd: "Hood",
               fldEFQ1jysfxziqfM: "hood",
-              fldhOHgO7KBCTidHJ: "https://example.com/hood.jpg"
+              fldhOHgO7KBCTidHJ: "https://example.com/hood.jpg",
+              fldAVsFHnsfOYcDOZ: "A helpful neighbourhood description."
             }
           }
         ]
@@ -125,10 +136,17 @@ describe("getDirectoryData", () => {
     const data = await getDirectoryData();
 
     expect(data.supermarkets).toHaveLength(1);
+    expect(data.brands[0]).toMatchObject({
+      name: "Brand",
+      slug: "brand",
+      imageUrl: "https://example.com/brand.jpg",
+      description: "A useful brand description."
+    });
     expect(data.neighbourhoods[0]).toMatchObject({
       name: "Hood",
       slug: "hood",
-      imageUrl: "https://example.com/hood.jpg"
+      imageUrl: "https://example.com/hood.jpg",
+      description: "A helpful neighbourhood description."
     });
     expect(data.supermarkets[0]).not.toHaveProperty("tiktokUrl");
     expect(data.supermarkets[0]).not.toHaveProperty("priceRange");
