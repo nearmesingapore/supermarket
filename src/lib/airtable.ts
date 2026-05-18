@@ -7,6 +7,7 @@ export type LinkedItem = {
   id: string;
   name: string;
   slug: string;
+  imageUrl?: string;
 };
 
 export type TaxonomyItem = LinkedItem & {
@@ -87,7 +88,8 @@ const FIELDS = {
   },
   neighbourhoods: {
     name: ["fld9PsIecu0V0LYkd", "Name"],
-    slug: ["fldEFQ1jysfxziqfM", "Slug"]
+    slug: ["fldEFQ1jysfxziqfM", "Slug"],
+    imageUrl: ["fldhOHgO7KBCTidHJ", "Image URL"]
   },
   malls: {
     name: ["fldiH8RSpJ81XjnTB", "Name"],
@@ -191,7 +193,8 @@ async function loadDirectoryData(): Promise<DirectoryData> {
   const neighbourhoods = createLookup(
     neighbourhoodRecords.filter((record) => isValidNeighbourhoodName(readFieldString(record.fields, FIELDS.neighbourhoods.name))),
     FIELDS.neighbourhoods.name,
-    FIELDS.neighbourhoods.slug
+    FIELDS.neighbourhoods.slug,
+    FIELDS.neighbourhoods.imageUrl
   );
   const malls = createLookup(mallRecords, FIELDS.malls.name, FIELDS.malls.slug);
   const mrtStations = createLookup(mrtRecords, FIELDS.mrtStations.name, FIELDS.mrtStations.slug);
@@ -225,12 +228,13 @@ async function loadDirectoryData(): Promise<DirectoryData> {
   };
 }
 
-function createLookup(records: AirtableRecord[], nameField: readonly string[], slugField: readonly string[]) {
+function createLookup(records: AirtableRecord[], nameField: readonly string[], slugField: readonly string[], imageUrlField?: readonly string[]) {
   const items = records
     .map((record) => ({
       id: record.id,
       name: readFieldString(record.fields, nameField),
-      slug: readFieldString(record.fields, slugField)
+      slug: readFieldString(record.fields, slugField),
+      imageUrl: imageUrlField ? readFieldString(record.fields, imageUrlField) : undefined
     }))
     .filter((item) => item.name && item.slug);
 

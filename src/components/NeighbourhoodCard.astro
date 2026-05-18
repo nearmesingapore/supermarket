@@ -9,7 +9,21 @@ interface Props {
 const { neighbourhood } = Astro.props;
 ---
 
-<a class="group block border border-line bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-editorial" href={`/neighbourhoods/${neighbourhood.slug}`}>
-  <p class="font-serif text-3xl leading-tight transition group-hover:text-brass">{neighbourhood.name}</p>
-  <p class="mt-5 text-sm text-muted">{formatCount(neighbourhood.count, "outlet")}</p>
+<a class="group block overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial" href={`/neighbourhoods/${neighbourhood.slug}`}>
+  {
+    neighbourhood.imageUrl && (
+      <div class="aspect-[4/3] overflow-hidden bg-[#f1eee8]">
+        <img
+          src={neighbourhood.imageUrl}
+          alt={`${neighbourhood.name} neighbourhood`}
+          class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+  <div class="p-6">
+    <p class="font-serif text-3xl leading-tight transition group-hover:text-brass">{neighbourhood.name}</p>
+    <p class="mt-5 text-sm text-muted">{formatCount(neighbourhood.count, "outlet")}</p>
+  </div>
 </a>

@@ -10,4 +10,36 @@ const outlets = data.supermarkets.filter((outlet) => outlet.neighbourhood.some((
 const brands = data.brands.filter((brand) => outlets.some((outlet) => outlet.brand.some((item) => item.id === brand.id)));
 const title = `Supermarkets in ${neighbourhood.name}`;
 ---
-<Layout title={title} description={pageDescription(title, outlets.length)} canonical={`/neighbourhoods/${neighbourhood.slug}`}><section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${title};neighbourhood:${neighbourhood.name}`}><p class="eyebrow">Neighbourhood</p><h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{title}</h1><p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>{brands.length > 0 && <div class="mt-10 border-y border-line py-6"><p class="text-sm font-semibold uppercase tracking-[0.16em] text-brass">Brands here</p><div class="mt-4 flex flex-wrap gap-3">{brands.map((brand) => <a class="rounded-full border border-line bg-white px-4 py-2 text-sm transition hover:border-ink" href={`/brands/${brand.slug}`}>{brand.name}</a>)}</div></div>}</section><section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{outlets.map((outlet) => <ListingCard outlet={outlet} />)}</section></Layout>
+<Layout title={title} description={pageDescription(title, outlets.length)} image={neighbourhood.imageUrl} canonical={`/neighbourhoods/${neighbourhood.slug}`}>
+  <section
+    class="container-page grid gap-10 py-16 lg:grid-cols-[1fr_0.78fr] lg:items-center"
+    data-pagefind-body
+    data-pagefind-meta={`title:${title};neighbourhood:${neighbourhood.name}`}
+  >
+    <div>
+      <p class="eyebrow">Neighbourhood</p>
+      <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{title}</h1>
+      <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>
+      {brands.length > 0 && (
+        <div class="mt-10 border-y border-line py-6">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-brass">Brands here</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            {brands.map((brand) => <a class="rounded-full border border-line bg-white px-4 py-2 text-sm transition hover:border-ink" href={`/brands/${brand.slug}`}>{brand.name}</a>)}
+          </div>
+        </div>
+      )}
+    </div>
+    {
+      neighbourhood.imageUrl && (
+        <div class="overflow-hidden border border-line bg-white">
+          <div class="aspect-[4/3] bg-[#f1eee8]">
+            <img src={neighbourhood.imageUrl} alt={`${neighbourhood.name} neighbourhood`} class="h-full w-full object-cover" />
+          </div>
+        </div>
+      )
+    }
+  </section>
+  <section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    {outlets.map((outlet) => <ListingCard outlet={outlet} />)}
+  </section>
+</Layout>

@@ -83,7 +83,16 @@ describe("getDirectoryData", () => {
     fetchMock.mockResolvedValueOnce({
       ok: true,
       json: async () => ({
-        records: [{ id: "hood-1", fields: { fld9PsIecu0V0LYkd: "Hood", fldEFQ1jysfxziqfM: "hood" } }]
+        records: [
+          {
+            id: "hood-1",
+            fields: {
+              fld9PsIecu0V0LYkd: "Hood",
+              fldEFQ1jysfxziqfM: "hood",
+              fldhOHgO7KBCTidHJ: "https://example.com/hood.jpg"
+            }
+          }
+        ]
       })
     } as Response);
     fetchMock.mockResolvedValueOnce({
@@ -116,6 +125,11 @@ describe("getDirectoryData", () => {
     const data = await getDirectoryData();
 
     expect(data.supermarkets).toHaveLength(1);
+    expect(data.neighbourhoods[0]).toMatchObject({
+      name: "Hood",
+      slug: "hood",
+      imageUrl: "https://example.com/hood.jpg"
+    });
     expect(data.supermarkets[0]).not.toHaveProperty("tiktokUrl");
     expect(data.supermarkets[0]).not.toHaveProperty("priceRange");
     expect(data.supermarkets[0]).not.toHaveProperty("halal");
