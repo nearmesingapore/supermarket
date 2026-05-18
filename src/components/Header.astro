@@ -4,6 +4,8 @@ const links = [
   { href: "/directory", label: "Directory" },
   { href: "/brands", label: "Brands" },
   { href: "/neighbourhoods", label: "Neighbourhoods" },
+  { href: "/malls", label: "Malls" },
+  { href: "/mrt-stations", label: "MRT" },
   { href: "/search", label: "Search" }
 ];
 ---
@@ -13,7 +15,7 @@ const links = [
     <a href="/" class="font-serif text-2xl leading-none text-ink" aria-label="Singapore Supermarket Directory home">
       SG Supermarkets
     </a>
-    <nav class="hidden items-center gap-7 text-sm font-medium text-muted md:flex" aria-label="Primary navigation">
+    <nav class="hidden items-center gap-5 text-sm font-medium text-muted md:flex" aria-label="Primary navigation">
       {links.map((link) => (
         <a class="transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}

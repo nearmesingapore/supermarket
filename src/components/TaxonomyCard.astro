@@ -1,0 +1,18 @@
+---
+import type { TaxonomyItem } from "@/lib/airtable";
+import { formatCount } from "@/lib/content";
+
+interface Props {
+  href: string;
+  item: TaxonomyItem;
+  label: string;
+}
+
+const { href, item, label } = Astro.props;
+---
+
+<a class="group flex h-full flex-col border border-line bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-editorial" href={href}>
+  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">{label}</p>
+  <p class="mt-5 font-serif text-3xl leading-tight transition group-hover:text-brass">{item.name}</p>
+  <p class="mt-auto pt-6 text-sm text-muted">{formatCount(item.count, "outlet")}</p>
+</a>
