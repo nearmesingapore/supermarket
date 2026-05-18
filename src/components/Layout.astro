@@ -1,0 +1,52 @@
+---
+import "../styles/global.css";
+
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  image = "/og-image.svg",
+  canonical = Astro.url.pathname
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, "") || "https://singapore-supermarket-directory.pages.dev";
+const canonicalUrl = canonical.startsWith("http") ? canonical : `${site}${canonical}`;
+const imageUrl = image.startsWith("http") ? image : `${site}${image}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold" href="#main">
+      Skip to content
+    </a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,30 @@
+---
+import type { TaxonomyItem } from "@/lib/airtable";
+import { formatCount } from "@/lib/content";
+
+interface Props {
+  brand: TaxonomyItem;
+}
+
+const { brand } = Astro.props;
+---
+
+<a class="group flex h-full flex-col overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial" href={`/brands/${brand.slug}`}>
+  {
+    brand.imageUrl && (
+      <div class="aspect-[4/3] overflow-hidden bg-[#f1eee8]">
+        <img
+          src={brand.imageUrl}
+          alt={`${brand.name} brand`}
+          class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+  <div class="flex flex-1 flex-col p-6">
+    <p class="font-serif text-3xl leading-tight transition group-hover:text-brass">{brand.name}</p>
+    {brand.description && <p class="mt-4 text-sm leading-6 text-muted">{brand.description}</p>}
+    <p class="mt-auto pt-5 text-sm text-muted">{formatCount(brand.count, "outlet")}</p>
+  </div>
+</a>

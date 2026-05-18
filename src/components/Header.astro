@@ -1,0 +1,23 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/directory", label: "Directory" },
+  { href: "/brands", label: "Brands" },
+  { href: "/neighbourhoods", label: "Neighbourhoods" },
+  { href: "/search", label: "Search" }
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
+  <div class="container-page flex min-h-16 items-center justify-between gap-5">
+    <a href="/" class="font-serif text-2xl leading-none text-ink" aria-label="Singapore Supermarket Directory home">
+      SG Supermarkets
+    </a>
+    <nav class="hidden items-center gap-7 text-sm font-medium text-muted md:flex" aria-label="Primary navigation">
+      {links.map((link) => (
+        <a class="transition hover:text-ink" href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+    <a href="/directory" class="ghost-button hidden sm:inline-flex">Browse</a>
+  </div>
+</header>

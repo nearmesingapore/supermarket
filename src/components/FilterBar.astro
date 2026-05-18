@@ -1,0 +1,81 @@
+---
+import type { DirectoryData } from "@/lib/airtable";
+
+interface Props {
+  data: DirectoryData;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="border border-line bg-white p-4 sm:p-5" aria-label="Directory filters">
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+    <label class="text-sm font-medium text-ink">
+      <span class="mb-2 block">Neighbourhood</span>
+      <select class="filter-field min-h-11 w-full rounded-none border border-line bg-white px-3 text-sm" data-filter="neighbourhood">
+        <option value="">All</option>
+        {data.neighbourhoods.map((item) => <option value={item.slug}>{item.name}</option>)}
+      </select>
+    </label>
+    <label class="text-sm font-medium text-ink">
+      <span class="mb-2 block">Brand</span>
+      <select class="filter-field min-h-11 w-full rounded-none border border-line bg-white px-3 text-sm" data-filter="brand">
+        <option value="">All</option>
+        {data.brands.map((item) => <option value={item.slug}>{item.name}</option>)}
+      </select>
+    </label>
+    <label class="text-sm font-medium text-ink">
+      <span class="mb-2 block">Category</span>
+      <select class="filter-field min-h-11 w-full rounded-none border border-line bg-white px-3 text-sm" data-filter="category">
+        <option value="">All</option>
+        {data.categories.map((item) => <option value={item}>{item}</option>)}
+      </select>
+    </label>
+    <label class="text-sm font-medium text-ink">
+      <span class="mb-2 block">Nearest MRT</span>
+      <select class="filter-field min-h-11 w-full rounded-none border border-line bg-white px-3 text-sm" data-filter="mrt">
+        <option value="">All</option>
+        {data.mrtStations.map((item) => <option value={item.slug}>{item.name}</option>)}
+      </select>
+    </label>
+    <label class="text-sm font-medium text-ink">
+      <span class="mb-2 block">Mall</span>
+      <select class="filter-field min-h-11 w-full rounded-none border border-line bg-white px-3 text-sm" data-filter="mall">
+        <option value="">All</option>
+        {data.malls.map((item) => <option value={item.slug}>{item.name}</option>)}
+      </select>
+    </label>
+  </div>
+  <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
+    <p id="filter-count" class="text-sm text-muted">{data.supermarkets.length} outlets shown</p>
+    <button id="filter-reset" class="ghost-button" type="button">Reset filters</button>
+  </div>
+</section>
+
+<script>
+  const fields = Array.from(document.querySelectorAll<HTMLSelectElement>(".filter-field"));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-card]"));
+  const count = document.querySelector<HTMLElement>("#filter-count");
+  const reset = document.querySelector<HTMLButtonElement>("#filter-reset");
+
+  function applyFilters() {
+    const active = fields.map((field) => [field.dataset.filter || "", field.value] as const).filter(([, value]) => value);
+    let visible = 0;
+
+    for (const card of cards) {
+      const matches = active.every(([key, value]) => card.dataset[key] === value);
+      card.hidden = !matches;
+      if (matches) visible += 1;
+    }
+
+    if (count) count.textContent = `${visible} ${visible === 1 ? "outlet" : "outlets"} shown`;
+  }
+
+  fields.forEach((field) => field.addEventListener("change", applyFilters));
+  reset?.addEventListener("click", () => {
+    fields.forEach((field) => {
+      field.value = "";
+    });
+    applyFilters();
+  });
+</script>
