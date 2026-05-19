@@ -108,7 +108,19 @@ describe("getDirectoryData", () => {
     } as Response);
     fetchMock.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ records: [] })
+      json: async () => ({
+        records: [
+          {
+            id: "mall-1",
+            fields: {
+              fldiH8RSpJ81XjnTB: "Mall",
+              fld0cC7txqdeM3u83: "mall",
+              fldqvNsAVvEFOVRFn: "https://example.com/mall.jpg",
+              fldAQDK706ZDbtQhk: "A useful mall description."
+            }
+          }
+        ]
+      })
     } as Response);
     fetchMock.mockResolvedValueOnce({
       ok: true,
@@ -123,9 +135,11 @@ describe("getDirectoryData", () => {
             fields: {
               fldaSNrp6I8auhsxM: "Brand Tampines",
               fldm8OUq811I4sDFL: "brand-tampines",
+              fldIrfJrZTsErftMN: "A bright outlet with fresh produce and pantry staples.",
               fldiDxIqZZROJ2PiT: ["brand-1"],
               fld8gPZjOWGMBfMer: "Supermarket",
               fldoROJgXxEo5phwJ: ["hood-1"],
+              fldw8QjjvT68cDC8X: ["mall-1"],
               fldKtJIAHMLqSCEeP: true
             }
           }
@@ -136,6 +150,9 @@ describe("getDirectoryData", () => {
     const data = await getDirectoryData();
 
     expect(data.supermarkets).toHaveLength(1);
+    expect(data.supermarkets[0]).toMatchObject({
+      description: "A bright outlet with fresh produce and pantry staples."
+    });
     expect(data.brands[0]).toMatchObject({
       name: "Brand",
       slug: "brand",
@@ -147,6 +164,12 @@ describe("getDirectoryData", () => {
       slug: "hood",
       imageUrl: "https://example.com/hood.jpg",
       description: "A helpful neighbourhood description."
+    });
+    expect(data.malls[0]).toMatchObject({
+      name: "Mall",
+      slug: "mall",
+      imageUrl: "https://example.com/mall.jpg",
+      description: "A useful mall description."
     });
     expect(data.supermarkets[0]).not.toHaveProperty("tiktokUrl");
     expect(data.supermarkets[0]).not.toHaveProperty("priceRange");
