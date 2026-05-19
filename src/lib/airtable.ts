@@ -19,6 +19,7 @@ export type Supermarket = {
   id: string;
   outletName: string;
   slug: string;
+  description: string;
   brand: LinkedItem[];
   category: string;
   neighbourhood: LinkedItem[];
@@ -65,6 +66,7 @@ const FIELDS = {
   supermarkets: {
     outletName: ["fldaSNrp6I8auhsxM", "Outlet Name"],
     slug: ["fldm8OUq811I4sDFL", "Slug"],
+    description: ["fldIrfJrZTsErftMN", "Outlet Description"],
     brand: ["fldiDxIqZZROJ2PiT", "Brand"],
     category: ["fld8gPZjOWGMBfMer", "Category"],
     neighbourhood: ["fldoROJgXxEo5phwJ", "Neighbourhood"],
@@ -97,7 +99,9 @@ const FIELDS = {
   },
   malls: {
     name: ["fldiH8RSpJ81XjnTB", "Name"],
-    slug: ["fld0cC7txqdeM3u83", "Slug"]
+    slug: ["fld0cC7txqdeM3u83", "Slug"],
+    imageUrl: ["fldqvNsAVvEFOVRFn", "Image URL"],
+    description: ["fldAQDK706ZDbtQhk", "Mall Description"]
   },
   mrtStations: {
     name: ["fld5fDN0H0461Oq1V", "Name"],
@@ -207,7 +211,13 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     FIELDS.neighbourhoods.imageUrl,
     FIELDS.neighbourhoods.description
   );
-  const malls = createLookup(mallRecords, FIELDS.malls.name, FIELDS.malls.slug);
+  const malls = createLookup(
+    mallRecords,
+    FIELDS.malls.name,
+    FIELDS.malls.slug,
+    FIELDS.malls.imageUrl,
+    FIELDS.malls.description
+  );
   const mrtStations = createLookup(mrtRecords, FIELDS.mrtStations.name, FIELDS.mrtStations.slug);
 
   const supermarketRecords = await fetchAirtableRecords(baseId, TABLES.supermarkets, apiKey);
@@ -275,6 +285,7 @@ function normalizeSupermarket(
     id: record.id,
     outletName: readFieldString(fields, FIELDS.supermarkets.outletName),
     slug: readFieldString(fields, FIELDS.supermarkets.slug),
+    description: readFieldString(fields, FIELDS.supermarkets.description),
     brand: resolveLinks(readField(fields, FIELDS.supermarkets.brand), brands),
     category: readFieldString(fields, FIELDS.supermarkets.category),
     neighbourhood: resolveLinks(readField(fields, FIELDS.supermarkets.neighbourhood), neighbourhoods),

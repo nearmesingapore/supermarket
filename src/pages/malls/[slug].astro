@@ -8,5 +8,27 @@ const { mall } = Astro.props as { mall: TaxonomyItem };
 const data = await getDirectoryData();
 const outlets = data.supermarkets.filter((outlet) => outlet.mall.some((item) => item.id === mall.id));
 const title = `${mall.name} Supermarkets`;
+const description = mall.description || pageDescription(title, outlets.length);
 ---
-<Layout title={title} description={pageDescription(title, outlets.length)} canonical={`/malls/${mall.slug}`}><section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${title}`}><p class="eyebrow">Mall / Location</p><h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{mall.name}</h1><p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p></section><section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{outlets.map((outlet) => <ListingCard outlet={outlet} />)}</section></Layout>
+<Layout title={title} description={description} image={mall.imageUrl || undefined} canonical={`/malls/${mall.slug}`}>
+  <section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${title}`}>
+    <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div>
+        <p class="eyebrow">Mall / Location</p>
+        <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{mall.name}</h1>
+        {mall.description && <p class="mt-6 max-w-3xl text-lg leading-8 text-ink">{mall.description}</p>}
+        <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>
+      </div>
+      {mall.imageUrl && (
+        <div class="overflow-hidden border border-line bg-white">
+          <div class="aspect-[4/3] bg-[#f2efe9]">
+            <img src={mall.imageUrl} alt={`${mall.name} mall`} class="h-full w-full object-cover" />
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+  <section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    {outlets.map((outlet) => <ListingCard outlet={outlet} />)}
+  </section>
+</Layout>

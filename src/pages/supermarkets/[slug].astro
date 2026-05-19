@@ -17,7 +17,7 @@ const mall = getPrimary(outlet.mall);
 const mrt = getPrimary(outlet.mrt);
 const related = getRelatedByNeighbourhood(outlet, data.supermarkets);
 const title = `${brand?.name ? `${brand.name} ` : ""}${outlet.outletName}`;
-const description = `${title} in Singapore${neighbourhood ? `, near ${neighbourhood.name}` : ""}. View address, opening hours, MRT, mall, and contact details.`;
+const description = outlet.description || `${title} in Singapore${neighbourhood ? `, near ${neighbourhood.name}` : ""}. View address, opening hours, MRT, mall, and contact details.`;
 const initial = getFirstInitial(brand?.name || "", outlet.outletName);
 const fullAddress = [outlet.address, outlet.postalCode].filter(Boolean).join(" ");
 const schema = {
@@ -58,6 +58,7 @@ const schema = {
       <div>
         <p class="eyebrow">{brand?.name || "Independent"}</p>
         <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{outlet.outletName}</h1>
+        {outlet.description && <p class="mt-6 max-w-2xl text-lg leading-8 text-ink">{outlet.description}</p>}
         <p class="mt-6 max-w-2xl text-lg leading-8 text-muted">{fullAddress}</p>
 
         <div class="mt-8 flex flex-wrap gap-3">
