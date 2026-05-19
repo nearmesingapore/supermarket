@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: "https://singapore-supermarket-directory.pages.dev",
+  site: "https://supermarket.sg",
   output: "static",
   integrations: [
     tailwind({
