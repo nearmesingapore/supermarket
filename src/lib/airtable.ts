@@ -98,7 +98,7 @@ const FIELDS = {
     description: ["fldAVsFHnsfOYcDOZ", "Neighbourhood Description"]
   },
   malls: {
-    name: ["fldiH8RSpJ81XjnTB", "Name"],
+    name: ["fldiH8RSpJ81XjnTB", "Mall Name", "Name"],
     slug: ["fld0cC7txqdeM3u83", "Slug"],
     imageUrl: ["fldqvNsAVvEFOVRFn", "Image URL"],
     description: ["fldAQDK706ZDbtQhk", "Mall Description"]
