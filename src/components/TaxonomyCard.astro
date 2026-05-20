@@ -9,8 +9,6 @@ interface Props {
 }
 
 const { href, item, label } = Astro.props;
-const showMallPlaceholder = label === "Mall / Location" && !item.imageUrl;
-const initial = item.name.trim().charAt(0).toUpperCase();
 ---
 
 <a class="group flex h-full flex-col overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial" href={href}>
@@ -23,19 +21,6 @@ const initial = item.name.trim().charAt(0).toUpperCase();
           class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
           loading="lazy"
         />
-      </div>
-    )
-  }
-  {
-    showMallPlaceholder && (
-      <div class="relative aspect-[4/3] overflow-hidden border-b border-line bg-[#f2efe9]" aria-hidden="true">
-        <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(163,128,76,0.12)_0_1px,transparent_1px_24px),linear-gradient(90deg,rgba(34,31,29,0.05)_0_1px,transparent_1px_48px)]" />
-        <div class="absolute left-8 top-10 h-20 w-16 bg-white/80 shadow-[inset_0_0_0_1px_rgba(163,128,76,0.18)] transition duration-500 group-hover:-translate-y-1" />
-        <div class="absolute left-28 top-16 h-14 w-24 bg-brass/20 shadow-[inset_0_0_0_1px_rgba(163,128,76,0.2)] transition duration-500 group-hover:-translate-y-1" />
-        <div class="absolute bottom-0 right-6 h-28 w-20 bg-ink/10 shadow-[inset_0_0_0_1px_rgba(34,31,29,0.08)] transition duration-500 group-hover:-translate-y-1" />
-        <div class="absolute bottom-8 left-8 flex h-20 w-20 items-center justify-center border border-brass/25 bg-white/75 font-serif text-5xl text-brass">
-          {initial}
-        </div>
       </div>
     )
   }
