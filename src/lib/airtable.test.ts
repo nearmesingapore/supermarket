@@ -7,7 +7,7 @@ import {
   isValidNeighbourhoodName,
   resolveLinks
 } from "./airtable";
-import { hasTaxonomyImage } from "./content";
+import { hasTaxonomyImage, splitDescriptionParagraphs } from "./content";
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -227,5 +227,14 @@ describe("hasTaxonomyImage", () => {
     expect(hasTaxonomyImage("")).toBe(false);
     expect(hasTaxonomyImage("   ")).toBe(false);
     expect(hasTaxonomyImage(undefined)).toBe(false);
+  });
+});
+
+describe("splitDescriptionParagraphs", () => {
+  test("preserves Airtable paragraph breaks while trimming surrounding whitespace", () => {
+    expect(splitDescriptionParagraphs("First paragraph.\n\nSecond paragraph.\nThird line.")).toEqual([
+      "First paragraph.",
+      "Second paragraph.\nThird line."
+    ]);
   });
 });
