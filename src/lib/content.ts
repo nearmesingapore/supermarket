@@ -21,6 +21,10 @@ export function getPrimary(items: { name: string; slug?: string }[]) {
   return items[0];
 }
 
+export function hasTaxonomyImage(imageUrl: string | undefined) {
+  return Boolean(imageUrl?.trim());
+}
+
 export function sortFeaturedNeighbourhoods(neighbourhoods: TaxonomyItem[]) {
   const priority = new Map(PRIORITY_NEIGHBOURHOODS.map((name, index) => [name, index]));
 

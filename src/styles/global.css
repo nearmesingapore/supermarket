@@ -17,6 +17,10 @@
     @apply bg-paper font-sans text-ink antialiased;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
   ::selection {
     @apply bg-ink text-white;
   }
@@ -39,7 +43,15 @@
   }
 
   .section-title {
-    @apply font-serif text-4xl leading-tight text-ink sm:text-5xl;
+    @apply font-serif text-3xl leading-tight text-ink sm:text-5xl;
+  }
+
+  .page-title {
+    @apply font-serif text-4xl leading-[1.02] text-ink sm:text-6xl lg:text-7xl;
+  }
+
+  .page-intro {
+    @apply text-base leading-7 text-muted sm:text-lg sm:leading-8;
   }
 
   .fine-link {
@@ -47,10 +59,30 @@
   }
 
   .soft-button {
-    @apply inline-flex min-h-11 items-center justify-center rounded-full border border-ink bg-ink px-5 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-ink;
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border border-ink bg-ink px-5 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-ink;
   }
 
   .ghost-button {
-    @apply inline-flex min-h-11 items-center justify-center rounded-full border border-line bg-white px-5 py-2 text-sm font-semibold text-ink transition hover:border-ink;
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border border-line bg-white px-5 py-2 text-sm font-semibold text-ink transition hover:border-ink;
+  }
+
+  .pill-link {
+    @apply inline-flex min-h-11 items-center rounded-full border border-line bg-white px-4 py-2 text-sm transition hover:border-ink;
+  }
+}
+
+.pagefind-ui__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pagefind-ui__search-input {
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .pagefind-ui__form {
+    flex-direction: row;
   }
 }

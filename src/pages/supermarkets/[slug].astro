@@ -57,13 +57,13 @@ const schema = {
 
       <div>
         <p class="eyebrow">{brand?.name || "Independent"}</p>
-        <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{outlet.outletName}</h1>
-        {outlet.description && <p class="mt-6 max-w-2xl text-lg leading-8 text-ink">{outlet.description}</p>}
-        <p class="mt-6 max-w-2xl text-lg leading-8 text-muted">{fullAddress}</p>
+        <h1 class="page-title mt-4">{outlet.outletName}</h1>
+        {outlet.description && <p class="page-intro mt-6 max-w-2xl text-ink">{outlet.description}</p>}
+        <p class="page-intro mt-6 max-w-2xl">{fullAddress}</p>
 
-        <div class="mt-8 flex flex-wrap gap-3">
-          {outlet.googleMapsUrl && <a class="soft-button" href={outlet.googleMapsUrl} target="_blank" rel="noreferrer">Open Google Maps</a>}
-          {outlet.phone && <a class="ghost-button" href={`tel:${outlet.phone}`}>{outlet.phone}</a>}
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          {outlet.googleMapsUrl && <a class="soft-button w-full sm:w-auto" href={outlet.googleMapsUrl} target="_blank" rel="noreferrer">Open Google Maps</a>}
+          {outlet.phone && <a class="ghost-button w-full sm:w-auto" href={`tel:${outlet.phone}`}>{outlet.phone}</a>}
         </div>
 
         <dl class="mt-10 grid gap-5 border-y border-line py-8 sm:grid-cols-2">

@@ -98,7 +98,7 @@ const FIELDS = {
     description: ["fldAVsFHnsfOYcDOZ", "Neighbourhood Description"]
   },
   malls: {
-    name: ["fldiH8RSpJ81XjnTB", "Name"],
+    name: ["fldiH8RSpJ81XjnTB", "Mall Name", "Name"],
     slug: ["fld0cC7txqdeM3u83", "Slug"],
     imageUrl: ["fldqvNsAVvEFOVRFn", "Image URL"],
     description: ["fldAQDK706ZDbtQhk", "Mall Description"]
@@ -184,7 +184,10 @@ export function resolveLinks(
 }
 
 export async function getDirectoryData(): Promise<DirectoryData> {
-  directoryCache ||= loadDirectoryData();
+  directoryCache ||= loadDirectoryData().catch((error: unknown) => {
+    directoryCache = undefined;
+    throw error;
+  });
   return directoryCache;
 }
 
@@ -221,6 +224,13 @@ async function loadDirectoryData(): Promise<DirectoryData> {
   const mrtStations = createLookup(mrtRecords, FIELDS.mrtStations.name, FIELDS.mrtStations.slug);
 
   const supermarketRecords = await fetchAirtableRecords(baseId, TABLES.supermarkets, apiKey);
+
+  if (supermarketRecords.length === 0) {
+    throw new Error(
+      "No supermarket records found in Airtable. Check AIRTABLE_BASE_ID and table permissions before building the directory."
+    );
+  }
+
   const supermarkets = supermarketRecords
     .map((record) => normalizeSupermarket(record, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
     .filter((outlet) => outlet.published && outlet.slug)

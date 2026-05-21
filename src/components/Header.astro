@@ -4,20 +4,55 @@ const links = [
   { href: "/directory", label: "Directory" },
   { href: "/brands", label: "Brands" },
   { href: "/neighbourhoods", label: "Neighbourhoods" },
+  { href: "/malls", label: "Malls" },
+  { href: "/mrt-stations", label: "MRT" },
   { href: "/search", label: "Search" }
 ];
 ---
 
 <header class="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
-  <div class="container-page flex min-h-16 items-center justify-between gap-5">
-    <a href="/" class="font-serif text-2xl leading-none text-ink" aria-label="Singapore Supermarket Directory home">
+  <div class="container-page flex min-h-16 items-center justify-between gap-4 py-3">
+    <a href="/" class="shrink-0 font-serif text-2xl leading-none text-ink" aria-label="Singapore Supermarket Directory home">
       SG Supermarkets
     </a>
-    <nav class="hidden items-center gap-7 text-sm font-medium text-muted md:flex" aria-label="Primary navigation">
+    <nav class="hidden items-center gap-5 text-sm font-medium text-muted md:flex" aria-label="Primary navigation">
       {links.map((link) => (
         <a class="transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}
     </nav>
     <a href="/directory" class="ghost-button hidden sm:inline-flex">Browse</a>
+    <button
+      class="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-line bg-white text-ink md:hidden"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <span class="sr-only">Menu</span>
+      <span aria-hidden="true" class="flex flex-col gap-1.5">
+        <span class="block h-0.5 w-5 bg-current"></span>
+        <span class="block h-0.5 w-5 bg-current"></span>
+        <span class="block h-0.5 w-5 bg-current"></span>
+      </span>
+    </button>
   </div>
+  <nav id="mobile-menu" class="container-page hidden border-t border-line py-3 md:hidden" aria-label="Mobile navigation" data-menu-panel>
+    <div class="grid gap-2 text-sm font-medium text-muted">
+      {links.map((link) => (
+        <a class="block rounded-full bg-white px-4 py-3 transition hover:text-ink" href={link.href}>{link.label}</a>
+      ))}
+    </div>
+  </nav>
 </header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const panel = document.querySelector<HTMLElement>("[data-menu-panel]");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+    panel?.classList.toggle("hidden", isOpen);
+  });
+</script>

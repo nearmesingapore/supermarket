@@ -19,14 +19,14 @@ const description = neighbourhood.description || pageDescription(title, outlets.
   >
     <div>
       <p class="eyebrow">Neighbourhood</p>
-      <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{title}</h1>
-      {neighbourhood.description && <p class="mt-6 max-w-3xl text-lg leading-8 text-muted">{neighbourhood.description}</p>}
+      <h1 class="page-title mt-4">{title}</h1>
+      {neighbourhood.description && <p class="page-intro mt-6 max-w-3xl">{neighbourhood.description}</p>}
       <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>
       {brands.length > 0 && (
         <div class="mt-10 border-y border-line py-6">
           <p class="text-sm font-semibold uppercase tracking-[0.16em] text-brass">Brands here</p>
           <div class="mt-4 flex flex-wrap gap-3">
-            {brands.map((brand) => <a class="rounded-full border border-line bg-white px-4 py-2 text-sm transition hover:border-ink" href={`/brands/${brand.slug}`}>{brand.name}</a>)}
+            {brands.map((brand) => <a class="pill-link" href={`/brands/${brand.slug}`}>{brand.name}</a>)}
           </div>
         </div>
       )}

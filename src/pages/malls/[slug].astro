@@ -9,14 +9,19 @@ const data = await getDirectoryData();
 const outlets = data.supermarkets.filter((outlet) => outlet.mall.some((item) => item.id === mall.id));
 const title = `${mall.name} Supermarkets`;
 const description = mall.description || pageDescription(title, outlets.length);
+const descriptionParagraphs = mall.description?.split(/\n\s*\n/).map((paragraph) => paragraph.trim()).filter(Boolean) ?? [];
 ---
 <Layout title={title} description={description} image={mall.imageUrl || undefined} canonical={`/malls/${mall.slug}`}>
   <section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${title}`}>
     <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
       <div>
         <p class="eyebrow">Mall / Location</p>
-        <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{mall.name}</h1>
-        {mall.description && <p class="mt-6 max-w-3xl text-lg leading-8 text-ink">{mall.description}</p>}
+        <h1 class="page-title mt-4">{mall.name}</h1>
+        {descriptionParagraphs.length > 0 && (
+          <div class="page-intro mt-6 max-w-3xl space-y-6 text-ink">
+            {descriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
+          </div>
+        )}
         <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>
       </div>
       {mall.imageUrl && (

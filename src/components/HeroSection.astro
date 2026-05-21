@@ -3,11 +3,11 @@ import SearchBox from "./SearchBox.astro";
 ---
 
 <section class="border-b border-line bg-paper">
-  <div class="container-page grid min-h-[calc(86dvh-4rem)] content-center gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
+  <div class="container-page grid min-h-[calc(76dvh-4rem)] content-center gap-10 py-12 sm:py-16 lg:min-h-[calc(86dvh-4rem)] lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
     <div>
       <p class="eyebrow">Singapore Supermarket Directory</p>
-      <h1 class="mt-6 max-w-4xl font-serif text-6xl leading-[0.95] text-ink sm:text-7xl lg:text-8xl">Discover Supermarkets Across Singapore</h1>
-      <p class="mt-7 max-w-2xl text-lg leading-8 text-muted">Your guide to every supermarket, by neighbourhood, brand, and mall.</p>
+      <h1 class="mt-6 max-w-full font-serif text-[clamp(3rem,15vw,4rem)] leading-[1.02] text-ink sm:max-w-4xl sm:text-7xl lg:text-8xl">Discover Supermarkets Across Singapore</h1>
+      <p class="page-intro mt-6 max-w-2xl sm:mt-7">Your guide to every supermarket, by neighbourhood, brand, and mall.</p>
       <div class="mt-10"><SearchBox /></div>
     </div>
     <div class="relative hidden min-h-[520px] lg:block" aria-hidden="true">

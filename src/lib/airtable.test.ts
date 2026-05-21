@@ -7,6 +7,7 @@ import {
   isValidNeighbourhoodName,
   resolveLinks
 } from "./airtable";
+import { hasTaxonomyImage } from "./content";
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -65,6 +66,20 @@ describe("fetchAirtableRecords", () => {
 });
 
 describe("getDirectoryData", () => {
+  test("rejects empty Airtable data instead of publishing an incomplete directory", async () => {
+    process.env.AIRTABLE_API_KEY = "key";
+    process.env.AIRTABLE_BASE_ID = "base";
+
+    vi.spyOn(globalThis, "fetch").mockResolvedValue({
+      ok: true,
+      json: async () => ({ records: [] })
+    } as Response);
+
+    await expect(getDirectoryData()).rejects.toThrow(
+      "No supermarket records found in Airtable. Check AIRTABLE_BASE_ID and table permissions before building the directory."
+    );
+  });
+
   test("loads supermarkets without removed Airtable fields", async () => {
     process.env.AIRTABLE_API_KEY = "key";
     process.env.AIRTABLE_BASE_ID = "base";
@@ -203,5 +218,14 @@ describe("getFirstInitial", () => {
   test("uses the first available brand or outlet letter for image placeholders", () => {
     expect(getFirstInitial("FairPrice", "Outlet")).toBe("F");
     expect(getFirstInitial("", "Marketplace")).toBe("M");
+  });
+});
+
+describe("hasTaxonomyImage", () => {
+  test("only renders taxonomy image areas for real image URLs", () => {
+    expect(hasTaxonomyImage("https://example.com/mall.jpg")).toBe(true);
+    expect(hasTaxonomyImage("")).toBe(false);
+    expect(hasTaxonomyImage("   ")).toBe(false);
+    expect(hasTaxonomyImage(undefined)).toBe(false);
   });
 });

@@ -22,8 +22,8 @@ const { neighbourhood } = Astro.props;
       </div>
     )
   }
-  <div class="p-6">
-    <p class="font-serif text-3xl leading-tight transition group-hover:text-brass">{neighbourhood.name}</p>
+  <div class="p-4 sm:p-6">
+    <p class="font-serif text-2xl leading-tight transition group-hover:text-brass sm:text-3xl">{neighbourhood.name}</p>
     {neighbourhood.description && <p class="mt-4 text-sm leading-6 text-muted">{neighbourhood.description}</p>}
     <p class="mt-5 text-sm text-muted">{formatCount(neighbourhood.count, "outlet")}</p>
   </div>
