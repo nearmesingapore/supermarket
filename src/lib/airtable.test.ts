@@ -7,7 +7,7 @@ import {
   isValidNeighbourhoodName,
   resolveLinks
 } from "./airtable";
-import { hasTaxonomyImage, splitDescriptionParagraphs } from "./content";
+import { hasTaxonomyImage, splitDescriptionParagraphs, truncateWords } from "./content";
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -96,10 +96,17 @@ describe("getDirectoryData", () => {
           {
             id: "brand-1",
             fields: {
-              fldPwU2iFk9wEsmba: "Brand",
-              fldA09ghMk1pINerc: "brand",
+              fldPwU2iFk9wEsmba: "Supermarket Brand",
+              fldA09ghMk1pINerc: "supermarket-brand",
               fldp86xMlykctfvv0: "https://example.com/brand.jpg",
               fldgNoZbK2EY6KFWJ: "A useful brand description."
+            }
+          },
+          {
+            id: "brand-2",
+            fields: {
+              fldPwU2iFk9wEsmba: "Grocery Brand",
+              fldgNoZbK2EY6KFWJ: "A useful grocery brand description."
             }
           }
         ]
@@ -171,7 +178,7 @@ describe("getDirectoryData", () => {
               fld7Le0O7ItTSeses: "Little Farms Katong Point",
               fldj1ftP91mrspDmr: "little-farms-katong-point",
               fldFkGiQ0TNnPcttt: "Specialty grocery store with imported produce and pantry essentials.",
-              fldfwYhP0Zcx7ZPZz: ["brand-1"],
+              fldfwYhP0Zcx7ZPZz: ["brand-2"],
               fld59gyIPW1vZcMV7: "Grocery Store",
               fldlKfiFYxZ7tmhdp: ["hood-1"],
               fldt1hSIwTrRAACPD: ["mall-1"],
@@ -205,11 +212,19 @@ describe("getDirectoryData", () => {
       postalCode: "427664"
     });
     expect(data.brands[0]).toMatchObject({
-      name: "Brand",
-      slug: "brand",
+      name: "Supermarket Brand",
+      slug: "supermarket-brand",
       imageUrl: "https://example.com/brand.jpg",
       description: "A useful brand description."
     });
+    expect(data.brands[1]).toMatchObject({
+      name: "Grocery Brand",
+      slug: "grocery-brand",
+      count: 1,
+      description: "A useful grocery brand description."
+    });
+    expect(data.supermarketBrands.map((brand) => brand.slug)).toEqual(["supermarket-brand"]);
+    expect(data.groceryStoreBrands.map((brand) => brand.slug)).toEqual(["grocery-brand"]);
     expect(data.neighbourhoods[0]).toMatchObject({
       name: "Hood",
       slug: "hood",
@@ -272,5 +287,19 @@ describe("splitDescriptionParagraphs", () => {
       "First paragraph.",
       "Second paragraph.\nThird line."
     ]);
+  });
+});
+
+describe("truncateWords", () => {
+  test("limits long descriptions to whole words and appends an ellipsis", () => {
+    const words = Array.from({ length: 42 }, (_, index) => `word${index + 1}`).join(" ");
+
+    expect(truncateWords(words, 40)).toBe(
+      `${Array.from({ length: 40 }, (_, index) => `word${index + 1}`).join(" ")}...`
+    );
+  });
+
+  test("keeps short descriptions unchanged", () => {
+    expect(truncateWords("Short neighbourhood description.", 40)).toBe("Short neighbourhood description.");
   });
 });

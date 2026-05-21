@@ -1,12 +1,13 @@
 ---
 import type { TaxonomyItem } from "@/lib/airtable";
-import { formatCount } from "@/lib/content";
+import { formatCount, truncateWords } from "@/lib/content";
 
 interface Props {
   neighbourhood: TaxonomyItem;
 }
 
 const { neighbourhood } = Astro.props;
+const summary = truncateWords(neighbourhood.description, 40);
 ---
 
 <a class="group block overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial" href={`/neighbourhoods/${neighbourhood.slug}`}>
@@ -24,7 +25,7 @@ const { neighbourhood } = Astro.props;
   }
   <div class="p-6">
     <p class="font-serif text-3xl leading-tight transition group-hover:text-brass">{neighbourhood.name}</p>
-    {neighbourhood.description && <p class="mt-4 text-sm leading-6 text-muted">{neighbourhood.description}</p>}
+    {summary && <p class="mt-4 text-sm leading-6 text-muted">{summary}</p>}
     <p class="mt-5 text-sm text-muted">{formatCount(neighbourhood.count, "outlet")}</p>
   </div>
 </a>

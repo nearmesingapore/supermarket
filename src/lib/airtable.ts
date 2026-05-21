@@ -43,6 +43,8 @@ export type GroceryStore = Supermarket;
 
 export type DirectoryData = {
   brands: TaxonomyItem[];
+  supermarketBrands: TaxonomyItem[];
+  groceryStoreBrands: TaxonomyItem[];
   neighbourhoods: TaxonomyItem[];
   malls: TaxonomyItem[];
   mrtStations: TaxonomyItem[];
@@ -276,14 +278,21 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     );
   }
 
-  const countedBrands = withCounts(brands.items, supermarkets, (outlet) => outlet.brand);
-  const countedNeighbourhoods = withCounts(neighbourhoods.items, supermarkets, (outlet) => outlet.neighbourhood)
+  const supermarketBrands = withCounts(brands.items, supermarkets, (outlet) => outlet.brand)
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const groceryStoreBrands = withCounts(brands.items, groceryStores, (outlet) => outlet.brand)
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const countedBrands = groupSupermarketBrandsFirst(supermarketBrands, groceryStoreBrands);
+  const allOutlets = [...supermarkets, ...groceryStores];
+  const countedNeighbourhoods = withCounts(neighbourhoods.items, allOutlets, (outlet) => outlet.neighbourhood)
     .filter((item) => isValidNeighbourhoodName(item.name));
-  const countedMalls = withCounts(malls.items, supermarkets, (outlet) => outlet.mall);
-  const countedMrtStations = withCounts(mrtStations.items, supermarkets, (outlet) => outlet.mrt);
+  const countedMalls = withCounts(malls.items, allOutlets, (outlet) => outlet.mall);
+  const countedMrtStations = withCounts(mrtStations.items, allOutlets, (outlet) => outlet.mrt);
 
   return {
-    brands: countedBrands.sort((a, b) => a.name.localeCompare(b.name)),
+    brands: countedBrands,
+    supermarketBrands,
+    groceryStoreBrands,
     neighbourhoods: countedNeighbourhoods.sort((a, b) => a.name.localeCompare(b.name)),
     malls: countedMalls.sort((a, b) => a.name.localeCompare(b.name)),
     mrtStations: countedMrtStations.sort((a, b) => a.name.localeCompare(b.name)),
@@ -305,7 +314,7 @@ function createLookup(
     .map((record) => ({
       id: record.id,
       name: readFieldString(record.fields, nameField),
-      slug: readFieldString(record.fields, slugField),
+      slug: readFieldString(record.fields, slugField) || slugify(readFieldString(record.fields, nameField)),
       imageUrl: imageUrlField ? readFieldString(record.fields, imageUrlField) : undefined,
       description: descriptionField ? readFieldString(record.fields, descriptionField) : undefined
     }))
@@ -376,6 +385,18 @@ function uniqueSorted(values: string[]) {
   );
 }
 
+function groupSupermarketBrandsFirst(supermarketBrands: TaxonomyItem[], groceryStoreBrands: TaxonomyItem[]) {
+  const supermarketBrandIds = new Set(supermarketBrands.map((brand) => brand.id));
+  const groceryCounts = new Map(groceryStoreBrands.map((brand) => [brand.id, brand.count]));
+  const supermarketGroup = supermarketBrands.map((brand) => ({
+    ...brand,
+    count: brand.count + (groceryCounts.get(brand.id) || 0)
+  }));
+  const groceryOnlyGroup = groceryStoreBrands.filter((brand) => !supermarketBrandIds.has(brand.id));
+
+  return [...supermarketGroup, ...groceryOnlyGroup];
+}
+
 function uniqueOutletSlug(outlet: Supermarket, index: number, outlets: Supermarket[]) {
   return outlets.findIndex((candidate) => candidate.slug === outlet.slug) === index;
 }
@@ -408,4 +429,13 @@ function readPostalCode(value: unknown) {
   if (typeof value === "number") return String(Math.trunc(value)).padStart(6, "0");
   if (typeof value === "string") return value.trim();
   return "";
+}
+
+function slugify(value: string) {
+  return value
+    .trim()
+    .replace(/&/g, "and")
+    .replace(/[^A-Za-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .toLowerCase();
 }

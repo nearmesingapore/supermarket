@@ -34,6 +34,13 @@ export function splitDescriptionParagraphs(description: string | undefined) {
   );
 }
 
+export function truncateWords(text: string | undefined, limit: number) {
+  const words = text?.trim().split(/\s+/).filter(Boolean) ?? [];
+  if (words.length <= limit) return text?.trim() ?? "";
+
+  return `${words.slice(0, limit).join(" ")}...`;
+}
+
 export function sortFeaturedNeighbourhoods(neighbourhoods: TaxonomyItem[]) {
   const priority = new Map(PRIORITY_NEIGHBOURHOODS.map((name, index) => [name, index]));
 

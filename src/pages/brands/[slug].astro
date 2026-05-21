@@ -11,13 +11,17 @@ export async function getStaticPaths() {
 
 const { brand } = Astro.props as { brand: TaxonomyItem };
 const data = await getDirectoryData();
-const outlets = data.supermarkets
+const supermarketOutlets = data.supermarkets
   .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
   .sort((a, b) => a.outletName.localeCompare(b.outletName));
+const groceryStoreOutlets = data.groceryStores
+  .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
+  .sort((a, b) => a.outletName.localeCompare(b.outletName));
+const outlets = [...supermarketOutlets, ...groceryStoreOutlets];
 const neighbourhoods = data.neighbourhoods.filter((neighbourhood) =>
   outlets.some((outlet) => outlet.neighbourhood.some((item) => item.id === neighbourhood.id))
 );
-const title = `${brand.name} Supermarkets in Singapore`;
+const title = `${brand.name} Supermarkets and Grocery Stores in Singapore`;
 const description = brand.description || pageDescription(title, outlets.length);
 const descriptionParagraphs = splitDescriptionParagraphs(brand.description);
 ---
@@ -70,6 +74,7 @@ const descriptionParagraphs = splitDescriptionParagraphs(brand.description);
     }
   </section>
   <section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    {outlets.map((outlet) => <ListingCard outlet={outlet} />)}
+    {supermarketOutlets.map((outlet) => <ListingCard outlet={outlet} />)}
+    {groceryStoreOutlets.map((outlet) => <ListingCard outlet={outlet} basePath="/grocery-stores" />)}
   </section>
 </Layout>

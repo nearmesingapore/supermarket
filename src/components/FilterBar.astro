@@ -1,11 +1,24 @@
 ---
-import type { DirectoryData } from "@/lib/airtable";
+import type { DirectoryData, LinkedItem, Supermarket, TaxonomyItem } from "@/lib/airtable";
 
 interface Props {
   data: DirectoryData;
+  outlets: Supermarket[];
 }
 
-const { data } = Astro.props;
+const { data, outlets } = Astro.props;
+
+const filterTaxonomy = (items: TaxonomyItem[], readLinks: (outlet: Supermarket) => LinkedItem[]) => {
+  const ids = new Set(outlets.flatMap((outlet) => readLinks(outlet).map((item) => item.id)));
+  return items.filter((item) => ids.has(item.id));
+};
+
+const neighbourhoods = filterTaxonomy(data.neighbourhoods, (outlet) => outlet.neighbourhood);
+const brands = filterTaxonomy(data.brands, (outlet) => outlet.brand);
+const mrtStations = filterTaxonomy(data.mrtStations, (outlet) => outlet.mrt);
+const malls = filterTaxonomy(data.malls, (outlet) => outlet.mall);
+const categories = [...new Set(outlets.map((outlet) => outlet.category).filter(Boolean))]
+  .sort((a, b) => a.localeCompare(b));
 ---
 
 <section class="border border-line bg-white p-4 sm:p-5" aria-label="Directory filters">
@@ -14,40 +27,40 @@ const { data } = Astro.props;
       <span class="mb-2 block">Neighbourhood</span>
       <select class="filter-field min-h-11 w-full rounded-none border border-line bg-white px-3 text-sm" data-filter="neighbourhood">
         <option value="">All</option>
-        {data.neighbourhoods.map((item) => <option value={item.slug}>{item.name}</option>)}
+        {neighbourhoods.map((item) => <option value={item.slug}>{item.name}</option>)}
       </select>
     </label>
     <label class="text-sm font-medium text-ink">
       <span class="mb-2 block">Brand</span>
       <select class="filter-field min-h-11 w-full rounded-none border border-line bg-white px-3 text-sm" data-filter="brand">
         <option value="">All</option>
-        {data.brands.map((item) => <option value={item.slug}>{item.name}</option>)}
+        {brands.map((item) => <option value={item.slug}>{item.name}</option>)}
       </select>
     </label>
     <label class="text-sm font-medium text-ink">
       <span class="mb-2 block">Category</span>
       <select class="filter-field min-h-11 w-full rounded-none border border-line bg-white px-3 text-sm" data-filter="category">
         <option value="">All</option>
-        {data.categories.map((item) => <option value={item}>{item}</option>)}
+        {categories.map((item) => <option value={item}>{item}</option>)}
       </select>
     </label>
     <label class="text-sm font-medium text-ink">
       <span class="mb-2 block">Nearest MRT</span>
       <select class="filter-field min-h-11 w-full rounded-none border border-line bg-white px-3 text-sm" data-filter="mrt">
         <option value="">All</option>
-        {data.mrtStations.map((item) => <option value={item.slug}>{item.name}</option>)}
+        {mrtStations.map((item) => <option value={item.slug}>{item.name}</option>)}
       </select>
     </label>
     <label class="text-sm font-medium text-ink">
       <span class="mb-2 block">Mall</span>
       <select class="filter-field min-h-11 w-full rounded-none border border-line bg-white px-3 text-sm" data-filter="mall">
         <option value="">All</option>
-        {data.malls.map((item) => <option value={item.slug}>{item.name}</option>)}
+        {malls.map((item) => <option value={item.slug}>{item.name}</option>)}
       </select>
     </label>
   </div>
   <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
-    <p id="filter-count" class="text-sm text-muted">{data.supermarkets.length} outlets shown</p>
+    <p id="filter-count" class="text-sm text-muted">{outlets.length} outlets shown</p>
     <button id="filter-reset" class="ghost-button" type="button">Reset filters</button>
   </div>
 </section>

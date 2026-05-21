@@ -6,9 +6,11 @@ import { formatCount, pageDescription } from "@/lib/content";
 export async function getStaticPaths() { const data = await getDirectoryData(); return data.neighbourhoods.map((neighbourhood) => ({ params: { slug: neighbourhood.slug }, props: { neighbourhood } })); }
 const { neighbourhood } = Astro.props as { neighbourhood: TaxonomyItem };
 const data = await getDirectoryData();
-const outlets = data.supermarkets.filter((outlet) => outlet.neighbourhood.some((item) => item.id === neighbourhood.id));
+const supermarketOutlets = data.supermarkets.filter((outlet) => outlet.neighbourhood.some((item) => item.id === neighbourhood.id));
+const groceryStoreOutlets = data.groceryStores.filter((outlet) => outlet.neighbourhood.some((item) => item.id === neighbourhood.id));
+const outlets = [...supermarketOutlets, ...groceryStoreOutlets];
 const brands = data.brands.filter((brand) => outlets.some((outlet) => outlet.brand.some((item) => item.id === brand.id)));
-const title = `Supermarkets in ${neighbourhood.name}`;
+const title = `Supermarkets and Grocery Stores in ${neighbourhood.name}`;
 const description = neighbourhood.description || pageDescription(title, outlets.length);
 ---
 <Layout title={title} description={description} image={neighbourhood.imageUrl} canonical={`/neighbourhoods/${neighbourhood.slug}`}>
@@ -42,6 +44,7 @@ const description = neighbourhood.description || pageDescription(title, outlets.
     }
   </section>
   <section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    {outlets.map((outlet) => <ListingCard outlet={outlet} />)}
+    {supermarketOutlets.map((outlet) => <ListingCard outlet={outlet} />)}
+    {groceryStoreOutlets.map((outlet) => <ListingCard outlet={outlet} basePath="/grocery-stores" />)}
   </section>
 </Layout>

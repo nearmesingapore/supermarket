@@ -15,6 +15,23 @@ describe("taxonomy index pages", () => {
     expect(readSource("src/pages/mrt-stations/index.astro")).toContain("data.mrtStations.map");
   });
 
+  test("uses grocery-store specific filters on the grocery stores page", () => {
+    const groceryStores = readSource("src/pages/grocery-stores/index.astro");
+    const filterBar = readSource("src/components/FilterBar.astro");
+
+    expect(groceryStores).toContain("<FilterBar");
+    expect(groceryStores).toContain("outlets={data.groceryStores}");
+    expect(filterBar).toContain("outlets: Supermarket[]");
+    expect(filterBar).toContain("{outlets.length} outlets shown");
+  });
+
+  test("includes grocery-store outlets on brand detail pages", () => {
+    const brandDetail = readSource("src/pages/brands/[slug].astro");
+
+    expect(brandDetail).toContain("data.groceryStores");
+    expect(brandDetail).toContain('basePath="/grocery-stores"');
+  });
+
   test("links mall and MRT station indexes from shared navigation", () => {
     const header = readSource("src/components/Header.astro");
     const footer = readSource("src/components/Footer.astro");
