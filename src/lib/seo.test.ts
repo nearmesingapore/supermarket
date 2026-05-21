@@ -37,6 +37,31 @@ const directoryData = {
       published: true
     }
   ],
+  groceryStores: [
+    {
+      id: "grocery-1",
+      outletName: "Little Farms Katong Point",
+      slug: "little-farms-katong-point",
+      description: "",
+      brand: [],
+      category: "",
+      neighbourhood: [],
+      mall: [],
+      address: "",
+      streetName: "",
+      postalCode: "",
+      mrt: [],
+      openingHours: "",
+      phone: "",
+      googleMapsUrl: "",
+      facebookUrl: "",
+      instagramUrl: "",
+      imageUrl: "",
+      galleryImagesUrl: "",
+      featured: false,
+      published: true
+    }
+  ],
   featuredSupermarkets: [],
   categories: []
 } as DirectoryData;
@@ -56,13 +81,16 @@ describe("getSitemapPaths", () => {
     expect(getSitemapPaths(directoryData)).toEqual([
       "/",
       "/directory",
+      "/supermarkets",
+      "/grocery-stores",
       "/brands",
       "/neighbourhoods",
       "/brands/brand",
       "/neighbourhoods/hood",
       "/malls/mall",
       "/mrt-stations/station",
-      "/supermarkets/brand-hood"
+      "/supermarkets/brand-hood",
+      "/grocery-stores/little-farms-katong-point"
     ]);
   });
 });

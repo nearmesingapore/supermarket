@@ -1,0 +1,35 @@
+---
+import Layout from "@/components/Layout.astro";
+import ListingCard from "@/components/ListingCard.astro";
+import SearchBox from "@/components/SearchBox.astro";
+import { getDirectoryData } from "@/lib/airtable";
+
+const data = await getDirectoryData();
+---
+
+<Layout
+  title="Grocery Stores in Singapore"
+  description="Browse grocery stores in Singapore with outlet details from the Supermarket.sg directory."
+  canonical="/grocery-stores"
+>
+  <section class="container-page py-16">
+    <div class="max-w-4xl">
+      <p class="eyebrow">Grocery Stores</p>
+      <h1 class="page-title mt-4">Grocery stores in Singapore</h1>
+      <p class="page-intro mt-6">
+        Browse independent and specialty grocery stores across Singapore, from neighbourhood provision shops to curated food retailers and imported pantry specialists.
+      </p>
+      <div class="mt-8">
+        <SearchBox compact label="Search grocery stores" />
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    data-pagefind-body
+    data-pagefind-meta="title:Grocery Stores in Singapore"
+  >
+    {data.groceryStores.map((outlet) => <ListingCard outlet={outlet} basePath="/grocery-stores" />)}
+  </section>
+</Layout>
