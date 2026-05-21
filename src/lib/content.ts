@@ -25,6 +25,15 @@ export function hasTaxonomyImage(imageUrl: string | undefined) {
   return Boolean(imageUrl?.trim());
 }
 
+export function splitDescriptionParagraphs(description: string | undefined) {
+  return (
+    description
+      ?.split(/\n\s*\n/)
+      .map((paragraph) => paragraph.trim())
+      .filter(Boolean) ?? []
+  );
+}
+
 export function sortFeaturedNeighbourhoods(neighbourhoods: TaxonomyItem[]) {
   const priority = new Map(PRIORITY_NEIGHBOURHOODS.map((name, index) => [name, index]));
 

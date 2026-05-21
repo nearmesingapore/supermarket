@@ -7,7 +7,7 @@ import {
   isValidNeighbourhoodName,
   resolveLinks
 } from "./airtable";
-import { hasTaxonomyImage } from "./content";
+import { hasTaxonomyImage, splitDescriptionParagraphs } from "./content";
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -80,7 +80,7 @@ describe("getDirectoryData", () => {
     );
   });
 
-  test("loads supermarkets without removed Airtable fields", async () => {
+  test("loads supermarkets and grocery stores without removed Airtable fields", async () => {
     process.env.AIRTABLE_API_KEY = "key";
     process.env.AIRTABLE_BASE_ID = "base";
 
@@ -161,12 +161,48 @@ describe("getDirectoryData", () => {
         ]
       })
     } as Response);
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "grocery-store-1",
+            fields: {
+              fld7Le0O7ItTSeses: "Little Farms Katong Point",
+              fldj1ftP91mrspDmr: "little-farms-katong-point",
+              fldFkGiQ0TNnPcttt: "Specialty grocery store with imported produce and pantry essentials.",
+              fldfwYhP0Zcx7ZPZz: ["brand-1"],
+              fld59gyIPW1vZcMV7: "Grocery Store",
+              fldlKfiFYxZ7tmhdp: ["hood-1"],
+              fldt1hSIwTrRAACPD: ["mall-1"],
+              fldoC9YNovTHdQDqX: "451 Joo Chiat Road",
+              fld6DHKZ6PL67807S: 427664
+            }
+          },
+          {
+            id: "grocery-store-duplicate",
+            fields: {
+              fld7Le0O7ItTSeses: "Little Farms Katong Point",
+              fldj1ftP91mrspDmr: "little-farms-katong-point"
+            }
+          }
+        ]
+      })
+    } as Response);
 
     const data = await getDirectoryData();
 
     expect(data.supermarkets).toHaveLength(1);
     expect(data.supermarkets[0]).toMatchObject({
       description: "A bright outlet with fresh produce and pantry staples."
+    });
+    expect(data.groceryStores).toHaveLength(1);
+    expect(data.groceryStores[0]).toMatchObject({
+      outletName: "Little Farms Katong Point",
+      slug: "little-farms-katong-point",
+      description: "Specialty grocery store with imported produce and pantry essentials.",
+      address: "451 Joo Chiat Road",
+      postalCode: "427664"
     });
     expect(data.brands[0]).toMatchObject({
       name: "Brand",
@@ -227,5 +263,14 @@ describe("hasTaxonomyImage", () => {
     expect(hasTaxonomyImage("")).toBe(false);
     expect(hasTaxonomyImage("   ")).toBe(false);
     expect(hasTaxonomyImage(undefined)).toBe(false);
+  });
+});
+
+describe("splitDescriptionParagraphs", () => {
+  test("preserves Airtable paragraph breaks while trimming surrounding whitespace", () => {
+    expect(splitDescriptionParagraphs("First paragraph.\n\nSecond paragraph.\nThird line.")).toEqual([
+      "First paragraph.",
+      "Second paragraph.\nThird line."
+    ]);
   });
 });

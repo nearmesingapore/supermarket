@@ -39,12 +39,15 @@ export type Supermarket = {
   published: boolean;
 };
 
+export type GroceryStore = Supermarket;
+
 export type DirectoryData = {
   brands: TaxonomyItem[];
   neighbourhoods: TaxonomyItem[];
   malls: TaxonomyItem[];
   mrtStations: TaxonomyItem[];
   supermarkets: Supermarket[];
+  groceryStores: GroceryStore[];
   featuredSupermarkets: Supermarket[];
   categories: string[];
 };
@@ -56,6 +59,7 @@ const DEFAULT_BASE_ID = "appOYRk7lYQ8SSNCR";
 
 const TABLES = {
   supermarkets: "tblE6IK77xz0ChbMT",
+  groceryStores: "tblBZ9jw8xUJ0ebtz",
   brands: "tblK5rFjHnVqd2g6U",
   neighbourhoods: "tblLPGvEo7lH4pLzR",
   malls: "tblHHymwYJJQH5UK6",
@@ -84,6 +88,28 @@ const FIELDS = {
     galleryImagesUrl: ["fldyk0SXOq90jPl0H", "Gallery Images URL"],
     featured: ["fldUPgDqc9H0DwX1l", "Featured"],
     published: ["fldKtJIAHMLqSCEeP", "Published"]
+  },
+  groceryStores: {
+    outletName: ["fld7Le0O7ItTSeses", "Outlet Name"],
+    slug: ["fldj1ftP91mrspDmr", "Slug"],
+    description: ["fldFkGiQ0TNnPcttt", "Outlet Description"],
+    brand: ["fldfwYhP0Zcx7ZPZz", "Brand"],
+    category: ["fld59gyIPW1vZcMV7", "Category"],
+    neighbourhood: ["fldlKfiFYxZ7tmhdp", "Neighbourhood"],
+    mall: ["fldt1hSIwTrRAACPD", "Mall / Location"],
+    address: ["fldoC9YNovTHdQDqX", "Address"],
+    streetName: ["fld5RDPhgrqnwELDI", "Street Name"],
+    postalCode: ["fld6DHKZ6PL67807S", "Postal Code"],
+    mrt: ["fldgp1LhbFZQECMV2", "Nearest MRT"],
+    openingHours: ["fldd9RkQm0L63JaWZ", "Opening Hours"],
+    phone: ["flddMMVHcBQHt7pTZ", "Phone"],
+    googleMapsUrl: ["fldajeWqVd8vRObuf", "Google Maps URL"],
+    facebookUrl: ["fldFSbMflIbbKbOI1", "Facebook URL"],
+    instagramUrl: ["fldqTODchpbdMKaKm", "Instagram URL"],
+    imageUrl: ["fldLIkxA37NWsH4RF", "Image URL"],
+    galleryImagesUrl: ["fldvdrrmPquJHMlHn", "Gallery Images URL"],
+    featured: ["fldRIHcPd92J1tXI1", "Featured"],
+    published: ["fldHmahZIM69gzEVv", "Published"]
   },
   brands: {
     name: ["fldPwU2iFk9wEsmba", "Brand Name", "Name"],
@@ -223,7 +249,10 @@ async function loadDirectoryData(): Promise<DirectoryData> {
   );
   const mrtStations = createLookup(mrtRecords, FIELDS.mrtStations.name, FIELDS.mrtStations.slug);
 
-  const supermarketRecords = await fetchAirtableRecords(baseId, TABLES.supermarkets, apiKey);
+  const [supermarketRecords, groceryStoreRecords] = await Promise.all([
+    fetchAirtableRecords(baseId, TABLES.supermarkets, apiKey),
+    fetchAirtableRecords(baseId, TABLES.groceryStores, apiKey)
+  ]);
 
   if (supermarketRecords.length === 0) {
     throw new Error(
@@ -232,8 +261,13 @@ async function loadDirectoryData(): Promise<DirectoryData> {
   }
 
   const supermarkets = supermarketRecords
-    .map((record) => normalizeSupermarket(record, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
+    .map((record) => normalizeOutlet(record, FIELDS.supermarkets, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
     .filter((outlet) => outlet.published && outlet.slug)
+    .sort((a, b) => a.outletName.localeCompare(b.outletName));
+  const groceryStores = groceryStoreRecords
+    .map((record) => normalizeOutlet(record, FIELDS.groceryStores, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
+    .filter((outlet) => outlet.outletName && outlet.slug)
+    .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
 
   if (supermarketRecords.length > 0 && supermarkets.length === 0) {
@@ -254,6 +288,7 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     malls: countedMalls.sort((a, b) => a.name.localeCompare(b.name)),
     mrtStations: countedMrtStations.sort((a, b) => a.name.localeCompare(b.name)),
     supermarkets,
+    groceryStores,
     featuredSupermarkets: supermarkets.filter((outlet) => outlet.featured),
     categories: uniqueSorted(supermarkets.map((outlet) => outlet.category))
   };
@@ -282,8 +317,9 @@ function createLookup(
   };
 }
 
-function normalizeSupermarket(
+function normalizeOutlet(
   record: AirtableRecord,
+  fieldsConfig: typeof FIELDS.supermarkets | typeof FIELDS.groceryStores,
   brands: Map<string, LinkedItem>,
   neighbourhoods: Map<string, LinkedItem>,
   malls: Map<string, LinkedItem>,
@@ -293,26 +329,26 @@ function normalizeSupermarket(
 
   return {
     id: record.id,
-    outletName: readFieldString(fields, FIELDS.supermarkets.outletName),
-    slug: readFieldString(fields, FIELDS.supermarkets.slug),
-    description: readFieldString(fields, FIELDS.supermarkets.description),
-    brand: resolveLinks(readField(fields, FIELDS.supermarkets.brand), brands),
-    category: readFieldString(fields, FIELDS.supermarkets.category),
-    neighbourhood: resolveLinks(readField(fields, FIELDS.supermarkets.neighbourhood), neighbourhoods),
-    mall: resolveLinks(readField(fields, FIELDS.supermarkets.mall), malls),
-    address: readFieldString(fields, FIELDS.supermarkets.address),
-    streetName: readFieldString(fields, FIELDS.supermarkets.streetName),
-    postalCode: readPostalCode(readField(fields, FIELDS.supermarkets.postalCode)),
-    mrt: resolveLinks(readField(fields, FIELDS.supermarkets.mrt), mrtStations),
-    openingHours: readFieldString(fields, FIELDS.supermarkets.openingHours),
-    phone: readFieldString(fields, FIELDS.supermarkets.phone),
-    googleMapsUrl: readFieldString(fields, FIELDS.supermarkets.googleMapsUrl),
-    facebookUrl: readFieldString(fields, FIELDS.supermarkets.facebookUrl),
-    instagramUrl: readFieldString(fields, FIELDS.supermarkets.instagramUrl),
-    imageUrl: readFieldString(fields, FIELDS.supermarkets.imageUrl),
-    galleryImagesUrl: readFieldString(fields, FIELDS.supermarkets.galleryImagesUrl),
-    featured: Boolean(readField(fields, FIELDS.supermarkets.featured)),
-    published: Boolean(readField(fields, FIELDS.supermarkets.published))
+    outletName: readFieldString(fields, fieldsConfig.outletName),
+    slug: readFieldString(fields, fieldsConfig.slug),
+    description: readFieldString(fields, fieldsConfig.description),
+    brand: resolveLinks(readField(fields, fieldsConfig.brand), brands),
+    category: readFieldString(fields, fieldsConfig.category),
+    neighbourhood: resolveLinks(readField(fields, fieldsConfig.neighbourhood), neighbourhoods),
+    mall: resolveLinks(readField(fields, fieldsConfig.mall), malls),
+    address: readFieldString(fields, fieldsConfig.address),
+    streetName: readFieldString(fields, fieldsConfig.streetName),
+    postalCode: readPostalCode(readField(fields, fieldsConfig.postalCode)),
+    mrt: resolveLinks(readField(fields, fieldsConfig.mrt), mrtStations),
+    openingHours: readFieldString(fields, fieldsConfig.openingHours),
+    phone: readFieldString(fields, fieldsConfig.phone),
+    googleMapsUrl: readFieldString(fields, fieldsConfig.googleMapsUrl),
+    facebookUrl: readFieldString(fields, fieldsConfig.facebookUrl),
+    instagramUrl: readFieldString(fields, fieldsConfig.instagramUrl),
+    imageUrl: readFieldString(fields, fieldsConfig.imageUrl),
+    galleryImagesUrl: readFieldString(fields, fieldsConfig.galleryImagesUrl),
+    featured: Boolean(readField(fields, fieldsConfig.featured)),
+    published: Boolean(readField(fields, fieldsConfig.published))
   };
 }
 
@@ -338,6 +374,10 @@ function uniqueSorted(values: string[]) {
   return [...new Set(values.map((value) => value.trim()).filter(Boolean))].sort((a, b) =>
     a.localeCompare(b)
   );
+}
+
+function uniqueOutletSlug(outlet: Supermarket, index: number, outlets: Supermarket[]) {
+  return outlets.findIndex((candidate) => candidate.slug === outlet.slug) === index;
 }
 
 function readString(source: unknown, key: string) {

@@ -1,19 +1,25 @@
 ---
 interface Props {
   compact?: boolean;
+  label?: string;
+  placeholder?: string;
 }
 
-const { compact = false } = Astro.props;
+const {
+  compact = false,
+  label = "Search supermarkets",
+  placeholder = "Search by outlet, brand, neighbourhood, MRT, or address"
+} = Astro.props;
 ---
 
 <form class:list={["relative flex w-full flex-col gap-2 rounded-[1.75rem] border border-line bg-white p-2 shadow-editorial sm:flex-row sm:rounded-full", compact ? "max-w-xl" : "max-w-3xl"]} action="/search" method="get">
-  <label class="sr-only" for="site-search">Search supermarkets</label>
+  <label class="sr-only" for="site-search">{label}</label>
   <input
     id="site-search"
     name="q"
     class="min-h-12 w-full min-w-0 flex-1 rounded-full bg-transparent px-4 text-base text-ink placeholder:text-muted"
     type="search"
-    placeholder="Search by outlet, brand, neighbourhood, MRT, or address"
+    placeholder={placeholder}
     autocomplete="off"
   />
   <button class="soft-button w-full shrink-0 sm:w-auto" type="submit">Search</button>

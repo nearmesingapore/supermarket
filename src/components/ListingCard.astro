@@ -4,14 +4,16 @@ import { getPrimary } from "@/lib/content";
 
 interface Props {
   outlet: Supermarket;
+  basePath?: string;
 }
 
-const { outlet } = Astro.props;
+const { outlet, basePath = "/supermarkets" } = Astro.props;
 const brand = getPrimary(outlet.brand);
 const neighbourhood = getPrimary(outlet.neighbourhood);
 const mall = getPrimary(outlet.mall);
 const mrt = getPrimary(outlet.mrt);
 const initial = getFirstInitial(brand?.name || "", outlet.outletName);
+const href = `${basePath}/${outlet.slug}`;
 ---
 
 <article
@@ -24,7 +26,7 @@ const initial = getFirstInitial(brand?.name || "", outlet.outletName);
   data-mrt={mrt?.slug || ""}
   data-mall={mall?.slug || ""}
 >
-  <a href={`/supermarkets/${outlet.slug}`} class="block">
+  <a href={href} class="block">
     <div class="aspect-[4/3] overflow-hidden bg-[#f1eee8]">
       {outlet.imageUrl ? (
         <img
@@ -43,7 +45,7 @@ const initial = getFirstInitial(brand?.name || "", outlet.outletName);
   <div class="flex flex-1 flex-col p-4 sm:p-5">
     <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">{brand?.name || "Independent"}</p>
     <h2 class="mt-3 font-serif text-2xl leading-tight sm:text-3xl lg:text-2xl">
-      <a class="transition hover:text-brass" href={`/supermarkets/${outlet.slug}`}>{outlet.outletName}</a>
+      <a class="transition hover:text-brass" href={href}>{outlet.outletName}</a>
     </h2>
     <div class="mt-4 space-y-1 text-sm leading-6 text-muted">
       {neighbourhood && <p>{neighbourhood.name}</p>}
