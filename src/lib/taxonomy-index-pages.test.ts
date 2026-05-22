@@ -25,6 +25,18 @@ describe("taxonomy index pages", () => {
     expect(filterBar).toContain("{outlets.length} outlets shown");
   });
 
+  test("uses the requested directory landing copy and larger index page headings", () => {
+    const directory = readSource("src/pages/directory.astro");
+    const supermarkets = readSource("src/pages/supermarkets/index.astro");
+    const groceryStores = readSource("src/pages/grocery-stores/index.astro");
+
+    expect(directory).toContain("Supermarkets and Grocery Stores in Singapore");
+    expect(directory).toContain("Singapore's diverse food culture is reflected in its wide variety of supermarkets and grocery stores");
+    expect(directory).toContain("Whether you're hunting for a neighbourhood provision shop");
+    expect(supermarkets).toContain('class="mt-4 font-serif text-6xl leading-none sm:text-7xl"');
+    expect(groceryStores).toContain('class="mt-4 font-serif text-6xl leading-none sm:text-7xl"');
+  });
+
   test("includes grocery-store outlets on brand detail pages", () => {
     const brandDetail = readSource("src/pages/brands/[slug].astro");
 

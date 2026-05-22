@@ -6,31 +6,38 @@ import SearchBox from "@/components/SearchBox.astro";
 import { getDirectoryData } from "@/lib/airtable";
 
 const data = await getDirectoryData();
+const outlets = [...data.supermarkets, ...data.groceryStores];
 ---
 
 <Layout
-  title="Supermarket Directory Singapore"
-  description="Browse all published supermarket outlets in Singapore with filters for brand, neighbourhood, category, MRT station, and mall."
+  title="Supermarkets and Grocery Stores in Singapore"
+  description="Find supermarkets and grocery stores in Singapore, from major chains and premium retailers to organic stores, ethnic supermarkets, and neighbourhood provision shops."
   canonical="/directory"
 >
   <section class="container-page py-16">
     <div class="max-w-4xl">
       <p class="eyebrow">Directory</p>
-      <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">All supermarkets in Singapore</h1>
-      <p class="mt-6 text-lg leading-8 text-muted">
-        Singapore's supermarket scene is a thriving mix of local and international chains catering to diverse tastes, budgets, and lifestyles.Singapore's supermarket scene is a thriving mix of local and international chains catering to diverse tastes, budgets, and lifestyles. Whether you're a busy professional, a family stocking up for the week, or a visitor looking for everyday essentials, there is a supermarket in Singapore to meet your needs. Major players include FairPrice (the dominant homegrown cooperative), Cold Storage and Giant (both under Dairy Farm International), and Sheng Siong. Hypermarkets like Giant Hypermarket also offer bulk shopping options, making it easy to get everything under one roof.
+      <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">Supermarkets and Grocery Stores in Singapore</h1>
+      <p class="page-intro mt-6">
+        Singapore's diverse food culture is reflected in its wide variety of supermarkets and grocery stores, catering to every lifestyle, budget, and culinary preference.
       </p>
-      <p class="mt-6 text-lg leading-8 text-muted">
-        Conveniently located near MRT stations, bus interchanges, and HDB heartland estates, Singapore's supermarkets are designed with accessibility in mind. Many outlets operate 24/7 or maintain extended hours, catering to Singapore's fast-paced lifestyle and ensuring that groceries are always within easy reach — no matter the time of day. With a supermarket scene this comprehensive and well-distributed across the island, grocery shopping in Singapore is as seamless and convenient as it gets.
+      <p class="page-intro mt-6">
+        From large-format chains like NTUC FairPrice, Cold Storage, and Giant offering everyday essentials, to premium retailers like Jason's Market Place and Marketplace stocking imported and specialty goods — there's something for everyone.
+      </p>
+      <p class="page-intro mt-6">
+        Health-conscious shoppers will find dedicated organic and natural stores such as Ryan's Grocery and The Little Farms, while ethnic-focused supermarkets like Mustafa Centre and Sheng Siong offer an extensive range of regional and international products.
+      </p>
+      <p class="page-intro mt-6">
+        Whether you're hunting for a neighbourhood provision shop, a 24-hour supermarket, or a specialty grocer for your weekly haul, this directory helps you find the right store — wherever you are on the island.
       </p>
       <div class="mt-8">
-        <SearchBox compact />
+        <SearchBox compact label="Search supermarkets and grocery stores" />
       </div>
     </div>
   </section>
 
   <section class="container-page pb-8">
-    <FilterBar data={data} outlets={data.supermarkets} />
+    <FilterBar data={data} outlets={outlets} />
   </section>
 
   <section
@@ -39,5 +46,6 @@ const data = await getDirectoryData();
     data-pagefind-meta="title:Singapore Supermarket Directory"
   >
     {data.supermarkets.map((outlet) => <ListingCard outlet={outlet} />)}
+    {data.groceryStores.map((outlet) => <ListingCard outlet={outlet} basePath="/grocery-stores" />)}
   </section>
 </Layout>
