@@ -4,4 +4,21 @@ import Layout from "@/components/Layout.astro";
 import { getDirectoryData } from "@/lib/airtable";
 const data = await getDirectoryData();
 ---
-<Layout title="Supermarket Brands in Singapore" description="Browse Singapore supermarket brands and their published outlet counts." canonical="/brands"><section class="container-page py-16" data-pagefind-body data-pagefind-meta="title:Supermarket Brands in Singapore"><p class="eyebrow">Brands</p><h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">Supermarket brands</h1><div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">{data.brands.map((brand) => <BrandCard brand={brand} />)}</div></section></Layout>
+<Layout title="Supermarket Brands in Singapore" description="Browse Singapore supermarket and grocery store brands with their published outlet counts." canonical="/brands">
+  <section class="container-page py-16" data-pagefind-body data-pagefind-meta="title:Supermarket Brands in Singapore">
+    <p class="eyebrow">Brands</p>
+    <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">Supermarket brands</h1>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      {data.supermarketBrands.map((brand) => <BrandCard brand={brand} />)}
+    </div>
+
+    {data.groceryStoreBrands.length > 0 && (
+      <div class="mt-16 border-t border-line pt-12">
+        <h2 class="font-serif text-4xl leading-tight sm:text-5xl">Grocery Stores brands</h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {data.groceryStoreBrands.map((brand) => <BrandCard brand={brand} />)}
+        </div>
+      </div>
+    )}
+  </section>
+</Layout>

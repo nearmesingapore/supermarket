@@ -37,6 +37,26 @@ describe("taxonomy index pages", () => {
     expect(groceryStores).toContain('class="mt-4 font-serif text-6xl leading-none sm:text-7xl"');
   });
 
+  test("groups supermarket and grocery store brands under separate headings", () => {
+    const brands = readSource("src/pages/brands/index.astro");
+
+    expect(brands).toContain("data.supermarketBrands.map");
+    expect(brands).toContain("Grocery Stores brands");
+    expect(brands).toContain("data.groceryStoreBrands.map");
+  });
+
+  test("renders Airtable descriptions with preserved line breaks on detail pages", () => {
+    const neighbourhood = readSource("src/pages/neighbourhoods/[slug].astro");
+    const supermarket = readSource("src/pages/supermarkets/[slug].astro");
+    const groceryStore = readSource("src/pages/grocery-stores/[slug].astro");
+    const mall = readSource("src/pages/malls/[slug].astro");
+
+    for (const source of [neighbourhood, supermarket, groceryStore, mall]) {
+      expect(source).toContain("splitDescriptionParagraphs");
+      expect(source).toContain("whitespace-pre-line");
+    }
+  });
+
   test("includes grocery-store outlets on brand detail pages", () => {
     const brandDetail = readSource("src/pages/brands/[slug].astro");
 

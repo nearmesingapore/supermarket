@@ -2,7 +2,7 @@
 import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
 import { getDirectoryData, type TaxonomyItem } from "@/lib/airtable";
-import { formatCount, pageDescription } from "@/lib/content";
+import { formatCount, pageDescription, splitDescriptionParagraphs } from "@/lib/content";
 export async function getStaticPaths() { const data = await getDirectoryData(); return data.neighbourhoods.map((neighbourhood) => ({ params: { slug: neighbourhood.slug }, props: { neighbourhood } })); }
 const { neighbourhood } = Astro.props as { neighbourhood: TaxonomyItem };
 const data = await getDirectoryData();
@@ -12,6 +12,7 @@ const outlets = [...supermarketOutlets, ...groceryStoreOutlets];
 const brands = data.brands.filter((brand) => outlets.some((outlet) => outlet.brand.some((item) => item.id === brand.id)));
 const title = `Supermarkets and Grocery Stores in ${neighbourhood.name}`;
 const description = neighbourhood.description || pageDescription(title, outlets.length);
+const descriptionParagraphs = splitDescriptionParagraphs(neighbourhood.description);
 ---
 <Layout title={title} description={description} image={neighbourhood.imageUrl} canonical={`/neighbourhoods/${neighbourhood.slug}`}>
   <section
@@ -22,7 +23,11 @@ const description = neighbourhood.description || pageDescription(title, outlets.
     <div>
       <p class="eyebrow">Neighbourhood</p>
       <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{title}</h1>
-      {neighbourhood.description && <p class="mt-6 max-w-3xl text-lg leading-8 text-muted">{neighbourhood.description}</p>}
+      {descriptionParagraphs.length > 0 && (
+        <div class="mt-6 max-w-3xl space-y-6 text-lg leading-8 text-muted">
+          {descriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
+        </div>
+      )}
       <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>
       {brands.length > 0 && (
         <div class="mt-10 border-y border-line py-6">

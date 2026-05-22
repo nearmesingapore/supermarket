@@ -2,7 +2,7 @@
 import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
 import { getDirectoryData, getFirstInitial, type Supermarket } from "@/lib/airtable";
-import { getPrimary, getRelatedByNeighbourhood } from "@/lib/content";
+import { getPrimary, getRelatedByNeighbourhood, splitDescriptionParagraphs } from "@/lib/content";
 
 export async function getStaticPaths() {
   const data = await getDirectoryData();
@@ -18,6 +18,7 @@ const mrt = getPrimary(outlet.mrt);
 const related = getRelatedByNeighbourhood(outlet, data.supermarkets);
 const title = `${brand?.name ? `${brand.name} ` : ""}${outlet.outletName}`;
 const description = outlet.description || `${title} in Singapore${neighbourhood ? `, near ${neighbourhood.name}` : ""}. View address, opening hours, MRT, mall, and contact details.`;
+const descriptionParagraphs = splitDescriptionParagraphs(outlet.description);
 const initial = getFirstInitial(brand?.name || "", outlet.outletName);
 const fullAddress = [outlet.address, outlet.postalCode].filter(Boolean).join(" ");
 const schema = {
@@ -58,7 +59,11 @@ const schema = {
       <div>
         <p class="eyebrow">{brand?.name || "Independent"}</p>
         <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{outlet.outletName}</h1>
-        {outlet.description && <p class="mt-6 max-w-2xl text-lg leading-8 text-ink">{outlet.description}</p>}
+        {descriptionParagraphs.length > 0 && (
+          <div class="mt-6 max-w-2xl space-y-6 text-lg leading-8 text-ink">
+            {descriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
+          </div>
+        )}
         <p class="mt-6 max-w-2xl text-lg leading-8 text-muted">{fullAddress}</p>
 
         <div class="mt-8 flex flex-wrap gap-3">
