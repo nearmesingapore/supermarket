@@ -28,7 +28,7 @@ const descriptionParagraphs = splitDescriptionParagraphs(neighbourhood.descripti
           {descriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
         </div>
       )}
-      <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>
+      <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "outlet")}</p>
       {brands.length > 0 && (
         <div class="mt-10 border-y border-line py-6">
           <p class="text-sm font-semibold uppercase tracking-[0.16em] text-brass">Brands here</p>

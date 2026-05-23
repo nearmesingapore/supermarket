@@ -36,7 +36,6 @@ export type Supermarket = {
   imageUrl: string;
   galleryImagesUrl: string;
   featured: boolean;
-  published: boolean;
 };
 
 export type GroceryStore = Supermarket;
@@ -88,8 +87,7 @@ const FIELDS = {
     instagramUrl: ["fldt0n4NgpQuoNa3G", "Instagram URL"],
     imageUrl: ["fldOPTYb27sd4K4aZ", "Image URL"],
     galleryImagesUrl: ["fldyk0SXOq90jPl0H", "Gallery Images URL"],
-    featured: ["fldUPgDqc9H0DwX1l", "Featured"],
-    published: ["fldKtJIAHMLqSCEeP", "Published"]
+    featured: ["fldUPgDqc9H0DwX1l", "Featured"]
   },
   groceryStores: {
     outletName: ["fld7Le0O7ItTSeses", "Outlet Name"],
@@ -110,8 +108,7 @@ const FIELDS = {
     instagramUrl: ["fldqTODchpbdMKaKm", "Instagram URL"],
     imageUrl: ["fldLIkxA37NWsH4RF", "Image URL"],
     galleryImagesUrl: ["fldvdrrmPquJHMlHn", "Gallery Images URL"],
-    featured: ["fldRIHcPd92J1tXI1", "Featured"],
-    published: ["fldHmahZIM69gzEVv", "Published"]
+    featured: ["fldRIHcPd92J1tXI1", "Featured"]
   },
   brands: {
     name: ["fldPwU2iFk9wEsmba", "Brand Name", "Name"],
@@ -264,7 +261,8 @@ async function loadDirectoryData(): Promise<DirectoryData> {
 
   const supermarkets = supermarketRecords
     .map((record) => normalizeOutlet(record, FIELDS.supermarkets, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
-    .filter((outlet) => outlet.published && outlet.slug)
+    .filter((outlet) => outlet.outletName && outlet.slug)
+    .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
   const groceryStores = groceryStoreRecords
     .map((record) => normalizeOutlet(record, FIELDS.groceryStores, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
@@ -274,7 +272,7 @@ async function loadDirectoryData(): Promise<DirectoryData> {
 
   if (supermarketRecords.length > 0 && supermarkets.length === 0) {
     throw new Error(
-      "No published supermarkets found in Airtable. Set Published = true and ensure each published outlet has a Slug."
+      "No valid supermarkets found in Airtable. Ensure each supermarket has an Outlet Name and Slug."
     );
   }
 
@@ -356,8 +354,7 @@ function normalizeOutlet(
     instagramUrl: readFieldString(fields, fieldsConfig.instagramUrl),
     imageUrl: readFieldString(fields, fieldsConfig.imageUrl),
     galleryImagesUrl: readFieldString(fields, fieldsConfig.galleryImagesUrl),
-    featured: Boolean(readField(fields, fieldsConfig.featured)),
-    published: Boolean(readField(fields, fieldsConfig.published))
+    featured: Boolean(readField(fields, fieldsConfig.featured))
   };
 }
 

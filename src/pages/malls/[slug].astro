@@ -24,7 +24,7 @@ const descriptionParagraphs = splitDescriptionParagraphs(mall.description);
             {descriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
           </div>
         )}
-        <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>
+        <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "outlet")}</p>
       </div>
       {mall.imageUrl && (
         <div class="overflow-hidden border border-line bg-white">

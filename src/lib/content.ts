@@ -69,7 +69,7 @@ export function getRelatedByNeighbourhood(outlet: Supermarket, allOutlets: Super
 
 export function pageDescription(title: string, count?: number) {
   if (typeof count === "number") {
-    return `${title} with ${formatCount(count, "published supermarket outlet")} across Singapore.`;
+    return `${title} with ${formatCount(count, "supermarket outlet")} across Singapore.`;
   }
 
   return `${title}, a curated guide to supermarkets across Singapore by brand, neighbourhood, mall, and MRT station.`;
