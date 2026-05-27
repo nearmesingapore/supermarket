@@ -13,23 +13,71 @@ const imageUrls = galleryImagesUrl
 
 {
   imageUrls.length > 0 && (
-    <section class="mt-14">
-      <p class="eyebrow">Gallery</p>
-      <h2 class="section-title mt-3">Photos of {outletName}</h2>
-      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {imageUrls.map((imageUrl, index) => (
-          <div class="overflow-hidden border border-line bg-white">
-            <div class="aspect-[4/3] bg-[#f2efe9]">
-              <img
-                src={imageUrl}
-                alt={`${outletName} gallery image ${index + 1}`}
-                class="h-full w-full object-cover"
-                loading="lazy"
-              />
+    <div class="grid grid-cols-3 gap-3 border-t border-line p-3 sm:p-4" role="group" aria-label={`Gallery images for ${outletName}`} data-outlet-gallery>
+      {imageUrls.map((imageUrl, index) => (
+        <>
+          <button
+            type="button"
+            class="block cursor-pointer overflow-hidden border border-line bg-[#f2efe9] transition hover:border-brass focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass"
+            aria-label={`View larger ${outletName} gallery image ${index + 1}`}
+            data-gallery-open={`outlet-gallery-image-${index}`}
+          >
+            <img
+              src={imageUrl}
+              alt=""
+              class="aspect-[4/3] h-full w-full object-cover"
+              loading="lazy"
+            />
+          </button>
+          <dialog
+            id={`outlet-gallery-image-${index}`}
+            class="m-auto w-[min(92vw,64rem)] border border-line bg-white p-3 shadow-xl backdrop:bg-ink/75 sm:p-4"
+            data-gallery-dialog
+          >
+            <div class="flex justify-end pb-3">
+              <button
+                type="button"
+                class="ghost-button px-4 py-2 text-sm"
+                aria-label="Close expanded image"
+                data-gallery-close
+              >
+                Close
+              </button>
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
+            <img
+              src={imageUrl}
+              alt={`${outletName} gallery image ${index + 1}`}
+              class="mx-auto max-h-[80vh] w-auto max-w-full object-contain"
+            />
+          </dialog>
+        </>
+      ))}
+    </div>
   )
 }
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-outlet-gallery]").forEach((gallery) => {
+    gallery.querySelectorAll<HTMLButtonElement>("[data-gallery-open]").forEach((trigger) => {
+      const dialogId = trigger.dataset.galleryOpen;
+      const dialog = dialogId ? gallery.querySelector<HTMLDialogElement>(`#${dialogId}`) : null;
+      if (!dialog) return;
+
+      trigger.addEventListener("click", () => dialog.showModal());
+      dialog.querySelector<HTMLButtonElement>("[data-gallery-close]")?.addEventListener("click", () => dialog.close());
+      dialog.addEventListener("cancel", (event) => {
+        event.preventDefault();
+        dialog.close();
+      });
+      dialog.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          dialog.close();
+        }
+      });
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+    });
+  });
+</script>
