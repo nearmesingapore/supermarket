@@ -2,6 +2,7 @@
 import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
 import OutletGallery from "@/components/OutletGallery.astro";
+import OutletMap from "@/components/OutletMap.astro";
 import { getDirectoryData, getFirstInitial, type GroceryStore } from "@/lib/airtable";
 import { getPrimary, getRelatedByNeighbourhood, splitDescriptionParagraphs } from "@/lib/content";
 
@@ -47,15 +48,18 @@ const schema = {
     data-pagefind-meta={`title:${outlet.outletName};brand:${brand?.name || ""};neighbourhood:${neighbourhood?.name || ""};mrt:${mrt?.name || ""}`}
   >
     <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-      <div class="overflow-hidden border border-line bg-white">
-        <div class="aspect-[4/3] bg-[#f2efe9]">
-          {outlet.imageUrl ? (
-            <img src={outlet.imageUrl} alt={`${outlet.outletName} storefront`} class="h-full w-full object-cover" />
-          ) : (
-            <div class="flex h-full w-full items-center justify-center font-serif text-8xl text-brass">{initial}</div>
-          )}
+      <div class="space-y-6">
+        <div class="overflow-hidden border border-line bg-white">
+          <div class="aspect-[4/3] bg-[#f2efe9]">
+            {outlet.imageUrl ? (
+              <img src={outlet.imageUrl} alt={`${outlet.outletName} storefront`} class="h-full w-full object-cover" />
+            ) : (
+              <div class="flex h-full w-full items-center justify-center font-serif text-8xl text-brass">{initial}</div>
+            )}
+          </div>
+          <OutletGallery outletName={outlet.outletName} galleryImagesUrl={outlet.galleryImagesUrl} />
         </div>
-        <OutletGallery outletName={outlet.outletName} galleryImagesUrl={outlet.galleryImagesUrl} />
+        <OutletMap outletName={outlet.outletName} fullAddress={fullAddress} googleMapsUrl={outlet.googleMapsUrl} />
       </div>
 
       <div>
