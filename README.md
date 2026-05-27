@@ -64,16 +64,15 @@ The build fetches lookup tables first:
 - Malls
 - MRT Stations
 
-It then fetches Supermarkets with Airtable pagination using `pageSize=100` and the returned `offset` until no offset remains. Only records with `Published = true` are rendered.
+It then fetches Supermarkets and Grocery Stores with Airtable pagination using `pageSize=100` and the returned `offset` until no offset remains. Records with an outlet name and slug are rendered.
 
 Linked fields are resolved against lookup maps so cards and pages can show names and link to Airtable-provided slugs. Neighbourhood records with URL-like names are filtered before route creation and rendering.
 
 ## Publishing a New Outlet
 
 1. Add or update the record in Airtable.
-2. Ensure the `Slug` field is filled.
-3. Set `Published = true`.
-4. Trigger a Cloudflare Pages rebuild manually or via deploy hook.
+2. Ensure the `Outlet Name` and `Slug` fields are filled.
+3. Trigger a Cloudflare Pages rebuild manually or via deploy hook.
 
 ## Cloudflare Pages Deployment
 
@@ -95,7 +94,7 @@ Linked fields are resolved against lookup maps so cards and pages can show names
 3. Copy the generated hook URL.
 4. In Airtable, create an automation:
    - Trigger: record updated or record matches conditions
-   - Condition: relevant supermarket records are published or updated
+   - Condition: relevant outlet records are added or updated
    - Action: HTTP POST to the Cloudflare deploy hook URL
 
 This rebuilds the static site whenever Airtable content changes.

@@ -155,7 +155,7 @@ describe("getDirectoryData", () => {
               fld8gPZjOWGMBfMer: "Supermarket",
               fldoROJgXxEo5phwJ: ["hood-1"],
               fldw8QjjvT68cDC8X: ["mall-1"],
-              fldKtJIAHMLqSCEeP: true
+              fldyk0SXOq90jPl0H: "https://example.com/supermarket-one.jpg, https://example.com/supermarket-two.jpg"
             }
           }
         ]
@@ -176,7 +176,8 @@ describe("getDirectoryData", () => {
               fldlKfiFYxZ7tmhdp: ["hood-1"],
               fldt1hSIwTrRAACPD: ["mall-1"],
               fldoC9YNovTHdQDqX: "451 Joo Chiat Road",
-              fld6DHKZ6PL67807S: 427664
+              fld6DHKZ6PL67807S: 427664,
+              fldvdrrmPquJHMlHn: " https://example.com/grocery-one.jpg,https://example.com/grocery-two.jpg "
             }
           },
           {
@@ -194,7 +195,11 @@ describe("getDirectoryData", () => {
 
     expect(data.supermarkets).toHaveLength(1);
     expect(data.supermarkets[0]).toMatchObject({
-      description: "A bright outlet with fresh produce and pantry staples."
+      description: "A bright outlet with fresh produce and pantry staples.",
+      galleryImageUrls: [
+        "https://example.com/supermarket-one.jpg",
+        "https://example.com/supermarket-two.jpg"
+      ]
     });
     expect(data.groceryStores).toHaveLength(1);
     expect(data.groceryStores[0]).toMatchObject({
@@ -202,7 +207,11 @@ describe("getDirectoryData", () => {
       slug: "little-farms-katong-point",
       description: "Specialty grocery store with imported produce and pantry essentials.",
       address: "451 Joo Chiat Road",
-      postalCode: "427664"
+      postalCode: "427664",
+      galleryImageUrls: [
+        "https://example.com/grocery-one.jpg",
+        "https://example.com/grocery-two.jpg"
+      ]
     });
     expect(data.brands[0]).toMatchObject({
       name: "Brand",
@@ -227,6 +236,8 @@ describe("getDirectoryData", () => {
     expect(data.supermarkets[0]).not.toHaveProperty("halal");
     expect(data.supermarkets[0]).not.toHaveProperty("seatingAvailable");
     expect(data.supermarkets[0]).not.toHaveProperty("deliveryLinks");
+    expect(data.supermarkets[0]).not.toHaveProperty("published");
+    expect(data.groceryStores[0]).not.toHaveProperty("published");
     expect(data).not.toHaveProperty("priceRanges");
     expect(data).not.toHaveProperty("halalOptions");
   });

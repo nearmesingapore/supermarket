@@ -32,9 +32,8 @@ const directoryData = {
       facebookUrl: "",
       instagramUrl: "",
       imageUrl: "",
-      galleryImagesUrl: "",
-      featured: false,
-      published: true
+      galleryImageUrls: [],
+      featured: false
     }
   ],
   groceryStores: [
@@ -57,9 +56,8 @@ const directoryData = {
       facebookUrl: "",
       instagramUrl: "",
       imageUrl: "",
-      galleryImagesUrl: "",
-      featured: false,
-      published: true
+      galleryImageUrls: [],
+      featured: false
     }
   ],
   featuredSupermarkets: [],

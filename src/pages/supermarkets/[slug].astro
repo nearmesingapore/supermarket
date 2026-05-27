@@ -1,6 +1,7 @@
 ---
 import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
+import OutletGallery from "@/components/OutletGallery.astro";
 import { getDirectoryData, getFirstInitial, type Supermarket } from "@/lib/airtable";
 import { getPrimary, getRelatedByNeighbourhood } from "@/lib/content";
 
@@ -106,6 +107,8 @@ const schema = {
         </section>
       )}
     </div>
+
+    <OutletGallery outletName={outlet.outletName} imageUrls={outlet.galleryImageUrls} />
   </article>
 
   {related.length > 0 && (
