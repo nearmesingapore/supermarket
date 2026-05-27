@@ -25,7 +25,9 @@ describe("outlet embedded maps", () => {
     }
 
     expect(map).toContain("googleMapsUrl");
-    expect(map).toContain("query_place_id");
+    expect(map).toContain("encodeURIComponent(fullAddress)");
+    expect(map).not.toContain("query_place_id");
+    expect(map).not.toContain("place_id:");
     expect(map).toContain("output=embed");
     expect(map).toContain("href={googleMapsUrl}");
     expect(map).toContain("target=\"_blank\"");

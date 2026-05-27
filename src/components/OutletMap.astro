@@ -6,16 +6,7 @@ interface Props {
 }
 
 const { outletName, fullAddress, googleMapsUrl } = Astro.props;
-let placeId: string | null = null;
-
-try {
-  placeId = new URL(googleMapsUrl).searchParams.get("query_place_id");
-} catch {
-  placeId = null;
-}
-
-const locationQuery = placeId ? `place_id:${placeId}` : `${outletName} ${fullAddress}`.trim();
-const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(locationQuery)}&output=embed`;
+const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}&output=embed`;
 ---
 
 {
