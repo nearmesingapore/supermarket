@@ -55,6 +55,7 @@ const schema = {
             <div class="flex h-full w-full items-center justify-center font-serif text-8xl text-brass">{initial}</div>
           )}
         </div>
+        <OutletGallery outletName={outlet.outletName} galleryImagesUrl={outlet.galleryImagesUrl} />
       </div>
 
       <div>
@@ -113,7 +114,6 @@ const schema = {
       )}
     </div>
 
-    <OutletGallery outletName={outlet.outletName} galleryImagesUrl={outlet.galleryImagesUrl} />
   </article>
 
   {related.length > 0 && (
