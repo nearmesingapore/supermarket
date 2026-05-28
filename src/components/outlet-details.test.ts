@@ -11,6 +11,8 @@ describe("outlet details rendering", () => {
 
     expect(supermarketPage).toContain('import OutletDetails from "@/components/OutletDetails.astro";');
     expect(supermarketPage).toContain("<OutletDetails");
+    expect(supermarketPage).toContain('<dl class="mt-10 grid gap-5 border-y border-line py-8">');
+    expect(supermarketPage).not.toContain('<dl class="mt-10 grid gap-5 border-y border-line py-8 sm:grid-cols-2">');
     expect(groceryStorePage).not.toContain("OutletDetails");
     expect(details).toContain("Getting There by Car");
     expect(details).toContain("Getting There by Public Transport");
