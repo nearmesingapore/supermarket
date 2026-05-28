@@ -88,6 +88,8 @@ const categories = [...new Set(outlets.map((outlet) => outlet.category).filter(B
       for (const card of cards) {
         const matches = cardMatchesFilters(card.dataset, active);
         card.hidden = !matches;
+        card.style.display = matches ? "" : "none";
+        card.setAttribute("aria-hidden", String(!matches));
         if (matches) visible += 1;
       }
 
