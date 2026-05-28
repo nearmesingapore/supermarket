@@ -35,6 +35,10 @@ const directoryData = {
       instagramUrl: "",
       imageUrl: "",
       galleryImagesUrl: "",
+      gettingThereByCar: "",
+      gettingThereByPublicTransport: "",
+      nearbyBusServices: "",
+      nearbyLandmarks: "",
       featured: false
     }
   ],
@@ -59,6 +63,10 @@ const directoryData = {
       instagramUrl: "",
       imageUrl: "",
       galleryImagesUrl: "",
+      gettingThereByCar: "",
+      gettingThereByPublicTransport: "",
+      nearbyBusServices: "",
+      nearbyLandmarks: "",
       featured: false
     }
   ],

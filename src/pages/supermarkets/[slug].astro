@@ -1,6 +1,7 @@
 ---
 import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
+import OutletDetails from "@/components/OutletDetails.astro";
 import OutletGallery from "@/components/OutletGallery.astro";
 import OutletMap from "@/components/OutletMap.astro";
 import { getDirectoryData, getFirstInitial, type Supermarket } from "@/lib/airtable";
@@ -96,6 +97,12 @@ const schema = {
               <dd class="mt-2"><a class="fine-link" href={`/mrt-stations/${mrt.slug}`}>{mrt.name} MRT</a></dd>
             </div>
           )}
+          <OutletDetails
+            gettingThereByCar={outlet.gettingThereByCar}
+            gettingThereByPublicTransport={outlet.gettingThereByPublicTransport}
+            nearbyBusServices={outlet.nearbyBusServices}
+            nearbyLandmarks={outlet.nearbyLandmarks}
+          />
         </dl>
       </div>
     </div>

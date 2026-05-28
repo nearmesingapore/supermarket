@@ -35,6 +35,10 @@ export type Supermarket = {
   instagramUrl: string;
   imageUrl: string;
   galleryImagesUrl: string;
+  gettingThereByCar: string;
+  gettingThereByPublicTransport: string;
+  nearbyBusServices: string;
+  nearbyLandmarks: string;
   featured: boolean;
 };
 
@@ -87,6 +91,10 @@ const FIELDS = {
     instagramUrl: ["fldt0n4NgpQuoNa3G", "Instagram URL"],
     imageUrl: ["fldOPTYb27sd4K4aZ", "Image URL"],
     galleryImagesUrl: ["fldyk0SXOq90jPl0H", "Gallery Images URL"],
+    gettingThereByCar: ["fldbEV2NcQ7bZ0M0a", "Getting There by Car"],
+    gettingThereByPublicTransport: ["fldYCaW3KbZmmJS4I", "Getting There by Public Transport"],
+    nearbyBusServices: ["fld3d3y5k1e72EAHK", "Nearby Bus Services"],
+    nearbyLandmarks: ["fldM9U6ChPSfkdgg2", "Nearby Landmarks", "Nearby Landmarks  "],
     featured: ["fldUPgDqc9H0DwX1l", "Featured"]
   },
   groceryStores: {
@@ -108,6 +116,10 @@ const FIELDS = {
     instagramUrl: ["fldqTODchpbdMKaKm", "Instagram URL"],
     imageUrl: ["fldLIkxA37NWsH4RF", "Image URL"],
     galleryImagesUrl: ["fldvdrrmPquJHMlHn", "Gallery Images URL"],
+    gettingThereByCar: [],
+    gettingThereByPublicTransport: [],
+    nearbyBusServices: [],
+    nearbyLandmarks: [],
     featured: ["fldRIHcPd92J1tXI1", "Featured"]
   },
   brands: {
@@ -354,6 +366,10 @@ function normalizeOutlet(
     instagramUrl: readFieldString(fields, fieldsConfig.instagramUrl),
     imageUrl: readFieldString(fields, fieldsConfig.imageUrl),
     galleryImagesUrl: readFieldString(fields, fieldsConfig.galleryImagesUrl),
+    gettingThereByCar: readFieldString(fields, fieldsConfig.gettingThereByCar),
+    gettingThereByPublicTransport: readFieldString(fields, fieldsConfig.gettingThereByPublicTransport),
+    nearbyBusServices: readFieldString(fields, fieldsConfig.nearbyBusServices),
+    nearbyLandmarks: readFieldString(fields, fieldsConfig.nearbyLandmarks),
     featured: Boolean(readField(fields, fieldsConfig.featured))
   };
 }
