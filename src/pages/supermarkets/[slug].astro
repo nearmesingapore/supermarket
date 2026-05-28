@@ -61,6 +61,21 @@ const schema = {
           <OutletGallery outletName={outlet.outletName} galleryImagesUrl={outlet.galleryImagesUrl} />
         </div>
         <OutletMap outletName={outlet.outletName} fullAddress={fullAddress} googleMapsUrl={outlet.googleMapsUrl} />
+        {outlet.openingHours && (
+          <section class="border border-line bg-white p-6">
+            <h2 class="font-serif text-3xl">Opening hours</h2>
+            <p class="mt-4 whitespace-pre-line leading-7 text-muted">{outlet.openingHours}</p>
+          </section>
+        )}
+        {(outlet.facebookUrl || outlet.instagramUrl) && (
+          <section class="border border-line bg-white p-6">
+            <h2 class="font-serif text-3xl">Social links</h2>
+            <div class="mt-4 flex flex-wrap gap-3 text-sm">
+              {outlet.facebookUrl && <a class="fine-link" href={outlet.facebookUrl} target="_blank" rel="noreferrer">Facebook</a>}
+              {outlet.instagramUrl && <a class="fine-link" href={outlet.instagramUrl} target="_blank" rel="noreferrer">Instagram</a>}
+            </div>
+          </section>
+        )}
       </div>
 
       <div>
@@ -105,24 +120,6 @@ const schema = {
           />
         </dl>
       </div>
-    </div>
-
-    <div class="mt-14">
-      {outlet.openingHours && (
-        <section class="border border-line bg-white p-6">
-          <h2 class="font-serif text-3xl">Opening hours</h2>
-          <p class="mt-4 whitespace-pre-line leading-7 text-muted">{outlet.openingHours}</p>
-        </section>
-      )}
-      {(outlet.facebookUrl || outlet.instagramUrl) && (
-        <section class="mt-8 border border-line bg-white p-6">
-          <h2 class="font-serif text-3xl">Social links</h2>
-          <div class="mt-4 flex flex-wrap gap-3 text-sm">
-            {outlet.facebookUrl && <a class="fine-link" href={outlet.facebookUrl} target="_blank" rel="noreferrer">Facebook</a>}
-            {outlet.instagramUrl && <a class="fine-link" href={outlet.instagramUrl} target="_blank" rel="noreferrer">Instagram</a>}
-          </div>
-        </section>
-      )}
     </div>
 
   </article>
