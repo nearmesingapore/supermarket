@@ -1,5 +1,5 @@
 ---
-import { getFirstInitial, type Supermarket } from "@/lib/airtable";
+import { getFirstInitial, type LinkedItem, type Supermarket } from "@/lib/airtable";
 import { getPrimary } from "@/lib/content";
 
 interface Props {
@@ -14,17 +14,18 @@ const mall = getPrimary(outlet.mall);
 const mrt = getPrimary(outlet.mrt);
 const initial = getFirstInitial(brand?.name || "", outlet.outletName);
 const href = `${basePath}/${outlet.slug}`;
+const filterValue = (items: LinkedItem[]) => items.map((item) => item.slug).filter(Boolean).join("|");
 ---
 
 <article
   class="group flex h-full flex-col overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial"
   data-card
-  data-brand={brand?.slug || ""}
+  data-brand={filterValue(outlet.brand)}
   data-brand-name={brand?.name || ""}
-  data-neighbourhood={neighbourhood?.slug || ""}
+  data-neighbourhood={filterValue(outlet.neighbourhood)}
   data-category={outlet.category}
-  data-mrt={mrt?.slug || ""}
-  data-mall={mall?.slug || ""}
+  data-mrt={filterValue(outlet.mrt)}
+  data-mall={filterValue(outlet.mall)}
 >
   <a href={href} class="block">
     <div class="aspect-[4/3] overflow-hidden bg-[#f1eee8]">

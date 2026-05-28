@@ -5,6 +5,7 @@ import OutletGallery from "@/components/OutletGallery.astro";
 import OutletMap from "@/components/OutletMap.astro";
 import { getDirectoryData, getFirstInitial, type GroceryStore } from "@/lib/airtable";
 import { getPrimary, getRelatedByNeighbourhood, splitDescriptionParagraphs } from "@/lib/content";
+import { getOutletSocialLinks } from "@/lib/social";
 
 export async function getStaticPaths() {
   const data = await getDirectoryData();
@@ -23,6 +24,7 @@ const description = outlet.description || `${title} in Singapore${neighbourhood 
 const descriptionParagraphs = splitDescriptionParagraphs(outlet.description);
 const initial = getFirstInitial(brand?.name || "", outlet.outletName);
 const fullAddress = [outlet.address, outlet.postalCode].filter(Boolean).join(" ");
+const socialLinks = getOutletSocialLinks(outlet);
 const schema = {
   "@context": "https://schema.org",
   "@type": "GroceryStore",
@@ -66,12 +68,11 @@ const schema = {
             <p class="mt-4 whitespace-pre-line leading-7 text-muted">{outlet.openingHours}</p>
           </section>
         )}
-        {(outlet.facebookUrl || outlet.instagramUrl) && (
+        {socialLinks.length > 0 && (
           <section class="border border-line bg-white p-6">
             <h2 class="font-serif text-3xl">Social links</h2>
             <div class="mt-4 flex flex-wrap gap-3 text-sm">
-              {outlet.facebookUrl && <a class="fine-link" href={outlet.facebookUrl} target="_blank" rel="noreferrer">Facebook</a>}
-              {outlet.instagramUrl && <a class="fine-link" href={outlet.instagramUrl} target="_blank" rel="noreferrer">Instagram</a>}
+              {socialLinks.map((link) => <a class="fine-link" href={link.url} target="_blank" rel="noreferrer">{link.label}</a>)}
             </div>
           </section>
         )}

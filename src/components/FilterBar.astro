@@ -71,12 +71,16 @@ const categories = [...new Set(outlets.map((outlet) => outlet.category).filter(B
   const count = document.querySelector<HTMLElement>("#filter-count");
   const reset = document.querySelector<HTMLButtonElement>("#filter-reset");
 
+  function getFilterValues(card: HTMLElement, key: string) {
+    return (card.dataset[key] || "").split("|").filter(Boolean);
+  }
+
   function applyFilters() {
     const active = fields.map((field) => [field.dataset.filter || "", field.value] as const).filter(([, value]) => value);
     let visible = 0;
 
     for (const card of cards) {
-      const matches = active.every(([key, value]) => card.dataset[key] === value);
+      const matches = active.every(([key, value]) => getFilterValues(card, key).includes(value));
       card.hidden = !matches;
       if (matches) visible += 1;
     }
