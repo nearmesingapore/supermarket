@@ -44,6 +44,7 @@ const outlets = [...data.supermarkets, ...data.groceryStores];
     class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     data-pagefind-body
     data-pagefind-meta="title:Singapore Supermarket Directory"
+    data-filter-results
   >
     {data.supermarkets.map((outlet) => <ListingCard outlet={outlet} />)}
     {data.groceryStores.map((outlet) => <ListingCard outlet={outlet} basePath="/grocery-stores" />)}

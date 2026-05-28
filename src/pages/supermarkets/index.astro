@@ -37,6 +37,7 @@ const data = await getDirectoryData();
     class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     data-pagefind-body
     data-pagefind-meta="title:All Supermarkets in Singapore"
+    data-filter-results
   >
     {data.supermarkets.map((outlet) => <ListingCard outlet={outlet} />)}
   </section>
