@@ -1,0 +1,31 @@
+---
+interface Props {
+  gettingThereByCar: string;
+  gettingThereByPublicTransport: string;
+  nearbyBusServices: string;
+  nearbyLandmarks: string;
+}
+
+const {
+  gettingThereByCar,
+  gettingThereByPublicTransport,
+  nearbyBusServices,
+  nearbyLandmarks
+} = Astro.props;
+
+const details = [
+  { label: "Getting There by Car", value: gettingThereByCar },
+  { label: "Getting There by Public Transport", value: gettingThereByPublicTransport },
+  { label: "Nearby Bus Services", value: nearbyBusServices },
+  { label: "Nearby Landmarks", value: nearbyLandmarks }
+].filter((item) => item.value);
+---
+
+{
+  details.map((item) => (
+    <div>
+      <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">{item.label}</dt>
+      <dd class="mt-2 whitespace-pre-line leading-7">{item.value}</dd>
+    </div>
+  ))
+}

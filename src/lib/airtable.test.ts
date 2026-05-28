@@ -155,6 +155,10 @@ describe("getDirectoryData", () => {
               fld8gPZjOWGMBfMer: "Supermarket",
               fldoROJgXxEo5phwJ: ["hood-1"],
               fldw8QjjvT68cDC8X: ["mall-1"],
+              fldbEV2NcQ7bZ0M0a: "Park at the basement car park.\nUse lift lobby A.",
+              fldYCaW3KbZmmJS4I: "Take the MRT to Ang Mo Kio.\nWalk through the town centre.",
+              fld3d3y5k1e72EAHK: "Bus 22, 25, 73",
+              fldM9U6ChPSfkdgg2: "AMK Hub\nAng Mo Kio Town Garden",
               fldyk0SXOq90jPl0H: "https://example.com/supermarket-one.jpg, https://example.com/supermarket-two.jpg"
             }
           }
@@ -196,6 +200,10 @@ describe("getDirectoryData", () => {
     expect(data.supermarkets).toHaveLength(1);
     expect(data.supermarkets[0]).toMatchObject({
       description: "A bright outlet with fresh produce and pantry staples.",
+      gettingThereByCar: "Park at the basement car park.\nUse lift lobby A.",
+      gettingThereByPublicTransport: "Take the MRT to Ang Mo Kio.\nWalk through the town centre.",
+      nearbyBusServices: "Bus 22, 25, 73",
+      nearbyLandmarks: "AMK Hub\nAng Mo Kio Town Garden",
       galleryImageUrls: [
         "https://example.com/supermarket-one.jpg",
         "https://example.com/supermarket-two.jpg"
