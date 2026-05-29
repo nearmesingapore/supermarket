@@ -3,7 +3,8 @@ import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
 import OutletGallery from "@/components/OutletGallery.astro";
 import OutletMap from "@/components/OutletMap.astro";
-import { getDirectoryData, getFirstInitial, type GroceryStore } from "@/lib/airtable";
+import PromotionCard from "@/components/PromotionCard.astro";
+import { getDirectoryData, getFirstInitial, getOutletPromotions, type GroceryStore } from "@/lib/airtable";
 import { getPrimary, getRelatedByNeighbourhood, splitDescriptionParagraphs } from "@/lib/content";
 import { getOutletSocialLinks } from "@/lib/social";
 
@@ -19,6 +20,10 @@ const neighbourhood = getPrimary(outlet.neighbourhood);
 const mall = getPrimary(outlet.mall);
 const mrt = getPrimary(outlet.mrt);
 const related = getRelatedByNeighbourhood(outlet, data.groceryStores);
+const promotions = getOutletPromotions(data.promotions, outlet, 3);
+const promotionCollection = brand
+  ? data.promotionCollections.find((collection) => collection.brandSlug === brand.slug)
+  : undefined;
 const title = `${brand?.name ? `${brand.name} ` : ""}${outlet.outletName}`;
 const description = outlet.description || `${title} in Singapore${neighbourhood ? `, near ${neighbourhood.name}` : ""}. View address, opening hours, MRT, mall, and contact details.`;
 const descriptionParagraphs = splitDescriptionParagraphs(outlet.description);
@@ -117,6 +122,23 @@ const schema = {
     </div>
 
   </article>
+
+  {promotions.length > 0 && (
+    <section class="border-y border-line bg-white py-16">
+      <div class="container-page">
+        <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div>
+            <p class="eyebrow">Promotions</p>
+            <h2 class="section-title mt-3">Promotions available at this outlet</h2>
+          </div>
+          {promotionCollection && <a class="fine-link text-sm font-semibold" href={`/${promotionCollection.slug}`}>View current deals at this store</a>}
+        </div>
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {promotions.map((promotion) => <PromotionCard promotion={promotion} />)}
+        </div>
+      </div>
+    </section>
+  )}
 
   {related.length > 0 && (
     <section class="container-page pb-20">

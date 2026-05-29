@@ -2,15 +2,18 @@ import { afterEach, describe, expect, test, vi } from "vitest";
 import {
   assertAirtableEnv,
   fetchAirtableRecords,
+  getBrandPromotions,
   getDirectoryData,
   getFirstInitial,
   isValidNeighbourhoodName,
+  resetDirectoryCacheForTests,
   resolveLinks
 } from "./airtable";
 import { hasTaxonomyImage, splitDescriptionParagraphs, truncateWords } from "./content";
 
 afterEach(() => {
   vi.restoreAllMocks();
+  resetDirectoryCacheForTests();
   delete process.env.AIRTABLE_API_KEY;
   delete process.env.AIRTABLE_BASE_ID;
 });
@@ -252,6 +255,83 @@ describe("getDirectoryData", () => {
     expect(data.supermarkets[0]).not.toHaveProperty("deliveryLinks");
     expect(data).not.toHaveProperty("priceRanges");
     expect(data).not.toHaveProperty("halalOptions");
+  });
+
+  test("normalizes brand promotion tables and resolves them to the matching brand", async () => {
+    process.env.AIRTABLE_API_KEY = "key";
+    process.env.AIRTABLE_BASE_ID = "base";
+
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue({
+      ok: true,
+      json: async () => ({ records: [] })
+    } as Response);
+
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "brand-fairprice",
+            fields: {
+              fldPwU2iFk9wEsmba: "FairPrice",
+              fldA09ghMk1pINerc: "FairPrice"
+            }
+          }
+        ]
+      })
+    } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "supermarket-1",
+            fields: {
+              fldaSNrp6I8auhsxM: "FairPrice Tampines",
+              fldm8OUq811I4sDFL: "fairprice-tampines",
+              fldiDxIqZZROJ2PiT: ["brand-fairprice"]
+            }
+          }
+        ]
+      })
+    } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "promo-1",
+            fields: {
+              fldrSaNXhuOTMYwvZ: "FairPrice Weekly Deals",
+              fldsobknyCZSzcvD4: "Fairprice-Promotions",
+              fldM0nFBIYYMSXafz: "21 May 2026 to 10 June 2026",
+              fldS9EKQmcjlegPgy: "Save on pantry staples.\n\nSource: FairPrice",
+              fld1umirXIZzBLFPP: "https://example.com/fairprice.jpg"
+            }
+          }
+        ]
+      })
+    } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+
+    const data = await getDirectoryData();
+
+    expect(data.promotions).toHaveLength(1);
+    expect(data.promotions[0]).toMatchObject({
+      id: "promo-1",
+      title: "FairPrice Weekly Deals",
+      brand: { id: "brand-fairprice", name: "FairPrice", slug: "FairPrice" },
+      collectionSlug: "fairprice-promotions",
+      detailPath: "/promotions/fairprice-promotions-promo-1",
+      imageUrls: ["https://example.com/fairprice.jpg"],
+      shortDescription: "Save on pantry staples."
+    });
+    expect(getBrandPromotions(data.promotions, "brand-fairprice")).toHaveLength(1);
   });
 });
 

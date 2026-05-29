@@ -4,10 +4,9 @@ const links = [
   { href: "/directory", label: "Directory" },
   { href: "/supermarkets", label: "Supermarkets" },
   { href: "/grocery-stores", label: "Grocery Stores" },
-  { href: "/brands", label: "Brands" },
-  { href: "/neighbourhoods", label: "Neighbourhoods" },
-  { href: "/malls", label: "Malls" },
-  { href: "/mrt-stations", label: "MRT" },
+  { href: "/sheng-siong-promotions", label: "Sheng Siong Promotions" },
+  { href: "/fairprice-promotions", label: "FairPrice Promotions" },
+  { href: "/giant-promotions", label: "Giant Promotions" },
   { href: "/search", label: "Search" }
 ];
 ---
@@ -17,7 +16,7 @@ const links = [
     <a href="/" class="shrink-0 font-serif text-2xl leading-none text-ink" aria-label="Singapore Supermarket Directory home">
       SG Supermarkets
     </a>
-    <nav class="hidden items-center gap-3 text-xs font-medium text-muted md:flex xl:gap-5 xl:text-sm" aria-label="Primary navigation">
+    <nav class="hidden items-center gap-3 text-xs font-medium text-muted md:flex xl:gap-4 xl:text-sm" aria-label="Primary navigation">
       {links.map((link) => (
         <a class="transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}

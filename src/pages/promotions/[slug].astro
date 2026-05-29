@@ -1,0 +1,86 @@
+---
+import Layout from "@/components/Layout.astro";
+import PromotionCard from "@/components/PromotionCard.astro";
+import { getBrandPromotions, getDirectoryData, type Promotion } from "@/lib/airtable";
+import { splitDescriptionParagraphs } from "@/lib/content";
+
+export async function getStaticPaths() {
+  const data = await getDirectoryData();
+  return data.promotions.map((promotion) => ({
+    params: { slug: promotion.detailPath.split("/").pop() },
+    props: { promotion }
+  }));
+}
+
+const { promotion } = Astro.props as { promotion: Promotion };
+const data = await getDirectoryData();
+const brandPromotions = getBrandPromotions(data.promotions, promotion.brand.id)
+  .filter((item) => item.id !== promotion.id)
+  .slice(0, 3);
+const groceryStoreIds = new Set(data.groceryStores.map((outlet) => outlet.id));
+const descriptionParagraphs = splitDescriptionParagraphs(promotion.description);
+const title = promotion.title;
+const description = promotion.shortDescription || `${promotion.title} from ${promotion.brand.name}.`;
+---
+
+<Layout title={title} description={description} image={promotion.imageUrls[0]} canonical={promotion.detailPath}>
+  <article class="container-page py-12 lg:py-16" data-pagefind-body data-pagefind-meta={`title:${promotion.title};brand:${promotion.brand.name}`}>
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <div class="space-y-5">
+        {promotion.imageUrls.map((imageUrl, index) => (
+          <div class="overflow-hidden border border-line bg-white">
+            <img src={imageUrl} alt={`${promotion.title} flyer ${index + 1}`} class="w-full object-cover" loading={index === 0 ? "eager" : "lazy"} />
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <p class="eyebrow">{promotion.collectionLabel}</p>
+        <h1 class="page-title mt-4">{promotion.title}</h1>
+        {promotion.validity && <p class="page-intro mt-6 max-w-2xl text-ink">{promotion.validity}</p>}
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a class="soft-button w-full sm:w-auto" href={`/brands/${promotion.brand.slug}`}>{promotion.brand.name} promotions</a>
+          <a class="ghost-button w-full sm:w-auto" href={`/${promotion.collectionSlug}`}>View all promotions</a>
+        </div>
+
+        {
+          descriptionParagraphs.length > 0 && (
+            <div class="mt-10 space-y-6 border-y border-line py-8 leading-7 text-muted">
+              {descriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </article>
+
+  {promotion.linkedOutlets.length > 0 && (
+    <section class="border-y border-line bg-white py-16">
+      <div class="container-page">
+        <p class="eyebrow">Available outlets</p>
+        <h2 class="section-title mt-3">View current deals at this store</h2>
+        <div class="mt-8 columns-1 gap-8 text-sm leading-7 sm:columns-2 lg:columns-3">
+          {promotion.linkedOutlets.map((outlet) => (
+            <a class="fine-link mb-2 block break-inside-avoid" href={`${groceryStoreIds.has(outlet.id) ? "/grocery-stores" : "/supermarkets"}/${outlet.slug}`}>{outlet.name}</a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {brandPromotions.length > 0 && (
+    <section class="container-page py-16">
+      <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div>
+          <p class="eyebrow">More promotions</p>
+          <h2 class="section-title mt-3">More {promotion.brand.name} promotions</h2>
+        </div>
+        <a class="fine-link text-sm font-semibold" href={`/${promotion.collectionSlug}`}>View all promotions</a>
+      </div>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {brandPromotions.map((item) => <PromotionCard promotion={item} />)}
+      </div>
+    </section>
+  )}
+</Layout>

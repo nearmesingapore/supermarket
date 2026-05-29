@@ -70,6 +70,29 @@ const directoryData = {
       featured: false
     }
   ],
+  promotions: [
+    {
+      id: "promo-1",
+      title: "Brand Weekly Promotion",
+      slug: "brand-promotions",
+      collectionSlug: "brand-promotions",
+      collectionLabel: "Brand Promotions",
+      description: "",
+      shortDescription: "",
+      validity: "1 May 2026 to 31 May 2026",
+      imageUrls: [],
+      brand: { id: "brand-1", name: "Brand", slug: "brand" },
+      linkedOutlets: [],
+      detailPath: "/promotions/brand-promotions-promo-1"
+    }
+  ],
+  promotionCollections: [
+    {
+      label: "Brand Promotions",
+      slug: "brand-promotions",
+      brandSlug: "brand"
+    }
+  ],
   featuredSupermarkets: [],
   categories: []
 } as DirectoryData;
@@ -93,12 +116,14 @@ describe("getSitemapPaths", () => {
       "/grocery-stores",
       "/brands",
       "/neighbourhoods",
+      "/brand-promotions",
       "/brands/brand",
       "/neighbourhoods/hood",
       "/malls/mall",
       "/mrt-stations/station",
       "/supermarkets/brand-hood",
-      "/grocery-stores/little-farms-katong-point"
+      "/grocery-stores/little-farms-katong-point",
+      "/promotions/brand-promotions-promo-1"
     ]);
   });
 });

@@ -9,12 +9,14 @@ export function resolveSiteUrl(site: string | URL | undefined) {
 export function getSitemapPaths(data: DirectoryData) {
   return [
     ...STATIC_SITEMAP_PATHS,
+    ...data.promotionCollections.map((collection) => `/${collection.slug}`),
     ...data.brands.map((brand) => `/brands/${brand.slug}`),
     ...data.neighbourhoods.map((neighbourhood) => `/neighbourhoods/${neighbourhood.slug}`),
     ...data.malls.map((mall) => `/malls/${mall.slug}`),
     ...data.mrtStations.map((station) => `/mrt-stations/${station.slug}`),
     ...data.supermarkets.map((outlet) => `/supermarkets/${outlet.slug}`),
-    ...data.groceryStores.map((outlet) => `/grocery-stores/${outlet.slug}`)
+    ...data.groceryStores.map((outlet) => `/grocery-stores/${outlet.slug}`),
+    ...data.promotions.map((promotion) => promotion.detailPath)
   ];
 }
 

@@ -44,6 +44,27 @@ export type Supermarket = {
 
 export type GroceryStore = Supermarket;
 
+export type Promotion = {
+  id: string;
+  title: string;
+  slug: string;
+  collectionSlug: string;
+  collectionLabel: string;
+  description: string;
+  shortDescription: string;
+  validity: string;
+  imageUrls: string[];
+  brand: LinkedItem;
+  linkedOutlets: LinkedItem[];
+  detailPath: string;
+};
+
+export type PromotionCollection = {
+  label: string;
+  slug: string;
+  brandSlug: string;
+};
+
 export type DirectoryData = {
   brands: TaxonomyItem[];
   supermarketBrands: TaxonomyItem[];
@@ -53,6 +74,8 @@ export type DirectoryData = {
   mrtStations: TaxonomyItem[];
   supermarkets: Supermarket[];
   groceryStores: GroceryStore[];
+  promotions: Promotion[];
+  promotionCollections: PromotionCollection[];
   featuredSupermarkets: Supermarket[];
   categories: string[];
 };
@@ -68,8 +91,39 @@ const TABLES = {
   brands: "tblK5rFjHnVqd2g6U",
   neighbourhoods: "tblLPGvEo7lH4pLzR",
   malls: "tblHHymwYJJQH5UK6",
-  mrtStations: "tblxME1R6ILNCa8Af"
+  mrtStations: "tblxME1R6ILNCa8Af",
+  shengSiongPromotions: "tbl5kjc7ZgUDIn7ZV",
+  fairpricePromotions: "tblmrHqYjxANlyqqJ",
+  giantPromotions: "tblWdAbg7RqHoxFax"
 } as const;
+
+type PromotionCollectionConfig = {
+  key: "shengSiongPromotions" | "fairpricePromotions" | "giantPromotions";
+  label: string;
+  slug: string;
+  brandSlug: string;
+};
+
+const PROMOTION_TABLES = [
+  {
+    key: "shengSiongPromotions",
+    label: "Sheng Siong Promotions",
+    slug: "sheng-siong-promotions",
+    brandSlug: "Sheng-Siong"
+  },
+  {
+    key: "fairpricePromotions",
+    label: "FairPrice Promotions",
+    slug: "fairprice-promotions",
+    brandSlug: "FairPrice"
+  },
+  {
+    key: "giantPromotions",
+    label: "Giant Promotions",
+    slug: "giant-promotions",
+    brandSlug: "Giant"
+  }
+] as const satisfies readonly PromotionCollectionConfig[];
 
 const FIELDS = {
   supermarkets: {
@@ -143,6 +197,38 @@ const FIELDS = {
   mrtStations: {
     name: ["fld5fDN0H0461Oq1V", "Name"],
     slug: ["fld4fkwSoz7qSoQEq", "Slug"]
+  },
+  promotions: {
+    shengSiongPromotions: {
+      title: ["fldaLMz6Xd8J9Nd4b", "Promotion Title"],
+      slug: ["fldhw6QIn6h0w5cvU", "Slug"],
+      validity: ["fldvTZrKoHiCfMROL", "Promotion Date"],
+      description: ["fldB2gwZ2VDbB5wPK", "Description"],
+      imageUrl1: ["fldKnY4ADrjpYAmo1", "Promotion Image URL 1"],
+      imageUrl2: ["fldy0XySdEoK3BEYY", "Promotion Image URL 2"],
+      brand: [],
+      outlets: []
+    },
+    fairpricePromotions: {
+      title: ["fldrSaNXhuOTMYwvZ", "Promotion Title"],
+      slug: ["fldsobknyCZSzcvD4", "Slug"],
+      validity: ["fldM0nFBIYYMSXafz", "Promotion Date"],
+      description: ["fldS9EKQmcjlegPgy", "Description"],
+      imageUrl1: ["fld1umirXIZzBLFPP", "Promotion Image URL 1"],
+      imageUrl2: ["fldP7lMJxV4UGMXpM", "Promotion Image URL 2"],
+      brand: [],
+      outlets: []
+    },
+    giantPromotions: {
+      title: ["fld1E3yf5OENPXLfN", "Promotion Title"],
+      slug: ["fld38BN2CetG4LQiO", "Slug"],
+      validity: ["fldmMgqTwiOGVWpZn", "Promotion Date"],
+      description: ["fldsVxv8aw9fhf40m", "Description"],
+      imageUrl1: ["fldBgf3JL2PtEKUzD", "Promotion Image URL 1"],
+      imageUrl2: ["fldpTex1lfUOJLc9A", "Promotion Image URL 2"],
+      brand: [],
+      outlets: []
+    }
   }
 } as const;
 
@@ -228,6 +314,10 @@ export async function getDirectoryData(): Promise<DirectoryData> {
   return directoryCache;
 }
 
+export function resetDirectoryCacheForTests() {
+  directoryCache = undefined;
+}
+
 async function loadDirectoryData(): Promise<DirectoryData> {
   const { apiKey, baseId } = assertAirtableEnv();
   const [brandRecords, neighbourhoodRecords, mallRecords, mrtRecords] = await Promise.all([
@@ -298,6 +388,26 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     .filter((item) => isValidNeighbourhoodName(item.name));
   const countedMalls = withCounts(malls.items, allOutlets, (outlet) => outlet.mall);
   const countedMrtStations = withCounts(mrtStations.items, allOutlets, (outlet) => outlet.mrt);
+  const promotionRecords = await Promise.all(
+    PROMOTION_TABLES.map(async (collection) => ({
+      collection,
+      records: await fetchAirtableRecords(baseId, TABLES[collection.key], apiKey)
+    }))
+  );
+  const promotions = promotionRecords
+    .flatMap(({ collection, records }) =>
+      records.map((record) =>
+        normalizePromotion(
+          record,
+          collection,
+          FIELDS.promotions[collection.key],
+          brands.map,
+          allOutlets
+        )
+      )
+    )
+    .filter((promotion): promotion is Promotion => Boolean(promotion))
+    .sort((a, b) => a.title.localeCompare(b.title));
 
   return {
     brands: countedBrands,
@@ -308,6 +418,12 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     mrtStations: countedMrtStations.sort((a, b) => a.name.localeCompare(b.name)),
     supermarkets,
     groceryStores,
+    promotions,
+    promotionCollections: PROMOTION_TABLES.map(({ label, slug, brandSlug }) => ({
+      label,
+      slug,
+      brandSlug
+    })),
     featuredSupermarkets: supermarkets.filter((outlet) => outlet.featured),
     categories: uniqueSorted(supermarkets.map((outlet) => outlet.category))
   };
@@ -372,6 +488,82 @@ function normalizeOutlet(
     nearbyLandmarks: readFieldString(fields, fieldsConfig.nearbyLandmarks),
     featured: Boolean(readField(fields, fieldsConfig.featured))
   };
+}
+
+function normalizePromotion(
+  record: AirtableRecord,
+  collection: PromotionCollectionConfig,
+  fieldsConfig: typeof FIELDS.promotions[keyof typeof FIELDS.promotions],
+  brands: Map<string, LinkedItem>,
+  allOutlets: Supermarket[]
+): Promotion | undefined {
+  const fields = record.fields;
+  const linkedBrand = resolveLinks(readField(fields, fieldsConfig.brand), brands)[0];
+  const fallbackBrand = findBrandBySlug(brands, collection.brandSlug);
+  const brand = linkedBrand || fallbackBrand;
+
+  if (!brand) return undefined;
+
+  const title = readFieldString(fields, fieldsConfig.title);
+  if (!title) return undefined;
+
+  const rawSlug = readFieldString(fields, fieldsConfig.slug) || title;
+  const slug = slugify(rawSlug);
+  const linkedOutlets = resolveLinks(
+    readField(fields, fieldsConfig.outlets),
+    new Map(allOutlets.map((outlet) => [outlet.id, outletToLinkedItem(outlet)]))
+  );
+  const relevantOutlets =
+    linkedOutlets.length > 0
+      ? linkedOutlets
+      : allOutlets
+          .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
+          .map(outletToLinkedItem);
+  const description = readFieldString(fields, fieldsConfig.description);
+
+  return {
+    id: record.id,
+    title,
+    slug,
+    collectionSlug: collection.slug,
+    collectionLabel: collection.label,
+    description,
+    shortDescription: summarizeDescription(description),
+    validity: readFieldString(fields, fieldsConfig.validity),
+    imageUrls: [
+      readFieldString(fields, fieldsConfig.imageUrl1),
+      readFieldString(fields, fieldsConfig.imageUrl2)
+    ].filter(Boolean),
+    brand,
+    linkedOutlets: relevantOutlets,
+    detailPath: `/promotions/${slug}-${record.id}`
+  };
+}
+
+function findBrandBySlug(brands: Map<string, LinkedItem>, slug: string) {
+  const normalizedSlug = normalizeComparable(slug);
+  return [...brands.values()].find((brand) => normalizeComparable(brand.slug) === normalizedSlug);
+}
+
+function outletToLinkedItem(outlet: Supermarket): LinkedItem {
+  return {
+    id: outlet.id,
+    name: outlet.outletName,
+    slug: outlet.slug,
+    imageUrl: outlet.imageUrl,
+    description: outlet.description
+  };
+}
+
+export function getBrandPromotions(promotions: Promotion[], brandId: string, limit?: number) {
+  const relevant = promotions.filter((promotion) => promotion.brand.id === brandId);
+  return typeof limit === "number" ? relevant.slice(0, limit) : relevant;
+}
+
+export function getOutletPromotions(promotions: Promotion[], outlet: Supermarket, limit?: number) {
+  const outletBrandIds = new Set(outlet.brand.map((brand) => brand.id));
+  const relevant = promotions.filter((promotion) => outletBrandIds.has(promotion.brand.id));
+  return typeof limit === "number" ? relevant.slice(0, limit) : relevant;
 }
 
 function withCounts(
@@ -451,4 +643,14 @@ function slugify(value: string) {
     .replace(/[^A-Za-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .toLowerCase();
+}
+
+function summarizeDescription(value: string) {
+  const firstParagraph = value.split(/\n\s*\n/)[0]?.trim() || "";
+  if (firstParagraph.length <= 180) return firstParagraph;
+  return `${firstParagraph.slice(0, 177).trim()}...`;
+}
+
+function normalizeComparable(value: string) {
+  return value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "");
 }

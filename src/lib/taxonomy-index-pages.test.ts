@@ -64,12 +64,15 @@ describe("taxonomy index pages", () => {
     expect(brandDetail).toContain('basePath="/grocery-stores"');
   });
 
-  test("links mall and MRT station indexes from shared navigation", () => {
+  test("links promotion pages from primary navigation and taxonomy indexes from the footer", () => {
     const header = readSource("src/components/Header.astro");
     const footer = readSource("src/components/Footer.astro");
 
-    expect(header).toContain('href: "/malls"');
-    expect(header).toContain('href: "/mrt-stations"');
+    expect(header).toContain('href: "/sheng-siong-promotions"');
+    expect(header).toContain('href: "/fairprice-promotions"');
+    expect(header).toContain('href: "/giant-promotions"');
+    expect(footer).toContain('href="/brands"');
+    expect(footer).toContain('href="/neighbourhoods"');
     expect(footer).toContain('href="/malls"');
     expect(footer).toContain('href="/mrt-stations"');
   });
