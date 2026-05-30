@@ -89,4 +89,13 @@ describe("taxonomy index pages", () => {
     expect(supermarketDetail).toContain("brandPage");
     expect(supermarketDetail).toContain("ListingCard");
   });
+
+  test("promotion collection pages link outlet heading to the brand page without listing every outlet", () => {
+    const promotionCollection = readSource("src/pages/[promotionCollection].astro");
+
+    expect(promotionCollection).toContain('href={`/brands/${brand.slug}`}');
+    expect(promotionCollection).toContain("{brand.name} outlets with relevant promotions");
+    expect(promotionCollection).not.toContain("supermarketOutlets.map");
+    expect(promotionCollection).not.toContain("groceryStoreOutlets.map");
+  });
 });

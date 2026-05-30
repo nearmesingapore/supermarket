@@ -16,17 +16,9 @@ const { collection } = Astro.props as { collection: PromotionCollection };
 const data = await getDirectoryData();
 const brand = data.brands.find((item) => item.slug === collection.brandSlug);
 const promotions = brand ? getBrandPromotions(data.promotions, brand.id) : [];
-const supermarketOutlets = brand
-  ? data.supermarkets
-      .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
-      .sort((a, b) => a.outletName.localeCompare(b.outletName))
-  : [];
-const groceryStoreOutlets = brand
-  ? data.groceryStores
-      .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
-      .sort((a, b) => a.outletName.localeCompare(b.outletName))
-  : [];
-const outletCount = supermarketOutlets.length + groceryStoreOutlets.length;
+const outletCount = brand
+  ? [...data.supermarkets, ...data.groceryStores].filter((outlet) => outlet.brand.some((item) => item.id === brand.id)).length
+  : 0;
 const title = collection.label;
 const description = `Browse current ${collection.label.toLowerCase()} in Singapore, with links to ${brand?.name || "brand"} outlet pages and full promotion details.`;
 ---
@@ -47,21 +39,15 @@ const description = `Browse current ${collection.label.toLowerCase()} in Singapo
     </div>
   </section>
 
-  {outletCount > 0 && (
+  {brand && outletCount > 0 && (
     <section class="border-t border-line bg-white py-16">
       <div class="container-page">
         <div>
           <p class="eyebrow">Outlet links</p>
-          <h2 class="section-title mt-3">{brand?.name} outlets with relevant promotions</h2>
+          <h2 class="section-title mt-3">
+            <a class="transition hover:text-brass" href={`/brands/${brand.slug}`}>{brand.name} outlets with relevant promotions</a>
+          </h2>
           <p class="mt-4 text-sm text-muted">{formatCount(outletCount, "outlet")} linked from this promotions page.</p>
-        </div>
-        <div class="mt-8 columns-1 gap-8 text-sm leading-7 sm:columns-2 lg:columns-3">
-          {supermarketOutlets.map((outlet) => (
-            <a class="fine-link mb-2 block break-inside-avoid" href={`/supermarkets/${outlet.slug}`}>{outlet.outletName}</a>
-          ))}
-          {groceryStoreOutlets.map((outlet) => (
-            <a class="fine-link mb-2 block break-inside-avoid" href={`/grocery-stores/${outlet.slug}`}>{outlet.outletName}</a>
-          ))}
         </div>
       </div>
     </section>
