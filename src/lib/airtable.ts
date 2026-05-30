@@ -65,6 +65,12 @@ export type PromotionCollection = {
   brandSlug: string;
 };
 
+export type SupermarketBrandPage = {
+  brand: TaxonomyItem;
+  pathSlug: string;
+  outlets: Supermarket[];
+};
+
 export type DirectoryData = {
   brands: TaxonomyItem[];
   supermarketBrands: TaxonomyItem[];
@@ -507,8 +513,8 @@ function normalizePromotion(
   const title = readFieldString(fields, fieldsConfig.title);
   if (!title) return undefined;
 
-  const rawSlug = readFieldString(fields, fieldsConfig.slug) || title;
-  const slug = slugify(rawSlug);
+  const rawSlug = readFieldString(fields, fieldsConfig.slug);
+  const slug = buildPromotionSlug(collection.slug, rawSlug || slugify(title));
   const linkedOutlets = resolveLinks(
     readField(fields, fieldsConfig.outlets),
     new Map(allOutlets.map((outlet) => [outlet.id, outletToLinkedItem(outlet)]))
@@ -536,7 +542,7 @@ function normalizePromotion(
     ].filter(Boolean),
     brand,
     linkedOutlets: relevantOutlets,
-    detailPath: `/promotions/${slug}-${record.id}`
+    detailPath: `/promotions/${slug}`
   };
 }
 
@@ -564,6 +570,19 @@ export function getOutletPromotions(promotions: Promotion[], outlet: Supermarket
   const outletBrandIds = new Set(outlet.brand.map((brand) => brand.id));
   const relevant = promotions.filter((promotion) => outletBrandIds.has(promotion.brand.id));
   return typeof limit === "number" ? relevant.slice(0, limit) : relevant;
+}
+
+export function getSupermarketBrandPages(data: DirectoryData): SupermarketBrandPage[] {
+  return data.supermarketBrands
+    .filter((brand) => brand.count > 1)
+    .map((brand) => ({
+      brand,
+      pathSlug: slugify(brand.name),
+      outlets: data.supermarkets
+        .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
+        .sort((a, b) => a.outletName.localeCompare(b.outletName))
+    }))
+    .filter((page) => page.outlets.length > 1);
 }
 
 function withCounts(
@@ -643,6 +662,16 @@ function slugify(value: string) {
     .replace(/[^A-Za-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .toLowerCase();
+}
+
+function normalizeRouteSlug(value: string) {
+  return value.trim().replace(/^\/+|\/+$/g, "");
+}
+
+function buildPromotionSlug(collectionSlug: string, value: string) {
+  const slug = normalizeRouteSlug(value) || slugify(value);
+  if (normalizeComparable(slug).startsWith(normalizeComparable(collectionSlug))) return slug;
+  return `${collectionSlug}-${slug}`;
 }
 
 function summarizeDescription(value: string) {

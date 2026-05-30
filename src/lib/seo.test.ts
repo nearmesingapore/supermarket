@@ -8,8 +8,8 @@ import {
 } from "./seo";
 
 const directoryData = {
-  brands: [{ id: "brand-1", name: "Brand", slug: "brand", count: 1 }],
-  supermarketBrands: [{ id: "brand-1", name: "Brand", slug: "brand", count: 1 }],
+  brands: [{ id: "brand-1", name: "Brand", slug: "brand", count: 2 }],
+  supermarketBrands: [{ id: "brand-1", name: "Brand", slug: "brand", count: 2 }],
   groceryStoreBrands: [],
   neighbourhoods: [{ id: "hood-1", name: "Hood", slug: "hood", count: 1 }],
   malls: [{ id: "mall-1", name: "Mall", slug: "mall", count: 1 }],
@@ -20,7 +20,33 @@ const directoryData = {
       outletName: "Brand Hood",
       slug: "brand-hood",
       description: "",
-      brand: [],
+      brand: [{ id: "brand-1", name: "Brand", slug: "brand" }],
+      category: "",
+      neighbourhood: [],
+      mall: [],
+      address: "",
+      streetName: "",
+      postalCode: "",
+      mrt: [],
+      openingHours: "",
+      phone: "",
+      googleMapsUrl: "",
+      facebookUrl: "",
+      instagramUrl: "",
+      imageUrl: "",
+      galleryImagesUrl: "",
+      gettingThereByCar: "",
+      gettingThereByPublicTransport: "",
+      nearbyBusServices: "",
+      nearbyLandmarks: "",
+      featured: false
+    },
+    {
+      id: "outlet-2",
+      outletName: "Brand Valley",
+      slug: "brand-valley",
+      description: "",
+      brand: [{ id: "brand-1", name: "Brand", slug: "brand" }],
       category: "",
       neighbourhood: [],
       mall: [],
@@ -83,7 +109,7 @@ const directoryData = {
       imageUrls: [],
       brand: { id: "brand-1", name: "Brand", slug: "brand" },
       linkedOutlets: [],
-      detailPath: "/promotions/brand-promotions-promo-1"
+      detailPath: "/promotions/brand-promotions-weekly"
     }
   ],
   promotionCollections: [
@@ -116,14 +142,17 @@ describe("getSitemapPaths", () => {
       "/grocery-stores",
       "/brands",
       "/neighbourhoods",
+      "/promotions",
       "/brand-promotions",
       "/brands/brand",
       "/neighbourhoods/hood",
       "/malls/mall",
       "/mrt-stations/station",
+      "/supermarkets/brand",
       "/supermarkets/brand-hood",
+      "/supermarkets/brand-valley",
       "/grocery-stores/little-farms-katong-point",
-      "/promotions/brand-promotions-promo-1"
+      "/promotions/brand-promotions-weekly"
     ]);
   });
 });

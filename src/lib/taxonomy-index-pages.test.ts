@@ -68,12 +68,25 @@ describe("taxonomy index pages", () => {
     const header = readSource("src/components/Header.astro");
     const footer = readSource("src/components/Footer.astro");
 
-    expect(header).toContain('href: "/sheng-siong-promotions"');
-    expect(header).toContain('href: "/fairprice-promotions"');
-    expect(header).toContain('href: "/giant-promotions"');
+    expect(header).toContain('label: "Promotions"');
+    expect(header).toContain("promotionLinks");
+    expect(header).not.toContain('label: "Sheng Siong Promotions"');
+    expect(header).not.toContain('label: "FairPrice Promotions"');
+    expect(header).not.toContain('label: "Giant Promotions"');
     expect(footer).toContain('href="/brands"');
     expect(footer).toContain('href="/neighbourhoods"');
     expect(footer).toContain('href="/malls"');
     expect(footer).toContain('href="/mrt-stations"');
+  });
+
+  test("adds crawlable promotion and supermarket brand index routes", () => {
+    const promotionsIndex = readSource("src/pages/promotions/index.astro");
+    const supermarketDetail = readSource("src/pages/supermarkets/[slug].astro");
+
+    expect(promotionsIndex).toContain("data.promotions");
+    expect(promotionsIndex).toContain("<PromotionCard");
+    expect(supermarketDetail).toContain("getSupermarketBrandPages");
+    expect(supermarketDetail).toContain("brandPage");
+    expect(supermarketDetail).toContain("ListingCard");
   });
 });

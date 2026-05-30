@@ -5,6 +5,7 @@ import {
   getBrandPromotions,
   getDirectoryData,
   getFirstInitial,
+  getSupermarketBrandPages,
   isValidNeighbourhoodName,
   resetDirectoryCacheForTests,
   resolveLinks
@@ -308,7 +309,7 @@ describe("getDirectoryData", () => {
             id: "promo-1",
             fields: {
               fldrSaNXhuOTMYwvZ: "FairPrice Weekly Deals",
-              fldsobknyCZSzcvD4: "Fairprice-Promotions",
+              fldsobknyCZSzcvD4: "Weekly-Deals",
               fldM0nFBIYYMSXafz: "21 May 2026 to 10 June 2026",
               fldS9EKQmcjlegPgy: "Save on pantry staples.\n\nSource: FairPrice",
               fld1umirXIZzBLFPP: "https://example.com/fairprice.jpg"
@@ -327,11 +328,67 @@ describe("getDirectoryData", () => {
       title: "FairPrice Weekly Deals",
       brand: { id: "brand-fairprice", name: "FairPrice", slug: "FairPrice" },
       collectionSlug: "fairprice-promotions",
-      detailPath: "/promotions/fairprice-promotions-promo-1",
+      detailPath: "/promotions/fairprice-promotions-Weekly-Deals",
       imageUrls: ["https://example.com/fairprice.jpg"],
       shortDescription: "Save on pantry staples."
     });
     expect(getBrandPromotions(data.promotions, "brand-fairprice")).toHaveLength(1);
+  });
+});
+
+describe("getSupermarketBrandPages", () => {
+  test("creates lowercase supermarket brand landing paths for brands with more than one outlet", () => {
+    const fairPrice = { id: "brand-fairprice", name: "FairPrice", slug: "FairPrice", count: 2 };
+    const singleOutletBrand = { id: "brand-single", name: "Single Brand", slug: "single-brand", count: 1 };
+    const outlet = {
+      id: "outlet-1",
+      outletName: "FairPrice Tampines",
+      slug: "fairprice-tampines",
+      description: "",
+      brand: [{ id: fairPrice.id, name: fairPrice.name, slug: fairPrice.slug }],
+      category: "",
+      neighbourhood: [],
+      mall: [],
+      address: "",
+      streetName: "",
+      postalCode: "",
+      mrt: [],
+      openingHours: "",
+      phone: "",
+      googleMapsUrl: "",
+      facebookUrl: "",
+      instagramUrl: "",
+      imageUrl: "",
+      galleryImagesUrl: "",
+      gettingThereByCar: "",
+      gettingThereByPublicTransport: "",
+      nearbyBusServices: "",
+      nearbyLandmarks: "",
+      featured: false
+    };
+
+    expect(
+      getSupermarketBrandPages({
+        brands: [fairPrice, singleOutletBrand],
+        supermarketBrands: [fairPrice, singleOutletBrand],
+        groceryStoreBrands: [],
+        neighbourhoods: [],
+        malls: [],
+        mrtStations: [],
+        supermarkets: [outlet, { ...outlet, id: "outlet-2", slug: "fairprice-bedok", outletName: "FairPrice Bedok" }],
+        groceryStores: [],
+        promotions: [],
+        promotionCollections: [],
+        featuredSupermarkets: [],
+        categories: []
+      })
+    ).toEqual([
+      {
+        brand: fairPrice,
+        pathSlug: "fairprice",
+        outlets: [{ ...outlet, id: "outlet-2", slug: "fairprice-bedok", outletName: "FairPrice Bedok" }, outlet]
+      }
+    ]);
   });
 });
 

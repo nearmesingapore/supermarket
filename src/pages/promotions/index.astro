@@ -1,0 +1,36 @@
+---
+import Layout from "@/components/Layout.astro";
+import PromotionCard from "@/components/PromotionCard.astro";
+import { getDirectoryData } from "@/lib/airtable";
+import { formatCount } from "@/lib/content";
+
+const data = await getDirectoryData();
+const promotions = data.promotions;
+const title = "Supermarket Promotions in Singapore";
+const description = "Browse current Sheng Siong, FairPrice, and Giant promotions in Singapore.";
+---
+
+<Layout title={title} description={description} canonical="/promotions">
+  <section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${title}`}>
+    <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+      <div>
+        <p class="eyebrow">Promotions</p>
+        <h1 class="page-title mt-4">Supermarket Promotions</h1>
+        <p class="page-intro mt-6 max-w-3xl">{description}</p>
+      </div>
+      <p class="text-sm font-semibold text-muted">{formatCount(promotions.length, "promotion")}</p>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      {data.promotionCollections.map((collection) => (
+        <a class="rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold transition hover:border-ink" href={`/${collection.slug}`}>
+          {collection.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {promotions.map((promotion) => <PromotionCard promotion={promotion} />)}
+    </div>
+  </section>
+</Layout>
