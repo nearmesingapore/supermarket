@@ -7,7 +7,7 @@ export function resolveSiteUrl(site: string | URL | undefined) {
 }
 
 export function getSitemapPaths(data: DirectoryData) {
-  return [
+  return [...new Set([
     ...STATIC_SITEMAP_PATHS,
     "/promotions",
     ...data.promotionCollections.map((collection) => `/${collection.slug}`),
@@ -19,7 +19,24 @@ export function getSitemapPaths(data: DirectoryData) {
     ...data.supermarkets.map((outlet) => `/supermarkets/${outlet.slug}`),
     ...data.groceryStores.map((outlet) => `/grocery-stores/${outlet.slug}`),
     ...data.promotions.map((promotion) => promotion.detailPath)
-  ];
+  ].map(canonicalPath))];
+}
+
+export function canonicalPath(path: string) {
+  const url = new URL(path || "/", "https://supermarket.sg");
+  const pathname = url.pathname === "/" || url.pathname.endsWith("/") ? url.pathname : `${url.pathname}/`;
+
+  return `${pathname}${url.search}${url.hash}`;
+}
+
+export function canonicalUrl(site: string | URL | undefined, path: string) {
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    const url = new URL(path);
+    url.pathname = canonicalPath(url.pathname);
+    return url.toString();
+  }
+
+  return `${resolveSiteUrl(site)}${canonicalPath(path)}`;
 }
 
 export function buildSitemapXml(data: DirectoryData, site: string | URL | undefined) {

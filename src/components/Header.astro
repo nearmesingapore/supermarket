@@ -1,18 +1,20 @@
 ---
+import { canonicalPath } from "@/lib/seo";
+
 const links = [
   { href: "/", label: "Home" },
   { href: "/directory", label: "Directory" },
   { href: "/supermarkets", label: "Supermarkets" },
   { href: "/grocery-stores", label: "Grocery Stores" },
   { href: "/search", label: "Search" }
-];
+].map((link) => ({ ...link, href: canonicalPath(link.href) }));
 
-const promotionMenu = { href: "/promotions", label: "Promotions" };
+const promotionMenu = { href: canonicalPath("/promotions"), label: "Promotions" };
 const promotionLinks = [
   { href: "/sheng-siong-promotions", text: "Sheng Siong Promotions" },
   { href: "/fairprice-promotions", text: "FairPrice Promotions" },
   { href: "/giant-promotions", text: "Giant Promotions" }
-];
+].map((link) => ({ ...link, href: canonicalPath(link.href) }));
 ---
 
 <header class="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
@@ -42,7 +44,7 @@ const promotionLinks = [
         <a class="transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}
     </nav>
-    <a href="/directory" class="ghost-button hidden sm:inline-flex">Browse</a>
+    <a href="/directory/" class="ghost-button hidden sm:inline-flex">Browse</a>
     <button
       class="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-line bg-white text-ink md:hidden"
       type="button"

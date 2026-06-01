@@ -3,6 +3,7 @@ import "../styles/global.css";
 
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
+import { canonicalUrl as resolveCanonicalUrl } from "@/lib/seo";
 
 interface Props {
   title: string;
@@ -21,7 +22,7 @@ const {
 } = Astro.props;
 
 const site = Astro.site?.toString().replace(/\/$/, "") || "https://supermarket.sg";
-const canonicalUrl = canonical.startsWith("http") ? canonical : `${site}${canonical}`;
+const canonicalUrl = resolveCanonicalUrl(site, canonical);
 const imageUrl = image.startsWith("http") ? image : `${site}${image}`;
 ---
 

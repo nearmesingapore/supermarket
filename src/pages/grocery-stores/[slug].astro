@@ -6,6 +6,7 @@ import OutletMap from "@/components/OutletMap.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
 import { getDirectoryData, getFirstInitial, getOutletPromotions, type GroceryStore } from "@/lib/airtable";
 import { getPrimary, getRelatedByNeighbourhood, splitDescriptionParagraphs } from "@/lib/content";
+import { canonicalPath } from "@/lib/seo";
 import { getOutletSocialLinks } from "@/lib/social";
 
 export async function getStaticPaths() {
@@ -102,19 +103,19 @@ const schema = {
           {neighbourhood && (
             <div>
               <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Neighbourhood</dt>
-              <dd class="mt-2"><a class="fine-link" href={`/neighbourhoods/${neighbourhood.slug}`}>{neighbourhood.name}</a></dd>
+              <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/neighbourhoods/${neighbourhood.slug}`)}>{neighbourhood.name}</a></dd>
             </div>
           )}
           {mall && (
             <div>
               <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Mall / Location</dt>
-              <dd class="mt-2"><a class="fine-link" href={`/malls/${mall.slug}`}>{mall.name}</a></dd>
+              <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/malls/${mall.slug}`)}>{mall.name}</a></dd>
             </div>
           )}
           {mrt && (
             <div>
               <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Nearest MRT</dt>
-              <dd class="mt-2"><a class="fine-link" href={`/mrt-stations/${mrt.slug}`}>{mrt.name} MRT</a></dd>
+              <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/mrt-stations/${mrt.slug}`)}>{mrt.name} MRT</a></dd>
             </div>
           )}
         </dl>
@@ -131,7 +132,7 @@ const schema = {
             <p class="eyebrow">Promotions</p>
             <h2 class="section-title mt-3">Promotions available at this outlet</h2>
           </div>
-          {promotionCollection && <a class="fine-link text-sm font-semibold" href={`/${promotionCollection.slug}`}>View current deals at this store</a>}
+          {promotionCollection && <a class="fine-link text-sm font-semibold" href={canonicalPath(`/${promotionCollection.slug}`)}>View current deals at this store</a>}
         </div>
         <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {promotions.map((promotion) => <PromotionCard promotion={promotion} />)}

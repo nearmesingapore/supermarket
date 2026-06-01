@@ -2,6 +2,7 @@ import { describe, expect, test } from "vitest";
 import type { DirectoryData } from "./airtable";
 import {
   buildRobotsTxt,
+  canonicalPath,
   buildSitemapXml,
   getSitemapPaths,
   resolveSiteUrl
@@ -134,26 +135,38 @@ describe("resolveSiteUrl", () => {
 });
 
 describe("getSitemapPaths", () => {
-  test("lists crawlable public pages and excludes the search page", () => {
+  test("lists crawlable public pages as slash-terminated final URLs and excludes the search page", () => {
     expect(getSitemapPaths(directoryData)).toEqual([
       "/",
-      "/directory",
-      "/supermarkets",
-      "/grocery-stores",
-      "/brands",
-      "/neighbourhoods",
-      "/promotions",
-      "/brand-promotions",
-      "/brands/brand",
-      "/neighbourhoods/hood",
-      "/malls/mall",
-      "/mrt-stations/station",
-      "/supermarkets/brand",
-      "/supermarkets/brand-hood",
-      "/supermarkets/brand-valley",
-      "/grocery-stores/little-farms-katong-point",
-      "/promotions/brand-promotions-weekly"
+      "/directory/",
+      "/supermarkets/",
+      "/grocery-stores/",
+      "/brands/",
+      "/neighbourhoods/",
+      "/promotions/",
+      "/brand-promotions/",
+      "/brands/brand/",
+      "/neighbourhoods/hood/",
+      "/malls/mall/",
+      "/mrt-stations/station/",
+      "/supermarkets/brand/",
+      "/supermarkets/brand-hood/",
+      "/supermarkets/brand-valley/",
+      "/grocery-stores/little-farms-katong-point/",
+      "/promotions/brand-promotions-weekly/"
     ]);
+  });
+});
+
+describe("canonicalPath", () => {
+  test("normalizes site paths to the final slash-terminated URL form", () => {
+    expect(canonicalPath("/directory")).toBe("/directory/");
+    expect(canonicalPath("/supermarkets/brand-hood/")).toBe("/supermarkets/brand-hood/");
+    expect(canonicalPath("/")).toBe("/");
+  });
+
+  test("preserves query strings while normalizing the pathname", () => {
+    expect(canonicalPath("/directory?brand=fairprice")).toBe("/directory/?brand=fairprice");
   });
 });
 
@@ -161,7 +174,7 @@ describe("buildSitemapXml", () => {
   test("serializes canonical URLs without query-only search variants", () => {
     const sitemap = buildSitemapXml(directoryData, "https://example.com/");
 
-    expect(sitemap).toContain("<loc>https://example.com/supermarkets/brand-hood</loc>");
+    expect(sitemap).toContain("<loc>https://example.com/supermarkets/brand-hood/</loc>");
     expect(sitemap).not.toContain("/search");
     expect(sitemap).not.toContain("?q=");
   });
