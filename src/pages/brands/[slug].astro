@@ -4,6 +4,7 @@ import ListingCard from "@/components/ListingCard.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
 import { getBrandPromotions, getDirectoryData, type TaxonomyItem } from "@/lib/airtable";
 import { formatCount, pageDescription, splitDescriptionParagraphs } from "@/lib/content";
+import { canonicalPath } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const data = await getDirectoryData();
@@ -55,7 +56,7 @@ const descriptionParagraphs = splitDescriptionParagraphs(brand.description);
                 neighbourhoods.map((item) => (
                   <a
                     class="rounded-full border border-line bg-white px-4 py-2 text-sm transition hover:border-ink"
-                    href={`/neighbourhoods/${item.slug}`}
+                    href={canonicalPath(`/neighbourhoods/${item.slug}`)}
                   >
                     {item.name}
                   </a>
@@ -85,7 +86,7 @@ const descriptionParagraphs = splitDescriptionParagraphs(brand.description);
               <p class="eyebrow">Promotions</p>
               <h2 class="section-title mt-3">{brand.name} promotions</h2>
             </div>
-            {promotionCollection && <a class="fine-link text-sm font-semibold" href={`/${promotionCollection.slug}`}>View all promotions</a>}
+            {promotionCollection && <a class="fine-link text-sm font-semibold" href={canonicalPath(`/${promotionCollection.slug}`)}>View all promotions</a>}
           </div>
           <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {promotions.map((promotion) => <PromotionCard promotion={promotion} />)}

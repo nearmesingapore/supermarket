@@ -3,6 +3,7 @@ import Layout from "@/components/Layout.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
 import { getBrandPromotions, getDirectoryData, type PromotionCollection } from "@/lib/airtable";
 import { formatCount } from "@/lib/content";
+import { canonicalPath } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const data = await getDirectoryData();
@@ -31,7 +32,7 @@ const description = `Browse current ${collection.label.toLowerCase()} in Singapo
         <h1 class="page-title mt-4">{title}</h1>
         <p class="page-intro mt-6 max-w-3xl">{description}</p>
       </div>
-      {brand && <a class="fine-link text-sm font-semibold" href={`/brands/${brand.slug}`}>{brand.name} brand page</a>}
+      {brand && <a class="fine-link text-sm font-semibold" href={canonicalPath(`/brands/${brand.slug}`)}>{brand.name} brand page</a>}
     </div>
 
     <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -45,7 +46,7 @@ const description = `Browse current ${collection.label.toLowerCase()} in Singapo
         <div>
           <p class="eyebrow">Outlet links</p>
           <h2 class="section-title mt-3">
-            <a class="transition hover:text-brass" href={`/brands/${brand.slug}`}>{brand.name} outlets with relevant promotions</a>
+            <a class="transition hover:text-brass" href={canonicalPath(`/brands/${brand.slug}`)}>{brand.name} outlets with relevant promotions</a>
           </h2>
           <p class="mt-4 text-sm text-muted">{formatCount(outletCount, "outlet")} linked from this promotions page.</p>
         </div>

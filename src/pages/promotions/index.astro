@@ -2,6 +2,7 @@
 import Layout from "@/components/Layout.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
 import { getDirectoryData } from "@/lib/airtable";
+import { canonicalPath } from "@/lib/seo";
 import { formatCount } from "@/lib/content";
 
 const data = await getDirectoryData();
@@ -23,7 +24,7 @@ const description = "Browse current Sheng Siong, FairPrice, and Giant promotions
 
     <div class="mt-10 flex flex-wrap gap-3">
       {data.promotionCollections.map((collection) => (
-        <a class="rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold transition hover:border-ink" href={`/${collection.slug}`}>
+        <a class="rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold transition hover:border-ink" href={canonicalPath(`/${collection.slug}`)}>
           {collection.label}
         </a>
       ))}

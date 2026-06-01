@@ -15,6 +15,7 @@ import {
   type SupermarketBrandPage
 } from "@/lib/airtable";
 import { formatCount, getPrimary, getRelatedByNeighbourhood, pageDescription, splitDescriptionParagraphs } from "@/lib/content";
+import { canonicalPath } from "@/lib/seo";
 import { getOutletSocialLinks } from "@/lib/social";
 
 export async function getStaticPaths() {
@@ -104,8 +105,8 @@ const canonical = brandPage ? `/supermarkets/${brandPage.pathSlug}` : `/supermar
           }
           <p class="mt-6 text-lg text-muted">{formatCount(brandPage.outlets.length, "outlet")}</p>
           <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a class="soft-button w-full sm:w-auto" href={`/brands/${brandPage.brand.slug}`}>{brandPage.brand.name} brand page</a>
-            {brandPagePromotionCollection && <a class="ghost-button w-full sm:w-auto" href={`/${brandPagePromotionCollection.slug}`}>{brandPage.brand.name} promotions</a>}
+            <a class="soft-button w-full sm:w-auto" href={canonicalPath(`/brands/${brandPage.brand.slug}`)}>{brandPage.brand.name} brand page</a>
+            {brandPagePromotionCollection && <a class="ghost-button w-full sm:w-auto" href={canonicalPath(`/${brandPagePromotionCollection.slug}`)}>{brandPage.brand.name} promotions</a>}
           </div>
         </div>
         {
@@ -127,7 +128,7 @@ const canonical = brandPage ? `/supermarkets/${brandPage.pathSlug}` : `/supermar
                 <p class="eyebrow">Promotions</p>
                 <h2 class="section-title mt-3">{brandPage.brand.name} promotions</h2>
               </div>
-              {brandPagePromotionCollection && <a class="fine-link text-sm font-semibold" href={`/${brandPagePromotionCollection.slug}`}>View all promotions</a>}
+              {brandPagePromotionCollection && <a class="fine-link text-sm font-semibold" href={canonicalPath(`/${brandPagePromotionCollection.slug}`)}>View all promotions</a>}
             </div>
             <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {brandPagePromotions.map((promotion) => <PromotionCard promotion={promotion} />)}
@@ -200,19 +201,19 @@ const canonical = brandPage ? `/supermarkets/${brandPage.pathSlug}` : `/supermar
             {neighbourhood && (
               <div>
                 <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Neighbourhood</dt>
-                <dd class="mt-2"><a class="fine-link" href={`/neighbourhoods/${neighbourhood.slug}`}>{neighbourhood.name}</a></dd>
+                <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/neighbourhoods/${neighbourhood.slug}`)}>{neighbourhood.name}</a></dd>
               </div>
             )}
             {mall && (
               <div>
                 <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Mall / Location</dt>
-                <dd class="mt-2"><a class="fine-link" href={`/malls/${mall.slug}`}>{mall.name}</a></dd>
+                <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/malls/${mall.slug}`)}>{mall.name}</a></dd>
               </div>
             )}
             {mrt && (
               <div>
                 <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Nearest MRT</dt>
-                <dd class="mt-2"><a class="fine-link" href={`/mrt-stations/${mrt.slug}`}>{mrt.name} MRT</a></dd>
+                <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/mrt-stations/${mrt.slug}`)}>{mrt.name} MRT</a></dd>
               </div>
             )}
             <OutletDetails
@@ -235,7 +236,7 @@ const canonical = brandPage ? `/supermarkets/${brandPage.pathSlug}` : `/supermar
             <p class="eyebrow">Promotions</p>
             <h2 class="section-title mt-3">Promotions available at this outlet</h2>
           </div>
-          {promotionCollection && <a class="fine-link text-sm font-semibold" href={`/${promotionCollection.slug}`}>View current deals at this store</a>}
+          {promotionCollection && <a class="fine-link text-sm font-semibold" href={canonicalPath(`/${promotionCollection.slug}`)}>View current deals at this store</a>}
         </div>
         <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {promotions.map((promotion) => <PromotionCard promotion={promotion} />)}

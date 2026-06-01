@@ -3,6 +3,7 @@ import Layout from "@/components/Layout.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
 import { getBrandPromotions, getDirectoryData, type Promotion } from "@/lib/airtable";
 import { splitDescriptionParagraphs } from "@/lib/content";
+import { canonicalPath } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const data = await getDirectoryData();
@@ -40,8 +41,8 @@ const description = promotion.shortDescription || `${promotion.title} from ${pro
         {promotion.validity && <p class="page-intro mt-6 max-w-2xl text-ink">{promotion.validity}</p>}
 
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <a class="soft-button w-full sm:w-auto" href={`/brands/${promotion.brand.slug}`}>{promotion.brand.name} promotions</a>
-          <a class="ghost-button w-full sm:w-auto" href={`/${promotion.collectionSlug}`}>View all promotions</a>
+          <a class="soft-button w-full sm:w-auto" href={canonicalPath(`/brands/${promotion.brand.slug}`)}>{promotion.brand.name} promotions</a>
+          <a class="ghost-button w-full sm:w-auto" href={canonicalPath(`/${promotion.collectionSlug}`)}>View all promotions</a>
         </div>
 
         {
@@ -62,7 +63,7 @@ const description = promotion.shortDescription || `${promotion.title} from ${pro
         <h2 class="section-title mt-3">View current deals at this store</h2>
         <div class="mt-8 columns-1 gap-8 text-sm leading-7 sm:columns-2 lg:columns-3">
           {promotion.linkedOutlets.map((outlet) => (
-            <a class="fine-link mb-2 block break-inside-avoid" href={`${groceryStoreIds.has(outlet.id) ? "/grocery-stores" : "/supermarkets"}/${outlet.slug}`}>{outlet.name}</a>
+            <a class="fine-link mb-2 block break-inside-avoid" href={canonicalPath(`${groceryStoreIds.has(outlet.id) ? "/grocery-stores" : "/supermarkets"}/${outlet.slug}`)}>{outlet.name}</a>
           ))}
         </div>
       </div>
@@ -76,7 +77,7 @@ const description = promotion.shortDescription || `${promotion.title} from ${pro
           <p class="eyebrow">More promotions</p>
           <h2 class="section-title mt-3">More {promotion.brand.name} promotions</h2>
         </div>
-        <a class="fine-link text-sm font-semibold" href={`/${promotion.collectionSlug}`}>View all promotions</a>
+        <a class="fine-link text-sm font-semibold" href={canonicalPath(`/${promotion.collectionSlug}`)}>View all promotions</a>
       </div>
       <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {brandPromotions.map((item) => <PromotionCard promotion={item} />)}
