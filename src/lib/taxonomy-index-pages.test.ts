@@ -76,6 +76,19 @@ describe("taxonomy index pages", () => {
     expect(brandDetail).not.toContain("FAQPage");
   });
 
+  test("keeps brand neighbourhood tiles compact and renders FAQ lower as a two-column bullet list", () => {
+    const brandDetail = readSource("src/pages/brands/[slug].astro");
+
+    expect(brandDetail).toContain("min-h-16");
+    expect(brandDetail).toContain("p-4");
+    expect(brandDetail).toContain("text-xl");
+    expect(brandDetail.indexOf('id="brand-outlets"')).toBeLessThan(brandDetail.indexOf("Brand FAQ"));
+    expect(brandDetail).toContain("<ul");
+    expect(brandDetail).toContain("md:columns-2");
+    expect(brandDetail).toContain("<li");
+    expect(brandDetail).not.toContain('<article class="border border-line bg-paper p-5 sm:p-6">');
+  });
+
   test("links promotion pages from primary navigation and taxonomy indexes from the footer", () => {
     const header = readSource("src/components/Header.astro");
     const footer = readSource("src/components/Footer.astro");

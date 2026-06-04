@@ -104,8 +104,8 @@ const faqSchema = buildFaqPageSchema(faqItems);
 
   {
     neighbourhoods.length > 0 && (
-      <section class="border-y border-line bg-white py-14">
-        <div class="container-page grid gap-8 lg:grid-cols-[0.42fr_1fr] lg:items-start">
+      <section class="border-y border-line bg-white py-10">
+        <div class="container-page grid gap-6 lg:grid-cols-[0.34fr_1fr] lg:items-start">
           <div>
             <p class="eyebrow">Neighbourhoods</p>
             <h2 class="section-title mt-3">Where to find {brand.name}</h2>
@@ -113,14 +113,14 @@ const faqSchema = buildFaqPageSchema(faqItems);
               Jump into areas with published {brand.name} outlets and compare nearby stores by location.
             </p>
           </div>
-          <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <div class="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
             {
               neighbourhoods.map((item, index) => (
                 <a
-                  class="group flex min-h-24 items-end justify-between border border-line bg-paper p-5 transition duration-300 hover:-translate-y-1 hover:border-ink hover:bg-white hover:shadow-editorial"
+                  class="group flex min-h-16 items-end justify-between border border-line bg-paper p-4 transition duration-300 hover:-translate-y-1 hover:border-ink hover:bg-white hover:shadow-editorial"
                   href={canonicalPath(`/neighbourhoods/${item.slug}`)}
                 >
-                  <span class="font-serif text-2xl leading-tight transition group-hover:text-brass">{item.name}</span>
+                  <span class="font-serif text-xl leading-tight transition group-hover:text-brass">{item.name}</span>
                   <span class="text-xs font-semibold uppercase tracking-[0.16em] text-muted">{String(index + 1).padStart(2, "0")}</span>
                 </a>
               ))
@@ -167,28 +167,6 @@ const faqSchema = buildFaqPageSchema(faqItems);
     )
   }
 
-  {
-    faqItems.length > 0 && (
-      <section class="border-y border-line bg-white py-16">
-        <div class="container-page grid gap-8 lg:grid-cols-[0.34fr_1fr] lg:items-start">
-          <div>
-            <p class="eyebrow">Brand FAQ</p>
-            <h2 class="section-title mt-3">{brand.name} FAQ</h2>
-          </div>
-          <div class="grid gap-4">
-            {
-              faqItems.map((item) => (
-                <article class="border border-line bg-paper p-5 sm:p-6">
-                  <p class="whitespace-pre-line leading-7 text-muted">{item.visibleText}</p>
-                </article>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-    )
-  }
-
   <section id="brand-outlets" class="container-page py-16">
     <div class="flex flex-col justify-between gap-4 border-b border-line pb-8 md:flex-row md:items-end">
       <div>
@@ -201,4 +179,24 @@ const faqSchema = buildFaqPageSchema(faqItems);
       {outlets.map((outlet) => <ListingCard outlet={outlet} basePath={getOutletBasePath(outlet)} />)}
     </div>
   </section>
+
+  {
+    faqItems.length > 0 && (
+      <section class="border-y border-line bg-white py-16">
+        <div class="container-page grid gap-8 lg:grid-cols-[0.28fr_1fr] lg:items-start">
+          <div>
+            <p class="eyebrow">Brand FAQ</p>
+            <h2 class="section-title mt-3">{brand.name} FAQ</h2>
+          </div>
+          <ul class="list-disc space-y-5 pl-5 leading-7 text-muted md:columns-2 md:gap-12">
+            {
+              faqItems.map((item) => (
+                <li class="mb-5 break-inside-avoid whitespace-pre-line pl-1">{item.visibleText}</li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+    )
+  }
 </Layout>
