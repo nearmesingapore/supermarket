@@ -10,6 +10,7 @@ import {
 
 const directoryData = {
   brands: [{ id: "brand-1", name: "Brand", slug: "brand", count: 2 }],
+  featuredBrands: [{ id: "brand-1", name: "Brand", slug: "brand", count: 2 }],
   supermarketBrands: [{ id: "brand-1", name: "Brand", slug: "brand", count: 2 }],
   groceryStoreBrands: [],
   neighbourhoods: [{ id: "hood-1", name: "Hood", slug: "hood", count: 1 }],

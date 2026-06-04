@@ -9,6 +9,7 @@ export type LinkedItem = {
   slug: string;
   imageUrl?: string;
   description?: string;
+  brandFaq?: string;
 };
 
 export type TaxonomyItem = LinkedItem & {
@@ -187,7 +188,8 @@ const FIELDS = {
     name: ["fldPwU2iFk9wEsmba", "Brand Name", "Name"],
     slug: ["fldA09ghMk1pINerc", "Slug"],
     imageUrl: ["fldp86xMlykctfvv0", "Image URL"],
-    description: ["fldgNoZbK2EY6KFWJ", "Brand Description"]
+    description: ["fldgNoZbK2EY6KFWJ", "Brand Description"],
+    brandFaq: ["fldoS3tnGZ48XOqNn", "Brand FAQ"]
   },
   neighbourhoods: {
     name: ["fld9PsIecu0V0LYkd", "Neighbourhood Name", "Name"],
@@ -339,7 +341,8 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     FIELDS.brands.name,
     FIELDS.brands.slug,
     FIELDS.brands.imageUrl,
-    FIELDS.brands.description
+    FIELDS.brands.description,
+    FIELDS.brands.brandFaq
   );
   const neighbourhoods = createLookup(
     neighbourhoodRecords.filter((record) => isValidNeighbourhoodName(readFieldString(record.fields, FIELDS.neighbourhoods.name))),
@@ -443,7 +446,8 @@ function createLookup(
   nameField: readonly string[],
   slugField: readonly string[],
   imageUrlField?: readonly string[],
-  descriptionField?: readonly string[]
+  descriptionField?: readonly string[],
+  brandFaqField?: readonly string[]
 ) {
   const items = records
     .map((record) => ({
@@ -451,7 +455,8 @@ function createLookup(
       name: readFieldString(record.fields, nameField),
       slug: readFieldString(record.fields, slugField) || slugify(readFieldString(record.fields, nameField)),
       imageUrl: imageUrlField ? readFieldString(record.fields, imageUrlField) : undefined,
-      description: descriptionField ? readFieldString(record.fields, descriptionField) : undefined
+      description: descriptionField ? readFieldString(record.fields, descriptionField) : undefined,
+      brandFaq: brandFaqField ? readFieldString(record.fields, brandFaqField) : undefined
     }))
     .filter((item) => item.name && item.slug);
 

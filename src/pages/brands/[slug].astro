@@ -4,6 +4,7 @@ import ListingCard from "@/components/ListingCard.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
 import { getBrandPromotions, getDirectoryData, type TaxonomyItem } from "@/lib/airtable";
 import { formatCount, pageDescription, splitDescriptionParagraphs } from "@/lib/content";
+import { buildFaqPageSchema, parseBrandFaq } from "@/lib/faq";
 import { canonicalPath } from "@/lib/seo";
 
 export async function getStaticPaths() {
@@ -38,9 +39,13 @@ const brandMetrics = [
 const title = `${brand.name} Supermarkets and Grocery Stores in Singapore`;
 const description = brand.description || pageDescription(title, outlets.length);
 const descriptionParagraphs = splitDescriptionParagraphs(brand.description);
+const faqItems = parseBrandFaq(brand.brandFaq);
+const faqSchema = buildFaqPageSchema(faqItems);
 ---
 
 <Layout title={title} description={description} image={brand.imageUrl} canonical={`/brands/${brand.slug}`}>
+  {faqSchema && <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+
   <section
     class:list={["container-page grid gap-10 py-12 lg:py-16", brand.imageUrl ? "lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.74fr)] lg:items-stretch" : ""]}
     data-pagefind-body
@@ -156,6 +161,28 @@ const descriptionParagraphs = splitDescriptionParagraphs(brand.description);
           </div>
           <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {promotions.map((promotion) => <PromotionCard promotion={promotion} />)}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    faqItems.length > 0 && (
+      <section class="border-y border-line bg-white py-16">
+        <div class="container-page grid gap-8 lg:grid-cols-[0.34fr_1fr] lg:items-start">
+          <div>
+            <p class="eyebrow">Brand FAQ</p>
+            <h2 class="section-title mt-3">{brand.name} FAQ</h2>
+          </div>
+          <div class="grid gap-4">
+            {
+              faqItems.map((item) => (
+                <article class="border border-line bg-paper p-5 sm:p-6">
+                  <p class="whitespace-pre-line leading-7 text-muted">{item.visibleText}</p>
+                </article>
+              ))
+            }
           </div>
         </div>
       </section>

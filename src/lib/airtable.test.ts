@@ -103,7 +103,8 @@ describe("getDirectoryData", () => {
               fldPwU2iFk9wEsmba: "Supermarket Brand",
               fldA09ghMk1pINerc: "supermarket-brand",
               fldp86xMlykctfvv0: "https://example.com/brand.jpg",
-              fldgNoZbK2EY6KFWJ: "A useful brand description."
+              fldgNoZbK2EY6KFWJ: "A useful brand description.",
+              fldoS3tnGZ48XOqNn: "Q: Does this brand have a FAQ?\nA: Yes, from Airtable."
             }
           },
           {
@@ -227,7 +228,8 @@ describe("getDirectoryData", () => {
       name: "Supermarket Brand",
       slug: "supermarket-brand",
       imageUrl: "https://example.com/brand.jpg",
-      description: "A useful brand description."
+      description: "A useful brand description.",
+      brandFaq: "Q: Does this brand have a FAQ?\nA: Yes, from Airtable."
     });
     expect(data.brands[1]).toMatchObject({
       name: "Grocery Brand",

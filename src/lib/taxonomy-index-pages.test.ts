@@ -61,7 +61,19 @@ describe("taxonomy index pages", () => {
     const brandDetail = readSource("src/pages/brands/[slug].astro");
 
     expect(brandDetail).toContain("data.groceryStores");
-    expect(brandDetail).toContain('basePath="/grocery-stores"');
+    expect(brandDetail).toContain("getOutletBasePath");
+  });
+
+  test("renders brand FAQ visibly and only outputs FAQ schema when parsed FAQ content exists", () => {
+    const brandDetail = readSource("src/pages/brands/[slug].astro");
+
+    expect(brandDetail).toContain("parseBrandFaq(brand.brandFaq)");
+    expect(brandDetail).toContain("faqItems.length > 0");
+    expect(brandDetail).toContain("Brand FAQ");
+    expect(brandDetail).toContain("faqItems.map");
+    expect(brandDetail).toContain("application/ld+json");
+    expect(brandDetail).toContain("JSON.stringify(faqSchema)");
+    expect(brandDetail).not.toContain("FAQPage");
   });
 
   test("links promotion pages from primary navigation and taxonomy indexes from the footer", () => {
