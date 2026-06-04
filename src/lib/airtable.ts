@@ -73,6 +73,7 @@ export type SupermarketBrandPage = {
 
 export type DirectoryData = {
   brands: TaxonomyItem[];
+  featuredBrands: TaxonomyItem[];
   supermarketBrands: TaxonomyItem[];
   groceryStoreBrands: TaxonomyItem[];
   neighbourhoods: TaxonomyItem[];
@@ -390,6 +391,7 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     .sort((a, b) => a.name.localeCompare(b.name));
   const countedBrands = groupSupermarketBrandsFirst(supermarketBrands, groceryStoreBrands);
   const allOutlets = [...supermarkets, ...groceryStores];
+  const featuredBrands = filterBrandsByFeaturedOutlets(countedBrands, allOutlets);
   const countedNeighbourhoods = withCounts(neighbourhoods.items, allOutlets, (outlet) => outlet.neighbourhood)
     .filter((item) => isValidNeighbourhoodName(item.name));
   const countedMalls = withCounts(malls.items, allOutlets, (outlet) => outlet.mall);
@@ -417,6 +419,7 @@ async function loadDirectoryData(): Promise<DirectoryData> {
 
   return {
     brands: countedBrands,
+    featuredBrands,
     supermarketBrands,
     groceryStoreBrands,
     neighbourhoods: countedNeighbourhoods.sort((a, b) => a.name.localeCompare(b.name)),
@@ -619,6 +622,16 @@ function groupSupermarketBrandsFirst(supermarketBrands: TaxonomyItem[], groceryS
   const groceryOnlyGroup = groceryStoreBrands.filter((brand) => !supermarketBrandIds.has(brand.id));
 
   return [...supermarketGroup, ...groceryOnlyGroup];
+}
+
+function filterBrandsByFeaturedOutlets(brands: TaxonomyItem[], outlets: Supermarket[]) {
+  const featuredBrandIds = new Set(
+    outlets
+      .filter((outlet) => outlet.featured)
+      .flatMap((outlet) => outlet.brand.map((brand) => brand.id))
+  );
+
+  return brands.filter((brand) => featuredBrandIds.has(brand.id));
 }
 
 function uniqueOutletSlug(outlet: Supermarket, index: number, outlets: Supermarket[]) {

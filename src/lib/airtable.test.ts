@@ -166,7 +166,7 @@ describe("getDirectoryData", () => {
               fld8gPZjOWGMBfMer: "Supermarket",
               fldoROJgXxEo5phwJ: ["hood-1"],
               fldw8QjjvT68cDC8X: ["mall-1"],
-              fldKtJIAHMLqSCEeP: true,
+              fldUPgDqc9H0DwX1l: true,
               fldbEV2NcQ7bZ0M0a: "Park at the basement car park.\nUse lift lobby A.",
               fldYCaW3KbZmmJS4I: "Take the MRT to Ang Mo Kio.\nWalk through the town centre.",
               fld3d3y5k1e72EAHK: "Bus 22, 25, 73",
@@ -235,6 +235,7 @@ describe("getDirectoryData", () => {
       count: 1,
       description: "A useful grocery brand description."
     });
+    expect(data.featuredBrands.map((brand) => brand.slug)).toEqual(["supermarket-brand"]);
     expect(data.supermarketBrands.map((brand) => brand.slug)).toEqual(["supermarket-brand"]);
     expect(data.groceryStoreBrands.map((brand) => brand.slug)).toEqual(["grocery-brand"]);
     expect(data.neighbourhoods[0]).toMatchObject({
@@ -370,6 +371,7 @@ describe("getSupermarketBrandPages", () => {
     expect(
       getSupermarketBrandPages({
         brands: [fairPrice, singleOutletBrand],
+        featuredBrands: [fairPrice],
         supermarketBrands: [fairPrice, singleOutletBrand],
         groceryStoreBrands: [],
         neighbourhoods: [],
