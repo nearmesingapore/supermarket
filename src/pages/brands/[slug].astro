@@ -20,11 +20,21 @@ const groceryStoreOutlets = data.groceryStores
   .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
   .sort((a, b) => a.outletName.localeCompare(b.outletName));
 const outlets = [...supermarketOutlets, ...groceryStoreOutlets];
+const groceryStoreOutletIds = new Set(groceryStoreOutlets.map((outlet) => outlet.id));
+const getOutletBasePath = (outlet: (typeof outlets)[number]) => groceryStoreOutletIds.has(outlet.id) ? "/grocery-stores" : "/supermarkets";
 const neighbourhoods = data.neighbourhoods.filter((neighbourhood) =>
   outlets.some((outlet) => outlet.neighbourhood.some((item) => item.id === neighbourhood.id))
 );
 const promotions = getBrandPromotions(data.promotions, brand.id, 3);
 const promotionCollection = data.promotionCollections.find((collection) => collection.brandSlug === brand.slug);
+const featuredOutlets = [...outlets]
+  .sort((a, b) => Number(b.featured) - Number(a.featured) || a.outletName.localeCompare(b.outletName))
+  .slice(0, 3);
+const brandMetrics = [
+  { label: "Outlets", value: outlets.length },
+  { label: "Neighbourhoods", value: neighbourhoods.length },
+  { label: "Current promotions", value: promotions.length }
+];
 const title = `${brand.name} Supermarkets and Grocery Stores in Singapore`;
 const description = brand.description || pageDescription(title, outlets.length);
 const descriptionParagraphs = splitDescriptionParagraphs(brand.description);
@@ -32,51 +42,107 @@ const descriptionParagraphs = splitDescriptionParagraphs(brand.description);
 
 <Layout title={title} description={description} image={brand.imageUrl} canonical={`/brands/${brand.slug}`}>
   <section
-    class:list={["container-page grid gap-10 py-16 lg:items-center", brand.imageUrl ? "lg:grid-cols-[1fr_0.78fr]" : ""]}
+    class:list={["container-page grid gap-10 py-12 lg:py-16", brand.imageUrl ? "lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.74fr)] lg:items-stretch" : ""]}
     data-pagefind-body
     data-pagefind-meta={`title:${brand.name};brand:${brand.name}`}
   >
-    <div>
-      <p class="eyebrow">Brand</p>
-      <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{brand.name}</h1>
+    <div class="flex flex-col justify-center">
+      <div class="max-w-4xl">
+        <p class="eyebrow">Brand guide</p>
+        <h1 class="page-title mt-4">{brand.name}</h1>
+      </div>
       {
         descriptionParagraphs.length > 0 && (
-          <div class="mt-6 max-w-3xl space-y-6 text-lg leading-8 text-muted">
+          <div class="page-intro mt-6 max-w-3xl space-y-6">
             {descriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
           </div>
         )
       }
-      <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "outlet")}</p>
-      {
-        neighbourhoods.length > 0 && (
-          <div class="mt-10 border-y border-line py-6">
-            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-brass">Neighbourhoods</p>
-            <div class="mt-4 flex flex-wrap gap-3">
-              {
-                neighbourhoods.map((item) => (
-                  <a
-                    class="rounded-full border border-line bg-white px-4 py-2 text-sm transition hover:border-ink"
-                    href={canonicalPath(`/neighbourhoods/${item.slug}`)}
-                  >
-                    {item.name}
-                  </a>
-                ))
-              }
+      <dl class="mt-10 grid gap-3 sm:grid-cols-3">
+        {
+          brandMetrics.map((metric) => (
+            <div class="border border-line bg-white px-5 py-4">
+              <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">{metric.label}</dt>
+              <dd class="mt-3 font-serif text-4xl leading-none text-ink">{metric.value}</dd>
             </div>
-          </div>
-        )
-      }
+          ))
+        }
+      </dl>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <a class="soft-button w-full sm:w-auto" href="#brand-outlets">Browse outlets</a>
+        {promotionCollection && <a class="ghost-button w-full sm:w-auto" href={canonicalPath(`/${promotionCollection.slug}`)}>View promotions</a>}
+      </div>
     </div>
     {
       brand.imageUrl && (
-        <div class="overflow-hidden border border-line bg-white">
-          <div class="aspect-[4/3] bg-[#f1eee8]">
-            <img src={brand.imageUrl} alt={`${brand.name} brand`} class="h-full w-full object-cover" />
+        <div class="grid gap-4 sm:grid-cols-[0.7fr_1fr] lg:grid-cols-1">
+          <div class="overflow-hidden border border-line bg-white">
+            <div class="h-56 bg-[#f1eee8] sm:h-full lg:h-64">
+              <img
+                src={brand.imageUrl}
+                alt={`${brand.name} brand`}
+                class="h-full w-full origin-top scale-[2.05] object-cover object-top"
+              />
+            </div>
+          </div>
+          <div class="border border-line bg-ink p-6 text-white">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#d9bf82]">At a glance</p>
+            <p class="mt-5 font-serif text-3xl leading-tight">{formatCount(outlets.length, "outlet")}</p>
+            <p class="mt-4 text-sm leading-6 text-white/70">
+              Browse {brand.name} locations across Singapore with nearby neighbourhood, MRT, mall, and promotion details.
+            </p>
           </div>
         </div>
       )
     }
   </section>
+
+  {
+    neighbourhoods.length > 0 && (
+      <section class="border-y border-line bg-white py-14">
+        <div class="container-page grid gap-8 lg:grid-cols-[0.42fr_1fr] lg:items-start">
+          <div>
+            <p class="eyebrow">Neighbourhoods</p>
+            <h2 class="section-title mt-3">Where to find {brand.name}</h2>
+            <p class="mt-4 max-w-md leading-7 text-muted">
+              Jump into areas with published {brand.name} outlets and compare nearby stores by location.
+            </p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {
+              neighbourhoods.map((item, index) => (
+                <a
+                  class="group flex min-h-24 items-end justify-between border border-line bg-paper p-5 transition duration-300 hover:-translate-y-1 hover:border-ink hover:bg-white hover:shadow-editorial"
+                  href={canonicalPath(`/neighbourhoods/${item.slug}`)}
+                >
+                  <span class="font-serif text-2xl leading-tight transition group-hover:text-brass">{item.name}</span>
+                  <span class="text-xs font-semibold uppercase tracking-[0.16em] text-muted">{String(index + 1).padStart(2, "0")}</span>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    featuredOutlets.length > 0 && (
+      <section class="container-page py-16">
+        <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div>
+            <p class="eyebrow">Featured outlets</p>
+            <h2 class="section-title mt-3">Start with these {brand.name} locations</h2>
+          </div>
+          <a class="fine-link text-sm font-semibold" href="#brand-outlets">View every outlet</a>
+        </div>
+        <div class="mt-10 grid gap-5 lg:grid-cols-3">
+          {featuredOutlets.map((outlet) => <ListingCard outlet={outlet} basePath={getOutletBasePath(outlet)} />)}
+        </div>
+      </section>
+    )
+  }
+
   {
     promotions.length > 0 && (
       <section class="border-y border-line bg-white py-16">
@@ -95,8 +161,17 @@ const descriptionParagraphs = splitDescriptionParagraphs(brand.description);
       </section>
     )
   }
-  <section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    {supermarketOutlets.map((outlet) => <ListingCard outlet={outlet} />)}
-    {groceryStoreOutlets.map((outlet) => <ListingCard outlet={outlet} basePath="/grocery-stores" />)}
+
+  <section id="brand-outlets" class="container-page py-16">
+    <div class="flex flex-col justify-between gap-4 border-b border-line pb-8 md:flex-row md:items-end">
+      <div>
+        <p class="eyebrow">Directory</p>
+        <h2 class="section-title mt-3">All {brand.name} outlets</h2>
+      </div>
+      <p class="text-sm leading-6 text-muted">{formatCount(outlets.length, "outlet")} sorted alphabetically.</p>
+    </div>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {outlets.map((outlet) => <ListingCard outlet={outlet} basePath={getOutletBasePath(outlet)} />)}
+    </div>
   </section>
 </Layout>
