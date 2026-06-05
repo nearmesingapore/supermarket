@@ -22,12 +22,28 @@ const outletCount = brand
   ? [...data.supermarkets, ...data.groceryStores].filter((outlet) => outlet.brand.some((item) => item.id === brand.id)).length
   : 0;
 const isShengSiongPage = collection.slug === "sheng-siong-promotions";
-const title = isShengSiongPage ? "Sheng Siong Promotions" : collection.label;
+const isFairPricePage = collection.slug === "fairprice-promotions";
+const hasSeoArticle = isShengSiongPage || isFairPricePage;
+const title = isShengSiongPage
+  ? "Sheng Siong Promotions"
+  : isFairPricePage
+    ? "FairPrice Promotions – NTUC FairPrice Deals Updated Weekly"
+    : collection.label;
 const description = isShengSiongPage
   ? "Browse all current Sheng Siong promotions today in Singapore."
+  : isFairPricePage
+    ? "Browse all current NTUC FairPrice promotions in Singapore. Updated weekly with the latest Price Drop deals, weekly catalogues, Link card offers, CHAS discounts & more."
   : `Browse current ${collection.label.toLowerCase()} in Singapore, with links to ${brand?.name || "brand"} outlet pages and full promotion details.`;
-const h1 = isShengSiongPage ? "Sheng Siong Promotions – Latest Deals" : title;
-const heroImage = isShengSiongPage ? "/images/sheng-siong-promotions-banner.png" : brand?.imageUrl;
+const h1 = isShengSiongPage
+  ? "Sheng Siong Promotions – Latest Deals"
+  : isFairPricePage
+    ? "FairPrice Promotions – Latest NTUC FairPrice Deals & Weekly Offers"
+    : title;
+const heroImage = isShengSiongPage
+  ? "/images/sheng-siong-promotions-banner.png"
+  : isFairPricePage
+    ? "/images/fairpricepromotions-banner.png"
+    : brand?.imageUrl;
 const lastUpdatedDate = new Date();
 const lastUpdatedIso = lastUpdatedDate.toISOString();
 const lastUpdatedLabel = new Intl.DateTimeFormat("en-SG", {
@@ -80,7 +96,69 @@ const shengSiongFaqItems: BrandFaqItem[] = [
       "Does Sheng Siong offer CHAS discounts?\nYes. Sheng Siong offers CHAS discounts to eligible cardholders on selected weekdays. Present the required physical or digital CHAS card at checkout and check the latest in-store terms."
   }
 ];
-const faqSchema = isShengSiongPage ? buildFaqPageSchema(shengSiongFaqItems) : undefined;
+const fairPriceFaqItems: BrandFaqItem[] = [
+  {
+    question: "What is the NTUC FairPrice promotion today?",
+    answer:
+      "Scroll up to see all currently active FairPrice promotions with dates and links to each full campaign. The most time-sensitive deals, such as 4-day Neighbourhood Deals and flash specials, are shown first.",
+    visibleText:
+      "What is the NTUC FairPrice promotion today?\nScroll up to see all currently active FairPrice promotions with dates and links to each full campaign. The most time-sensitive deals, such as 4-day Neighbourhood Deals and flash specials, are shown first."
+  },
+  {
+    question: "When does FairPrice release new weekly promotions?",
+    answer:
+      "FairPrice updates its weekly catalogue on Thursdays, when new Neighbourhood Deals and Price Drop offers go live. The FairPrice app and website also update weekly ads at the start of each promotional cycle.",
+    visibleText:
+      "When does FairPrice release new weekly promotions?\nFairPrice updates its weekly catalogue on Thursdays, when new Neighbourhood Deals and Price Drop offers go live. The FairPrice app and website also update weekly ads at the start of each promotional cycle."
+  },
+  {
+    question: "What is the FairPrice Price Drop, Buy Now promotion?",
+    answer:
+      "Price Drop, Buy Now is FairPrice's main weekly promotions catalogue, featuring discounts of 20% or more on selected products. It includes Must Buy, Weekly Savers, Fresh Buys, and Neighbourhood Deals.",
+    visibleText:
+      "What is the FairPrice Price Drop, Buy Now promotion?\nPrice Drop, Buy Now is FairPrice's main weekly promotions catalogue, featuring discounts of 20% or more on selected products. It includes Must Buy, Weekly Savers, Fresh Buys, and Neighbourhood Deals."
+  },
+  {
+    question: "How do I earn and use Linkpoints at FairPrice?",
+    answer:
+      "Linkpoints are earned on qualifying purchases at FairPrice Group outlets using your Link Rewards card or the FairPrice Group app. Points can be converted into cash rebates or used to redeem rewards across the Link ecosystem.",
+    visibleText:
+      "How do I earn and use Linkpoints at FairPrice?\nLinkpoints are earned on qualifying purchases at FairPrice Group outlets using your Link Rewards card or the FairPrice Group app. Points can be converted into cash rebates or used to redeem rewards across the Link ecosystem."
+  },
+  {
+    question: "Can I use CDC vouchers at FairPrice?",
+    answer:
+      "Yes. FairPrice is a participating supermarket for the CDC Vouchers scheme. Standard CDC Supermarket Vouchers and SG60 Supermarket Vouchers are redeemable at FairPrice outlets.",
+    visibleText:
+      "Can I use CDC vouchers at FairPrice?\nYes. FairPrice is a participating supermarket for the CDC Vouchers scheme. Standard CDC Supermarket Vouchers and SG60 Supermarket Vouchers are redeemable at FairPrice outlets."
+  },
+  {
+    question: "Does FairPrice offer senior citizen discounts?",
+    answer:
+      "Yes. Singaporeans aged 60 and above enjoy discounts on designated days at FairPrice. Present your NRIC or use the FairPrice Group app at checkout. Pioneer Generation and Merdeka Generation cardholders have separate discount schemes.",
+    visibleText:
+      "Does FairPrice offer senior citizen discounts?\nYes. Singaporeans aged 60 and above enjoy discounts on designated days at FairPrice. Present your NRIC or use the FairPrice Group app at checkout. Pioneer Generation and Merdeka Generation cardholders have separate discount schemes."
+  },
+  {
+    question: "Does FairPrice offer CHAS discounts?",
+    answer:
+      "Yes. FairPrice offers discounts to CHAS Blue and CHAS Orange cardholders on designated days. Discounts can be auto-applied when you link your CHAS card via MyInfo on the FairPrice Group app.",
+    visibleText:
+      "Does FairPrice offer CHAS discounts?\nYes. FairPrice offers discounts to CHAS Blue and CHAS Orange cardholders on designated days. Discounts can be auto-applied when you link your CHAS card via MyInfo on the FairPrice Group app."
+  },
+  {
+    question: "What is the difference between FairPrice, FairPrice Finest, and FairPrice Xtra?",
+    answer:
+      "FairPrice is the standard neighbourhood supermarket format, FairPrice Finest is the premium format with more international and gourmet products, and FairPrice Xtra is the hypermarket format with groceries plus lifestyle categories.",
+    visibleText:
+      "What is the difference between FairPrice, FairPrice Finest, and FairPrice Xtra?\nFairPrice is the standard neighbourhood supermarket format, FairPrice Finest is the premium format with more international and gourmet products, and FairPrice Xtra is the hypermarket format with groceries plus lifestyle categories."
+  }
+];
+const faqSchema = isShengSiongPage
+  ? buildFaqPageSchema(shengSiongFaqItems)
+  : isFairPricePage
+    ? buildFaqPageSchema(fairPriceFaqItems)
+    : undefined;
 ---
 
 <Layout title={title} description={description} image={heroImage} canonical={`/${collection.slug}`}>
@@ -92,7 +170,7 @@ const faqSchema = isShengSiongPage ? buildFaqPageSchema(shengSiongFaqItems) : un
         <p class="eyebrow">Promotions</p>
         <h1 class="page-title mt-4">{h1}</h1>
         <p class="page-intro mt-6 max-w-3xl">{description}</p>
-        {isShengSiongPage && (
+        {hasSeoArticle && (
           <p class="mt-5 text-sm font-semibold text-muted">
             Last updated <time datetime={lastUpdatedIso}>{lastUpdatedLabel}</time>
           </p>
@@ -109,6 +187,19 @@ const faqSchema = isShengSiongPage ? buildFaqPageSchema(shengSiongFaqItems) : un
           class="aspect-[1823/863] w-full object-cover"
           width="1823"
           height="863"
+          loading="eager"
+        />
+      </div>
+    )}
+
+    {isFairPricePage && (
+      <div class="mt-10 overflow-hidden border border-line bg-white">
+        <img
+          src="/images/fairpricepromotions-banner.png"
+          alt="FairPrice promotions banner with supermarket deals"
+          class="aspect-[1693/929] w-full object-cover"
+          width="1693"
+          height="929"
           loading="eager"
         />
       </div>
@@ -221,6 +312,136 @@ const faqSchema = isShengSiongPage ? buildFaqPageSchema(shengSiongFaqItems) : un
                 ))}
               </div>
             </section>
+          </div>
+        </div>
+      </article>
+    )}
+
+    {isFairPricePage && (
+      <article class="mt-16 border-t border-line pt-12" aria-labelledby="fairprice-promotions-guide">
+        <div class="grid gap-10 lg:grid-cols-[0.32fr_1fr] lg:items-start">
+          <aside class="border border-line bg-white p-5 text-sm leading-6 text-muted">
+            <p class="eyebrow">Guide</p>
+            <p class="mt-4">
+              Use this page to compare current NTUC FairPrice deals, then jump to{" "}
+              <a class="fine-link font-semibold text-ink" href={canonicalPath(`/brands/${brand?.slug || "FairPrice"}`)}>FairPrice outlets</a>{" "}
+              or browse all{" "}
+              <a class="fine-link font-semibold text-ink" href={canonicalPath("/supermarkets")}>supermarket pages</a>.
+            </p>
+          </aside>
+
+          <div class="max-w-4xl space-y-12">
+            <section>
+              <h2 id="fairprice-promotions-guide" class="section-title">What Are the Latest NTUC FairPrice Promotions?</h2>
+              <div class="mt-6 space-y-5 text-base leading-8 text-muted">
+                <p>
+                  Looking for the best NTUC FairPrice promotions this week? This page tracks active FairPrice promotions in Singapore, from weekly Price Drop catalogues and Everyday Low Price deals to card-based discounts and seasonal campaigns.
+                </p>
+                <p>
+                  NTUC FairPrice is Singapore&apos;s largest supermarket chain, with FairPrice, FairPrice Finest, FairPrice Xtra, and Cheers formats across the island. The promotion listings above stay connected to the site&apos;s dynamic promotion feed, so offer dates and flyer details come from current records instead of fixed article copy.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">Types of NTUC FairPrice Promotions You&apos;ll Find Here</h2>
+              <div class="mt-7 grid gap-7">
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Price Drop, Buy Now</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    FairPrice&apos;s flagship weekly promotion features discounts on a rotating selection of products across fresh food, household essentials, frozen goods, personal care, and more. Sub-campaigns can include Must Buy, Weekly Savers, Fresh Buys, and Neighbourhood Deals.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Everyday Low Price</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Everyday Low Price keeps selected essential items at stable value pricing, helping shoppers save on staples without waiting for a short-term sale.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Bonus Point Promotions</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    FairPrice regularly runs loyalty campaigns where shoppers earn bonus points on qualifying spend, then redeem those points for selected gifts or rewards.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Stack Up for More Savings &amp; Rewards</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Stack Up promotions layer weekly deals, Linkpoints, member pricing, and card offers so shoppers can combine several saving routes in one grocery trip.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">CHAS Cardholder Discounts</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    FairPrice offers regular savings for eligible CHAS cardholders. Check the latest promotion listings for current discount rates, applicable days, and redemption details.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Pioneer, Merdeka, and Senior Citizen Discounts</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Pioneer Generation, Merdeka Generation, and senior shoppers can enjoy designated discount days. Bring the required card or identification and confirm current terms before checkout.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">NTUC Union Member Deals</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    NTUC Union and Link members can access member-exclusive deals by presenting a Link Rewards card or using the FairPrice Group app.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Trust Bank and Credit Card Promotions</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    FairPrice periodically runs bank and cardholder offers, including Trust Bank-linked savings and promotions with local card issuers. Review each listing for spend requirements and terms.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">CDC Supermarket Vouchers</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    FairPrice participates in CDC Vouchers schemes, including supermarket voucher redemptions. During special campaign periods, voucher spending can unlock extra savings or return vouchers.
+                  </p>
+                </section>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">How to Never Miss an NTUC FairPrice Promotion</h2>
+              <ul class="mt-6 list-disc space-y-3 pl-6 leading-8 text-muted">
+                <li>Bookmark this page and check the current promotion listings before your next shop.</li>
+                <li>Download the FairPrice Group app to browse catalogues, earn Linkpoints, apply e-vouchers, and manage member discounts.</li>
+                <li>Watch the promotion calendar for Thursday catalogue updates, Neighbourhood Deals, Union Deals, and cardholder discount days.</li>
+                <li>Stack savings where terms allow by combining weekly deals, Linkpoints, member pricing, card discounts, and voucher schemes.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 class="section-title">About NTUC FairPrice</h2>
+              <div class="mt-6 space-y-5 text-base leading-8 text-muted">
+                <p>
+                  NTUC FairPrice is a co-operative supermarket chain founded in 1973 by the National Trades Union Congress to help moderate the cost of living for Singaporeans. Today it is Singapore&apos;s largest supermarket operator, spanning neighbourhood supermarkets, FairPrice Finest stores, FairPrice Xtra hypermarkets, and Cheers convenience stores.
+                </p>
+                <p>
+                  FairPrice promotions are known for broad coverage across fresh produce, frozen and chilled goods, household essentials, personal care, wines and spirits, and baby products. You can use this page alongside the{" "}
+                  <a class="fine-link font-semibold text-ink" href={canonicalPath(`/brands/${brand?.slug || "FairPrice"}`)}>FairPrice supermarket guide</a>{" "}
+                  to move from deals to nearby stores.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">Frequently Asked Questions</h2>
+              <div class="mt-7 divide-y divide-line border-y border-line bg-white">
+                {fairPriceFaqItems.map((item) => (
+                  <section class="py-6">
+                    <h3 class="font-serif text-2xl leading-tight text-ink">{item.question}</h3>
+                    <p class="mt-3 leading-8 text-muted">{item.answer}</p>
+                  </section>
+                ))}
+              </div>
+            </section>
+
+            <p class="border-t border-line pt-6 text-sm leading-6 text-muted">
+              Promotions on this page are updated regularly. Prices and availability are subject to change. Always verify current details with the full promotion listing or your nearest FairPrice outlet.
+            </p>
           </div>
         </div>
       </article>
