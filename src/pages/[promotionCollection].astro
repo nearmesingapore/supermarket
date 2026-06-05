@@ -23,26 +23,35 @@ const outletCount = brand
   : 0;
 const isShengSiongPage = collection.slug === "sheng-siong-promotions";
 const isFairPricePage = collection.slug === "fairprice-promotions";
-const hasSeoArticle = isShengSiongPage || isFairPricePage;
+const isGiantPage = collection.slug === "giant-promotions";
+const hasSeoArticle = isShengSiongPage || isFairPricePage || isGiantPage;
 const title = isShengSiongPage
   ? "Sheng Siong Promotions"
   : isFairPricePage
     ? "FairPrice Promotions – NTUC FairPrice Deals Updated Weekly"
+    : isGiantPage
+      ? "Giant Promotions – Giant Supermarket Deals Updated Weekly"
     : collection.label;
 const description = isShengSiongPage
   ? "Browse all current Sheng Siong promotions today in Singapore."
   : isFairPricePage
     ? "Browse all current NTUC FairPrice promotions in Singapore. Updated weekly with the latest Price Drop deals, weekly catalogues, Link card offers, CHAS discounts & more."
+  : isGiantPage
+    ? "Browse all current Giant supermarket promotions in Singapore. Updated weekly with Super Savings deals, Value Heroes, yuu rewards, CHAS discounts, senior offers & more."
   : `Browse current ${collection.label.toLowerCase()} in Singapore, with links to ${brand?.name || "brand"} outlet pages and full promotion details.`;
 const h1 = isShengSiongPage
   ? "Sheng Siong Promotions – Latest Deals"
   : isFairPricePage
     ? "FairPrice Promotions – Latest NTUC FairPrice Deals & Weekly Offers"
+    : isGiantPage
+      ? "Giant Promotions – Latest Giant Supermarket Deals & Weekly Offers"
     : title;
 const heroImage = isShengSiongPage
   ? "/images/sheng-siong-promotions-banner.png"
   : isFairPricePage
     ? "/images/fairpricepromotions-banner.png"
+    : isGiantPage
+      ? "/images/giantsupermarketpromotions-banner.png"
     : brand?.imageUrl;
 const lastUpdatedDate = new Date();
 const lastUpdatedIso = lastUpdatedDate.toISOString();
@@ -154,10 +163,70 @@ const fairPriceFaqItems: BrandFaqItem[] = [
       "What is the difference between FairPrice, FairPrice Finest, and FairPrice Xtra?\nFairPrice is the standard neighbourhood supermarket format, FairPrice Finest is the premium format with more international and gourmet products, and FairPrice Xtra is the hypermarket format with groceries plus lifestyle categories."
   }
 ];
+const giantFaqItems: BrandFaqItem[] = [
+  {
+    question: "What is the Giant supermarket promotion this week?",
+    answer:
+      "Scroll up to see all currently active Giant promotions with valid dates and links to each full campaign. Weekly Super Savings deals and active flash specials are listed from the dynamic promotion feed.",
+    visibleText:
+      "What is the Giant supermarket promotion this week?\nScroll up to see all currently active Giant promotions with valid dates and links to each full campaign. Weekly Super Savings deals and active flash specials are listed from the dynamic promotion feed."
+  },
+  {
+    question: "When does Giant release new weekly promotions?",
+    answer:
+      "Giant typically releases Super Savings weekly specials mid-week, with longer promotions like Value Heroes running for several weeks. Store-exclusive flash deals can appear at any time.",
+    visibleText:
+      "When does Giant release new weekly promotions?\nGiant typically releases Super Savings weekly specials mid-week, with longer promotions like Value Heroes running for several weeks. Store-exclusive flash deals can appear at any time."
+  },
+  {
+    question: "Does Giant offer senior citizen discounts?",
+    answer:
+      "Yes. Eligible senior shoppers can receive in-store discounts at Giant on designated days. The shopper must be present and show the required identification at checkout. Check the current listing or in-store terms for the latest conditions.",
+    visibleText:
+      "Does Giant offer senior citizen discounts?\nYes. Eligible senior shoppers can receive in-store discounts at Giant on designated days. The shopper must be present and show the required identification at checkout. Check the current listing or in-store terms for the latest conditions."
+  },
+  {
+    question: "Does Giant offer CHAS cardholder discounts?",
+    answer:
+      "Yes. Giant offers in-store discounts to eligible CHAS cardholders on designated days. Present a physical or digital CHAS card at checkout and check the latest terms for exclusions.",
+    visibleText:
+      "Does Giant offer CHAS cardholder discounts?\nYes. Giant offers in-store discounts to eligible CHAS cardholders on designated days. Present a physical or digital CHAS card at checkout and check the latest terms for exclusions."
+  },
+  {
+    question: "What is the yuu Rewards Club at Giant?",
+    answer:
+      "yuu Rewards is a multi-brand loyalty programme that lets shoppers earn points at Giant and redeem them across partner brands. Members can also access exclusive yuu deals and bonus point promotions.",
+    visibleText:
+      "What is the yuu Rewards Club at Giant?\nyuu Rewards is a multi-brand loyalty programme that lets shoppers earn points at Giant and redeem them across partner brands. Members can also access exclusive yuu deals and bonus point promotions."
+  },
+  {
+    question: "What is Giant's Meadows brand?",
+    answer:
+      "Meadows is Giant's housebrand label for everyday essentials, including fresh and frozen food, pantry items, dairy, cleaning, and personal care products. Meadows items are often featured in weekly promotions.",
+    visibleText:
+      "What is Giant's Meadows brand?\nMeadows is Giant's housebrand label for everyday essentials, including fresh and frozen food, pantry items, dairy, cleaning, and personal care products. Meadows items are often featured in weekly promotions."
+  },
+  {
+    question: "Can I use CDC vouchers at Giant?",
+    answer:
+      "Yes. Giant accepts CDC Supermarket Vouchers and SG60 Supermarket Vouchers at its outlets. During special voucher promotion periods, spending vouchers may unlock additional return vouchers or product discounts.",
+    visibleText:
+      "Can I use CDC vouchers at Giant?\nYes. Giant accepts CDC Supermarket Vouchers and SG60 Supermarket Vouchers at its outlets. During special voucher promotion periods, spending vouchers may unlock additional return vouchers or product discounts."
+  },
+  {
+    question: "What is the difference between Giant supermarket and Giant Hypermarket?",
+    answer:
+      "Giant neighbourhood supermarkets are smaller-format grocery stores, while Giant Hypermarkets at Tampines and IMM are larger stores with a broader range of products and store-exclusive events or deals.",
+    visibleText:
+      "What is the difference between Giant supermarket and Giant Hypermarket?\nGiant neighbourhood supermarkets are smaller-format grocery stores, while Giant Hypermarkets at Tampines and IMM are larger stores with a broader range of products and store-exclusive events or deals."
+  }
+];
 const faqSchema = isShengSiongPage
   ? buildFaqPageSchema(shengSiongFaqItems)
   : isFairPricePage
     ? buildFaqPageSchema(fairPriceFaqItems)
+    : isGiantPage
+      ? buildFaqPageSchema(giantFaqItems)
     : undefined;
 ---
 
@@ -200,6 +269,19 @@ const faqSchema = isShengSiongPage
           class="aspect-[1693/929] w-full object-cover"
           width="1693"
           height="929"
+          loading="eager"
+        />
+      </div>
+    )}
+
+    {isGiantPage && (
+      <div class="mt-10 overflow-hidden border border-line bg-white">
+        <img
+          src="/images/giantsupermarketpromotions-banner.png"
+          alt="Giant supermarket promotions banner with weekly deals"
+          class="aspect-[1774/887] w-full object-cover"
+          width="1774"
+          height="887"
           loading="eager"
         />
       </div>
@@ -441,6 +523,149 @@ const faqSchema = isShengSiongPage
 
             <p class="border-t border-line pt-6 text-sm leading-6 text-muted">
               Promotions on this page are updated regularly. Prices and availability are subject to change. Always verify current details with the full promotion listing or your nearest FairPrice outlet.
+            </p>
+          </div>
+        </div>
+      </article>
+    )}
+
+    {isGiantPage && (
+      <article class="mt-16 border-t border-line pt-12" aria-labelledby="giant-promotions-guide">
+        <div class="grid gap-10 lg:grid-cols-[0.32fr_1fr] lg:items-start">
+          <aside class="border border-line bg-white p-5 text-sm leading-6 text-muted">
+            <p class="eyebrow">Guide</p>
+            <p class="mt-4">
+              Use this page to compare current Giant supermarket deals, then jump to{" "}
+              <a class="fine-link font-semibold text-ink" href={canonicalPath(`/brands/${brand?.slug || "Giant"}`)}>Giant outlets</a>{" "}
+              or browse all{" "}
+              <a class="fine-link font-semibold text-ink" href={canonicalPath("/supermarkets")}>supermarket pages</a>.
+            </p>
+          </aside>
+
+          <div class="max-w-4xl space-y-12">
+            <section>
+              <h2 id="giant-promotions-guide" class="section-title">What Are the Latest Giant Supermarket Promotions?</h2>
+              <div class="mt-6 space-y-5 text-base leading-8 text-muted">
+                <p>
+                  Looking for the best Giant supermarket promotions this week? This page tracks active Giant promotions in Singapore, from weekly Super Savings catalogues and Value Heroes deals to yuu Rewards offers, card-based discounts, and store-exclusive events.
+                </p>
+                <p>
+                  Giant is one of Singapore&apos;s established supermarket chains, with outlets ranging from neighbourhood supermarkets to large-format hypermarkets. The promotion listings above stay connected to the site&apos;s dynamic promotion feed, so offer dates and flyer details come from current records instead of fixed article copy.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">Types of Giant Supermarket Promotions You&apos;ll Find Here</h2>
+              <div class="mt-7 grid gap-7">
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Super Savings</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant&apos;s weekly Super Savings campaigns feature rotating discounts across fresh produce, pantry staples, frozen foods, beverages, household products, and personal care items.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Value Heroes</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Value Heroes promotions cover selected everyday essentials over a longer shopping window, giving households more time to stock up on staple items.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">2-Day and 3-Day Specials</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant also runs short-window flash promotions on selected high-demand products. These limited-time specials are added to the promotion listings whenever they go live.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Lower Prices That Last</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Lower Prices That Last is Giant&apos;s everyday value programme for popular daily essentials, helping shoppers save without waiting for a short sale period.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Store-Exclusive Promotions</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Larger stores such as Giant Tampines Hypermarket and Giant IMM may run store-exclusive fairs, return voucher deals, or in-store events that do not apply at every neighbourhood outlet.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">yuu Rewards Club</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant is part of the yuu Rewards ecosystem. Shoppers can earn yuu Points on qualifying Giant purchases, redeem rewards, and access member-exclusive deals through the yuu app.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Win Your Grocery Bill Back</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant periodically runs lucky draw promotions for yuu members, where qualifying receipts can enter shoppers into prize or points campaigns.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">CHAS, Senior, Pioneer, and Merdeka Discounts</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant offers in-store savings for eligible CHAS cardholders, seniors, Pioneer Generation, and Merdeka Generation shoppers on designated days. Always check current terms and exclusions before checkout.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Bank and Credit Card Partnerships</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant periodically partners with local banks and card issuers for cardmember deals. Review each promotion listing for minimum spend, eligible cards, and redemption conditions.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">SG60 and CDC Voucher Redemption</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant participates in supermarket voucher schemes. During voucher redemption campaigns, shoppers may be able to unlock extra return vouchers or product discounts.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Meadows Own Brand</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Meadows is Giant&apos;s housebrand range for everyday products across fresh, dairy, frozen, pantry, cleaning, and personal care categories. Meadows products often appear in Giant&apos;s value campaigns.
+                  </p>
+                </section>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">How to Never Miss a Giant Supermarket Promotion</h2>
+              <ul class="mt-6 list-disc space-y-3 pl-6 leading-8 text-muted">
+                <li>Bookmark this page and check the current promotion listings before your next grocery trip.</li>
+                <li>Download the yuu app to browse current deals, earn and redeem yuu Points, and access member-exclusive offers.</li>
+                <li>Watch the savings calendar for senior, CHAS, Pioneer, Merdeka, and cardholder discount days.</li>
+                <li>Check store-exclusive listings if you shop at larger Giant stores such as Tampines Hypermarket or IMM.</li>
+                <li>Stack savings where terms allow by combining a weekly deal with yuu rewards, bank card offers, or voucher schemes.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 class="section-title">About Giant Singapore</h2>
+              <div class="mt-6 space-y-5 text-base leading-8 text-muted">
+                <p>
+                  Giant is a supermarket chain operated by Cold Storage Singapore and part of DFI Retail Group. In Singapore, Giant serves value-conscious shoppers through neighbourhood supermarkets and larger hypermarket formats.
+                </p>
+                <p>
+                  Giant is known for competitive grocery pricing, Meadows own-brand products, yuu Rewards participation, and accessible promotions for seniors and government scheme cardholders. You can use this page alongside the{" "}
+                  <a class="fine-link font-semibold text-ink" href={canonicalPath(`/brands/${brand?.slug || "Giant"}`)}>Giant supermarket guide</a>{" "}
+                  to move from deals to nearby stores.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">Frequently Asked Questions</h2>
+              <div class="mt-7 divide-y divide-line border-y border-line bg-white">
+                {giantFaqItems.map((item) => (
+                  <section class="py-6">
+                    <h3 class="font-serif text-2xl leading-tight text-ink">{item.question}</h3>
+                    <p class="mt-3 leading-8 text-muted">{item.answer}</p>
+                  </section>
+                ))}
+              </div>
+            </section>
+
+            <p class="border-t border-line pt-6 text-sm leading-6 text-muted">
+              Promotions on this page are updated regularly. Prices, discount rates, and applicable days are subject to change. Always verify current details with the full promotion listing or your nearest Giant outlet.
             </p>
           </div>
         </div>
