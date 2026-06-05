@@ -106,9 +106,9 @@ const faqSchema = isShengSiongPage ? buildFaqPageSchema(shengSiongFaqItems) : un
         <img
           src="/images/sheng-siong-promotions-banner.jpg"
           alt="Sheng Siong promotions banner with grocery cart and supermarket deals"
-          class="aspect-[360/170] w-full object-cover"
-          width="360"
-          height="170"
+          class="aspect-[500/236] w-full object-cover"
+          width="500"
+          height="236"
           loading="eager"
         />
       </div>
@@ -232,10 +232,10 @@ const faqSchema = isShengSiongPage ? buildFaqPageSchema(shengSiongFaqItems) : un
       <div class="container-page">
         <div>
           <p class="eyebrow">Outlet links</p>
-          <h2 class="section-title mt-3">
-            <a class="transition hover:text-brass" href={canonicalPath(`/brands/${brand.slug}`)}>{brand.name} outlets with relevant promotions</a>
-          </h2>
-          <p class="mt-4 text-sm text-muted">{formatCount(outletCount, "outlet")} linked from this promotions page.</p>
+          <h2 class="section-title mt-3">{brand.name} outlets with relevant promotions</h2>
+          <a class="mt-4 inline-block text-sm font-semibold text-muted underline decoration-current underline-offset-4 transition hover:text-brass" href={canonicalPath(`/brands/${brand.slug}`)}>
+            {formatCount(outletCount, "outlet")} linked from this promotions page.
+          </a>
         </div>
       </div>
     </section>
