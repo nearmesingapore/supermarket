@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, test } from "vitest";
 import type { DirectoryData } from "./airtable";
 import {
@@ -125,6 +127,8 @@ const directoryData = {
   categories: []
 } as DirectoryData;
 
+const projectRoot = process.cwd();
+
 describe("resolveSiteUrl", () => {
   test("defaults to the official supermarket.sg domain", () => {
     expect(resolveSiteUrl(undefined)).toBe("https://supermarket.sg");
@@ -178,6 +182,19 @@ describe("buildSitemapXml", () => {
     expect(sitemap).toContain("<loc>https://example.com/supermarkets/brand-hood/</loc>");
     expect(sitemap).not.toContain("/search");
     expect(sitemap).not.toContain("?q=");
+  });
+});
+
+describe("search crawler assets", () => {
+  test("uses the generated sitemap route instead of a stale public sitemap file", () => {
+    expect(existsSync(join(projectRoot, "src/pages/sitemap.xml.ts"))).toBe(true);
+    expect(existsSync(join(projectRoot, "public/sitemap.xml"))).toBe(false);
+  });
+
+  test("provides a noindex 404 page for unknown static routes", () => {
+    const notFoundPage = readFileSync(join(projectRoot, "src/pages/404.astro"), "utf8");
+
+    expect(notFoundPage).toContain('robots="noindex, follow"');
   });
 });
 
