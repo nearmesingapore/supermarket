@@ -27,7 +27,7 @@ const description = isShengSiongPage
   ? "Browse all current Sheng Siong promotions today in Singapore."
   : `Browse current ${collection.label.toLowerCase()} in Singapore, with links to ${brand?.name || "brand"} outlet pages and full promotion details.`;
 const h1 = isShengSiongPage ? "Sheng Siong Promotions – Latest Deals" : title;
-const heroImage = isShengSiongPage ? "/images/sheng-siong-promotions-banner.jpg" : brand?.imageUrl;
+const heroImage = isShengSiongPage ? "/images/sheng-siong-promotions-banner.svg" : brand?.imageUrl;
 const lastUpdatedDate = new Date();
 const lastUpdatedIso = lastUpdatedDate.toISOString();
 const lastUpdatedLabel = new Intl.DateTimeFormat("en-SG", {
@@ -104,11 +104,11 @@ const faqSchema = isShengSiongPage ? buildFaqPageSchema(shengSiongFaqItems) : un
     {isShengSiongPage && (
       <div class="mt-10 overflow-hidden border border-line bg-white">
         <img
-          src="/images/sheng-siong-promotions-banner.jpg"
+          src="/images/sheng-siong-promotions-banner.svg"
           alt="Sheng Siong promotions banner with grocery cart and supermarket deals"
-          class="aspect-[500/236] w-full object-cover"
-          width="500"
-          height="236"
+          class="aspect-[1200/568] w-full object-cover"
+          width="1200"
+          height="568"
           loading="eager"
         />
       </div>
