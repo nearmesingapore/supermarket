@@ -84,7 +84,7 @@ describe("getDirectoryData", () => {
     );
   });
 
-  test("loads supermarkets and grocery stores without removed Airtable fields", async () => {
+  test("loads supermarkets, grocery stores, and convenience stores without removed Airtable fields", async () => {
     process.env.AIRTABLE_API_KEY = "key";
     process.env.AIRTABLE_BASE_ID = "base";
 
@@ -112,6 +112,14 @@ describe("getDirectoryData", () => {
             fields: {
               fldPwU2iFk9wEsmba: "Grocery Brand",
               fldgNoZbK2EY6KFWJ: "A useful grocery brand description."
+            }
+          },
+          {
+            id: "brand-3",
+            fields: {
+              fldPwU2iFk9wEsmba: "Convenience Brand",
+              fldA09ghMk1pINerc: "convenience-brand",
+              fldgNoZbK2EY6KFWJ: "A useful convenience brand description."
             }
           }
         ]
@@ -205,6 +213,29 @@ describe("getDirectoryData", () => {
         ]
       })
     } as Response);
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "convenience-store-1",
+            fields: {
+              fldU1hXFDewIqnsWb: "7-Eleven Orchard",
+              fld6hiqGFxpg0yD4a: "7-eleven-orchard",
+              fldsAJfHwpQcnltbc: "Convenience store with snacks, drinks, and daily essentials.",
+              fld2M1eGwvfmF8PHi: ["brand-3"],
+              fldSpjvzls4kxlMDQ: "Convenience Store",
+              fld80ifwu32W1vhV8: ["hood-1"],
+              fldghkPz2puG8JCxm: ["mall-1"],
+              fldbScVEU1WwLZD8G: "1 Orchard Road",
+              fldTTKHQClOVFh0PB: 238888,
+              fldci2d92Qe14atvS: "https://example.com/7-eleven",
+              fldituodlWxyfVlp6: "https://example.com/convenience-one.jpg, https://example.com/convenience-two.jpg"
+            }
+          }
+        ]
+      })
+    } as Response);
 
     const data = await getDirectoryData();
 
@@ -224,6 +255,16 @@ describe("getDirectoryData", () => {
       address: "451 Joo Chiat Road",
       postalCode: "427664"
     });
+    expect(data.convenienceStores).toHaveLength(1);
+    expect(data.convenienceStores[0]).toMatchObject({
+      outletName: "7-Eleven Orchard",
+      slug: "7-eleven-orchard",
+      description: "Convenience store with snacks, drinks, and daily essentials.",
+      address: "1 Orchard Road",
+      postalCode: "238888",
+      websiteUrl: "https://example.com/7-eleven",
+      galleryImagesUrl: "https://example.com/convenience-one.jpg, https://example.com/convenience-two.jpg"
+    });
     expect(data.brands[0]).toMatchObject({
       name: "Supermarket Brand",
       slug: "supermarket-brand",
@@ -231,7 +272,7 @@ describe("getDirectoryData", () => {
       description: "A useful brand description.",
       brandFaq: "Q: Does this brand have a FAQ?\nA: Yes, from Airtable."
     });
-    expect(data.brands[1]).toMatchObject({
+    expect(data.brands.find((brand) => brand.slug === "grocery-brand")).toMatchObject({
       name: "Grocery Brand",
       slug: "grocery-brand",
       count: 1,
@@ -239,7 +280,7 @@ describe("getDirectoryData", () => {
     });
     expect(data.featuredBrands.map((brand) => brand.slug)).toEqual(["supermarket-brand"]);
     expect(data.supermarketBrands.map((brand) => brand.slug)).toEqual(["supermarket-brand"]);
-    expect(data.groceryStoreBrands.map((brand) => brand.slug)).toEqual(["grocery-brand"]);
+    expect(data.groceryStoreBrands.map((brand) => brand.slug)).toEqual(["convenience-brand", "grocery-brand"]);
     expect(data.neighbourhoods[0]).toMatchObject({
       name: "Hood",
       slug: "hood",
@@ -257,6 +298,7 @@ describe("getDirectoryData", () => {
     expect(data.supermarkets[0]).not.toHaveProperty("halal");
     expect(data.supermarkets[0]).not.toHaveProperty("seatingAvailable");
     expect(data.supermarkets[0]).not.toHaveProperty("deliveryLinks");
+    expect(data.convenienceStores[0]).not.toHaveProperty("published");
     expect(data).not.toHaveProperty("priceRanges");
     expect(data).not.toHaveProperty("halalOptions");
   });
@@ -302,6 +344,7 @@ describe("getDirectoryData", () => {
         ]
       })
     } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
     fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
     fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
     fetchMock.mockResolvedValueOnce({
@@ -359,6 +402,7 @@ describe("getSupermarketBrandPages", () => {
       openingHours: "",
       phone: "",
       googleMapsUrl: "",
+      websiteUrl: "",
       facebookUrl: "",
       instagramUrl: "",
       imageUrl: "",
@@ -381,6 +425,7 @@ describe("getSupermarketBrandPages", () => {
         mrtStations: [],
         supermarkets: [outlet, { ...outlet, id: "outlet-2", slug: "fairprice-bedok", outletName: "FairPrice Bedok" }],
         groceryStores: [],
+        convenienceStores: [],
         promotions: [],
         promotionCollections: [],
         featuredSupermarkets: [],

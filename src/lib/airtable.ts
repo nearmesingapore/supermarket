@@ -32,6 +32,7 @@ export type Supermarket = {
   openingHours: string;
   phone: string;
   googleMapsUrl: string;
+  websiteUrl: string;
   facebookUrl: string;
   instagramUrl: string;
   imageUrl: string;
@@ -44,6 +45,7 @@ export type Supermarket = {
 };
 
 export type GroceryStore = Supermarket;
+export type ConvenienceStore = Supermarket;
 
 export type Promotion = {
   id: string;
@@ -82,6 +84,7 @@ export type DirectoryData = {
   mrtStations: TaxonomyItem[];
   supermarkets: Supermarket[];
   groceryStores: GroceryStore[];
+  convenienceStores: ConvenienceStore[];
   promotions: Promotion[];
   promotionCollections: PromotionCollection[];
   featuredSupermarkets: Supermarket[];
@@ -96,6 +99,7 @@ const DEFAULT_BASE_ID = "appOYRk7lYQ8SSNCR";
 const TABLES = {
   supermarkets: "tblE6IK77xz0ChbMT",
   groceryStores: "tblBZ9jw8xUJ0ebtz",
+  convenienceStores: "tblofcgnE3Xyynbbi",
   brands: "tblK5rFjHnVqd2g6U",
   neighbourhoods: "tblLPGvEo7lH4pLzR",
   malls: "tblHHymwYJJQH5UK6",
@@ -149,6 +153,7 @@ const FIELDS = {
     openingHours: ["fldggqLrl0qnFMafj", "Opening Hours"],
     phone: ["fldgTlmibBvY5apcj", "Phone"],
     googleMapsUrl: ["flddqNn1UdNMtRbNz", "Google Maps URL"],
+    websiteUrl: [],
     facebookUrl: ["fldIZKdQkIQsmeO1l", "Facebook URL"],
     instagramUrl: ["fldt0n4NgpQuoNa3G", "Instagram URL"],
     imageUrl: ["fldOPTYb27sd4K4aZ", "Image URL"],
@@ -174,6 +179,7 @@ const FIELDS = {
     openingHours: ["fldd9RkQm0L63JaWZ", "Opening Hours"],
     phone: ["flddMMVHcBQHt7pTZ", "Phone"],
     googleMapsUrl: ["fldajeWqVd8vRObuf", "Google Maps URL"],
+    websiteUrl: [],
     facebookUrl: ["fldFSbMflIbbKbOI1", "Facebook URL"],
     instagramUrl: ["fldqTODchpbdMKaKm", "Instagram URL"],
     imageUrl: ["fldLIkxA37NWsH4RF", "Image URL"],
@@ -183,6 +189,32 @@ const FIELDS = {
     nearbyBusServices: [],
     nearbyLandmarks: [],
     featured: ["fldRIHcPd92J1tXI1", "Featured"]
+  },
+  convenienceStores: {
+    outletName: ["fldU1hXFDewIqnsWb", "Outlet Name"],
+    slug: ["fld6hiqGFxpg0yD4a", "Slug"],
+    description: ["fldsAJfHwpQcnltbc", "Outlet Description"],
+    brand: ["fld2M1eGwvfmF8PHi", "Brand"],
+    category: ["fldSpjvzls4kxlMDQ", "Category"],
+    neighbourhood: ["fld80ifwu32W1vhV8", "Neighbourhood"],
+    mall: ["fldghkPz2puG8JCxm", "Mall / Location"],
+    address: ["fldbScVEU1WwLZD8G", "Address"],
+    streetName: ["fldS7GM8MXtc4NLlr", "Street Name"],
+    postalCode: ["fldTTKHQClOVFh0PB", "Postal Code"],
+    mrt: ["fld3F4I8Hb2FcLMDL", "Nearest MRT"],
+    openingHours: ["fld0pUhHSwOVBSaEI", "Opening Hours"],
+    phone: ["fld02PSyI7Tw1gpBI", "Phone"],
+    googleMapsUrl: ["fldXzhThrJbkpXbcY", "Google Maps URL"],
+    websiteUrl: ["fldci2d92Qe14atvS", "Website URL"],
+    facebookUrl: ["flds8eJ6Ree0ikOqK", "Facebook URL"],
+    instagramUrl: ["fldd9RA3NVe2kTas5", "Instagram URL"],
+    imageUrl: ["fldyYnurzDQL0Q4zo", "Image URL"],
+    galleryImagesUrl: ["fldituodlWxyfVlp6", "Gallery Images URL"],
+    gettingThereByCar: [],
+    gettingThereByPublicTransport: [],
+    nearbyBusServices: [],
+    nearbyLandmarks: [],
+    featured: ["fldEYK9GJF5yzCXqK", "Featured"]
   },
   brands: {
     name: ["fldPwU2iFk9wEsmba", "Brand Name", "Name"],
@@ -240,6 +272,8 @@ const FIELDS = {
     }
   }
 } as const;
+
+type OutletFieldsConfig = typeof FIELDS.supermarkets | typeof FIELDS.groceryStores | typeof FIELDS.convenienceStores;
 
 let directoryCache: Promise<DirectoryData> | undefined;
 
@@ -360,9 +394,10 @@ async function loadDirectoryData(): Promise<DirectoryData> {
   );
   const mrtStations = createLookup(mrtRecords, FIELDS.mrtStations.name, FIELDS.mrtStations.slug);
 
-  const [supermarketRecords, groceryStoreRecords] = await Promise.all([
+  const [supermarketRecords, groceryStoreRecords, convenienceStoreRecords] = await Promise.all([
     fetchAirtableRecords(baseId, TABLES.supermarkets, apiKey),
-    fetchAirtableRecords(baseId, TABLES.groceryStores, apiKey)
+    fetchAirtableRecords(baseId, TABLES.groceryStores, apiKey),
+    fetchAirtableRecords(baseId, TABLES.convenienceStores, apiKey)
   ]);
 
   if (supermarketRecords.length === 0) {
@@ -381,6 +416,11 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     .filter((outlet) => outlet.outletName && outlet.slug)
     .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
+  const convenienceStores = convenienceStoreRecords
+    .map((record) => normalizeOutlet(record, FIELDS.convenienceStores, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
+    .filter((outlet) => outlet.outletName && outlet.slug)
+    .filter(uniqueOutletSlug)
+    .sort((a, b) => a.outletName.localeCompare(b.outletName));
 
   if (supermarketRecords.length > 0 && supermarkets.length === 0) {
     throw new Error(
@@ -390,10 +430,10 @@ async function loadDirectoryData(): Promise<DirectoryData> {
 
   const supermarketBrands = withCounts(brands.items, supermarkets, (outlet) => outlet.brand)
     .sort((a, b) => a.name.localeCompare(b.name));
-  const groceryStoreBrands = withCounts(brands.items, groceryStores, (outlet) => outlet.brand)
+  const groceryStoreBrands = withCounts(brands.items, [...groceryStores, ...convenienceStores], (outlet) => outlet.brand)
     .sort((a, b) => a.name.localeCompare(b.name));
   const countedBrands = groupSupermarketBrandsFirst(supermarketBrands, groceryStoreBrands);
-  const allOutlets = [...supermarkets, ...groceryStores];
+  const allOutlets = [...supermarkets, ...groceryStores, ...convenienceStores];
   const featuredBrands = filterBrandsByFeaturedOutlets(countedBrands, allOutlets);
   const countedNeighbourhoods = withCounts(neighbourhoods.items, allOutlets, (outlet) => outlet.neighbourhood)
     .filter((item) => isValidNeighbourhoodName(item.name));
@@ -430,6 +470,7 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     mrtStations: countedMrtStations.sort((a, b) => a.name.localeCompare(b.name)),
     supermarkets,
     groceryStores,
+    convenienceStores,
     promotions,
     promotionCollections: PROMOTION_TABLES.map(({ label, slug, brandSlug }) => ({
       label,
@@ -468,7 +509,7 @@ function createLookup(
 
 function normalizeOutlet(
   record: AirtableRecord,
-  fieldsConfig: typeof FIELDS.supermarkets | typeof FIELDS.groceryStores,
+  fieldsConfig: OutletFieldsConfig,
   brands: Map<string, LinkedItem>,
   neighbourhoods: Map<string, LinkedItem>,
   malls: Map<string, LinkedItem>,
@@ -492,6 +533,7 @@ function normalizeOutlet(
     openingHours: readFieldString(fields, fieldsConfig.openingHours),
     phone: readFieldString(fields, fieldsConfig.phone),
     googleMapsUrl: readFieldString(fields, fieldsConfig.googleMapsUrl),
+    websiteUrl: readFieldString(fields, fieldsConfig.websiteUrl),
     facebookUrl: readFieldString(fields, fieldsConfig.facebookUrl),
     instagramUrl: readFieldString(fields, fieldsConfig.instagramUrl),
     imageUrl: readFieldString(fields, fieldsConfig.imageUrl),

@@ -1,0 +1,41 @@
+---
+import FilterBar from "@/components/FilterBar.astro";
+import Layout from "@/components/Layout.astro";
+import ListingCard from "@/components/ListingCard.astro";
+import SearchBox from "@/components/SearchBox.astro";
+import { getDirectoryData } from "@/lib/airtable";
+
+const data = await getDirectoryData();
+---
+
+<Layout
+  title="Convenience Stores in Singapore"
+  description="Browse convenience stores in Singapore with outlet details from the Supermarket.sg directory."
+  canonical="/convenience-stores"
+>
+  <section class="container-page py-16">
+    <div class="max-w-4xl">
+      <p class="eyebrow">Convenience Stores</p>
+      <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">Convenience stores in Singapore</h1>
+      <p class="page-intro mt-6">
+        Browse convenience stores across Singapore for quick grocery stops, snacks, drinks, and everyday essentials.
+      </p>
+      <div class="mt-8">
+        <SearchBox compact label="Search convenience stores" />
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page pb-8">
+    <FilterBar data={data} outlets={data.convenienceStores} />
+  </section>
+
+  <section
+    class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    data-pagefind-body
+    data-pagefind-meta="title:Convenience Stores in Singapore"
+    data-filter-results
+  >
+    {data.convenienceStores.map((outlet) => <ListingCard outlet={outlet} basePath="/convenience-stores" />)}
+  </section>
+</Layout>

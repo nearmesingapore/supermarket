@@ -1,6 +1,6 @@
 import { getSupermarketBrandPages, type DirectoryData } from "./airtable";
 
-const STATIC_SITEMAP_PATHS = ["/", "/directory", "/supermarkets", "/grocery-stores", "/brands", "/neighbourhoods"];
+const STATIC_SITEMAP_PATHS = ["/", "/directory", "/supermarkets", "/grocery-stores", "/convenience-stores", "/brands", "/neighbourhoods"];
 
 export function resolveSiteUrl(site: string | URL | undefined) {
   return (site?.toString() || "https://supermarket.sg").replace(/\/$/, "");
@@ -18,6 +18,7 @@ export function getSitemapPaths(data: DirectoryData) {
     ...getSupermarketBrandPages(data).map((page) => `/supermarkets/${page.pathSlug}`),
     ...data.supermarkets.map((outlet) => `/supermarkets/${outlet.slug}`),
     ...data.groceryStores.map((outlet) => `/grocery-stores/${outlet.slug}`),
+    ...data.convenienceStores.map((outlet) => `/convenience-stores/${outlet.slug}`),
     ...data.promotions.map((promotion) => promotion.detailPath)
   ].map(canonicalPath))];
 }
