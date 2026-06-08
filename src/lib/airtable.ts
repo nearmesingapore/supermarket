@@ -46,6 +46,7 @@ export type Supermarket = {
 
 export type GroceryStore = Supermarket;
 export type ConvenienceStore = Supermarket;
+export type GeneralStore = Supermarket;
 
 export type Promotion = {
   id: string;
@@ -85,6 +86,7 @@ export type DirectoryData = {
   supermarkets: Supermarket[];
   groceryStores: GroceryStore[];
   convenienceStores: ConvenienceStore[];
+  generalStores: GeneralStore[];
   promotions: Promotion[];
   promotionCollections: PromotionCollection[];
   featuredSupermarkets: Supermarket[];
@@ -100,6 +102,7 @@ const TABLES = {
   supermarkets: "tblE6IK77xz0ChbMT",
   groceryStores: "tblBZ9jw8xUJ0ebtz",
   convenienceStores: "tblofcgnE3Xyynbbi",
+  generalStores: "tblZax5FRu0uKkjjt",
   brands: "tblK5rFjHnVqd2g6U",
   neighbourhoods: "tblLPGvEo7lH4pLzR",
   malls: "tblHHymwYJJQH5UK6",
@@ -216,6 +219,32 @@ const FIELDS = {
     nearbyLandmarks: [],
     featured: ["fldEYK9GJF5yzCXqK", "Featured"]
   },
+  generalStores: {
+    outletName: ["fldvWCMXQFzECkA4m", "Outlet Name"],
+    slug: ["fldHcDfYSYsccvLcl", "Slug"],
+    description: ["fld3v44ZJQT8ziBjn", "Outlet Description"],
+    brand: ["fldDHm3YJWiiR5XPt", "Brand"],
+    category: ["fldtkEkRyT7gJiUL1", "Category"],
+    neighbourhood: ["fldJVD4OHu5Sdsp3j", "Neighbourhood"],
+    mall: ["fldRcFERfQxCkGKFx", "Mall / Location"],
+    address: ["fldMNxKW7sZsXWLgR", "Address"],
+    streetName: ["fldt21BqZow8gKTtC", "Street Name"],
+    postalCode: ["flduO5w8PMRRRe8XM", "Postal Code"],
+    mrt: ["fldEApxqUC5BoIULW", "Nearest MRT"],
+    openingHours: ["fldBkf6Z5XRRNPiMT", "Opening Hours"],
+    phone: ["fldBXaHQVyWsddxJT", "Phone"],
+    googleMapsUrl: ["fldyuCIzEaegBUjk9", "Google Maps URL"],
+    websiteUrl: ["fldNdn2rfhhXg7BD3", "Website URL"],
+    facebookUrl: ["fld33zyo4FhWuhWyV", "Facebook URL"],
+    instagramUrl: ["fldO4cpl0mhYwQiAg", "Instagram URL"],
+    imageUrl: ["fld9TIjJM4THcNcHz", "Image URL"],
+    galleryImagesUrl: ["fldToPdvynAurStxh", "Gallery Images URL"],
+    gettingThereByCar: [],
+    gettingThereByPublicTransport: [],
+    nearbyBusServices: [],
+    nearbyLandmarks: [],
+    featured: ["fldfT5YYW68uLz5yV", "Featured"]
+  },
   brands: {
     name: ["fldPwU2iFk9wEsmba", "Brand Name", "Name"],
     slug: ["fldA09ghMk1pINerc", "Slug"],
@@ -273,7 +302,11 @@ const FIELDS = {
   }
 } as const;
 
-type OutletFieldsConfig = typeof FIELDS.supermarkets | typeof FIELDS.groceryStores | typeof FIELDS.convenienceStores;
+type OutletFieldsConfig =
+  | typeof FIELDS.supermarkets
+  | typeof FIELDS.groceryStores
+  | typeof FIELDS.convenienceStores
+  | typeof FIELDS.generalStores;
 
 let directoryCache: Promise<DirectoryData> | undefined;
 
@@ -394,10 +427,11 @@ async function loadDirectoryData(): Promise<DirectoryData> {
   );
   const mrtStations = createLookup(mrtRecords, FIELDS.mrtStations.name, FIELDS.mrtStations.slug);
 
-  const [supermarketRecords, groceryStoreRecords, convenienceStoreRecords] = await Promise.all([
+  const [supermarketRecords, groceryStoreRecords, convenienceStoreRecords, generalStoreRecords] = await Promise.all([
     fetchAirtableRecords(baseId, TABLES.supermarkets, apiKey),
     fetchAirtableRecords(baseId, TABLES.groceryStores, apiKey),
-    fetchAirtableRecords(baseId, TABLES.convenienceStores, apiKey)
+    fetchAirtableRecords(baseId, TABLES.convenienceStores, apiKey),
+    fetchAirtableRecords(baseId, TABLES.generalStores, apiKey)
   ]);
 
   if (supermarketRecords.length === 0) {
@@ -421,6 +455,11 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     .filter((outlet) => outlet.outletName && outlet.slug)
     .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
+  const generalStores = generalStoreRecords
+    .map((record) => normalizeOutlet(record, FIELDS.generalStores, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
+    .filter((outlet) => outlet.outletName && outlet.slug)
+    .filter(uniqueOutletSlug)
+    .sort((a, b) => a.outletName.localeCompare(b.outletName));
 
   if (supermarketRecords.length > 0 && supermarkets.length === 0) {
     throw new Error(
@@ -430,10 +469,10 @@ async function loadDirectoryData(): Promise<DirectoryData> {
 
   const supermarketBrands = withCounts(brands.items, supermarkets, (outlet) => outlet.brand)
     .sort((a, b) => a.name.localeCompare(b.name));
-  const groceryStoreBrands = withCounts(brands.items, [...groceryStores, ...convenienceStores], (outlet) => outlet.brand)
+  const groceryStoreBrands = withCounts(brands.items, [...groceryStores, ...convenienceStores, ...generalStores], (outlet) => outlet.brand)
     .sort((a, b) => a.name.localeCompare(b.name));
   const countedBrands = groupSupermarketBrandsFirst(supermarketBrands, groceryStoreBrands);
-  const allOutlets = [...supermarkets, ...groceryStores, ...convenienceStores];
+  const allOutlets = [...supermarkets, ...groceryStores, ...convenienceStores, ...generalStores];
   const featuredBrands = filterBrandsByFeaturedOutlets(countedBrands, allOutlets);
   const countedNeighbourhoods = withCounts(neighbourhoods.items, allOutlets, (outlet) => outlet.neighbourhood)
     .filter((item) => isValidNeighbourhoodName(item.name));
@@ -471,6 +510,7 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     supermarkets,
     groceryStores,
     convenienceStores,
+    generalStores,
     promotions,
     promotionCollections: PROMOTION_TABLES.map(({ label, slug, brandSlug }) => ({
       label,

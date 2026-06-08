@@ -132,6 +132,35 @@ const directoryData = {
       featured: false
     }
   ],
+  generalStores: [
+    {
+      id: "general-1",
+      outletName: "ABC General Store",
+      slug: "abc-general-store",
+      description: "",
+      brand: [],
+      category: "",
+      neighbourhood: [],
+      mall: [],
+      address: "",
+      streetName: "",
+      postalCode: "",
+      mrt: [],
+      openingHours: "",
+      phone: "",
+      googleMapsUrl: "",
+      websiteUrl: "",
+      facebookUrl: "",
+      instagramUrl: "",
+      imageUrl: "",
+      galleryImagesUrl: "",
+      gettingThereByCar: "",
+      gettingThereByPublicTransport: "",
+      nearbyBusServices: "",
+      nearbyLandmarks: "",
+      featured: false
+    }
+  ],
   promotions: [
     {
       id: "promo-1",
@@ -179,6 +208,7 @@ describe("getSitemapPaths", () => {
       "/supermarkets/",
       "/grocery-stores/",
       "/convenience-stores/",
+      "/general-stores/",
       "/brands/",
       "/neighbourhoods/",
       "/promotions/",
@@ -192,6 +222,7 @@ describe("getSitemapPaths", () => {
       "/supermarkets/brand-valley/",
       "/grocery-stores/little-farms-katong-point/",
       "/convenience-stores/7-eleven-orchard/",
+      "/general-stores/abc-general-store/",
       "/promotions/brand-promotions-weekly/"
     ]);
   });

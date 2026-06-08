@@ -5,8 +5,6 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/directory", label: "Directory" },
   { href: "/supermarkets", label: "Supermarkets" },
-  { href: "/grocery-stores", label: "Grocery Stores" },
-  { href: "/convenience-stores", label: "Convenience Stores" },
   { href: "/search", label: "Search" }
 ].map((link) => ({ ...link, href: canonicalPath(link.href) }));
 
@@ -24,7 +22,7 @@ const promotionLinks = [
       SG Supermarkets
     </a>
     <nav class="hidden items-center gap-3 text-xs font-medium text-muted md:flex xl:gap-4 xl:text-sm" aria-label="Primary navigation">
-      {links.slice(0, 5).map((link) => (
+      {links.slice(0, 3).map((link) => (
         <a class="transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}
       <details class="group relative">
@@ -41,7 +39,7 @@ const promotionLinks = [
           </div>
         </div>
       </details>
-      {links.slice(5).map((link) => (
+      {links.slice(3).map((link) => (
         <a class="transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}
     </nav>
@@ -64,7 +62,7 @@ const promotionLinks = [
   </div>
   <nav id="mobile-menu" class="container-page hidden border-t border-line py-3 md:hidden" aria-label="Mobile navigation" data-menu-panel>
     <div class="grid gap-2 text-sm font-medium text-muted">
-      {links.slice(0, 5).map((link) => (
+      {links.slice(0, 3).map((link) => (
         <a class="block rounded-full bg-white px-4 py-3 transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}
       <details class="rounded-3xl bg-white px-4 py-3">
@@ -76,7 +74,7 @@ const promotionLinks = [
           ))}
         </div>
       </details>
-      {links.slice(5).map((link) => (
+      {links.slice(3).map((link) => (
         <a class="block rounded-full bg-white px-4 py-3 transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}
     </div>

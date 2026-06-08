@@ -84,7 +84,7 @@ describe("getDirectoryData", () => {
     );
   });
 
-  test("loads supermarkets, grocery stores, and convenience stores without removed Airtable fields", async () => {
+  test("loads supermarkets, grocery stores, convenience stores, and general stores without removed Airtable fields", async () => {
     process.env.AIRTABLE_API_KEY = "key";
     process.env.AIRTABLE_BASE_ID = "base";
 
@@ -120,6 +120,14 @@ describe("getDirectoryData", () => {
               fldPwU2iFk9wEsmba: "Convenience Brand",
               fldA09ghMk1pINerc: "convenience-brand",
               fldgNoZbK2EY6KFWJ: "A useful convenience brand description."
+            }
+          },
+          {
+            id: "brand-4",
+            fields: {
+              fldPwU2iFk9wEsmba: "General Brand",
+              fldA09ghMk1pINerc: "general-brand",
+              fldgNoZbK2EY6KFWJ: "A useful general brand description."
             }
           }
         ]
@@ -236,6 +244,29 @@ describe("getDirectoryData", () => {
         ]
       })
     } as Response);
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "general-store-1",
+            fields: {
+              fldvWCMXQFzECkA4m: "ABC General Store",
+              fldHcDfYSYsccvLcl: "abc-general-store",
+              fld3v44ZJQT8ziBjn: "Neighbourhood general store with household staples.",
+              fldDHm3YJWiiR5XPt: ["brand-4"],
+              fldtkEkRyT7gJiUL1: "General Store",
+              fldJVD4OHu5Sdsp3j: ["hood-1"],
+              fldRcFERfQxCkGKFx: ["mall-1"],
+              fldMNxKW7sZsXWLgR: "10 Market Street",
+              flduO5w8PMRRRe8XM: 488888,
+              fldNdn2rfhhXg7BD3: "https://example.com/abc-general-store",
+              fldToPdvynAurStxh: "https://example.com/general-one.jpg, https://example.com/general-two.jpg"
+            }
+          }
+        ]
+      })
+    } as Response);
 
     const data = await getDirectoryData();
 
@@ -265,6 +296,16 @@ describe("getDirectoryData", () => {
       websiteUrl: "https://example.com/7-eleven",
       galleryImagesUrl: "https://example.com/convenience-one.jpg, https://example.com/convenience-two.jpg"
     });
+    expect(data.generalStores).toHaveLength(1);
+    expect(data.generalStores[0]).toMatchObject({
+      outletName: "ABC General Store",
+      slug: "abc-general-store",
+      description: "Neighbourhood general store with household staples.",
+      address: "10 Market Street",
+      postalCode: "488888",
+      websiteUrl: "https://example.com/abc-general-store",
+      galleryImagesUrl: "https://example.com/general-one.jpg, https://example.com/general-two.jpg"
+    });
     expect(data.brands[0]).toMatchObject({
       name: "Supermarket Brand",
       slug: "supermarket-brand",
@@ -280,7 +321,7 @@ describe("getDirectoryData", () => {
     });
     expect(data.featuredBrands.map((brand) => brand.slug)).toEqual(["supermarket-brand"]);
     expect(data.supermarketBrands.map((brand) => brand.slug)).toEqual(["supermarket-brand"]);
-    expect(data.groceryStoreBrands.map((brand) => brand.slug)).toEqual(["convenience-brand", "grocery-brand"]);
+    expect(data.groceryStoreBrands.map((brand) => brand.slug)).toEqual(["convenience-brand", "general-brand", "grocery-brand"]);
     expect(data.neighbourhoods[0]).toMatchObject({
       name: "Hood",
       slug: "hood",
@@ -299,6 +340,7 @@ describe("getDirectoryData", () => {
     expect(data.supermarkets[0]).not.toHaveProperty("seatingAvailable");
     expect(data.supermarkets[0]).not.toHaveProperty("deliveryLinks");
     expect(data.convenienceStores[0]).not.toHaveProperty("published");
+    expect(data.generalStores[0]).not.toHaveProperty("published");
     expect(data).not.toHaveProperty("priceRanges");
     expect(data).not.toHaveProperty("halalOptions");
   });
@@ -344,6 +386,7 @@ describe("getDirectoryData", () => {
         ]
       })
     } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
     fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
     fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
     fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
@@ -426,6 +469,7 @@ describe("getSupermarketBrandPages", () => {
         supermarkets: [outlet, { ...outlet, id: "outlet-2", slug: "fairprice-bedok", outletName: "FairPrice Bedok" }],
         groceryStores: [],
         convenienceStores: [],
+        generalStores: [],
         promotions: [],
         promotionCollections: [],
         featuredSupermarkets: [],

@@ -95,6 +95,9 @@ describe("taxonomy index pages", () => {
 
     expect(header).toContain('label: "Promotions"');
     expect(header).toContain("promotionLinks");
+    expect(header).not.toContain('{ href: "/grocery-stores", label: "Grocery Stores" }');
+    expect(header).not.toContain('{ href: "/convenience-stores", label: "Convenience Stores" }');
+    expect(header).not.toContain('{ href: "/general-stores", label: "General Stores" }');
     expect(header).not.toContain('label: "Sheng Siong Promotions"');
     expect(header).not.toContain('label: "FairPrice Promotions"');
     expect(header).not.toContain('label: "Giant Promotions"');
@@ -102,6 +105,9 @@ describe("taxonomy index pages", () => {
     expect(footer).toContain('{ href: "/neighbourhoods", label: "Neighbourhoods" }');
     expect(footer).toContain('{ href: "/malls", label: "Malls" }');
     expect(footer).toContain('{ href: "/mrt-stations", label: "MRT Stations" }');
+    expect(footer).toContain('{ href: "/grocery-stores", label: "Grocery Stores" }');
+    expect(footer).toContain('{ href: "/convenience-stores", label: "Convenience Stores" }');
+    expect(footer).toContain('{ href: "/general-stores", label: "General Stores" }');
   });
 
   test("adds crawlable promotion and supermarket brand index routes", () => {
