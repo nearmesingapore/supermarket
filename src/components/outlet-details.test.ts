@@ -4,17 +4,16 @@ import { describe, expect, it } from "vitest";
 const read = (path: string) => (existsSync(path) ? readFileSync(path, "utf8") : "");
 
 const expectContactDetailsUnderMap = (page: string) => {
-  const mapColumnStart = page.indexOf('<div class="overflow-hidden border border-line bg-white">');
-  const mapColumnEnd = page.indexOf("<div>", mapColumnStart + 1);
-  const titleColumnStart = page.indexOf('<p class="eyebrow">', mapColumnEnd);
+  const map = page.indexOf("<OutletMap");
+  const titleColumnStart = page.indexOf('<p class="eyebrow">', map);
   const openingHours = page.indexOf("Opening hours");
   const socialLinks = page.indexOf("Social links");
 
-  expect(mapColumnStart).toBeGreaterThanOrEqual(0);
-  expect(titleColumnStart).toBeGreaterThan(mapColumnStart);
-  expect(openingHours).toBeGreaterThan(mapColumnStart);
+  expect(map).toBeGreaterThanOrEqual(0);
+  expect(titleColumnStart).toBeGreaterThan(map);
+  expect(openingHours).toBeGreaterThan(map);
   expect(openingHours).toBeLessThan(titleColumnStart);
-  expect(socialLinks).toBeGreaterThan(mapColumnStart);
+  expect(socialLinks).toBeGreaterThan(map);
   expect(socialLinks).toBeLessThan(titleColumnStart);
 };
 

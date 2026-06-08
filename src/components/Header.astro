@@ -5,10 +5,14 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/directory", label: "Directory" },
   { href: "/supermarkets", label: "Supermarkets" },
-  { href: "/sheng-siong-promotions", label: "Sheng Siong Promotions" },
-  { href: "/fairprice-promotions", label: "FairPrice Promotions" },
-  { href: "/giant-promotions", label: "Giant Promotions" },
   { href: "/search", label: "Search" }
+].map((link) => ({ ...link, href: canonicalPath(link.href) }));
+
+const promotionMenu = { href: canonicalPath("/promotions"), label: "Promotions" };
+const promotionLinks = [
+  { href: "/sheng-siong-promotions", text: "Sheng Siong Promotions" },
+  { href: "/fairprice-promotions", text: "FairPrice Promotions" },
+  { href: "/giant-promotions", text: "Giant Promotions" }
 ].map((link) => ({ ...link, href: canonicalPath(link.href) }));
 ---
 
@@ -18,7 +22,24 @@ const links = [
       SG Supermarkets
     </a>
     <nav class="hidden items-center gap-3 text-xs font-medium text-muted md:flex xl:gap-4 xl:text-sm" aria-label="Primary navigation">
-      {links.map((link) => (
+      {links.slice(0, 3).map((link) => (
+        <a class="transition hover:text-ink" href={link.href}>{link.label}</a>
+      ))}
+      <details class="group relative">
+        <summary class="flex cursor-pointer list-none items-center gap-1 transition hover:text-ink">
+          <span>{promotionMenu.label}</span>
+          <span aria-hidden="true" class="text-[0.65rem] transition group-open:rotate-180">⌄</span>
+        </summary>
+        <div class="absolute left-1/2 top-full z-50 mt-3 w-64 -translate-x-1/2 border border-line bg-white p-3 shadow-editorial">
+          <div class="grid gap-1">
+            <a class="block px-3 py-2 transition hover:bg-paper hover:text-ink" href={promotionMenu.href}>All Promotions</a>
+            {promotionLinks.map((link) => (
+              <a class="block px-3 py-2 transition hover:bg-paper hover:text-ink" href={link.href}>{link.text}</a>
+            ))}
+          </div>
+        </div>
+      </details>
+      {links.slice(3).map((link) => (
         <a class="transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}
     </nav>
@@ -41,7 +62,19 @@ const links = [
   </div>
   <nav id="mobile-menu" class="container-page hidden border-t border-line py-3 md:hidden" aria-label="Mobile navigation" data-menu-panel>
     <div class="grid gap-2 text-sm font-medium text-muted">
-      {links.map((link) => (
+      {links.slice(0, 3).map((link) => (
+        <a class="block rounded-full bg-white px-4 py-3 transition hover:text-ink" href={link.href}>{link.label}</a>
+      ))}
+      <details class="rounded-3xl bg-white px-4 py-3">
+        <summary class="cursor-pointer list-none text-ink">{promotionMenu.label}</summary>
+        <div class="mt-3 grid gap-2 border-t border-line pt-3">
+          <a class="block transition hover:text-ink" href={promotionMenu.href}>All Promotions</a>
+          {promotionLinks.map((link) => (
+            <a class="block transition hover:text-ink" href={link.href}>{link.text}</a>
+          ))}
+        </div>
+      </details>
+      {links.slice(3).map((link) => (
         <a class="block rounded-full bg-white px-4 py-3 transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}
     </div>

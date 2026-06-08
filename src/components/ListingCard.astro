@@ -1,6 +1,7 @@
 ---
 import { getFirstInitial, type Supermarket } from "@/lib/airtable";
 import { getPrimary } from "@/lib/content";
+import { encodeFilterValues } from "@/lib/directoryFilters";
 import { canonicalPath } from "@/lib/seo";
 
 interface Props {
@@ -20,12 +21,12 @@ const href = canonicalPath(`${basePath}/${outlet.slug}`);
 <article
   class="group flex h-full flex-col overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial"
   data-card
-  data-brand={brand?.slug || ""}
+  data-brand={encodeFilterValues(outlet.brand)}
   data-brand-name={brand?.name || ""}
-  data-neighbourhood={neighbourhood?.slug || ""}
+  data-neighbourhood={encodeFilterValues(outlet.neighbourhood)}
   data-category={outlet.category}
-  data-mrt={mrt?.slug || ""}
-  data-mall={mall?.slug || ""}
+  data-mrt={encodeFilterValues(outlet.mrt)}
+  data-mall={encodeFilterValues(outlet.mall)}
 >
   <a href={href} class="block">
     <div class="aspect-[4/3] overflow-hidden bg-[#f1eee8]">
@@ -43,7 +44,7 @@ const href = canonicalPath(`${basePath}/${outlet.slug}`);
       )}
     </div>
   </a>
-  <div class="flex flex-1 flex-col p-4 sm:p-5">
+  <div class="flex flex-1 flex-col p-5">
     <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">{brand?.name || "Independent"}</p>
     <h2 class="mt-3 font-serif text-2xl leading-tight sm:text-3xl lg:text-2xl">
       <a class="transition hover:text-brass" href={href}>{outlet.outletName}</a>

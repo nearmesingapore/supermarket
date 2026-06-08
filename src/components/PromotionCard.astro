@@ -9,7 +9,7 @@ interface Props {
 
 const { promotion, linkText = `View ${promotion.brand.name} promotions` } = Astro.props;
 const imageUrl = promotion.imageUrls[0];
-const href = canonicalPath(`/${promotion.collectionSlug}`);
+const href = canonicalPath(promotion.detailPath);
 ---
 
 <article class="group flex h-full flex-col overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial">

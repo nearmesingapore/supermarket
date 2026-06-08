@@ -1,0 +1,34 @@
+---
+import type { TaxonomyItem } from "@/lib/airtable";
+import { formatCount } from "@/lib/content";
+import { canonicalPath } from "@/lib/seo";
+
+interface Props {
+  href: string;
+  item: TaxonomyItem;
+  label: string;
+}
+
+const { href, item, label } = Astro.props;
+const canonicalHref = canonicalPath(href);
+---
+
+<a class="group flex h-full flex-col overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial" href={canonicalHref}>
+  {
+    item.imageUrl && (
+      <div class="aspect-[4/3] overflow-hidden bg-[#f1eee8]">
+        <img
+          src={item.imageUrl}
+          alt={`${item.name} ${label.toLowerCase()}`}
+          class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+  <div class="flex flex-1 flex-col p-6">
+    <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">{label}</p>
+    <p class="mt-5 font-serif text-3xl leading-tight transition group-hover:text-brass">{item.name}</p>
+    <p class="mt-auto pt-6 text-sm text-muted">{formatCount(item.count, "outlet")}</p>
+  </div>
+</a>

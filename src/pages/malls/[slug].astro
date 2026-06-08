@@ -2,27 +2,29 @@
 import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
 import { getDirectoryData, type TaxonomyItem } from "@/lib/airtable";
-import { formatCount, pageDescription } from "@/lib/content";
+import { formatCount, pageDescription, splitDescriptionParagraphs } from "@/lib/content";
 export async function getStaticPaths() { const data = await getDirectoryData(); return data.malls.map((mall) => ({ params: { slug: mall.slug }, props: { mall } })); }
 const { mall } = Astro.props as { mall: TaxonomyItem };
 const data = await getDirectoryData();
-const outlets = data.supermarkets.filter((outlet) => outlet.mall.some((item) => item.id === mall.id));
-const title = `${mall.name} Supermarkets`;
+const supermarketOutlets = data.supermarkets.filter((outlet) => outlet.mall.some((item) => item.id === mall.id));
+const groceryStoreOutlets = data.groceryStores.filter((outlet) => outlet.mall.some((item) => item.id === mall.id));
+const outlets = [...supermarketOutlets, ...groceryStoreOutlets];
+const title = `${mall.name} Supermarkets and Grocery Stores`;
 const description = mall.description || pageDescription(title, outlets.length);
-const descriptionParagraphs = mall.description?.split(/\n\s*\n/).map((paragraph) => paragraph.trim()).filter(Boolean) ?? [];
+const descriptionParagraphs = splitDescriptionParagraphs(mall.description);
 ---
 <Layout title={title} description={description} image={mall.imageUrl || undefined} canonical={`/malls/${mall.slug}`}>
   <section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${title}`}>
     <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
       <div>
         <p class="eyebrow">Mall / Location</p>
-        <h1 class="page-title mt-4">{mall.name}</h1>
+        <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{mall.name}</h1>
         {descriptionParagraphs.length > 0 && (
-          <div class="page-intro mt-6 max-w-3xl space-y-6 text-ink">
+          <div class="mt-6 max-w-3xl space-y-6 text-lg leading-8 text-ink">
             {descriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
           </div>
         )}
-        <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "published outlet")}</p>
+        <p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "outlet")}</p>
       </div>
       {mall.imageUrl && (
         <div class="overflow-hidden border border-line bg-white">
@@ -34,6 +36,7 @@ const descriptionParagraphs = mall.description?.split(/\n\s*\n/).map((paragraph)
     </div>
   </section>
   <section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    {outlets.map((outlet) => <ListingCard outlet={outlet} />)}
+    {supermarketOutlets.map((outlet) => <ListingCard outlet={outlet} />)}
+    {groceryStoreOutlets.map((outlet) => <ListingCard outlet={outlet} basePath="/grocery-stores" />)}
   </section>
 </Layout>

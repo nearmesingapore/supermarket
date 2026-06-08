@@ -3,8 +3,9 @@ import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
 import { getBrandPromotions, getDirectoryData, type TaxonomyItem } from "@/lib/airtable";
-import { formatCount, pageDescription, parseFaqItems, splitDescriptionParagraphs } from "@/lib/content";
-import { buildFaqPageSchema, canonicalPath } from "@/lib/seo";
+import { formatCount, pageDescription, splitDescriptionParagraphs } from "@/lib/content";
+import { buildFaqPageSchema, parseBrandFaq } from "@/lib/faq";
+import { canonicalPath } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const data = await getDirectoryData();
@@ -13,9 +14,15 @@ export async function getStaticPaths() {
 
 const { brand } = Astro.props as { brand: TaxonomyItem };
 const data = await getDirectoryData();
-const outlets = data.supermarkets
+const supermarketOutlets = data.supermarkets
   .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
   .sort((a, b) => a.outletName.localeCompare(b.outletName));
+const groceryStoreOutlets = data.groceryStores
+  .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
+  .sort((a, b) => a.outletName.localeCompare(b.outletName));
+const outlets = [...supermarketOutlets, ...groceryStoreOutlets];
+const groceryStoreOutletIds = new Set(groceryStoreOutlets.map((outlet) => outlet.id));
+const getOutletBasePath = (outlet: (typeof outlets)[number]) => groceryStoreOutletIds.has(outlet.id) ? "/grocery-stores" : "/supermarkets";
 const neighbourhoods = data.neighbourhoods.filter((neighbourhood) =>
   outlets.some((outlet) => outlet.neighbourhood.some((item) => item.id === neighbourhood.id))
 );
@@ -25,19 +32,19 @@ const featuredOutlets = [...outlets]
   .sort((a, b) => Number(b.featured) - Number(a.featured) || a.outletName.localeCompare(b.outletName))
   .slice(0, 3);
 const brandMetrics = [
-  { label: "Published outlets", value: outlets.length },
+  { label: "Outlets", value: outlets.length },
   { label: "Neighbourhoods", value: neighbourhoods.length },
   { label: "Current promotions", value: promotions.length }
 ];
-const title = `${brand.name} Supermarkets in Singapore`;
+const title = `${brand.name} Supermarkets and Grocery Stores in Singapore`;
 const description = brand.description || pageDescription(title, outlets.length);
 const descriptionParagraphs = splitDescriptionParagraphs(brand.description);
-const brandFaqItems = parseFaqItems(brand.brandFaq);
-const brandFaqSchemaJson = brandFaqItems.length > 0 ? JSON.stringify(buildFaqPageSchema(brandFaqItems)) : undefined;
+const faqItems = parseBrandFaq(brand.brandFaq);
+const faqSchema = buildFaqPageSchema(faqItems);
 ---
 
 <Layout title={title} description={description} image={brand.imageUrl} canonical={`/brands/${brand.slug}`}>
-  {brandFaqSchemaJson && <script is:inline slot="head" type="application/ld+json" set:html={brandFaqSchemaJson} />}
+  {faqSchema && <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 
   <section
     class:list={["container-page grid gap-10 py-12 lg:py-16", brand.imageUrl ? "lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.74fr)] lg:items-stretch" : ""]}
@@ -85,7 +92,7 @@ const brandFaqSchemaJson = brandFaqItems.length > 0 ? JSON.stringify(buildFaqPag
           </div>
           <div class="border border-line bg-ink p-6 text-white">
             <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#d9bf82]">At a glance</p>
-            <p class="mt-5 font-serif text-3xl leading-tight">{formatCount(outlets.length, "published outlet")}</p>
+            <p class="mt-5 font-serif text-3xl leading-tight">{formatCount(outlets.length, "outlet")}</p>
             <p class="mt-4 text-sm leading-6 text-white/70">
               Browse {brand.name} locations across Singapore with nearby neighbourhood, MRT, mall, and promotion details.
             </p>
@@ -97,8 +104,8 @@ const brandFaqSchemaJson = brandFaqItems.length > 0 ? JSON.stringify(buildFaqPag
 
   {
     neighbourhoods.length > 0 && (
-      <section class="border-y border-line bg-white py-14">
-        <div class="container-page grid gap-8 lg:grid-cols-[0.42fr_1fr] lg:items-start">
+      <section class="border-y border-line bg-white py-10">
+        <div class="container-page grid gap-6 lg:grid-cols-[0.34fr_1fr] lg:items-start">
           <div>
             <p class="eyebrow">Neighbourhoods</p>
             <h2 class="section-title mt-3">Where to find {brand.name}</h2>
@@ -106,14 +113,14 @@ const brandFaqSchemaJson = brandFaqItems.length > 0 ? JSON.stringify(buildFaqPag
               Jump into areas with published {brand.name} outlets and compare nearby stores by location.
             </p>
           </div>
-          <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <div class="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
             {
               neighbourhoods.map((item, index) => (
                 <a
-                  class="group flex min-h-24 items-end justify-between border border-line bg-paper p-5 transition duration-300 hover:-translate-y-1 hover:border-ink hover:bg-white hover:shadow-editorial"
+                  class="group flex min-h-16 items-end justify-between border border-line bg-paper p-4 transition duration-300 hover:-translate-y-1 hover:border-ink hover:bg-white hover:shadow-editorial"
                   href={canonicalPath(`/neighbourhoods/${item.slug}`)}
                 >
-                  <span class="font-serif text-2xl leading-tight transition group-hover:text-brass">{item.name}</span>
+                  <span class="font-serif text-xl leading-tight transition group-hover:text-brass">{item.name}</span>
                   <span class="text-xs font-semibold uppercase tracking-[0.16em] text-muted">{String(index + 1).padStart(2, "0")}</span>
                 </a>
               ))
@@ -135,7 +142,7 @@ const brandFaqSchemaJson = brandFaqItems.length > 0 ? JSON.stringify(buildFaqPag
           <a class="fine-link text-sm font-semibold" href="#brand-outlets">View every outlet</a>
         </div>
         <div class="mt-10 grid gap-5 lg:grid-cols-3">
-          {featuredOutlets.map((outlet) => <ListingCard outlet={outlet} />)}
+          {featuredOutlets.map((outlet) => <ListingCard outlet={outlet} basePath={getOutletBasePath(outlet)} />)}
         </div>
       </section>
     )
@@ -159,36 +166,37 @@ const brandFaqSchemaJson = brandFaqItems.length > 0 ? JSON.stringify(buildFaqPag
       </section>
     )
   }
-  {
-    brandFaqItems.length > 0 && (
-      <section class="border-y border-line bg-white py-16">
-        <div class="container-page">
-          <p class="eyebrow">FAQ</p>
-          <h2 class="section-title mt-3">{brand.name} frequently asked questions</h2>
-          <div class="mt-8 divide-y divide-line border-y border-line">
-            {
-              brandFaqItems.map((item) => (
-                <section class="py-6">
-                  <h3 class="font-serif text-2xl leading-tight text-ink">{item.question}</h3>
-                  <p class="mt-3 whitespace-pre-line leading-8 text-muted">{item.answer}</p>
-                </section>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-    )
-  }
+
   <section id="brand-outlets" class="container-page py-16">
     <div class="flex flex-col justify-between gap-4 border-b border-line pb-8 md:flex-row md:items-end">
       <div>
         <p class="eyebrow">Directory</p>
         <h2 class="section-title mt-3">All {brand.name} outlets</h2>
       </div>
-      <p class="text-sm leading-6 text-muted">{formatCount(outlets.length, "published outlet")} sorted alphabetically.</p>
+      <p class="text-sm leading-6 text-muted">{formatCount(outlets.length, "outlet")} sorted alphabetically.</p>
     </div>
     <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {outlets.map((outlet) => <ListingCard outlet={outlet} />)}
+      {outlets.map((outlet) => <ListingCard outlet={outlet} basePath={getOutletBasePath(outlet)} />)}
     </div>
   </section>
+
+  {
+    faqItems.length > 0 && (
+      <section class="border-y border-line bg-white py-16">
+        <div class="container-page grid gap-8 lg:grid-cols-[0.28fr_1fr] lg:items-start">
+          <div>
+            <p class="eyebrow">Brand FAQ</p>
+            <h2 class="section-title mt-3">{brand.name} FAQ</h2>
+          </div>
+          <ul class="list-disc space-y-5 pl-5 leading-7 text-muted md:columns-2 md:gap-12">
+            {
+              faqItems.map((item) => (
+                <li class="mb-5 break-inside-avoid whitespace-pre-line pl-1">{item.visibleText}</li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+    )
+  }
 </Layout>

@@ -1,0 +1,9 @@
+---
+import Layout from "@/components/Layout.astro";
+import TaxonomyCard from "@/components/TaxonomyCard.astro";
+import { getDirectoryData } from "@/lib/airtable";
+
+const data = await getDirectoryData();
+---
+
+<Layout title="Singapore Supermarkets by MRT Station" description="Browse supermarkets by nearby Singapore MRT station." canonical="/mrt-stations"><section class="container-page py-16" data-pagefind-body data-pagefind-meta="title:Singapore Supermarkets by MRT Station"><p class="eyebrow">MRT Stations</p><h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">Browse by MRT station</h1><div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{data.mrtStations.map((station) => <TaxonomyCard item={station} href={`/mrt-stations/${station.slug}`} label="MRT Station" />)}</div></section></Layout>

@@ -3,128 +3,232 @@ import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
 import OutletDetails from "@/components/OutletDetails.astro";
 import OutletGallery from "@/components/OutletGallery.astro";
+import OutletMap from "@/components/OutletMap.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
-import { getDirectoryData, getFirstInitial, getOutletPromotions, type Supermarket } from "@/lib/airtable";
-import { getPrimary, getRelatedByNeighbourhood } from "@/lib/content";
+import {
+  getBrandPromotions,
+  getDirectoryData,
+  getFirstInitial,
+  getOutletPromotions,
+  getSupermarketBrandPages,
+  type Supermarket,
+  type SupermarketBrandPage
+} from "@/lib/airtable";
+import { formatCount, getPrimary, getRelatedByNeighbourhood, pageDescription, splitDescriptionParagraphs } from "@/lib/content";
 import { canonicalPath } from "@/lib/seo";
+import { getOutletSocialLinks } from "@/lib/social";
 
 export async function getStaticPaths() {
   const data = await getDirectoryData();
-  return data.supermarkets.map((outlet) => ({ params: { slug: outlet.slug }, props: { outlet } }));
+  const outletPaths = data.supermarkets.map((outlet) => ({ params: { slug: outlet.slug }, props: { outlet } }));
+  const outletSlugs = new Set(data.supermarkets.map((outlet) => outlet.slug));
+  const brandPaths = getSupermarketBrandPages(data)
+    .filter((brandPage) => !outletSlugs.has(brandPage.pathSlug))
+    .map((brandPage) => ({ params: { slug: brandPage.pathSlug }, props: { brandPage } }));
+
+  return [...brandPaths, ...outletPaths];
 }
 
-const { outlet } = Astro.props as { outlet: Supermarket };
+const props = Astro.props as { outlet?: Supermarket; brandPage?: SupermarketBrandPage };
+const { outlet, brandPage } = props;
 const data = await getDirectoryData();
-const brand = getPrimary(outlet.brand);
-const neighbourhood = getPrimary(outlet.neighbourhood);
-const mall = getPrimary(outlet.mall);
-const mrt = getPrimary(outlet.mrt);
-const related = getRelatedByNeighbourhood(outlet, data.supermarkets);
-const promotions = getOutletPromotions(data.promotions, outlet, 3);
+
+const brandPagePromotions = brandPage ? getBrandPromotions(data.promotions, brandPage.brand.id, 3) : [];
+const brandPagePromotionCollection = brandPage
+  ? data.promotionCollections.find((collection) => collection.brandSlug === brandPage.brand.slug)
+  : undefined;
+const brandPageDescription = brandPage
+  ? brandPage.brand.description || pageDescription(`${brandPage.brand.name} Supermarkets in Singapore`, brandPage.outlets.length)
+  : "";
+const brandPageDescriptionParagraphs = brandPage ? splitDescriptionParagraphs(brandPage.brand.description) : [];
+
+const brand = outlet ? getPrimary(outlet.brand) : undefined;
+const neighbourhood = outlet ? getPrimary(outlet.neighbourhood) : undefined;
+const mall = outlet ? getPrimary(outlet.mall) : undefined;
+const mrt = outlet ? getPrimary(outlet.mrt) : undefined;
+const related = outlet ? getRelatedByNeighbourhood(outlet, data.supermarkets) : [];
+const promotions = outlet ? getOutletPromotions(data.promotions, outlet, 3) : [];
 const promotionCollection = brand
   ? data.promotionCollections.find((collection) => collection.brandSlug === brand.slug)
   : undefined;
-const title = `${brand?.name ? `${brand.name} ` : ""}${outlet.outletName}`;
-const description = outlet.description || `${title} in Singapore${neighbourhood ? `, near ${neighbourhood.name}` : ""}. View address, opening hours, MRT, mall, and contact details.`;
-const initial = getFirstInitial(brand?.name || "", outlet.outletName);
-const fullAddress = [outlet.address, outlet.postalCode].filter(Boolean).join(" ");
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "GroceryStore",
-  name: outlet.outletName,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: outlet.address,
-    postalCode: outlet.postalCode,
-    addressCountry: "SG"
-  },
-  telephone: outlet.phone,
-  url: outlet.googleMapsUrl,
-  openingHours: outlet.openingHours
-};
+const outletTitle = outlet ? `${brand?.name ? `${brand.name} ` : ""}${outlet.outletName}` : "";
+const outletDescription = outlet
+  ? outlet.description || `${outletTitle} in Singapore${neighbourhood ? `, near ${neighbourhood.name}` : ""}. View address, opening hours, MRT, mall, and contact details.`
+  : "";
+const descriptionParagraphs = outlet ? splitDescriptionParagraphs(outlet.description) : [];
+const initial = outlet ? getFirstInitial(brand?.name || "", outlet.outletName) : "";
+const fullAddress = outlet ? [outlet.address, outlet.postalCode].filter(Boolean).join(" ") : "";
+const socialLinks = outlet ? getOutletSocialLinks(outlet) : [];
+const schema = outlet
+  ? {
+      "@context": "https://schema.org",
+      "@type": "GroceryStore",
+      name: outlet.outletName,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: outlet.address,
+        postalCode: outlet.postalCode,
+        addressCountry: "SG"
+      },
+      telephone: outlet.phone,
+      url: outlet.googleMapsUrl,
+      openingHours: outlet.openingHours
+    }
+  : undefined;
+const title = brandPage ? `${brandPage.brand.name} Supermarkets in Singapore` : outletTitle;
+const description = brandPage ? brandPageDescription : outletDescription;
+const image = brandPage ? brandPage.brand.imageUrl : outlet?.imageUrl || undefined;
+const canonical = brandPage ? `/supermarkets/${brandPage.pathSlug}` : `/supermarkets/${outlet?.slug}`;
 ---
 
-<Layout title={title} description={description} image={outlet.imageUrl || undefined} canonical={`/supermarkets/${outlet.slug}`}>
-  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+<Layout title={title} description={description} image={image} canonical={canonical}>
+  {schema && <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />}
 
-  <article
-    class="container-page py-12 lg:py-16"
-    data-pagefind-body
-    data-pagefind-meta={`title:${outlet.outletName};brand:${brand?.name || ""};neighbourhood:${neighbourhood?.name || ""};mrt:${mrt?.name || ""}`}
-  >
-    <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-      <div class="space-y-8">
-        <div class="overflow-hidden border border-line bg-white">
-          <div class="aspect-[4/3] bg-[#f2efe9]">
-            {outlet.imageUrl ? (
-              <img src={outlet.imageUrl} alt={`${outlet.outletName} storefront`} class="h-full w-full object-cover" />
+  {brandPage && (
+    <>
+      <section
+        class:list={["container-page grid gap-10 py-16 lg:items-center", brandPage.brand.imageUrl ? "lg:grid-cols-[1fr_0.78fr]" : ""]}
+        data-pagefind-body
+        data-pagefind-meta={`title:${brandPage.brand.name};brand:${brandPage.brand.name}`}
+      >
+        <div>
+          <p class="eyebrow">Supermarket brand</p>
+          <h1 class="page-title mt-4">{brandPage.brand.name} supermarkets</h1>
+          {
+            brandPageDescriptionParagraphs.length > 0 ? (
+              <div class="page-intro mt-6 max-w-3xl space-y-6">
+                {brandPageDescriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
+              </div>
             ) : (
-              <div class="flex h-full w-full items-center justify-center font-serif text-8xl text-brass">{initial}</div>
-            )}
+              <p class="page-intro mt-6 max-w-3xl">{description}</p>
+            )
+          }
+          <p class="mt-6 text-lg text-muted">{formatCount(brandPage.outlets.length, "outlet")}</p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a class="soft-button w-full sm:w-auto" href={canonicalPath(`/brands/${brandPage.brand.slug}`)}>{brandPage.brand.name} brand page</a>
+            {brandPagePromotionCollection && <a class="ghost-button w-full sm:w-auto" href={canonicalPath(`/${brandPagePromotionCollection.slug}`)}>{brandPage.brand.name} promotions</a>}
           </div>
         </div>
-
-        {outlet.openingHours && (
-          <section class="border border-line bg-white p-6">
-            <h2 class="font-serif text-3xl">Opening hours</h2>
-            <p class="mt-4 whitespace-pre-line leading-7 text-muted">{outlet.openingHours}</p>
-          </section>
-        )}
-        {(outlet.facebookUrl || outlet.instagramUrl) && (
-          <section class="border border-line bg-white p-6">
-            <h2 class="font-serif text-3xl">Social links</h2>
-            <div class="mt-4 flex flex-wrap gap-3 text-sm">
-              {outlet.facebookUrl && <a class="fine-link" href={outlet.facebookUrl} target="_blank" rel="noreferrer">Facebook</a>}
-              {outlet.instagramUrl && <a class="fine-link" href={outlet.instagramUrl} target="_blank" rel="noreferrer">Instagram</a>}
+        {
+          brandPage.brand.imageUrl && (
+            <div class="overflow-hidden border border-line bg-white">
+              <div class="aspect-[4/3] bg-[#f1eee8]">
+                <img src={brandPage.brand.imageUrl} alt={`${brandPage.brand.name} brand`} class="h-full w-full object-cover" />
+              </div>
             </div>
-          </section>
-        )}
-      </div>
+          )
+        }
+      </section>
 
-      <div>
-        <p class="eyebrow">{brand?.name || "Independent"}</p>
-        <h1 class="page-title mt-4">{outlet.outletName}</h1>
-        {outlet.description && <p class="page-intro mt-6 max-w-2xl text-ink">{outlet.description}</p>}
-        <p class="page-intro mt-6 max-w-2xl">{fullAddress}</p>
+      {brandPagePromotions.length > 0 && (
+        <section class="border-y border-line bg-white py-16">
+          <div class="container-page">
+            <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+              <div>
+                <p class="eyebrow">Promotions</p>
+                <h2 class="section-title mt-3">{brandPage.brand.name} promotions</h2>
+              </div>
+              {brandPagePromotionCollection && <a class="fine-link text-sm font-semibold" href={canonicalPath(`/${brandPagePromotionCollection.slug}`)}>View all promotions</a>}
+            </div>
+            <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {brandPagePromotions.map((promotion) => <PromotionCard promotion={promotion} />)}
+            </div>
+          </div>
+        </section>
+      )}
 
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          {outlet.googleMapsUrl && <a class="soft-button w-full sm:w-auto" href={outlet.googleMapsUrl} target="_blank" rel="noreferrer">Open Google Maps</a>}
-          {outlet.phone && <a class="ghost-button w-full sm:w-auto" href={`tel:${outlet.phone}`}>{outlet.phone}</a>}
+      <section class="container-page py-16">
+        <p class="eyebrow">Outlets</p>
+        <h2 class="section-title mt-3">All {brandPage.brand.name} supermarket outlets</h2>
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {brandPage.outlets.map((item) => <ListingCard outlet={item} />)}
+        </div>
+      </section>
+    </>
+  )}
+
+  {outlet && (
+    <article
+      class="container-page py-12 lg:py-16"
+      data-pagefind-body
+      data-pagefind-meta={`title:${outlet.outletName};brand:${brand?.name || ""};neighbourhood:${neighbourhood?.name || ""};mrt:${mrt?.name || ""}`}
+    >
+      <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div class="space-y-6">
+          <div class="overflow-hidden border border-line bg-white">
+            <div class="aspect-[4/3] bg-[#f2efe9]">
+              {outlet.imageUrl ? (
+                <img src={outlet.imageUrl} alt={`${outlet.outletName} storefront`} class="h-full w-full object-cover" />
+              ) : (
+                <div class="flex h-full w-full items-center justify-center font-serif text-8xl text-brass">{initial}</div>
+              )}
+            </div>
+            <OutletGallery outletName={outlet.outletName} galleryImagesUrl={outlet.galleryImagesUrl} />
+          </div>
+          <OutletMap outletName={outlet.outletName} fullAddress={fullAddress} googleMapsUrl={outlet.googleMapsUrl} />
+          {outlet.openingHours && (
+            <section class="border border-line bg-white p-6">
+              <h2 class="font-serif text-3xl">Opening hours</h2>
+              <p class="mt-4 whitespace-pre-line leading-7 text-muted">{outlet.openingHours}</p>
+            </section>
+          )}
+          {socialLinks.length > 0 && (
+            <section class="border border-line bg-white p-6">
+              <h2 class="font-serif text-3xl">Social links</h2>
+              <div class="mt-4 flex flex-wrap gap-3 text-sm">
+                {socialLinks.map((link) => <a class="fine-link" href={link.url} target="_blank" rel="noreferrer">{link.label}</a>)}
+              </div>
+            </section>
+          )}
         </div>
 
-        <dl class="mt-10 grid gap-5 border-y border-line py-8">
-          {neighbourhood && (
-            <div>
-              <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Neighbourhood</dt>
-              <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/neighbourhoods/${neighbourhood.slug}`)}>{neighbourhood.name}</a></dd>
+        <div>
+        <p class="eyebrow">{brand?.name || "Independent"}</p>
+          <h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{outlet.outletName}</h1>
+          {descriptionParagraphs.length > 0 && (
+            <div class="mt-6 max-w-2xl space-y-6 text-lg leading-8 text-ink">
+              {descriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
             </div>
           )}
-          {mall && (
-            <div>
-              <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Mall / Location</dt>
-              <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/malls/${mall.slug}`)}>{mall.name}</a></dd>
-            </div>
-          )}
-          {mrt && (
-            <div>
-              <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Nearest MRT</dt>
-              <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/mrt-stations/${mrt.slug}`)}>{mrt.name} MRT</a></dd>
-            </div>
-          )}
-          <OutletDetails
-            gettingThereByCar={outlet.gettingThereByCar}
-            gettingThereByPublicTransport={outlet.gettingThereByPublicTransport}
-            nearbyBusServices={outlet.nearbyBusServices}
-            nearbyLandmarks={outlet.nearbyLandmarks}
-          />
-        </dl>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-muted">{fullAddress}</p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            {outlet.googleMapsUrl && <a class="soft-button" href={outlet.googleMapsUrl} target="_blank" rel="noreferrer">Open Google Maps</a>}
+            {outlet.phone && <a class="ghost-button" href={`tel:${outlet.phone}`}>{outlet.phone}</a>}
+          </div>
+
+          <dl class="mt-10 grid gap-5 border-y border-line py-8">
+            {neighbourhood && (
+              <div>
+                <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Neighbourhood</dt>
+                <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/neighbourhoods/${neighbourhood.slug}`)}>{neighbourhood.name}</a></dd>
+              </div>
+            )}
+            {mall && (
+              <div>
+                <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Mall / Location</dt>
+                <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/malls/${mall.slug}`)}>{mall.name}</a></dd>
+              </div>
+            )}
+            {mrt && (
+              <div>
+                <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Nearest MRT</dt>
+                <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/mrt-stations/${mrt.slug}`)}>{mrt.name} MRT</a></dd>
+              </div>
+            )}
+            <OutletDetails
+              gettingThereByCar={outlet.gettingThereByCar}
+              gettingThereByPublicTransport={outlet.gettingThereByPublicTransport}
+              nearbyBusServices={outlet.nearbyBusServices}
+              nearbyLandmarks={outlet.nearbyLandmarks}
+            />
+          </dl>
+        </div>
       </div>
-    </div>
+    </article>
+  )}
 
-    <OutletGallery outletName={outlet.outletName} imageUrls={outlet.galleryImageUrls} />
-  </article>
-
-  {promotions.length > 0 && (
+  {outlet && promotions.length > 0 && (
     <section class="border-y border-line bg-white py-16">
       <div class="container-page">
         <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
@@ -141,7 +245,7 @@ const schema = {
     </section>
   )}
 
-  {related.length > 0 && (
+  {outlet && related.length > 0 && (
     <section class="container-page pb-20">
       <p class="eyebrow">Related</p>
       <h2 class="section-title mt-3">More in {neighbourhood?.name}</h2>

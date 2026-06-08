@@ -6,7 +6,9 @@ import { formatCount, pageDescription } from "@/lib/content";
 export async function getStaticPaths() { const data = await getDirectoryData(); return data.mrtStations.map((station) => ({ params: { slug: station.slug }, props: { station } })); }
 const { station } = Astro.props as { station: TaxonomyItem };
 const data = await getDirectoryData();
-const outlets = data.supermarkets.filter((outlet) => outlet.mrt.some((item) => item.id === station.id));
-const title = `${station.name} MRT Supermarkets`;
+const supermarketOutlets = data.supermarkets.filter((outlet) => outlet.mrt.some((item) => item.id === station.id));
+const groceryStoreOutlets = data.groceryStores.filter((outlet) => outlet.mrt.some((item) => item.id === station.id));
+const outlets = [...supermarketOutlets, ...groceryStoreOutlets];
+const title = `${station.name} MRT Supermarkets and Grocery Stores`;
 ---
-<Layout title={title} description={pageDescription(title, outlets.length)} canonical={`/mrt-stations/${station.slug}`}><section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${title};mrt:${station.name}`}><p class="eyebrow">MRT Station</p><h1 class="page-title mt-4">{station.name} MRT</h1><p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "nearby outlet")}</p></section><section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{outlets.map((outlet) => <ListingCard outlet={outlet} />)}</section></Layout>
+<Layout title={title} description={pageDescription(title, outlets.length)} canonical={`/mrt-stations/${station.slug}`}><section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${title};mrt:${station.name}`}><p class="eyebrow">MRT Station</p><h1 class="mt-4 font-serif text-6xl leading-none sm:text-7xl">{station.name} MRT</h1><p class="mt-6 text-lg text-muted">{formatCount(outlets.length, "nearby outlet")}</p></section><section class="container-page grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{supermarketOutlets.map((outlet) => <ListingCard outlet={outlet} />)}{groceryStoreOutlets.map((outlet) => <ListingCard outlet={outlet} basePath="/grocery-stores" />)}</section></Layout>

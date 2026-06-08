@@ -1,0 +1,39 @@
+---
+interface Props {
+  outletName: string;
+  fullAddress: string;
+  googleMapsUrl: string;
+}
+
+const { outletName, fullAddress, googleMapsUrl } = Astro.props;
+const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}&output=embed`;
+---
+
+{
+  googleMapsUrl && (
+    <section class="overflow-hidden border border-line bg-white" aria-label={`Location map for ${outletName}`}>
+      <div class="relative aspect-[4/3] bg-[#f2efe9]">
+        <iframe
+          src={embedUrl}
+          title={`Google Map showing ${outletName}`}
+          class="pointer-events-none h-full w-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          tabindex="-1"
+          aria-hidden="true"
+        />
+        <a
+          href={googleMapsUrl}
+          class="absolute inset-0 flex items-end p-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brass"
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`View ${outletName} on Google Maps`}
+        >
+          <span class="rounded-full bg-ink px-4 py-3 text-sm font-semibold text-white shadow-editorial transition hover:bg-brass">
+            View on Google Maps
+          </span>
+        </a>
+      </div>
+    </section>
+  )
+}

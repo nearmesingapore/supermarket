@@ -3,7 +3,8 @@ import Layout from "@/components/Layout.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
 import { getBrandPromotions, getDirectoryData, type PromotionCollection } from "@/lib/airtable";
 import { formatCount } from "@/lib/content";
-import { buildFaqPageSchema, canonicalPath } from "@/lib/seo";
+import { buildFaqPageSchema, type BrandFaqItem } from "@/lib/faq";
+import { canonicalPath } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const data = await getDirectoryData();
@@ -17,18 +18,41 @@ const { collection } = Astro.props as { collection: PromotionCollection };
 const data = await getDirectoryData();
 const brand = data.brands.find((item) => item.slug === collection.brandSlug);
 const promotions = brand ? getBrandPromotions(data.promotions, brand.id) : [];
-const outlets = brand
-  ? [...data.supermarkets, ...data.groceryStores]
-      .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
-      .sort((a, b) => a.outletName.localeCompare(b.outletName))
-  : [];
+const outletCount = brand
+  ? [...data.supermarkets, ...data.groceryStores].filter((outlet) => outlet.brand.some((item) => item.id === brand.id)).length
+  : 0;
 const isShengSiongPage = collection.slug === "sheng-siong-promotions";
-const title = isShengSiongPage ? "Sheng Siong Promotions" : collection.label;
+const isFairPricePage = collection.slug === "fairprice-promotions";
+const isGiantPage = collection.slug === "giant-promotions";
+const hasSeoArticle = isShengSiongPage || isFairPricePage || isGiantPage;
+const title = isShengSiongPage
+  ? "Sheng Siong Promotions"
+  : isFairPricePage
+    ? "FairPrice Promotions – NTUC FairPrice Deals Updated Weekly"
+    : isGiantPage
+      ? "Giant Promotions – Giant Supermarket Deals Updated Weekly"
+    : collection.label;
 const description = isShengSiongPage
   ? "Browse all current Sheng Siong promotions today in Singapore."
-  : `Browse current ${collection.label.toLowerCase()} in Singapore, with links to ${brand?.name || "brand"} outlet pages.`;
-const h1 = isShengSiongPage ? "Sheng Siong Promotions – Latest Deals" : title;
-const heroImage = isShengSiongPage ? "/images/sheng-siong-promotions-banner.png" : brand?.imageUrl;
+  : isFairPricePage
+    ? "Browse all current NTUC FairPrice promotions in Singapore. Updated weekly with the latest Price Drop deals, weekly catalogues, Link card offers, CHAS discounts & more."
+  : isGiantPage
+    ? "Browse all current Giant supermarket promotions in Singapore. Updated weekly with Super Savings deals, Value Heroes, yuu rewards, CHAS discounts, senior offers & more."
+  : `Browse current ${collection.label.toLowerCase()} in Singapore, with links to ${brand?.name || "brand"} outlet pages and full promotion details.`;
+const h1 = isShengSiongPage
+  ? "Sheng Siong Promotions – Latest Deals"
+  : isFairPricePage
+    ? "FairPrice Promotions – Latest NTUC FairPrice Deals & Weekly Offers"
+    : isGiantPage
+      ? "Giant Promotions – Latest Giant Supermarket Deals & Weekly Offers"
+    : title;
+const heroImage = isShengSiongPage
+  ? "/images/sheng-siong-promotions-banner.png"
+  : isFairPricePage
+    ? "/images/fairpricepromotions-banner.png"
+    : isGiantPage
+      ? "/images/giantsupermarketpromotions-banner.png"
+    : brand?.imageUrl;
 const lastUpdatedDate = new Date();
 const lastUpdatedIso = lastUpdatedDate.toISOString();
 const lastUpdatedLabel = new Intl.DateTimeFormat("en-SG", {
@@ -37,43 +61,177 @@ const lastUpdatedLabel = new Intl.DateTimeFormat("en-SG", {
   year: "numeric",
   timeZone: "Asia/Singapore"
 }).format(lastUpdatedDate);
-const shengSiongFaqItems = [
+const shengSiongFaqItems: BrandFaqItem[] = [
   {
     question: "What is the Sheng Siong promotion today?",
     answer:
-      "Scroll up to see all currently active Sheng Siong promotions. Each listing shows the promotion name, available validity details from the promotion feed, and the latest available flyer image."
+      "Scroll up to see all currently active Sheng Siong promotions. Each listing shows the promotion name, available validity details from the promotion feed, and a link to the full flyer or promotion page.",
+    visibleText:
+      "What is the Sheng Siong promotion today?\nScroll up to see all currently active Sheng Siong promotions. Each listing shows the promotion name, available validity details from the promotion feed, and a link to the full flyer or promotion page."
   },
   {
     question: "When does Sheng Siong release new promotions?",
     answer:
-      "Sheng Siong commonly releases short-term specials and longer campaign promotions throughout the week. This page is updated whenever new active promotions are added to the promotion feed."
+      "Sheng Siong commonly releases short-term specials and longer campaign promotions throughout the week. This page is updated whenever new active promotions are added to the promotion feed.",
+    visibleText:
+      "When does Sheng Siong release new promotions?\nSheng Siong commonly releases short-term specials and longer campaign promotions throughout the week. This page is updated whenever new active promotions are added to the promotion feed."
   },
   {
     question: "Are Sheng Siong promotions available at all outlets?",
     answer:
-      "Most catalogue and weekly Sheng Siong promotions apply across Sheng Siong outlets in Singapore, but selected bank, redemption, or product-specific offers may have their own conditions. Always check the promotion flyer and in-store terms."
+      "Most catalogue and weekly Sheng Siong promotions apply across Sheng Siong outlets in Singapore, but selected bank, redemption, or product-specific offers may have their own conditions. Always check the promotion detail page or flyer.",
+    visibleText:
+      "Are Sheng Siong promotions available at all outlets?\nMost catalogue and weekly Sheng Siong promotions apply across Sheng Siong outlets in Singapore, but selected bank, redemption, or product-specific offers may have their own conditions. Always check the promotion detail page or flyer."
   },
   {
     question: "Can I use CDC vouchers at Sheng Siong?",
     answer:
-      "Yes. Sheng Siong participates in the CDC supermarket voucher scheme. During special CDC promotion periods, selected products or redemptions may offer additional savings for voucher users."
+      "Yes. Sheng Siong participates in the CDC supermarket voucher scheme. During special CDC promotion periods, selected products or redemptions may offer additional savings for voucher users.",
+    visibleText:
+      "Can I use CDC vouchers at Sheng Siong?\nYes. Sheng Siong participates in the CDC supermarket voucher scheme. During special CDC promotion periods, selected products or redemptions may offer additional savings for voucher users."
   },
   {
     question: "Does Sheng Siong have a senior citizen discount?",
     answer:
-      "Yes. Sheng Siong offers a senior citizen discount for eligible Singapore shoppers on selected weekdays. Present the required identification at checkout and check in-store terms for the latest conditions."
+      "Yes. Sheng Siong offers a senior citizen discount for eligible Singapore shoppers on selected weekdays. Present the required identification at checkout and check in-store terms for the latest conditions.",
+    visibleText:
+      "Does Sheng Siong have a senior citizen discount?\nYes. Sheng Siong offers a senior citizen discount for eligible Singapore shoppers on selected weekdays. Present the required identification at checkout and check in-store terms for the latest conditions."
   },
   {
     question: "Does Sheng Siong offer CHAS discounts?",
     answer:
-      "Yes. Sheng Siong offers CHAS discounts to eligible cardholders on selected weekdays. Present the required physical or digital CHAS card at checkout and check the latest in-store terms."
+      "Yes. Sheng Siong offers CHAS discounts to eligible cardholders on selected weekdays. Present the required physical or digital CHAS card at checkout and check the latest in-store terms.",
+    visibleText:
+      "Does Sheng Siong offer CHAS discounts?\nYes. Sheng Siong offers CHAS discounts to eligible cardholders on selected weekdays. Present the required physical or digital CHAS card at checkout and check the latest in-store terms."
   }
 ];
-const faqSchemaJson = JSON.stringify(buildFaqPageSchema(shengSiongFaqItems));
+const fairPriceFaqItems: BrandFaqItem[] = [
+  {
+    question: "What is the NTUC FairPrice promotion today?",
+    answer:
+      "Scroll up to see all currently active FairPrice promotions with dates and links to each full campaign. The most time-sensitive deals, such as 4-day Neighbourhood Deals and flash specials, are shown first.",
+    visibleText:
+      "What is the NTUC FairPrice promotion today?\nScroll up to see all currently active FairPrice promotions with dates and links to each full campaign. The most time-sensitive deals, such as 4-day Neighbourhood Deals and flash specials, are shown first."
+  },
+  {
+    question: "When does FairPrice release new weekly promotions?",
+    answer:
+      "FairPrice updates its weekly catalogue on Thursdays, when new Neighbourhood Deals and Price Drop offers go live. The FairPrice app and website also update weekly ads at the start of each promotional cycle.",
+    visibleText:
+      "When does FairPrice release new weekly promotions?\nFairPrice updates its weekly catalogue on Thursdays, when new Neighbourhood Deals and Price Drop offers go live. The FairPrice app and website also update weekly ads at the start of each promotional cycle."
+  },
+  {
+    question: "What is the FairPrice Price Drop, Buy Now promotion?",
+    answer:
+      "Price Drop, Buy Now is FairPrice's main weekly promotions catalogue, featuring discounts of 20% or more on selected products. It includes Must Buy, Weekly Savers, Fresh Buys, and Neighbourhood Deals.",
+    visibleText:
+      "What is the FairPrice Price Drop, Buy Now promotion?\nPrice Drop, Buy Now is FairPrice's main weekly promotions catalogue, featuring discounts of 20% or more on selected products. It includes Must Buy, Weekly Savers, Fresh Buys, and Neighbourhood Deals."
+  },
+  {
+    question: "How do I earn and use Linkpoints at FairPrice?",
+    answer:
+      "Linkpoints are earned on qualifying purchases at FairPrice Group outlets using your Link Rewards card or the FairPrice Group app. Points can be converted into cash rebates or used to redeem rewards across the Link ecosystem.",
+    visibleText:
+      "How do I earn and use Linkpoints at FairPrice?\nLinkpoints are earned on qualifying purchases at FairPrice Group outlets using your Link Rewards card or the FairPrice Group app. Points can be converted into cash rebates or used to redeem rewards across the Link ecosystem."
+  },
+  {
+    question: "Can I use CDC vouchers at FairPrice?",
+    answer:
+      "Yes. FairPrice is a participating supermarket for the CDC Vouchers scheme. Standard CDC Supermarket Vouchers and SG60 Supermarket Vouchers are redeemable at FairPrice outlets.",
+    visibleText:
+      "Can I use CDC vouchers at FairPrice?\nYes. FairPrice is a participating supermarket for the CDC Vouchers scheme. Standard CDC Supermarket Vouchers and SG60 Supermarket Vouchers are redeemable at FairPrice outlets."
+  },
+  {
+    question: "Does FairPrice offer senior citizen discounts?",
+    answer:
+      "Yes. Singaporeans aged 60 and above enjoy discounts on designated days at FairPrice. Present your NRIC or use the FairPrice Group app at checkout. Pioneer Generation and Merdeka Generation cardholders have separate discount schemes.",
+    visibleText:
+      "Does FairPrice offer senior citizen discounts?\nYes. Singaporeans aged 60 and above enjoy discounts on designated days at FairPrice. Present your NRIC or use the FairPrice Group app at checkout. Pioneer Generation and Merdeka Generation cardholders have separate discount schemes."
+  },
+  {
+    question: "Does FairPrice offer CHAS discounts?",
+    answer:
+      "Yes. FairPrice offers discounts to CHAS Blue and CHAS Orange cardholders on designated days. Discounts can be auto-applied when you link your CHAS card via MyInfo on the FairPrice Group app.",
+    visibleText:
+      "Does FairPrice offer CHAS discounts?\nYes. FairPrice offers discounts to CHAS Blue and CHAS Orange cardholders on designated days. Discounts can be auto-applied when you link your CHAS card via MyInfo on the FairPrice Group app."
+  },
+  {
+    question: "What is the difference between FairPrice, FairPrice Finest, and FairPrice Xtra?",
+    answer:
+      "FairPrice is the standard neighbourhood supermarket format, FairPrice Finest is the premium format with more international and gourmet products, and FairPrice Xtra is the hypermarket format with groceries plus lifestyle categories.",
+    visibleText:
+      "What is the difference between FairPrice, FairPrice Finest, and FairPrice Xtra?\nFairPrice is the standard neighbourhood supermarket format, FairPrice Finest is the premium format with more international and gourmet products, and FairPrice Xtra is the hypermarket format with groceries plus lifestyle categories."
+  }
+];
+const giantFaqItems: BrandFaqItem[] = [
+  {
+    question: "What is the Giant supermarket promotion this week?",
+    answer:
+      "Scroll up to see all currently active Giant promotions with valid dates and links to each full campaign. Weekly Super Savings deals and active flash specials are listed from the dynamic promotion feed.",
+    visibleText:
+      "What is the Giant supermarket promotion this week?\nScroll up to see all currently active Giant promotions with valid dates and links to each full campaign. Weekly Super Savings deals and active flash specials are listed from the dynamic promotion feed."
+  },
+  {
+    question: "When does Giant release new weekly promotions?",
+    answer:
+      "Giant typically releases Super Savings weekly specials mid-week, with longer promotions like Value Heroes running for several weeks. Store-exclusive flash deals can appear at any time.",
+    visibleText:
+      "When does Giant release new weekly promotions?\nGiant typically releases Super Savings weekly specials mid-week, with longer promotions like Value Heroes running for several weeks. Store-exclusive flash deals can appear at any time."
+  },
+  {
+    question: "Does Giant offer senior citizen discounts?",
+    answer:
+      "Yes. Eligible senior shoppers can receive in-store discounts at Giant on designated days. The shopper must be present and show the required identification at checkout. Check the current listing or in-store terms for the latest conditions.",
+    visibleText:
+      "Does Giant offer senior citizen discounts?\nYes. Eligible senior shoppers can receive in-store discounts at Giant on designated days. The shopper must be present and show the required identification at checkout. Check the current listing or in-store terms for the latest conditions."
+  },
+  {
+    question: "Does Giant offer CHAS cardholder discounts?",
+    answer:
+      "Yes. Giant offers in-store discounts to eligible CHAS cardholders on designated days. Present a physical or digital CHAS card at checkout and check the latest terms for exclusions.",
+    visibleText:
+      "Does Giant offer CHAS cardholder discounts?\nYes. Giant offers in-store discounts to eligible CHAS cardholders on designated days. Present a physical or digital CHAS card at checkout and check the latest terms for exclusions."
+  },
+  {
+    question: "What is the yuu Rewards Club at Giant?",
+    answer:
+      "yuu Rewards is a multi-brand loyalty programme that lets shoppers earn points at Giant and redeem them across partner brands. Members can also access exclusive yuu deals and bonus point promotions.",
+    visibleText:
+      "What is the yuu Rewards Club at Giant?\nyuu Rewards is a multi-brand loyalty programme that lets shoppers earn points at Giant and redeem them across partner brands. Members can also access exclusive yuu deals and bonus point promotions."
+  },
+  {
+    question: "What is Giant's Meadows brand?",
+    answer:
+      "Meadows is Giant's housebrand label for everyday essentials, including fresh and frozen food, pantry items, dairy, cleaning, and personal care products. Meadows items are often featured in weekly promotions.",
+    visibleText:
+      "What is Giant's Meadows brand?\nMeadows is Giant's housebrand label for everyday essentials, including fresh and frozen food, pantry items, dairy, cleaning, and personal care products. Meadows items are often featured in weekly promotions."
+  },
+  {
+    question: "Can I use CDC vouchers at Giant?",
+    answer:
+      "Yes. Giant accepts CDC Supermarket Vouchers and SG60 Supermarket Vouchers at its outlets. During special voucher promotion periods, spending vouchers may unlock additional return vouchers or product discounts.",
+    visibleText:
+      "Can I use CDC vouchers at Giant?\nYes. Giant accepts CDC Supermarket Vouchers and SG60 Supermarket Vouchers at its outlets. During special voucher promotion periods, spending vouchers may unlock additional return vouchers or product discounts."
+  },
+  {
+    question: "What is the difference between Giant supermarket and Giant Hypermarket?",
+    answer:
+      "Giant neighbourhood supermarkets are smaller-format grocery stores, while Giant Hypermarkets at Tampines and IMM are larger stores with a broader range of products and store-exclusive events or deals.",
+    visibleText:
+      "What is the difference between Giant supermarket and Giant Hypermarket?\nGiant neighbourhood supermarkets are smaller-format grocery stores, while Giant Hypermarkets at Tampines and IMM are larger stores with a broader range of products and store-exclusive events or deals."
+  }
+];
+const faqSchema = isShengSiongPage
+  ? buildFaqPageSchema(shengSiongFaqItems)
+  : isFairPricePage
+    ? buildFaqPageSchema(fairPriceFaqItems)
+    : isGiantPage
+      ? buildFaqPageSchema(giantFaqItems)
+    : undefined;
 ---
 
 <Layout title={title} description={description} image={heroImage} canonical={`/${collection.slug}`}>
-  {isShengSiongPage && <script is:inline slot="head" type="application/ld+json" set:html={faqSchemaJson} />}
+  {faqSchema && <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 
   <section class="container-page py-16" data-pagefind-body data-pagefind-meta={`title:${title};brand:${brand?.name || ""}`}>
     <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -81,7 +239,7 @@ const faqSchemaJson = JSON.stringify(buildFaqPageSchema(shengSiongFaqItems));
         <p class="eyebrow">Promotions</p>
         <h1 class="page-title mt-4">{h1}</h1>
         <p class="page-intro mt-6 max-w-3xl">{description}</p>
-        {isShengSiongPage && (
+        {hasSeoArticle && (
           <p class="mt-5 text-sm font-semibold text-muted">
             Last updated <time datetime={lastUpdatedIso}>{lastUpdatedLabel}</time>
           </p>
@@ -103,8 +261,34 @@ const faqSchemaJson = JSON.stringify(buildFaqPageSchema(shengSiongFaqItems));
       </div>
     )}
 
+    {isFairPricePage && (
+      <div class="mt-10 overflow-hidden border border-line bg-white">
+        <img
+          src="/images/fairpricepromotions-banner.png"
+          alt="FairPrice promotions banner with supermarket deals"
+          class="aspect-[1693/929] w-full object-cover"
+          width="1693"
+          height="929"
+          loading="eager"
+        />
+      </div>
+    )}
+
+    {isGiantPage && (
+      <div class="mt-10 overflow-hidden border border-line bg-white">
+        <img
+          src="/images/giantsupermarketpromotions-banner.png"
+          alt="Giant supermarket promotions banner with weekly deals"
+          class="aspect-[1774/887] w-full object-cover"
+          width="1774"
+          height="887"
+          loading="eager"
+        />
+      </div>
+    )}
+
     <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {promotions.map((promotion) => <PromotionCard promotion={promotion} linkText={`View current deals at this store`} />)}
+      {promotions.map((promotion) => <PromotionCard promotion={promotion} />)}
     </div>
 
     {isShengSiongPage && (
@@ -180,7 +364,7 @@ const faqSchemaJson = JSON.stringify(buildFaqPageSchema(shengSiongFaqItems));
               <ul class="mt-6 list-disc space-y-3 pl-6 leading-8 text-muted">
                 <li>Bookmark this page and check the current promotion listings before your next grocery trip.</li>
                 <li>Use the Sheng Siong app to review in-store deals, e-receipts, and nearby store locations.</li>
-                <li>Review each visible promotion flyer for product prices and terms where available.</li>
+                <li>Open each promotion detail page for the full flyer, product prices, and terms where available.</li>
                 <li>Compare Sheng Siong locations through the linked outlet pages before planning a larger shop.</li>
               </ul>
             </section>
@@ -214,22 +398,290 @@ const faqSchemaJson = JSON.stringify(buildFaqPageSchema(shengSiongFaqItems));
         </div>
       </article>
     )}
-  </section>
 
-  {outlets.length > 0 && (
-    <section class="border-t border-line bg-white py-16">
-      <div class="container-page">
-        <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <div>
-            <p class="eyebrow">Outlet links</p>
-            <h2 class="section-title mt-3">{brand?.name} outlets with relevant promotions</h2>
-            <p class="mt-4 text-sm text-muted">{formatCount(outlets.length, "outlet")} linked from this promotions page.</p>
+    {isFairPricePage && (
+      <article class="mt-16 border-t border-line pt-12" aria-labelledby="fairprice-promotions-guide">
+        <div class="grid gap-10 lg:grid-cols-[0.32fr_1fr] lg:items-start">
+          <aside class="border border-line bg-white p-5 text-sm leading-6 text-muted">
+            <p class="eyebrow">Guide</p>
+            <p class="mt-4">
+              Use this page to compare current NTUC FairPrice deals, then jump to{" "}
+              <a class="fine-link font-semibold text-ink" href={canonicalPath(`/brands/${brand?.slug || "FairPrice"}`)}>FairPrice outlets</a>{" "}
+              or browse all{" "}
+              <a class="fine-link font-semibold text-ink" href={canonicalPath("/supermarkets")}>supermarket pages</a>.
+            </p>
+          </aside>
+
+          <div class="max-w-4xl space-y-12">
+            <section>
+              <h2 id="fairprice-promotions-guide" class="section-title">What Are the Latest NTUC FairPrice Promotions?</h2>
+              <div class="mt-6 space-y-5 text-base leading-8 text-muted">
+                <p>
+                  Looking for the best NTUC FairPrice promotions this week? This page tracks active FairPrice promotions in Singapore, from weekly Price Drop catalogues and Everyday Low Price deals to card-based discounts and seasonal campaigns.
+                </p>
+                <p>
+                  NTUC FairPrice is Singapore&apos;s largest supermarket chain, with FairPrice, FairPrice Finest, FairPrice Xtra, and Cheers formats across the island. The promotion listings above stay connected to the site&apos;s dynamic promotion feed, so offer dates and flyer details come from current records instead of fixed article copy.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">Types of NTUC FairPrice Promotions You&apos;ll Find Here</h2>
+              <div class="mt-7 grid gap-7">
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Price Drop, Buy Now</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    FairPrice&apos;s flagship weekly promotion features discounts on a rotating selection of products across fresh food, household essentials, frozen goods, personal care, and more. Sub-campaigns can include Must Buy, Weekly Savers, Fresh Buys, and Neighbourhood Deals.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Everyday Low Price</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Everyday Low Price keeps selected essential items at stable value pricing, helping shoppers save on staples without waiting for a short-term sale.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Bonus Point Promotions</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    FairPrice regularly runs loyalty campaigns where shoppers earn bonus points on qualifying spend, then redeem those points for selected gifts or rewards.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Stack Up for More Savings &amp; Rewards</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Stack Up promotions layer weekly deals, Linkpoints, member pricing, and card offers so shoppers can combine several saving routes in one grocery trip.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">CHAS Cardholder Discounts</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    FairPrice offers regular savings for eligible CHAS cardholders. Check the latest promotion listings for current discount rates, applicable days, and redemption details.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Pioneer, Merdeka, and Senior Citizen Discounts</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Pioneer Generation, Merdeka Generation, and senior shoppers can enjoy designated discount days. Bring the required card or identification and confirm current terms before checkout.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">NTUC Union Member Deals</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    NTUC Union and Link members can access member-exclusive deals by presenting a Link Rewards card or using the FairPrice Group app.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Trust Bank and Credit Card Promotions</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    FairPrice periodically runs bank and cardholder offers, including Trust Bank-linked savings and promotions with local card issuers. Review each listing for spend requirements and terms.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">CDC Supermarket Vouchers</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    FairPrice participates in CDC Vouchers schemes, including supermarket voucher redemptions. During special campaign periods, voucher spending can unlock extra savings or return vouchers.
+                  </p>
+                </section>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">How to Never Miss an NTUC FairPrice Promotion</h2>
+              <ul class="mt-6 list-disc space-y-3 pl-6 leading-8 text-muted">
+                <li>Bookmark this page and check the current promotion listings before your next shop.</li>
+                <li>Download the FairPrice Group app to browse catalogues, earn Linkpoints, apply e-vouchers, and manage member discounts.</li>
+                <li>Watch the promotion calendar for Thursday catalogue updates, Neighbourhood Deals, Union Deals, and cardholder discount days.</li>
+                <li>Stack savings where terms allow by combining weekly deals, Linkpoints, member pricing, card discounts, and voucher schemes.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 class="section-title">About NTUC FairPrice</h2>
+              <div class="mt-6 space-y-5 text-base leading-8 text-muted">
+                <p>
+                  NTUC FairPrice is a co-operative supermarket chain founded in 1973 by the National Trades Union Congress to help moderate the cost of living for Singaporeans. Today it is Singapore&apos;s largest supermarket operator, spanning neighbourhood supermarkets, FairPrice Finest stores, FairPrice Xtra hypermarkets, and Cheers convenience stores.
+                </p>
+                <p>
+                  FairPrice promotions are known for broad coverage across fresh produce, frozen and chilled goods, household essentials, personal care, wines and spirits, and baby products. You can use this page alongside the{" "}
+                  <a class="fine-link font-semibold text-ink" href={canonicalPath(`/brands/${brand?.slug || "FairPrice"}`)}>FairPrice supermarket guide</a>{" "}
+                  to move from deals to nearby stores.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">Frequently Asked Questions</h2>
+              <div class="mt-7 divide-y divide-line border-y border-line bg-white">
+                {fairPriceFaqItems.map((item) => (
+                  <section class="py-6">
+                    <h3 class="font-serif text-2xl leading-tight text-ink">{item.question}</h3>
+                    <p class="mt-3 leading-8 text-muted">{item.answer}</p>
+                  </section>
+                ))}
+              </div>
+            </section>
+
+            <p class="border-t border-line pt-6 text-sm leading-6 text-muted">
+              Promotions on this page are updated regularly. Prices and availability are subject to change. Always verify current details with the full promotion listing or your nearest FairPrice outlet.
+            </p>
           </div>
         </div>
-        <div class="mt-8 columns-1 gap-8 text-sm leading-7 sm:columns-2 lg:columns-3">
-          {outlets.map((outlet) => (
-            <a class="fine-link mb-2 block break-inside-avoid" href={canonicalPath(`/supermarkets/${outlet.slug}`)}>{outlet.outletName}</a>
-          ))}
+      </article>
+    )}
+
+    {isGiantPage && (
+      <article class="mt-16 border-t border-line pt-12" aria-labelledby="giant-promotions-guide">
+        <div class="grid gap-10 lg:grid-cols-[0.32fr_1fr] lg:items-start">
+          <aside class="border border-line bg-white p-5 text-sm leading-6 text-muted">
+            <p class="eyebrow">Guide</p>
+            <p class="mt-4">
+              Use this page to compare current Giant supermarket deals, then jump to{" "}
+              <a class="fine-link font-semibold text-ink" href={canonicalPath(`/brands/${brand?.slug || "Giant"}`)}>Giant outlets</a>{" "}
+              or browse all{" "}
+              <a class="fine-link font-semibold text-ink" href={canonicalPath("/supermarkets")}>supermarket pages</a>.
+            </p>
+          </aside>
+
+          <div class="max-w-4xl space-y-12">
+            <section>
+              <h2 id="giant-promotions-guide" class="section-title">What Are the Latest Giant Supermarket Promotions?</h2>
+              <div class="mt-6 space-y-5 text-base leading-8 text-muted">
+                <p>
+                  Looking for the best Giant supermarket promotions this week? This page tracks active Giant promotions in Singapore, from weekly Super Savings catalogues and Value Heroes deals to yuu Rewards offers, card-based discounts, and store-exclusive events.
+                </p>
+                <p>
+                  Giant is one of Singapore&apos;s established supermarket chains, with outlets ranging from neighbourhood supermarkets to large-format hypermarkets. The promotion listings above stay connected to the site&apos;s dynamic promotion feed, so offer dates and flyer details come from current records instead of fixed article copy.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">Types of Giant Supermarket Promotions You&apos;ll Find Here</h2>
+              <div class="mt-7 grid gap-7">
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Super Savings</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant&apos;s weekly Super Savings campaigns feature rotating discounts across fresh produce, pantry staples, frozen foods, beverages, household products, and personal care items.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Value Heroes</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Value Heroes promotions cover selected everyday essentials over a longer shopping window, giving households more time to stock up on staple items.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">2-Day and 3-Day Specials</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant also runs short-window flash promotions on selected high-demand products. These limited-time specials are added to the promotion listings whenever they go live.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Lower Prices That Last</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Lower Prices That Last is Giant&apos;s everyday value programme for popular daily essentials, helping shoppers save without waiting for a short sale period.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Store-Exclusive Promotions</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Larger stores such as Giant Tampines Hypermarket and Giant IMM may run store-exclusive fairs, return voucher deals, or in-store events that do not apply at every neighbourhood outlet.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">yuu Rewards Club</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant is part of the yuu Rewards ecosystem. Shoppers can earn yuu Points on qualifying Giant purchases, redeem rewards, and access member-exclusive deals through the yuu app.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Win Your Grocery Bill Back</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant periodically runs lucky draw promotions for yuu members, where qualifying receipts can enter shoppers into prize or points campaigns.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">CHAS, Senior, Pioneer, and Merdeka Discounts</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant offers in-store savings for eligible CHAS cardholders, seniors, Pioneer Generation, and Merdeka Generation shoppers on designated days. Always check current terms and exclusions before checkout.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Bank and Credit Card Partnerships</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant periodically partners with local banks and card issuers for cardmember deals. Review each promotion listing for minimum spend, eligible cards, and redemption conditions.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">SG60 and CDC Voucher Redemption</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Giant participates in supermarket voucher schemes. During voucher redemption campaigns, shoppers may be able to unlock extra return vouchers or product discounts.
+                  </p>
+                </section>
+                <section>
+                  <h3 class="font-serif text-2xl leading-tight text-ink">Meadows Own Brand</h3>
+                  <p class="mt-3 leading-8 text-muted">
+                    Meadows is Giant&apos;s housebrand range for everyday products across fresh, dairy, frozen, pantry, cleaning, and personal care categories. Meadows products often appear in Giant&apos;s value campaigns.
+                  </p>
+                </section>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">How to Never Miss a Giant Supermarket Promotion</h2>
+              <ul class="mt-6 list-disc space-y-3 pl-6 leading-8 text-muted">
+                <li>Bookmark this page and check the current promotion listings before your next grocery trip.</li>
+                <li>Download the yuu app to browse current deals, earn and redeem yuu Points, and access member-exclusive offers.</li>
+                <li>Watch the savings calendar for senior, CHAS, Pioneer, Merdeka, and cardholder discount days.</li>
+                <li>Check store-exclusive listings if you shop at larger Giant stores such as Tampines Hypermarket or IMM.</li>
+                <li>Stack savings where terms allow by combining a weekly deal with yuu rewards, bank card offers, or voucher schemes.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 class="section-title">About Giant Singapore</h2>
+              <div class="mt-6 space-y-5 text-base leading-8 text-muted">
+                <p>
+                  Giant is a supermarket chain operated by Cold Storage Singapore and part of DFI Retail Group. In Singapore, Giant serves value-conscious shoppers through neighbourhood supermarkets and larger hypermarket formats.
+                </p>
+                <p>
+                  Giant is known for competitive grocery pricing, Meadows own-brand products, yuu Rewards participation, and accessible promotions for seniors and government scheme cardholders. You can use this page alongside the{" "}
+                  <a class="fine-link font-semibold text-ink" href={canonicalPath(`/brands/${brand?.slug || "Giant"}`)}>Giant supermarket guide</a>{" "}
+                  to move from deals to nearby stores.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title">Frequently Asked Questions</h2>
+              <div class="mt-7 divide-y divide-line border-y border-line bg-white">
+                {giantFaqItems.map((item) => (
+                  <section class="py-6">
+                    <h3 class="font-serif text-2xl leading-tight text-ink">{item.question}</h3>
+                    <p class="mt-3 leading-8 text-muted">{item.answer}</p>
+                  </section>
+                ))}
+              </div>
+            </section>
+
+            <p class="border-t border-line pt-6 text-sm leading-6 text-muted">
+              Promotions on this page are updated regularly. Prices, discount rates, and applicable days are subject to change. Always verify current details with the full promotion listing or your nearest Giant outlet.
+            </p>
+          </div>
+        </div>
+      </article>
+    )}
+  </section>
+
+  {brand && outletCount > 0 && (
+    <section class="border-t border-line bg-white py-16">
+      <div class="container-page">
+        <div>
+          <p class="eyebrow">Outlet links</p>
+          <h2 class="section-title mt-3">{brand.name} outlets with relevant promotions</h2>
+          <a class="mt-4 inline-block text-sm font-semibold text-muted underline decoration-current underline-offset-4 transition hover:text-brass" href={canonicalPath(`/brands/${brand.slug}`)}>
+            {formatCount(outletCount, "outlet")} linked from this promotions page.
+          </a>
         </div>
       </div>
     </section>

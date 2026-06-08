@@ -1,10 +1,5 @@
 import type { Supermarket, TaxonomyItem } from "./airtable";
 
-export type FaqItem = {
-  question: string;
-  answer: string;
-};
-
 const PRIORITY_NEIGHBOURHOODS = [
   "Woodlands",
   "Tampines",
@@ -39,34 +34,11 @@ export function splitDescriptionParagraphs(description: string | undefined) {
   );
 }
 
-export function parseFaqItems(value: string | undefined): FaqItem[] {
-  return splitDescriptionParagraphs(value)
-    .map((block) => {
-      const lines = block
-        .split("\n")
-        .map((line) => line.trim())
-        .filter(Boolean);
-      const [questionLine, ...answerLines] = lines;
-      const question = cleanFaqQuestion(questionLine);
-      const answer = answerLines.join("\n").trim();
+export function truncateWords(text: string | undefined, limit: number) {
+  const words = text?.trim().split(/\s+/).filter(Boolean) ?? [];
+  if (words.length <= limit) return text?.trim() ?? "";
 
-      if (!question || !answer) return undefined;
-
-      return { question, answer };
-    })
-    .filter((item): item is FaqItem => Boolean(item));
-}
-
-function cleanFaqQuestion(value: string | undefined) {
-  return (
-    value
-      ?.replace(/^\*\*/, "")
-      .replace(/\*\*$/, "")
-      .replace(/^#+\s*/, "")
-      .replace(/^[-*]\s*/, "")
-      .replace(/^Q:\s*/i, "")
-      .trim() ?? ""
-  );
+  return `${words.slice(0, limit).join(" ")}...`;
 }
 
 export function sortFeaturedNeighbourhoods(neighbourhoods: TaxonomyItem[]) {
@@ -97,7 +69,7 @@ export function getRelatedByNeighbourhood(outlet: Supermarket, allOutlets: Super
 
 export function pageDescription(title: string, count?: number) {
   if (typeof count === "number") {
-    return `${title} with ${formatCount(count, "published supermarket outlet")} across Singapore.`;
+    return `${title} with ${formatCount(count, "supermarket outlet")} across Singapore.`;
   }
 
   return `${title}, a curated guide to supermarkets across Singapore by brand, neighbourhood, mall, and MRT station.`;

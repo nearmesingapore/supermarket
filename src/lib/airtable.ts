@@ -36,7 +36,7 @@ export type Supermarket = {
   facebookUrl: string;
   instagramUrl: string;
   imageUrl: string;
-  galleryImageUrls: string[];
+  galleryImagesUrl: string;
   gettingThereByCar: string;
   gettingThereByPublicTransport: string;
   nearbyBusServices: string;
@@ -60,6 +60,7 @@ export type Promotion = {
   imageUrls: string[];
   brand: LinkedItem;
   linkedOutlets: LinkedItem[];
+  detailPath: string;
 };
 
 export type PromotionCollection = {
@@ -68,8 +69,17 @@ export type PromotionCollection = {
   brandSlug: string;
 };
 
+export type SupermarketBrandPage = {
+  brand: TaxonomyItem;
+  pathSlug: string;
+  outlets: Supermarket[];
+};
+
 export type DirectoryData = {
   brands: TaxonomyItem[];
+  featuredBrands: TaxonomyItem[];
+  supermarketBrands: TaxonomyItem[];
+  groceryStoreBrands: TaxonomyItem[];
   neighbourhoods: TaxonomyItem[];
   malls: TaxonomyItem[];
   mrtStations: TaxonomyItem[];
@@ -102,6 +112,13 @@ const TABLES = {
   giantPromotions: "tblWdAbg7RqHoxFax"
 } as const;
 
+type PromotionCollectionConfig = {
+  key: "shengSiongPromotions" | "fairpricePromotions" | "giantPromotions";
+  label: string;
+  slug: string;
+  brandSlug: string;
+};
+
 const PROMOTION_TABLES = [
   {
     key: "shengSiongPromotions",
@@ -122,13 +139,6 @@ const PROMOTION_TABLES = [
     brandSlug: "Giant"
   }
 ] as const satisfies readonly PromotionCollectionConfig[];
-
-type PromotionCollectionConfig = {
-  key: "shengSiongPromotions" | "fairpricePromotions" | "giantPromotions";
-  label: string;
-  slug: string;
-  brandSlug: string;
-};
 
 const FIELDS = {
   supermarkets: {
@@ -453,22 +463,27 @@ async function loadDirectoryData(): Promise<DirectoryData> {
 
   if (supermarketRecords.length > 0 && supermarkets.length === 0) {
     throw new Error(
-      "No supermarket routes can be generated from Airtable. Ensure each outlet has an Outlet Name and Slug."
+      "No valid supermarkets found in Airtable. Ensure each supermarket has an Outlet Name and Slug."
     );
   }
 
-  const countedBrands = withCounts(brands.items, supermarkets, (outlet) => outlet.brand);
-  const countedNeighbourhoods = withCounts(neighbourhoods.items, supermarkets, (outlet) => outlet.neighbourhood)
+  const supermarketBrands = withCounts(brands.items, supermarkets, (outlet) => outlet.brand)
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const groceryStoreBrands = withCounts(brands.items, [...groceryStores, ...convenienceStores, ...generalStores], (outlet) => outlet.brand)
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const countedBrands = groupSupermarketBrandsFirst(supermarketBrands, groceryStoreBrands);
+  const allOutlets = [...supermarkets, ...groceryStores, ...convenienceStores, ...generalStores];
+  const featuredBrands = filterBrandsByFeaturedOutlets(countedBrands, allOutlets);
+  const countedNeighbourhoods = withCounts(neighbourhoods.items, allOutlets, (outlet) => outlet.neighbourhood)
     .filter((item) => isValidNeighbourhoodName(item.name));
-  const countedMalls = withCounts(malls.items, supermarkets, (outlet) => outlet.mall);
-  const countedMrtStations = withCounts(mrtStations.items, supermarkets, (outlet) => outlet.mrt);
+  const countedMalls = withCounts(malls.items, allOutlets, (outlet) => outlet.mall);
+  const countedMrtStations = withCounts(mrtStations.items, allOutlets, (outlet) => outlet.mrt);
   const promotionRecords = await Promise.all(
     PROMOTION_TABLES.map(async (collection) => ({
       collection,
       records: await fetchAirtableRecords(baseId, TABLES[collection.key], apiKey)
     }))
   );
-  const allOutlets = [...supermarkets, ...groceryStores, ...convenienceStores, ...generalStores];
   const promotions = promotionRecords
     .flatMap(({ collection, records }) =>
       records.map((record) =>
@@ -485,7 +500,10 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     .sort((a, b) => a.title.localeCompare(b.title));
 
   return {
-    brands: countedBrands.sort((a, b) => a.name.localeCompare(b.name)),
+    brands: countedBrands,
+    featuredBrands,
+    supermarketBrands,
+    groceryStoreBrands,
     neighbourhoods: countedNeighbourhoods.sort((a, b) => a.name.localeCompare(b.name)),
     malls: countedMalls.sort((a, b) => a.name.localeCompare(b.name)),
     mrtStations: countedMrtStations.sort((a, b) => a.name.localeCompare(b.name)),
@@ -516,7 +534,7 @@ function createLookup(
     .map((record) => ({
       id: record.id,
       name: readFieldString(record.fields, nameField),
-      slug: readFieldString(record.fields, slugField),
+      slug: readFieldString(record.fields, slugField) || slugify(readFieldString(record.fields, nameField)),
       imageUrl: imageUrlField ? readFieldString(record.fields, imageUrlField) : undefined,
       description: descriptionField ? readFieldString(record.fields, descriptionField) : undefined,
       brandFaq: brandFaqField ? readFieldString(record.fields, brandFaqField) : undefined
@@ -559,7 +577,7 @@ function normalizeOutlet(
     facebookUrl: readFieldString(fields, fieldsConfig.facebookUrl),
     instagramUrl: readFieldString(fields, fieldsConfig.instagramUrl),
     imageUrl: readFieldString(fields, fieldsConfig.imageUrl),
-    galleryImageUrls: parseGalleryImageUrls(readFieldString(fields, fieldsConfig.galleryImagesUrl)),
+    galleryImagesUrl: readFieldString(fields, fieldsConfig.galleryImagesUrl),
     gettingThereByCar: readFieldString(fields, fieldsConfig.gettingThereByCar),
     gettingThereByPublicTransport: readFieldString(fields, fieldsConfig.gettingThereByPublicTransport),
     nearbyBusServices: readFieldString(fields, fieldsConfig.nearbyBusServices),
@@ -585,8 +603,8 @@ function normalizePromotion(
   const title = readFieldString(fields, fieldsConfig.title);
   if (!title) return undefined;
 
-  const rawSlug = readFieldString(fields, fieldsConfig.slug) || title;
-  const slug = slugify(rawSlug);
+  const rawSlug = readFieldString(fields, fieldsConfig.slug);
+  const slug = buildPromotionSlug(collection.slug, rawSlug || slugify(title));
   const linkedOutlets = resolveLinks(
     readField(fields, fieldsConfig.outlets),
     new Map(allOutlets.map((outlet) => [outlet.id, outletToLinkedItem(outlet)]))
@@ -613,7 +631,8 @@ function normalizePromotion(
       readFieldString(fields, fieldsConfig.imageUrl2)
     ].filter(Boolean),
     brand,
-    linkedOutlets: relevantOutlets
+    linkedOutlets: relevantOutlets,
+    detailPath: `/promotions/${slug}`
   };
 }
 
@@ -643,6 +662,19 @@ export function getOutletPromotions(promotions: Promotion[], outlet: Supermarket
   return typeof limit === "number" ? relevant.slice(0, limit) : relevant;
 }
 
+export function getSupermarketBrandPages(data: DirectoryData): SupermarketBrandPage[] {
+  return data.supermarketBrands
+    .filter((brand) => brand.count > 1)
+    .map((brand) => ({
+      brand,
+      pathSlug: slugify(brand.name),
+      outlets: data.supermarkets
+        .filter((outlet) => outlet.brand.some((item) => item.id === brand.id))
+        .sort((a, b) => a.outletName.localeCompare(b.outletName))
+    }))
+    .filter((page) => page.outlets.length > 1);
+}
+
 function withCounts(
   items: LinkedItem[],
   supermarkets: Supermarket[],
@@ -665,6 +697,28 @@ function uniqueSorted(values: string[]) {
   return [...new Set(values.map((value) => value.trim()).filter(Boolean))].sort((a, b) =>
     a.localeCompare(b)
   );
+}
+
+function groupSupermarketBrandsFirst(supermarketBrands: TaxonomyItem[], groceryStoreBrands: TaxonomyItem[]) {
+  const supermarketBrandIds = new Set(supermarketBrands.map((brand) => brand.id));
+  const groceryCounts = new Map(groceryStoreBrands.map((brand) => [brand.id, brand.count]));
+  const supermarketGroup = supermarketBrands.map((brand) => ({
+    ...brand,
+    count: brand.count + (groceryCounts.get(brand.id) || 0)
+  }));
+  const groceryOnlyGroup = groceryStoreBrands.filter((brand) => !supermarketBrandIds.has(brand.id));
+
+  return [...supermarketGroup, ...groceryOnlyGroup];
+}
+
+function filterBrandsByFeaturedOutlets(brands: TaxonomyItem[], outlets: Supermarket[]) {
+  const featuredBrandIds = new Set(
+    outlets
+      .filter((outlet) => outlet.featured)
+      .flatMap((outlet) => outlet.brand.map((brand) => brand.id))
+  );
+
+  return brands.filter((brand) => featuredBrandIds.has(brand.id));
 }
 
 function uniqueOutletSlug(outlet: Supermarket, index: number, outlets: Supermarket[]) {
@@ -701,28 +755,29 @@ function readPostalCode(value: unknown) {
   return "";
 }
 
-function parseGalleryImageUrls(value: string) {
+function slugify(value: string) {
   return value
-    .split(",")
-    .map((url) => url.trim())
-    .filter(Boolean);
+    .trim()
+    .replace(/&/g, "and")
+    .replace(/[^A-Za-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .toLowerCase();
+}
+
+function normalizeRouteSlug(value: string) {
+  return value.trim().replace(/^\/+|\/+$/g, "");
+}
+
+function buildPromotionSlug(collectionSlug: string, value: string) {
+  const slug = normalizeRouteSlug(value) || slugify(value);
+  if (normalizeComparable(slug).startsWith(normalizeComparable(collectionSlug))) return slug;
+  return `${collectionSlug}-${slug}`;
 }
 
 function summarizeDescription(value: string) {
   const firstParagraph = value.split(/\n\s*\n/)[0]?.trim() || "";
   if (firstParagraph.length <= 180) return firstParagraph;
   return `${firstParagraph.slice(0, 177).trim()}...`;
-}
-
-function slugify(value: string) {
-  return (
-    value
-      .trim()
-      .toLowerCase()
-      .replace(/&/g, "and")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "") || "promotion"
-  );
 }
 
 function normalizeComparable(value: string) {

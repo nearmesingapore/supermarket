@@ -2,10 +2,12 @@
 import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
 import OutletGallery from "@/components/OutletGallery.astro";
+import OutletMap from "@/components/OutletMap.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
 import { getDirectoryData, getFirstInitial, getOutletPromotions, type GroceryStore } from "@/lib/airtable";
-import { getPrimary, getRelatedByNeighbourhood } from "@/lib/content";
+import { getPrimary, getRelatedByNeighbourhood, splitDescriptionParagraphs } from "@/lib/content";
 import { canonicalPath } from "@/lib/seo";
+import { getOutletSocialLinks } from "@/lib/social";
 
 export async function getStaticPaths() {
   const data = await getDirectoryData();
@@ -25,8 +27,10 @@ const promotionCollection = brand
   : undefined;
 const title = `${brand?.name ? `${brand.name} ` : ""}${outlet.outletName}`;
 const description = outlet.description || `${title} in Singapore${neighbourhood ? `, near ${neighbourhood.name}` : ""}. View address, opening hours, MRT, mall, and contact details.`;
+const descriptionParagraphs = splitDescriptionParagraphs(outlet.description);
 const initial = getFirstInitial(brand?.name || "", outlet.outletName);
 const fullAddress = [outlet.address, outlet.postalCode].filter(Boolean).join(" ");
+const socialLinks = getOutletSocialLinks(outlet);
 const schema = {
   "@context": "https://schema.org",
   "@type": "GroceryStore",
@@ -52,7 +56,7 @@ const schema = {
     data-pagefind-meta={`title:${outlet.outletName};brand:${brand?.name || ""};neighbourhood:${neighbourhood?.name || ""};mrt:${mrt?.name || ""}`}
   >
     <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-      <div class="space-y-8">
+      <div class="space-y-6">
         <div class="overflow-hidden border border-line bg-white">
           <div class="aspect-[4/3] bg-[#f2efe9]">
             {outlet.imageUrl ? (
@@ -61,20 +65,20 @@ const schema = {
               <div class="flex h-full w-full items-center justify-center font-serif text-8xl text-brass">{initial}</div>
             )}
           </div>
+          <OutletGallery outletName={outlet.outletName} galleryImagesUrl={outlet.galleryImagesUrl} />
         </div>
-
+        <OutletMap outletName={outlet.outletName} fullAddress={fullAddress} googleMapsUrl={outlet.googleMapsUrl} />
         {outlet.openingHours && (
           <section class="border border-line bg-white p-6">
             <h2 class="font-serif text-3xl">Opening hours</h2>
             <p class="mt-4 whitespace-pre-line leading-7 text-muted">{outlet.openingHours}</p>
           </section>
         )}
-        {(outlet.facebookUrl || outlet.instagramUrl) && (
+        {socialLinks.length > 0 && (
           <section class="border border-line bg-white p-6">
             <h2 class="font-serif text-3xl">Social links</h2>
             <div class="mt-4 flex flex-wrap gap-3 text-sm">
-              {outlet.facebookUrl && <a class="fine-link" href={outlet.facebookUrl} target="_blank" rel="noreferrer">Facebook</a>}
-              {outlet.instagramUrl && <a class="fine-link" href={outlet.instagramUrl} target="_blank" rel="noreferrer">Instagram</a>}
+              {socialLinks.map((link) => <a class="fine-link" href={link.url} target="_blank" rel="noreferrer">{link.label}</a>)}
             </div>
           </section>
         )}
@@ -83,7 +87,11 @@ const schema = {
       <div>
         <p class="eyebrow">{brand?.name || "Independent"}</p>
         <h1 class="page-title mt-4">{outlet.outletName}</h1>
-        {outlet.description && <p class="page-intro mt-6 max-w-2xl text-ink">{outlet.description}</p>}
+        {descriptionParagraphs.length > 0 && (
+          <div class="page-intro mt-6 max-w-2xl space-y-6 text-ink">
+            {descriptionParagraphs.map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)}
+          </div>
+        )}
         <p class="page-intro mt-6 max-w-2xl">{fullAddress}</p>
 
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -114,7 +122,6 @@ const schema = {
       </div>
     </div>
 
-    <OutletGallery outletName={outlet.outletName} imageUrls={outlet.galleryImageUrls} />
   </article>
 
   {promotions.length > 0 && (

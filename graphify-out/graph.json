@@ -9,7 +9,7 @@
       "source_file": "postcss.config.mjs",
       "source_location": "L1",
       "id": "postcss_config_mjs",
-      "community": 15,
+      "community": 22,
       "norm_label": "postcss.config.mjs"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "astro.config.mjs",
       "source_location": "L1",
       "id": "astro_config_mjs",
-      "community": 16,
+      "community": 23,
       "norm_label": "astro.config.mjs"
     },
     {
@@ -27,7 +27,7 @@
       "source_file": "tailwind.config.mjs",
       "source_location": "L1",
       "id": "tailwind_config_mjs",
-      "community": 17,
+      "community": 24,
       "norm_label": "tailwind.config.mjs"
     },
     {
@@ -36,7 +36,7 @@
       "source_file": "package.json",
       "source_location": "L1",
       "id": "package_json",
-      "community": 3,
+      "community": 4,
       "norm_label": "package.json"
     },
     {
@@ -45,7 +45,7 @@
       "source_file": "package.json",
       "source_location": "L2",
       "id": "supermarket_package_name",
-      "community": 3,
+      "community": 4,
       "norm_label": "name"
     },
     {
@@ -54,7 +54,7 @@
       "source_file": "package.json",
       "source_location": "L3",
       "id": "supermarket_package_version",
-      "community": 3,
+      "community": 4,
       "norm_label": "version"
     },
     {
@@ -63,7 +63,7 @@
       "source_file": "package.json",
       "source_location": "L4",
       "id": "supermarket_package_private",
-      "community": 3,
+      "community": 4,
       "norm_label": "private"
     },
     {
@@ -72,7 +72,7 @@
       "source_file": "package.json",
       "source_location": "L5",
       "id": "supermarket_package_type",
-      "community": 3,
+      "community": 4,
       "norm_label": "type"
     },
     {
@@ -81,7 +81,7 @@
       "source_file": "package.json",
       "source_location": "L6",
       "id": "supermarket_package_scripts",
-      "community": 3,
+      "community": 4,
       "norm_label": "scripts"
     },
     {
@@ -90,7 +90,7 @@
       "source_file": "package.json",
       "source_location": "L7",
       "id": "supermarket_package_scripts_dev",
-      "community": 3,
+      "community": 4,
       "norm_label": "dev"
     },
     {
@@ -99,7 +99,7 @@
       "source_file": "package.json",
       "source_location": "L8",
       "id": "supermarket_package_scripts_build",
-      "community": 3,
+      "community": 4,
       "norm_label": "build"
     },
     {
@@ -108,7 +108,7 @@
       "source_file": "package.json",
       "source_location": "L9",
       "id": "supermarket_package_scripts_preview",
-      "community": 3,
+      "community": 4,
       "norm_label": "preview"
     },
     {
@@ -117,7 +117,7 @@
       "source_file": "package.json",
       "source_location": "L10",
       "id": "supermarket_package_scripts_test",
-      "community": 3,
+      "community": 4,
       "norm_label": "test"
     },
     {
@@ -126,7 +126,7 @@
       "source_file": "package.json",
       "source_location": "L11",
       "id": "supermarket_package_scripts_check",
-      "community": 3,
+      "community": 4,
       "norm_label": "check"
     },
     {
@@ -135,7 +135,7 @@
       "source_file": "package.json",
       "source_location": "L13",
       "id": "supermarket_package_dependencies",
-      "community": 3,
+      "community": 4,
       "norm_label": "dependencies"
     },
     {
@@ -144,7 +144,7 @@
       "source_file": "package.json",
       "source_location": "L14",
       "id": "supermarket_package_dependencies_astrojs_check",
-      "community": 3,
+      "community": 4,
       "norm_label": "@astrojs/check"
     },
     {
@@ -153,7 +153,7 @@
       "source_file": "package.json",
       "source_location": "L15",
       "id": "supermarket_package_dependencies_astrojs_tailwind",
-      "community": 3,
+      "community": 4,
       "norm_label": "@astrojs/tailwind"
     },
     {
@@ -162,7 +162,7 @@
       "source_file": "package.json",
       "source_location": "L16",
       "id": "supermarket_package_dependencies_astro",
-      "community": 3,
+      "community": 4,
       "norm_label": "astro"
     },
     {
@@ -171,7 +171,7 @@
       "source_file": "package.json",
       "source_location": "L17",
       "id": "supermarket_package_dependencies_pagefind",
-      "community": 3,
+      "community": 4,
       "norm_label": "pagefind"
     },
     {
@@ -180,7 +180,7 @@
       "source_file": "package.json",
       "source_location": "L18",
       "id": "supermarket_package_dependencies_tailwindcss",
-      "community": 3,
+      "community": 4,
       "norm_label": "tailwindcss"
     },
     {
@@ -189,7 +189,7 @@
       "source_file": "package.json",
       "source_location": "L19",
       "id": "supermarket_package_dependencies_typescript",
-      "community": 3,
+      "community": 4,
       "norm_label": "typescript"
     },
     {
@@ -198,7 +198,7 @@
       "source_file": "package.json",
       "source_location": "L21",
       "id": "supermarket_package_devdependencies",
-      "community": 3,
+      "community": 4,
       "norm_label": "devdependencies"
     },
     {
@@ -207,7 +207,7 @@
       "source_file": "package.json",
       "source_location": "L22",
       "id": "supermarket_package_devdependencies_types_node",
-      "community": 3,
+      "community": 4,
       "norm_label": "@types/node"
     },
     {
@@ -216,7 +216,7 @@
       "source_file": "package.json",
       "source_location": "L23",
       "id": "supermarket_package_devdependencies_autoprefixer",
-      "community": 3,
+      "community": 4,
       "norm_label": "autoprefixer"
     },
     {
@@ -225,7 +225,7 @@
       "source_file": "package.json",
       "source_location": "L24",
       "id": "supermarket_package_devdependencies_vitest",
-      "community": 3,
+      "community": 4,
       "norm_label": "vitest"
     },
     {
@@ -234,7 +234,7 @@
       "source_file": "package.json",
       "source_location": "L26",
       "id": "supermarket_package_engines",
-      "community": 3,
+      "community": 4,
       "norm_label": "engines"
     },
     {
@@ -243,7 +243,7 @@
       "source_file": "package.json",
       "source_location": "L27",
       "id": "supermarket_package_engines_node",
-      "community": 3,
+      "community": 4,
       "norm_label": "node"
     },
     {
@@ -252,7 +252,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L1",
       "id": "tsconfig_json",
-      "community": 9,
+      "community": 11,
       "norm_label": "tsconfig.json"
     },
     {
@@ -261,7 +261,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L2",
       "id": "supermarket_tsconfig_extends",
-      "community": 9,
+      "community": 11,
       "norm_label": "extends"
     },
     {
@@ -270,7 +270,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L3",
       "id": "supermarket_tsconfig_exclude",
-      "community": 9,
+      "community": 11,
       "norm_label": "exclude"
     },
     {
@@ -279,7 +279,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L4",
       "id": "supermarket_tsconfig_compileroptions",
-      "community": 9,
+      "community": 11,
       "norm_label": "compileroptions"
     },
     {
@@ -288,7 +288,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L5",
       "id": "supermarket_tsconfig_compileroptions_baseurl",
-      "community": 9,
+      "community": 11,
       "norm_label": "baseurl"
     },
     {
@@ -297,7 +297,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L6",
       "id": "supermarket_tsconfig_compileroptions_paths",
-      "community": 9,
+      "community": 11,
       "norm_label": "paths"
     },
     {
@@ -306,8 +306,35 @@
       "source_file": "tsconfig.json",
       "source_location": "L7",
       "id": "supermarket_tsconfig_paths",
-      "community": 9,
+      "community": 11,
       "norm_label": "@/*"
+    },
+    {
+      "label": "hooks.json",
+      "file_type": "code",
+      "source_file": ".codex/hooks.json",
+      "source_location": "L1",
+      "id": "codex_hooks_json",
+      "community": 15,
+      "norm_label": "hooks.json"
+    },
+    {
+      "label": "hooks",
+      "file_type": "code",
+      "source_file": ".codex/hooks.json",
+      "source_location": "L2",
+      "id": "codex_hooks_hooks",
+      "community": 15,
+      "norm_label": "hooks"
+    },
+    {
+      "label": "PreToolUse",
+      "file_type": "code",
+      "source_file": ".codex/hooks.json",
+      "source_location": "L3",
+      "id": "codex_hooks_hooks_pretooluse",
+      "community": 15,
+      "norm_label": "pretooluse"
     },
     {
       "label": "env.d.ts",
@@ -315,26 +342,8 @@
       "source_file": "src/env.d.ts",
       "source_location": "L1",
       "id": "src_env_d_ts",
-      "community": 18,
+      "community": 25,
       "norm_label": "env.d.ts"
-    },
-    {
-      "label": "responsive.test.ts",
-      "file_type": "code",
-      "source_file": "src/components/responsive.test.ts",
-      "source_location": "L1",
-      "id": "src_components_responsive_test_ts",
-      "community": 14,
-      "norm_label": "responsive.test.ts"
-    },
-    {
-      "label": "read()",
-      "file_type": "code",
-      "source_file": "src/components/responsive.test.ts",
-      "source_location": "L4",
-      "id": "components_responsive_test_read",
-      "community": 14,
-      "norm_label": "read()"
     },
     {
       "label": "@/components/OutletDetails.astro",
@@ -343,7 +352,7 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_outletdetails_astro",
-      "community": 4,
+      "community": 3,
       "norm_label": "@/components/outletdetails.astro"
     },
     {
@@ -352,7 +361,7 @@
       "source_file": "src/components/OutletDetails.astro",
       "source_location": "L16",
       "id": "components_outletdetails_details",
-      "community": 4,
+      "community": 3,
       "norm_label": "details"
     },
     {
@@ -376,12 +385,30 @@
       "norm_label": "@/components/searchbox.astro"
     },
     {
+      "label": "outlet-map.test.ts",
+      "file_type": "code",
+      "source_file": "src/components/outlet-map.test.ts",
+      "source_location": "L1",
+      "id": "src_components_outlet_map_test_ts",
+      "community": 21,
+      "norm_label": "outlet-map.test.ts"
+    },
+    {
+      "label": "read()",
+      "file_type": "code",
+      "source_file": "src/components/outlet-map.test.ts",
+      "source_location": "L4",
+      "id": "components_outlet_map_test_read",
+      "community": 21,
+      "norm_label": "read()"
+    },
+    {
       "label": "outlet-details.test.ts",
       "file_type": "code",
       "source_file": "src/components/outlet-details.test.ts",
       "source_location": "L1",
       "id": "src_components_outlet_details_test_ts",
-      "community": 12,
+      "community": 16,
       "norm_label": "outlet-details.test.ts"
     },
     {
@@ -390,7 +417,7 @@
       "source_file": "src/components/outlet-details.test.ts",
       "source_location": "L4",
       "id": "components_outlet_details_test_read",
-      "community": 12,
+      "community": 16,
       "norm_label": "read()"
     },
     {
@@ -399,7 +426,7 @@
       "source_file": "src/components/outlet-details.test.ts",
       "source_location": "L6",
       "id": "components_outlet_details_test_expectcontactdetailsundermap",
-      "community": 12,
+      "community": 16,
       "norm_label": "expectcontactdetailsundermap()"
     },
     {
@@ -409,7 +436,7 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_footer_astro",
-      "community": 4,
+      "community": 2,
       "norm_label": "./footer.astro"
     },
     {
@@ -418,7 +445,7 @@
       "source_file": "src/components/Footer.astro",
       "source_location": "L4",
       "id": "components_footer_links",
-      "community": 4,
+      "community": 2,
       "norm_label": "links"
     },
     {
@@ -427,18 +454,17 @@
       "source_file": "src/lib/seo",
       "confidence": "EXTRACTED",
       "id": "users_nursyazwani_documents_supermarket_src_lib_seo",
-      "community": 4,
+      "community": 1,
       "norm_label": "@/lib/seo"
     },
     {
-      "label": "@/components/MallCard.astro",
+      "label": "MallCard.astro",
       "file_type": "code",
       "source_file": "src/components/MallCard.astro",
       "source_location": "L1",
-      "confidence": "EXTRACTED",
       "id": "src_components_mallcard_astro",
       "community": 1,
-      "norm_label": "@/components/mallcard.astro"
+      "norm_label": "mallcard.astro"
     },
     {
       "label": "@/lib/airtable",
@@ -446,7 +472,7 @@
       "source_file": "src/lib/airtable",
       "confidence": "EXTRACTED",
       "id": "users_nursyazwani_documents_supermarket_src_lib_airtable",
-      "community": 2,
+      "community": 1,
       "norm_label": "@/lib/airtable"
     },
     {
@@ -464,7 +490,7 @@
       "source_file": "src/components/outlet-gallery.test.ts",
       "source_location": "L1",
       "id": "src_components_outlet_gallery_test_ts",
-      "community": 13,
+      "community": 20,
       "norm_label": "outlet-gallery.test.ts"
     },
     {
@@ -473,7 +499,7 @@
       "source_file": "src/components/outlet-gallery.test.ts",
       "source_location": "L4",
       "id": "components_outlet_gallery_test_read",
-      "community": 13,
+      "community": 20,
       "norm_label": "read()"
     },
     {
@@ -483,62 +509,71 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_listingcard_astro",
-      "community": 2,
+      "community": 7,
       "norm_label": "@/components/listingcard.astro"
     },
     {
       "label": "brand",
       "file_type": "code",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L12",
+      "source_location": "L13",
       "id": "components_listingcard_brand",
-      "community": 2,
+      "community": 7,
       "norm_label": "brand"
     },
     {
       "label": "neighbourhood",
       "file_type": "code",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L13",
+      "source_location": "L14",
       "id": "components_listingcard_neighbourhood",
-      "community": 2,
+      "community": 7,
       "norm_label": "neighbourhood"
     },
     {
       "label": "mall",
       "file_type": "code",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L14",
+      "source_location": "L15",
       "id": "components_listingcard_mall",
-      "community": 2,
+      "community": 7,
       "norm_label": "mall"
     },
     {
       "label": "mrt",
       "file_type": "code",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L15",
+      "source_location": "L16",
       "id": "components_listingcard_mrt",
-      "community": 2,
+      "community": 7,
       "norm_label": "mrt"
     },
     {
       "label": "initial",
       "file_type": "code",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L16",
+      "source_location": "L17",
       "id": "components_listingcard_initial",
-      "community": 2,
+      "community": 7,
       "norm_label": "initial"
     },
     {
       "label": "href",
       "file_type": "code",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L17",
+      "source_location": "L18",
       "id": "components_listingcard_href",
-      "community": 2,
+      "community": 7,
       "norm_label": "href"
+    },
+    {
+      "label": "@/lib/directoryFilters",
+      "file_type": "code",
+      "source_file": "src/lib/directoryFilters",
+      "confidence": "EXTRACTED",
+      "id": "users_nursyazwani_documents_supermarket_src_lib_directoryfilters",
+      "community": 2,
+      "norm_label": "@/lib/directoryfilters"
     },
     {
       "label": "@/components/BrandCard.astro",
@@ -547,7 +582,7 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_brandcard_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "@/components/brandcard.astro"
     },
     {
@@ -557,8 +592,27 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_outletgallery_astro",
-      "community": 4,
+      "community": 3,
       "norm_label": "@/components/outletgallery.astro"
+    },
+    {
+      "label": "imageUrls",
+      "file_type": "code",
+      "source_file": "src/components/OutletGallery.astro",
+      "source_location": "L8",
+      "id": "components_outletgallery_imageurls",
+      "community": 3,
+      "norm_label": "imageurls"
+    },
+    {
+      "label": "@/components/OutletMap.astro",
+      "file_type": "code",
+      "source_file": "src/components/OutletMap.astro",
+      "source_location": "L1",
+      "confidence": "EXTRACTED",
+      "id": "src_components_outletmap_astro",
+      "community": 3,
+      "norm_label": "@/components/outletmap.astro"
     },
     {
       "label": "@/components/NeighbourhoodCard.astro",
@@ -567,7 +621,7 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_neighbourhoodcard_astro",
-      "community": 4,
+      "community": 1,
       "norm_label": "@/components/neighbourhoodcard.astro"
     },
     {
@@ -605,8 +659,17 @@
       "confidence": "EXTRACTED",
       "source_location": "L1",
       "id": "src_components_header_astro",
-      "community": 2,
+      "community": 14,
       "norm_label": "header.astro"
+    },
+    {
+      "label": "filter-bar.test.ts",
+      "file_type": "code",
+      "source_file": "src/components/filter-bar.test.ts",
+      "source_location": "L1",
+      "id": "src_components_filter_bar_test_ts",
+      "community": 7,
+      "norm_label": "filter-bar.test.ts"
     },
     {
       "label": "@/components/FilterBar.astro",
@@ -619,13 +682,85 @@
       "norm_label": "@/components/filterbar.astro"
     },
     {
+      "label": "ids",
+      "file_type": "code",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L12",
+      "id": "components_filterbar_ids",
+      "community": 2,
+      "norm_label": "ids"
+    },
+    {
+      "label": "neighbourhoods",
+      "file_type": "code",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L16",
+      "id": "components_filterbar_neighbourhoods",
+      "community": 2,
+      "norm_label": "neighbourhoods"
+    },
+    {
+      "label": "brands",
+      "file_type": "code",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L17",
+      "id": "components_filterbar_brands",
+      "community": 2,
+      "norm_label": "brands"
+    },
+    {
+      "label": "mrtStations",
+      "file_type": "code",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L18",
+      "id": "components_filterbar_mrtstations",
+      "community": 2,
+      "norm_label": "mrtstations"
+    },
+    {
+      "label": "malls",
+      "file_type": "code",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L19",
+      "id": "components_filterbar_malls",
+      "community": 2,
+      "norm_label": "malls"
+    },
+    {
+      "label": "categories",
+      "file_type": "code",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L20",
+      "id": "components_filterbar_categories",
+      "community": 2,
+      "norm_label": "categories"
+    },
+    {
       "label": "links",
       "file_type": "code",
       "source_file": "src/components/Header.astro",
       "source_location": "L4",
       "id": "components_header_links",
-      "community": 2,
+      "community": 14,
       "norm_label": "links"
+    },
+    {
+      "label": "promotionMenu",
+      "file_type": "code",
+      "source_file": "src/components/Header.astro",
+      "source_location": "L11",
+      "id": "components_header_promotionmenu",
+      "community": 14,
+      "norm_label": "promotionmenu"
+    },
+    {
+      "label": "promotionLinks",
+      "file_type": "code",
+      "source_file": "src/components/Header.astro",
+      "source_location": "L12",
+      "id": "components_header_promotionlinks",
+      "community": 14,
+      "norm_label": "promotionlinks"
     },
     {
       "label": "@/components/PromotionCard.astro",
@@ -634,8 +769,27 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_promotioncard_astro",
-      "community": 4,
+      "community": 1,
       "norm_label": "@/components/promotioncard.astro"
+    },
+    {
+      "label": "@/components/TaxonomyCard.astro",
+      "file_type": "code",
+      "source_file": "src/components/TaxonomyCard.astro",
+      "source_location": "L1",
+      "confidence": "EXTRACTED",
+      "id": "src_components_taxonomycard_astro",
+      "community": 1,
+      "norm_label": "@/components/taxonomycard.astro"
+    },
+    {
+      "label": "social.test.ts",
+      "file_type": "code",
+      "source_file": "src/lib/social.test.ts",
+      "source_location": "L1",
+      "id": "src_lib_social_test_ts",
+      "community": 3,
+      "norm_label": "social.test.ts"
     },
     {
       "label": "seo.test.ts",
@@ -643,17 +797,26 @@
       "source_file": "src/lib/seo.test.ts",
       "source_location": "L1",
       "id": "src_lib_seo_test_ts",
-      "community": 5,
+      "community": 6,
       "norm_label": "seo.test.ts"
     },
     {
       "label": "directoryData",
       "file_type": "code",
       "source_file": "src/lib/seo.test.ts",
-      "source_location": "L12",
+      "source_location": "L13",
       "id": "lib_seo_test_directorydata",
-      "community": 5,
+      "community": 6,
       "norm_label": "directorydata"
+    },
+    {
+      "label": "projectRoot",
+      "file_type": "code",
+      "source_file": "src/lib/seo.test.ts",
+      "source_location": "L191",
+      "id": "lib_seo_test_projectroot",
+      "community": 6,
+      "norm_label": "projectroot"
     },
     {
       "label": "airtable.test.ts",
@@ -665,6 +828,105 @@
       "norm_label": "airtable.test.ts"
     },
     {
+      "label": "faq.ts",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L1",
+      "id": "src_lib_faq_ts",
+      "community": 5,
+      "norm_label": "faq.ts"
+    },
+    {
+      "label": "BrandFaqItem",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L1",
+      "id": "lib_faq_brandfaqitem",
+      "community": 5,
+      "norm_label": "brandfaqitem"
+    },
+    {
+      "label": "parseBrandFaq()",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L7",
+      "id": "lib_faq_parsebrandfaq",
+      "community": 5,
+      "norm_label": "parsebrandfaq()"
+    },
+    {
+      "label": "buildFaqPageSchema()",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L22",
+      "id": "lib_faq_buildfaqpageschema",
+      "community": 5,
+      "norm_label": "buildfaqpageschema()"
+    },
+    {
+      "label": "parseMarkedFaqBlock()",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L39",
+      "id": "lib_faq_parsemarkedfaqblock",
+      "community": 5,
+      "norm_label": "parsemarkedfaqblock()"
+    },
+    {
+      "label": "splitMarkedFaqBlocks()",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L58",
+      "id": "lib_faq_splitmarkedfaqblocks",
+      "community": 5,
+      "norm_label": "splitmarkedfaqblocks()"
+    },
+    {
+      "label": "parsePlainFaq()",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L79",
+      "id": "lib_faq_parseplainfaq",
+      "community": 5,
+      "norm_label": "parseplainfaq()"
+    },
+    {
+      "label": "hasMarkedFaq()",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L106",
+      "id": "lib_faq_hasmarkedfaq",
+      "community": 5,
+      "norm_label": "hasmarkedfaq()"
+    },
+    {
+      "label": "isFaqHeading()",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L110",
+      "id": "lib_faq_isfaqheading",
+      "community": 5,
+      "norm_label": "isfaqheading()"
+    },
+    {
+      "label": "isQuestionLine()",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L114",
+      "id": "lib_faq_isquestionline",
+      "community": 5,
+      "norm_label": "isquestionline()"
+    },
+    {
+      "label": "pushPlainFaqItem()",
+      "file_type": "code",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L118",
+      "id": "lib_faq_pushplainfaqitem",
+      "community": 5,
+      "norm_label": "pushplainfaqitem()"
+    },
+    {
       "label": "content.ts",
       "file_type": "code",
       "source_file": "src/lib/content.ts",
@@ -674,19 +936,10 @@
       "norm_label": "content.ts"
     },
     {
-      "label": "FaqItem",
-      "file_type": "code",
-      "source_file": "src/lib/content.ts",
-      "source_location": "L3",
-      "id": "lib_content_faqitem",
-      "community": 5,
-      "norm_label": "faqitem"
-    },
-    {
       "label": "PRIORITY_NEIGHBOURHOODS",
       "file_type": "code",
       "source_file": "src/lib/content.ts",
-      "source_location": "L8",
+      "source_location": "L3",
       "id": "lib_content_priority_neighbourhoods",
       "community": 1,
       "norm_label": "priority_neighbourhoods"
@@ -695,7 +948,7 @@
       "label": "formatCount()",
       "file_type": "code",
       "source_file": "src/lib/content.ts",
-      "source_location": "L21",
+      "source_location": "L16",
       "id": "lib_content_formatcount",
       "community": 1,
       "norm_label": "formatcount()"
@@ -704,16 +957,16 @@
       "label": "getPrimary()",
       "file_type": "code",
       "source_file": "src/lib/content.ts",
-      "source_location": "L25",
+      "source_location": "L20",
       "id": "lib_content_getprimary",
-      "community": 4,
+      "community": 3,
       "norm_label": "getprimary()"
     },
     {
       "label": "hasTaxonomyImage()",
       "file_type": "code",
       "source_file": "src/lib/content.ts",
-      "source_location": "L29",
+      "source_location": "L24",
       "id": "lib_content_hastaxonomyimage",
       "community": 1,
       "norm_label": "hastaxonomyimage()"
@@ -722,34 +975,25 @@
       "label": "splitDescriptionParagraphs()",
       "file_type": "code",
       "source_file": "src/lib/content.ts",
-      "source_location": "L33",
+      "source_location": "L28",
       "id": "lib_content_splitdescriptionparagraphs",
       "community": 1,
       "norm_label": "splitdescriptionparagraphs()"
     },
     {
-      "label": "parseFaqItems()",
+      "label": "truncateWords()",
       "file_type": "code",
       "source_file": "src/lib/content.ts",
-      "source_location": "L42",
-      "id": "lib_content_parsefaqitems",
+      "source_location": "L37",
+      "id": "lib_content_truncatewords",
       "community": 1,
-      "norm_label": "parsefaqitems()"
-    },
-    {
-      "label": "cleanFaqQuestion()",
-      "file_type": "code",
-      "source_file": "src/lib/content.ts",
-      "source_location": "L60",
-      "id": "lib_content_cleanfaqquestion",
-      "community": 1,
-      "norm_label": "cleanfaqquestion()"
+      "norm_label": "truncatewords()"
     },
     {
       "label": "sortFeaturedNeighbourhoods()",
       "file_type": "code",
       "source_file": "src/lib/content.ts",
-      "source_location": "L72",
+      "source_location": "L44",
       "id": "lib_content_sortfeaturedneighbourhoods",
       "community": 1,
       "norm_label": "sortfeaturedneighbourhoods()"
@@ -758,16 +1002,16 @@
       "label": "getRelatedByNeighbourhood()",
       "file_type": "code",
       "source_file": "src/lib/content.ts",
-      "source_location": "L86",
+      "source_location": "L58",
       "id": "lib_content_getrelatedbyneighbourhood",
-      "community": 4,
+      "community": 3,
       "norm_label": "getrelatedbyneighbourhood()"
     },
     {
       "label": "pageDescription()",
       "file_type": "code",
       "source_file": "src/lib/content.ts",
-      "source_location": "L98",
+      "source_location": "L70",
       "id": "lib_content_pagedescription",
       "community": 1,
       "norm_label": "pagedescription()"
@@ -814,7 +1058,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L19",
       "id": "lib_airtable_supermarket",
-      "community": 1,
+      "community": 3,
       "norm_label": "supermarket"
     },
     {
@@ -823,7 +1067,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L47",
       "id": "lib_airtable_grocerystore",
-      "community": 4,
+      "community": 3,
       "norm_label": "grocerystore"
     },
     {
@@ -832,7 +1076,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L48",
       "id": "lib_airtable_conveniencestore",
-      "community": 4,
+      "community": 3,
       "norm_label": "conveniencestore"
     },
     {
@@ -841,7 +1085,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L49",
       "id": "lib_airtable_generalstore",
-      "community": 4,
+      "community": 3,
       "norm_label": "generalstore"
     },
     {
@@ -857,25 +1101,34 @@
       "label": "PromotionCollection",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L65",
+      "source_location": "L66",
       "id": "lib_airtable_promotioncollection",
-      "community": 1,
+      "community": 5,
       "norm_label": "promotioncollection"
+    },
+    {
+      "label": "SupermarketBrandPage",
+      "file_type": "code",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L72",
+      "id": "lib_airtable_supermarketbrandpage",
+      "community": 3,
+      "norm_label": "supermarketbrandpage"
     },
     {
       "label": "DirectoryData",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L71",
+      "source_location": "L78",
       "id": "lib_airtable_directorydata",
-      "community": 5,
+      "community": 6,
       "norm_label": "directorydata"
     },
     {
       "label": "EnvSource",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L86",
+      "source_location": "L96",
       "id": "lib_airtable_envsource",
       "community": 0,
       "norm_label": "envsource"
@@ -884,7 +1137,7 @@
       "label": "FetchLike",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L87",
+      "source_location": "L97",
       "id": "lib_airtable_fetchlike",
       "community": 0,
       "norm_label": "fetchlike"
@@ -893,7 +1146,7 @@
       "label": "TABLES",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L91",
+      "source_location": "L101",
       "id": "lib_airtable_tables",
       "community": 0,
       "norm_label": "tables"
@@ -902,7 +1155,7 @@
       "label": "PromotionCollectionConfig",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L126",
+      "source_location": "L115",
       "id": "lib_airtable_promotioncollectionconfig",
       "community": 0,
       "norm_label": "promotioncollectionconfig"
@@ -911,7 +1164,7 @@
       "label": "FIELDS",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L133",
+      "source_location": "L143",
       "id": "lib_airtable_fields",
       "community": 0,
       "norm_label": "fields"
@@ -920,7 +1173,7 @@
       "label": "OutletFieldsConfig",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L295",
+      "source_location": "L305",
       "id": "lib_airtable_outletfieldsconfig",
       "community": 0,
       "norm_label": "outletfieldsconfig"
@@ -929,7 +1182,7 @@
       "label": "assertAirtableEnv()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L303",
+      "source_location": "L313",
       "id": "lib_airtable_assertairtableenv",
       "community": 0,
       "norm_label": "assertairtableenv()"
@@ -938,7 +1191,7 @@
       "label": "fetchAirtableRecords()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L314",
+      "source_location": "L324",
       "id": "lib_airtable_fetchairtablerecords",
       "community": 0,
       "norm_label": "fetchairtablerecords()"
@@ -947,7 +1200,7 @@
       "label": "isValidNeighbourhoodName()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L347",
+      "source_location": "L357",
       "id": "lib_airtable_isvalidneighbourhoodname",
       "community": 0,
       "norm_label": "isvalidneighbourhoodname()"
@@ -956,7 +1209,7 @@
       "label": "getFirstInitial()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L352",
+      "source_location": "L362",
       "id": "lib_airtable_getfirstinitial",
       "community": 0,
       "norm_label": "getfirstinitial()"
@@ -965,7 +1218,7 @@
       "label": "resolveLinks()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L356",
+      "source_location": "L366",
       "id": "lib_airtable_resolvelinks",
       "community": 0,
       "norm_label": "resolvelinks()"
@@ -974,16 +1227,16 @@
       "label": "getDirectoryData()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L375",
+      "source_location": "L385",
       "id": "lib_airtable_getdirectorydata",
-      "community": 1,
+      "community": 2,
       "norm_label": "getdirectorydata()"
     },
     {
       "label": "resetDirectoryCacheForTests()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L383",
+      "source_location": "L393",
       "id": "lib_airtable_resetdirectorycachefortests",
       "community": 0,
       "norm_label": "resetdirectorycachefortests()"
@@ -992,7 +1245,7 @@
       "label": "loadDirectoryData()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L387",
+      "source_location": "L397",
       "id": "lib_airtable_loaddirectorydata",
       "community": 0,
       "norm_label": "loaddirectorydata()"
@@ -1001,7 +1254,7 @@
       "label": "createLookup()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L507",
+      "source_location": "L525",
       "id": "lib_airtable_createlookup",
       "community": 0,
       "norm_label": "createlookup()"
@@ -1010,7 +1263,7 @@
       "label": "normalizeOutlet()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L532",
+      "source_location": "L550",
       "id": "lib_airtable_normalizeoutlet",
       "community": 0,
       "norm_label": "normalizeoutlet()"
@@ -1019,7 +1272,7 @@
       "label": "normalizePromotion()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L571",
+      "source_location": "L589",
       "id": "lib_airtable_normalizepromotion",
       "community": 0,
       "norm_label": "normalizepromotion()"
@@ -1028,7 +1281,7 @@
       "label": "findBrandBySlug()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L620",
+      "source_location": "L639",
       "id": "lib_airtable_findbrandbyslug",
       "community": 0,
       "norm_label": "findbrandbyslug()"
@@ -1037,7 +1290,7 @@
       "label": "outletToLinkedItem()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L625",
+      "source_location": "L644",
       "id": "lib_airtable_outlettolinkeditem",
       "community": 0,
       "norm_label": "outlettolinkeditem()"
@@ -1046,25 +1299,34 @@
       "label": "getBrandPromotions()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L635",
+      "source_location": "L654",
       "id": "lib_airtable_getbrandpromotions",
-      "community": 1,
+      "community": 0,
       "norm_label": "getbrandpromotions()"
     },
     {
       "label": "getOutletPromotions()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L640",
+      "source_location": "L659",
       "id": "lib_airtable_getoutletpromotions",
-      "community": 4,
+      "community": 3,
       "norm_label": "getoutletpromotions()"
+    },
+    {
+      "label": "getSupermarketBrandPages()",
+      "file_type": "code",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L665",
+      "id": "lib_airtable_getsupermarketbrandpages",
+      "community": 6,
+      "norm_label": "getsupermarketbrandpages()"
     },
     {
       "label": "withCounts()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L646",
+      "source_location": "L678",
       "id": "lib_airtable_withcounts",
       "community": 0,
       "norm_label": "withcounts()"
@@ -1073,16 +1335,34 @@
       "label": "uniqueSorted()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L664",
+      "source_location": "L696",
       "id": "lib_airtable_uniquesorted",
       "community": 0,
       "norm_label": "uniquesorted()"
     },
     {
+      "label": "groupSupermarketBrandsFirst()",
+      "file_type": "code",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L702",
+      "id": "lib_airtable_groupsupermarketbrandsfirst",
+      "community": 0,
+      "norm_label": "groupsupermarketbrandsfirst()"
+    },
+    {
+      "label": "filterBrandsByFeaturedOutlets()",
+      "file_type": "code",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L714",
+      "id": "lib_airtable_filterbrandsbyfeaturedoutlets",
+      "community": 0,
+      "norm_label": "filterbrandsbyfeaturedoutlets()"
+    },
+    {
       "label": "uniqueOutletSlug()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L670",
+      "source_location": "L724",
       "id": "lib_airtable_uniqueoutletslug",
       "community": 0,
       "norm_label": "uniqueoutletslug()"
@@ -1091,7 +1371,7 @@
       "label": "readString()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L674",
+      "source_location": "L728",
       "id": "lib_airtable_readstring",
       "community": 0,
       "norm_label": "readstring()"
@@ -1100,7 +1380,7 @@
       "label": "readField()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L680",
+      "source_location": "L734",
       "id": "lib_airtable_readfield",
       "community": 0,
       "norm_label": "readfield()"
@@ -1109,7 +1389,7 @@
       "label": "readFieldString()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L689",
+      "source_location": "L743",
       "id": "lib_airtable_readfieldstring",
       "community": 0,
       "norm_label": "readfieldstring()"
@@ -1118,46 +1398,64 @@
       "label": "readPostalCode()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L698",
+      "source_location": "L752",
       "id": "lib_airtable_readpostalcode",
       "community": 0,
       "norm_label": "readpostalcode()"
     },
     {
-      "label": "parseGalleryImageUrls()",
-      "file_type": "code",
-      "source_file": "src/lib/airtable.ts",
-      "source_location": "L704",
-      "id": "lib_airtable_parsegalleryimageurls",
-      "community": 0,
-      "norm_label": "parsegalleryimageurls()"
-    },
-    {
-      "label": "summarizeDescription()",
-      "file_type": "code",
-      "source_file": "src/lib/airtable.ts",
-      "source_location": "L711",
-      "id": "lib_airtable_summarizedescription",
-      "community": 0,
-      "norm_label": "summarizedescription()"
-    },
-    {
       "label": "slugify()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L717",
+      "source_location": "L758",
       "id": "lib_airtable_slugify",
       "community": 0,
       "norm_label": "slugify()"
     },
     {
+      "label": "normalizeRouteSlug()",
+      "file_type": "code",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L767",
+      "id": "lib_airtable_normalizerouteslug",
+      "community": 0,
+      "norm_label": "normalizerouteslug()"
+    },
+    {
+      "label": "buildPromotionSlug()",
+      "file_type": "code",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L771",
+      "id": "lib_airtable_buildpromotionslug",
+      "community": 0,
+      "norm_label": "buildpromotionslug()"
+    },
+    {
+      "label": "summarizeDescription()",
+      "file_type": "code",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L777",
+      "id": "lib_airtable_summarizedescription",
+      "community": 0,
+      "norm_label": "summarizedescription()"
+    },
+    {
       "label": "normalizeComparable()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L728",
+      "source_location": "L783",
       "id": "lib_airtable_normalizecomparable",
       "community": 0,
       "norm_label": "normalizecomparable()"
+    },
+    {
+      "label": "faq.test.ts",
+      "file_type": "code",
+      "source_file": "src/lib/faq.test.ts",
+      "source_location": "L1",
+      "id": "src_lib_faq_test_ts",
+      "community": 5,
+      "norm_label": "faq.test.ts"
     },
     {
       "label": "seo.ts",
@@ -1165,89 +1463,242 @@
       "source_file": "src/lib/seo.ts",
       "source_location": "L1",
       "id": "src_lib_seo_ts",
-      "community": 5,
+      "community": 1,
       "norm_label": "seo.ts"
     },
     {
       "label": "STATIC_SITEMAP_PATHS",
       "file_type": "code",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L4",
+      "source_location": "L3",
       "id": "lib_seo_static_sitemap_paths",
-      "community": 5,
+      "community": 1,
       "norm_label": "static_sitemap_paths"
     },
     {
       "label": "resolveSiteUrl()",
       "file_type": "code",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L6",
+      "source_location": "L5",
       "id": "lib_seo_resolvesiteurl",
-      "community": 5,
+      "community": 6,
       "norm_label": "resolvesiteurl()"
     },
     {
       "label": "getSitemapPaths()",
       "file_type": "code",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L10",
+      "source_location": "L9",
       "id": "lib_seo_getsitemappaths",
-      "community": 5,
+      "community": 6,
       "norm_label": "getsitemappaths()"
     },
     {
       "label": "canonicalPath()",
       "file_type": "code",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L25",
+      "source_location": "L27",
       "id": "lib_seo_canonicalpath",
-      "community": 4,
+      "community": 1,
       "norm_label": "canonicalpath()"
     },
     {
       "label": "canonicalUrl()",
       "file_type": "code",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L32",
+      "source_location": "L34",
       "id": "lib_seo_canonicalurl",
-      "community": 5,
+      "community": 6,
       "norm_label": "canonicalurl()"
     },
     {
       "label": "buildSitemapXml()",
       "file_type": "code",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L42",
+      "source_location": "L44",
       "id": "lib_seo_buildsitemapxml",
-      "community": 5,
+      "community": 6,
       "norm_label": "buildsitemapxml()"
     },
     {
       "label": "buildRobotsTxt()",
       "file_type": "code",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L56",
+      "source_location": "L58",
       "id": "lib_seo_buildrobotstxt",
-      "community": 5,
+      "community": 6,
       "norm_label": "buildrobotstxt()"
-    },
-    {
-      "label": "buildFaqPageSchema()",
-      "file_type": "code",
-      "source_file": "src/lib/seo.ts",
-      "source_location": "L66",
-      "id": "lib_seo_buildfaqpageschema",
-      "community": 5,
-      "norm_label": "buildfaqpageschema()"
     },
     {
       "label": "escapeXml()",
       "file_type": "code",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L81",
+      "source_location": "L68",
       "id": "lib_seo_escapexml",
-      "community": 5,
+      "community": 1,
       "norm_label": "escapexml()"
+    },
+    {
+      "label": "social.ts",
+      "file_type": "code",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L1",
+      "id": "src_lib_social_ts",
+      "community": 3,
+      "norm_label": "social.ts"
+    },
+    {
+      "label": "SocialInput",
+      "file_type": "code",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L1",
+      "id": "lib_social_socialinput",
+      "community": 3,
+      "norm_label": "socialinput"
+    },
+    {
+      "label": "SocialLink",
+      "file_type": "code",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L6",
+      "id": "lib_social_sociallink",
+      "community": 3,
+      "norm_label": "sociallink"
+    },
+    {
+      "label": "SOCIAL_HOSTS",
+      "file_type": "code",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L11",
+      "id": "lib_social_social_hosts",
+      "community": 3,
+      "norm_label": "social_hosts"
+    },
+    {
+      "label": "detectLabel()",
+      "file_type": "code",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L16",
+      "id": "lib_social_detectlabel",
+      "community": 3,
+      "norm_label": "detectlabel()"
+    },
+    {
+      "label": "getOutletSocialLinks()",
+      "file_type": "code",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L36",
+      "id": "lib_social_getoutletsociallinks",
+      "community": 3,
+      "norm_label": "getoutletsociallinks()"
+    },
+    {
+      "label": "directoryFilters.ts",
+      "file_type": "code",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L1",
+      "id": "src_lib_directoryfilters_ts",
+      "community": 7,
+      "norm_label": "directoryfilters.ts"
+    },
+    {
+      "label": "ActiveFilter",
+      "file_type": "code",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L3",
+      "id": "lib_directoryfilters_activefilter",
+      "community": 7,
+      "norm_label": "activefilter"
+    },
+    {
+      "label": "FilterableLink",
+      "file_type": "code",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L5",
+      "id": "lib_directoryfilters_filterablelink",
+      "community": 7,
+      "norm_label": "filterablelink"
+    },
+    {
+      "label": "encodeFilterValues()",
+      "file_type": "code",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L9",
+      "id": "lib_directoryfilters_encodefiltervalues",
+      "community": 7,
+      "norm_label": "encodefiltervalues()"
+    },
+    {
+      "label": "splitFilterValues()",
+      "file_type": "code",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L16",
+      "id": "lib_directoryfilters_splitfiltervalues",
+      "community": 7,
+      "norm_label": "splitfiltervalues()"
+    },
+    {
+      "label": "cardMatchesFilters()",
+      "file_type": "code",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L23",
+      "id": "lib_directoryfilters_cardmatchesfilters",
+      "community": 7,
+      "norm_label": "cardmatchesfilters()"
+    },
+    {
+      "label": "taxonomy-index-pages.test.ts",
+      "file_type": "code",
+      "source_file": "src/lib/taxonomy-index-pages.test.ts",
+      "source_location": "L1",
+      "id": "src_lib_taxonomy_index_pages_test_ts",
+      "community": 18,
+      "norm_label": "taxonomy-index-pages.test.ts"
+    },
+    {
+      "label": "root",
+      "file_type": "code",
+      "source_file": "src/lib/taxonomy-index-pages.test.ts",
+      "source_location": "L5",
+      "id": "lib_taxonomy_index_pages_test_root",
+      "community": 18,
+      "norm_label": "root"
+    },
+    {
+      "label": "readSource()",
+      "file_type": "code",
+      "source_file": "src/lib/taxonomy-index-pages.test.ts",
+      "source_location": "L7",
+      "id": "lib_taxonomy_index_pages_test_readsource",
+      "community": 18,
+      "norm_label": "readsource()"
+    },
+    {
+      "label": "promotion-collection-pages.test.ts",
+      "file_type": "code",
+      "source_file": "src/lib/promotion-collection-pages.test.ts",
+      "source_location": "L1",
+      "id": "src_lib_promotion_collection_pages_test_ts",
+      "community": 17,
+      "norm_label": "promotion-collection-pages.test.ts"
+    },
+    {
+      "label": "projectRoot",
+      "file_type": "code",
+      "source_file": "src/lib/promotion-collection-pages.test.ts",
+      "source_location": "L5",
+      "id": "lib_promotion_collection_pages_test_projectroot",
+      "community": 17,
+      "norm_label": "projectroot"
+    },
+    {
+      "label": "pageSource",
+      "file_type": "code",
+      "source_file": "src/lib/promotion-collection-pages.test.ts",
+      "source_location": "L6",
+      "id": "lib_promotion_collection_pages_test_pagesource",
+      "community": 17,
+      "norm_label": "pagesource"
     },
     {
       "label": "sitemap.xml.ts",
@@ -1255,7 +1706,7 @@
       "source_file": "src/pages/sitemap.xml.ts",
       "source_location": "L1",
       "id": "src_pages_sitemap_xml_ts",
-      "community": 5,
+      "community": 6,
       "norm_label": "sitemap.xml.ts"
     },
     {
@@ -1264,8 +1715,17 @@
       "source_file": "src/pages/sitemap.xml.ts",
       "source_location": "L4",
       "id": "pages_sitemap_xml_get",
-      "community": 5,
+      "community": 6,
       "norm_label": "get()"
+    },
+    {
+      "label": "404.astro",
+      "file_type": "code",
+      "source_file": "src/pages/404.astro",
+      "source_location": "L1",
+      "id": "src_pages_404_astro",
+      "community": 2,
+      "norm_label": "404.astro"
     },
     {
       "label": "[promotionCollection].astro",
@@ -1273,17 +1733,26 @@
       "source_file": "src/pages/[promotionCollection].astro",
       "source_location": "L1",
       "id": "src_pages_promotioncollection_astro",
-      "community": 1,
+      "community": 5,
       "norm_label": "[promotioncollection].astro"
     },
     {
       "label": "getStaticPaths()",
       "file_type": "code",
       "source_file": "src/pages/[promotionCollection].astro",
-      "source_location": "L8",
+      "source_location": "L9",
       "id": "pages_promotioncollection_getstaticpaths",
-      "community": 1,
+      "community": 5,
       "norm_label": "getstaticpaths()"
+    },
+    {
+      "label": "@/lib/faq",
+      "file_type": "code",
+      "source_file": "src/lib/faq",
+      "confidence": "EXTRACTED",
+      "id": "users_nursyazwani_documents_supermarket_src_lib_faq",
+      "community": 5,
+      "norm_label": "@/lib/faq"
     },
     {
       "label": "directory.astro",
@@ -1295,12 +1764,21 @@
       "norm_label": "directory.astro"
     },
     {
+      "label": "outlets",
+      "file_type": "code",
+      "source_file": "src/pages/directory.astro",
+      "source_location": "L9",
+      "id": "pages_directory_outlets",
+      "community": 2,
+      "norm_label": "outlets"
+    },
+    {
       "label": "index.astro",
       "file_type": "code",
       "source_file": "src/pages/index.astro",
       "source_location": "L1",
       "id": "src_pages_index_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "index.astro"
     },
     {
@@ -1309,7 +1787,7 @@
       "source_file": "src/pages/index.astro",
       "source_location": "L10",
       "id": "pages_index_featuredneighbourhoods",
-      "community": 2,
+      "community": 1,
       "norm_label": "featuredneighbourhoods"
     },
     {
@@ -1318,7 +1796,7 @@
       "source_file": "src/pages/robots.txt.ts",
       "source_location": "L1",
       "id": "src_pages_robots_txt_ts",
-      "community": 5,
+      "community": 6,
       "norm_label": "robots.txt.ts"
     },
     {
@@ -1327,7 +1805,7 @@
       "source_file": "src/pages/robots.txt.ts",
       "source_location": "L3",
       "id": "pages_robots_txt_get",
-      "community": 5,
+      "community": 6,
       "norm_label": "get()"
     },
     {
@@ -1372,17 +1850,26 @@
       "source_file": "src/pages/general-stores/[slug].astro",
       "source_location": "L1",
       "id": "src_pages_general_stores_slug_astro",
-      "community": 4,
+      "community": 3,
       "norm_label": "[slug].astro"
     },
     {
       "label": "getStaticPaths()",
       "file_type": "code",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L10",
+      "source_location": "L12",
       "id": "general_stores_slug_getstaticpaths",
-      "community": 4,
+      "community": 3,
       "norm_label": "getstaticpaths()"
+    },
+    {
+      "label": "@/lib/social",
+      "file_type": "code",
+      "source_file": "src/lib/social",
+      "confidence": "EXTRACTED",
+      "id": "users_nursyazwani_documents_supermarket_src_lib_social",
+      "community": 3,
+      "norm_label": "@/lib/social"
     },
     {
       "label": "index.astro",
@@ -1406,10 +1893,19 @@
       "label": "getStaticPaths()",
       "file_type": "code",
       "source_file": "src/pages/brands/[slug].astro",
-      "source_location": "L9",
+      "source_location": "L10",
       "id": "brands_slug_getstaticpaths",
-      "community": 1,
+      "community": 2,
       "norm_label": "getstaticpaths()"
+    },
+    {
+      "label": "index.astro",
+      "file_type": "code",
+      "source_file": "src/pages/mrt-stations/index.astro",
+      "source_location": "L1",
+      "id": "src_pages_mrt_stations_index_astro",
+      "community": 2,
+      "norm_label": "index.astro"
     },
     {
       "label": "[slug].astro",
@@ -1426,7 +1922,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L6",
       "id": "mrt_stations_slug_getstaticpaths",
-      "community": 1,
+      "community": 2,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -1439,10 +1935,28 @@
       "norm_label": "{ station }"
     },
     {
-      "label": "outlets",
+      "label": "supermarketOutlets",
       "file_type": "code",
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L9",
+      "id": "mrt_stations_slug_supermarketoutlets",
+      "community": 1,
+      "norm_label": "supermarketoutlets"
+    },
+    {
+      "label": "groceryStoreOutlets",
+      "file_type": "code",
+      "source_file": "src/pages/mrt-stations/[slug].astro",
+      "source_location": "L10",
+      "id": "mrt_stations_slug_grocerystoreoutlets",
+      "community": 1,
+      "norm_label": "grocerystoreoutlets"
+    },
+    {
+      "label": "outlets",
+      "file_type": "code",
+      "source_file": "src/pages/mrt-stations/[slug].astro",
+      "source_location": "L11",
       "id": "mrt_stations_slug_outlets",
       "community": 1,
       "norm_label": "outlets"
@@ -1462,16 +1976,43 @@
       "source_file": "src/pages/supermarkets/[slug].astro",
       "source_location": "L1",
       "id": "src_pages_supermarkets_slug_astro",
-      "community": 4,
+      "community": 3,
       "norm_label": "[slug].astro"
     },
     {
       "label": "getStaticPaths()",
       "file_type": "code",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L11",
+      "source_location": "L21",
       "id": "supermarkets_slug_getstaticpaths",
+      "community": 6,
+      "norm_label": "getstaticpaths()"
+    },
+    {
+      "label": "index.astro",
+      "file_type": "code",
+      "source_file": "src/pages/promotions/index.astro",
+      "source_location": "L1",
+      "id": "src_pages_promotions_index_astro",
       "community": 1,
+      "norm_label": "index.astro"
+    },
+    {
+      "label": "[slug].astro",
+      "file_type": "code",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L1",
+      "id": "src_pages_promotions_slug_astro",
+      "community": 1,
+      "norm_label": "[slug].astro"
+    },
+    {
+      "label": "getStaticPaths()",
+      "file_type": "code",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L8",
+      "id": "promotions_slug_getstaticpaths",
+      "community": 2,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -1489,16 +2030,16 @@
       "source_file": "src/pages/grocery-stores/[slug].astro",
       "source_location": "L1",
       "id": "src_pages_grocery_stores_slug_astro",
-      "community": 4,
+      "community": 3,
       "norm_label": "[slug].astro"
     },
     {
       "label": "getStaticPaths()",
       "file_type": "code",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L10",
+      "source_location": "L12",
       "id": "grocery_stores_slug_getstaticpaths",
-      "community": 4,
+      "community": 3,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -1534,7 +2075,7 @@
       "source_file": "src/pages/neighbourhoods/[slug].astro",
       "source_location": "L7",
       "id": "neighbourhoods_slug_getstaticpaths",
-      "community": 1,
+      "community": 2,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -1552,16 +2093,16 @@
       "source_file": "src/pages/convenience-stores/[slug].astro",
       "source_location": "L1",
       "id": "src_pages_convenience_stores_slug_astro",
-      "community": 4,
+      "community": 3,
       "norm_label": "[slug].astro"
     },
     {
       "label": "getStaticPaths()",
       "file_type": "code",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L10",
+      "source_location": "L12",
       "id": "convenience_stores_slug_getstaticpaths",
-      "community": 4,
+      "community": 3,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -1570,7 +2111,7 @@
       "source_file": "src/pages/malls/index.astro",
       "source_location": "L1",
       "id": "src_pages_malls_index_astro",
-      "community": 1,
+      "community": 2,
       "norm_label": "index.astro"
     },
     {
@@ -1588,7 +2129,7 @@
       "source_file": "src/pages/malls/[slug].astro",
       "source_location": "L6",
       "id": "malls_slug_getstaticpaths",
-      "community": 1,
+      "community": 2,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -1597,7 +2138,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "id": "readme_md",
-      "community": 6,
+      "community": 8,
       "norm_label": "readme.md"
     },
     {
@@ -1606,7 +2147,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "id": "supermarket_readme_singapore_supermarket_directory",
-      "community": 6,
+      "community": 8,
       "norm_label": "singapore supermarket directory"
     },
     {
@@ -1615,7 +2156,7 @@
       "source_file": "README.md",
       "source_location": "L7",
       "id": "supermarket_readme_prerequisites",
-      "community": 6,
+      "community": 8,
       "norm_label": "prerequisites"
     },
     {
@@ -1624,7 +2165,7 @@
       "source_file": "README.md",
       "source_location": "L13",
       "id": "supermarket_readme_local_development",
-      "community": 6,
+      "community": 8,
       "norm_label": "local development"
     },
     {
@@ -1633,7 +2174,7 @@
       "source_file": "README.md",
       "source_location": "L41",
       "id": "supermarket_readme_environment_variables",
-      "community": 6,
+      "community": 8,
       "norm_label": "environment variables"
     },
     {
@@ -1642,7 +2183,7 @@
       "source_file": "README.md",
       "source_location": "L56",
       "id": "supermarket_readme_data_fetching",
-      "community": 6,
+      "community": 8,
       "norm_label": "data fetching"
     },
     {
@@ -1651,7 +2192,7 @@
       "source_file": "README.md",
       "source_location": "L71",
       "id": "supermarket_readme_publishing_a_new_outlet",
-      "community": 6,
+      "community": 8,
       "norm_label": "publishing a new outlet"
     },
     {
@@ -1660,7 +2201,7 @@
       "source_file": "README.md",
       "source_location": "L77",
       "id": "supermarket_readme_cloudflare_pages_deployment",
-      "community": 6,
+      "community": 8,
       "norm_label": "cloudflare pages deployment"
     },
     {
@@ -1669,7 +2210,7 @@
       "source_file": "README.md",
       "source_location": "L90",
       "id": "supermarket_readme_deploy_hook_setup",
-      "community": 6,
+      "community": 8,
       "norm_label": "deploy hook setup"
     },
     {
@@ -1678,7 +2219,7 @@
       "source_file": "README.md",
       "source_location": "L102",
       "id": "supermarket_readme_pagefind_search",
-      "community": 6,
+      "community": 8,
       "norm_label": "pagefind search"
     },
     {
@@ -1687,8 +2228,26 @@
       "source_file": "README.md",
       "source_location": "L119",
       "id": "supermarket_readme_project_structure",
-      "community": 6,
+      "community": 8,
       "norm_label": "project structure"
+    },
+    {
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "id": "agents_md",
+      "community": 19,
+      "norm_label": "agents.md"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "id": "supermarket_agents_graphify",
+      "community": 19,
+      "norm_label": "graphify"
     },
     {
       "label": "2026-05-27-outlet-gallery-images.md",
@@ -1696,7 +2255,7 @@
       "source_file": "docs/superpowers/plans/2026-05-27-outlet-gallery-images.md",
       "source_location": "L1",
       "id": "docs_superpowers_plans_2026_05_27_outlet_gallery_images_md",
-      "community": 11,
+      "community": 13,
       "norm_label": "2026-05-27-outlet-gallery-images.md"
     },
     {
@@ -1705,7 +2264,7 @@
       "source_file": "docs/superpowers/plans/2026-05-27-outlet-gallery-images.md",
       "source_location": "L1",
       "id": "plans_2026_05_27_outlet_gallery_images_outlet_gallery_images_implementation_plan",
-      "community": 11,
+      "community": 13,
       "norm_label": "outlet gallery images implementation plan"
     },
     {
@@ -1714,7 +2273,7 @@
       "source_file": "docs/superpowers/plans/2026-05-27-outlet-gallery-images.md",
       "source_location": "L13",
       "id": "plans_2026_05_27_outlet_gallery_images_task_1_normalize_gallery_urls_from_airtable",
-      "community": 11,
+      "community": 13,
       "norm_label": "task 1: normalize gallery urls from airtable"
     },
     {
@@ -1723,7 +2282,7 @@
       "source_file": "docs/superpowers/plans/2026-05-27-outlet-gallery-images.md",
       "source_location": "L76",
       "id": "plans_2026_05_27_outlet_gallery_images_task_2_render_the_shared_gallery_section",
-      "community": 11,
+      "community": 13,
       "norm_label": "task 2: render the shared gallery section"
     },
     {
@@ -1732,7 +2291,7 @@
       "source_file": "docs/superpowers/plans/2026-05-27-outlet-gallery-images.md",
       "source_location": "L137",
       "id": "plans_2026_05_27_outlet_gallery_images_task_3_verify_and_publish",
-      "community": 11,
+      "community": 13,
       "norm_label": "task 3: verify and publish"
     },
     {
@@ -1741,7 +2300,7 @@
       "source_file": "docs/superpowers/plans/2026-05-28-supermarket-directions-landmarks.md",
       "source_location": "L1",
       "id": "docs_superpowers_plans_2026_05_28_supermarket_directions_landmarks_md",
-      "community": 10,
+      "community": 12,
       "norm_label": "2026-05-28-supermarket-directions-landmarks.md"
     },
     {
@@ -1750,7 +2309,7 @@
       "source_file": "docs/superpowers/plans/2026-05-28-supermarket-directions-landmarks.md",
       "source_location": "L1",
       "id": "plans_2026_05_28_supermarket_directions_landmarks_supermarket_directions_and_nearby_landmarks_implementation_plan",
-      "community": 10,
+      "community": 12,
       "norm_label": "supermarket directions and nearby landmarks implementation plan"
     },
     {
@@ -1759,7 +2318,7 @@
       "source_file": "docs/superpowers/plans/2026-05-28-supermarket-directions-landmarks.md",
       "source_location": "L13",
       "id": "plans_2026_05_28_supermarket_directions_landmarks_file_structure",
-      "community": 10,
+      "community": 12,
       "norm_label": "file structure"
     },
     {
@@ -1768,7 +2327,7 @@
       "source_file": "docs/superpowers/plans/2026-05-28-supermarket-directions-landmarks.md",
       "source_location": "L23",
       "id": "plans_2026_05_28_supermarket_directions_landmarks_task_1_normalize_supermarket_airtable_fields",
-      "community": 10,
+      "community": 12,
       "norm_label": "task 1: normalize supermarket airtable fields"
     },
     {
@@ -1777,7 +2336,7 @@
       "source_file": "docs/superpowers/plans/2026-05-28-supermarket-directions-landmarks.md",
       "source_location": "L102",
       "id": "plans_2026_05_28_supermarket_directions_landmarks_task_2_render_details_in_the_existing_supermarket_grid",
-      "community": 10,
+      "community": 12,
       "norm_label": "task 2: render details in the existing supermarket grid"
     },
     {
@@ -1786,7 +2345,7 @@
       "source_file": "docs/superpowers/plans/2026-05-28-supermarket-directions-landmarks.md",
       "source_location": "L206",
       "id": "plans_2026_05_28_supermarket_directions_landmarks_task_3_verify_commit_and_publish_to_main",
-      "community": 10,
+      "community": 12,
       "norm_label": "task 3: verify, commit, and publish to main"
     },
     {
@@ -1795,7 +2354,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-supermarket-directions-landmarks-design.md",
       "source_location": "L1",
       "id": "docs_superpowers_specs_2026_05_27_supermarket_directions_landmarks_design_md",
-      "community": 8,
+      "community": 10,
       "norm_label": "2026-05-27-supermarket-directions-landmarks-design.md"
     },
     {
@@ -1804,7 +2363,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-supermarket-directions-landmarks-design.md",
       "source_location": "L1",
       "id": "specs_2026_05_27_supermarket_directions_landmarks_design_supermarket_directions_and_nearby_landmarks_design",
-      "community": 8,
+      "community": 10,
       "norm_label": "supermarket directions and nearby landmarks design"
     },
     {
@@ -1813,7 +2372,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-supermarket-directions-landmarks-design.md",
       "source_location": "L3",
       "id": "specs_2026_05_27_supermarket_directions_landmarks_design_goal",
-      "community": 8,
+      "community": 10,
       "norm_label": "goal"
     },
     {
@@ -1822,7 +2381,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-supermarket-directions-landmarks-design.md",
       "source_location": "L7",
       "id": "specs_2026_05_27_supermarket_directions_landmarks_design_airtable_data",
-      "community": 8,
+      "community": 10,
       "norm_label": "airtable data"
     },
     {
@@ -1831,7 +2390,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-supermarket-directions-landmarks-design.md",
       "source_location": "L20",
       "id": "specs_2026_05_27_supermarket_directions_landmarks_design_presentation",
-      "community": 8,
+      "community": 10,
       "norm_label": "presentation"
     },
     {
@@ -1840,7 +2399,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-supermarket-directions-landmarks-design.md",
       "source_location": "L31",
       "id": "specs_2026_05_27_supermarket_directions_landmarks_design_scope",
-      "community": 8,
+      "community": 10,
       "norm_label": "scope"
     },
     {
@@ -1849,7 +2408,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-supermarket-directions-landmarks-design.md",
       "source_location": "L37",
       "id": "specs_2026_05_27_supermarket_directions_landmarks_design_testing_and_verification",
-      "community": 8,
+      "community": 10,
       "norm_label": "testing and verification"
     },
     {
@@ -1858,7 +2417,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-outlet-gallery-images-design.md",
       "source_location": "L1",
       "id": "docs_superpowers_specs_2026_05_27_outlet_gallery_images_design_md",
-      "community": 7,
+      "community": 9,
       "norm_label": "2026-05-27-outlet-gallery-images-design.md"
     },
     {
@@ -1867,7 +2426,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-outlet-gallery-images-design.md",
       "source_location": "L1",
       "id": "specs_2026_05_27_outlet_gallery_images_design_outlet_gallery_images_design",
-      "community": 7,
+      "community": 9,
       "norm_label": "outlet gallery images design"
     },
     {
@@ -1876,7 +2435,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-outlet-gallery-images-design.md",
       "source_location": "L3",
       "id": "specs_2026_05_27_outlet_gallery_images_design_goal",
-      "community": 7,
+      "community": 9,
       "norm_label": "goal"
     },
     {
@@ -1885,7 +2444,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-outlet-gallery-images-design.md",
       "source_location": "L7",
       "id": "specs_2026_05_27_outlet_gallery_images_design_data_flow",
-      "community": 7,
+      "community": 9,
       "norm_label": "data flow"
     },
     {
@@ -1894,7 +2453,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-outlet-gallery-images-design.md",
       "source_location": "L11",
       "id": "specs_2026_05_27_outlet_gallery_images_design_rendering",
-      "community": 7,
+      "community": 9,
       "norm_label": "rendering"
     },
     {
@@ -1903,7 +2462,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-outlet-gallery-images-design.md",
       "source_location": "L17",
       "id": "specs_2026_05_27_outlet_gallery_images_design_scope",
-      "community": 7,
+      "community": 9,
       "norm_label": "scope"
     },
     {
@@ -1912,7 +2471,7 @@
       "source_file": "docs/superpowers/specs/2026-05-27-outlet-gallery-images-design.md",
       "source_location": "L21",
       "id": "specs_2026_05_27_outlet_gallery_images_design_verification",
-      "community": 7,
+      "community": 9,
       "norm_label": "verification"
     }
   ],
@@ -2210,11 +2769,21 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/components/responsive.test.ts",
-      "source_location": "L4",
+      "source_file": ".codex/hooks.json",
+      "source_location": "L2",
       "weight": 1.0,
-      "source": "src_components_responsive_test_ts",
-      "target": "components_responsive_test_read",
+      "source": "codex_hooks_json",
+      "target": "codex_hooks_hooks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".codex/hooks.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "codex_hooks_hooks",
+      "target": "codex_hooks_hooks_pretooluse",
       "confidence_score": 1.0
     },
     {
@@ -2262,7 +2831,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/index.astro",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_index_astro",
       "target": "src_components_searchbox_astro",
@@ -2284,7 +2853,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/index.astro",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_pages_general_stores_index_astro",
       "target": "src_components_searchbox_astro",
@@ -2295,7 +2864,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/index.astro",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_index_astro",
       "target": "src_components_searchbox_astro",
@@ -2310,6 +2879,16 @@
       "weight": 1.0,
       "source": "src_pages_supermarkets_index_astro",
       "target": "src_components_searchbox_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/outlet-map.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_components_outlet_map_test_ts",
+      "target": "components_outlet_map_test_read",
       "confidence_score": 1.0
     },
     {
@@ -2420,6 +2999,14 @@
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
+      "source_file": "src/components/TaxonomyCard.astro",
+      "source": "src_components_taxonomycard_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_seo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/brands/[slug].astro",
       "source": "src_pages_brands_slug_astro",
       "target": "users_nursyazwani_documents_supermarket_src_lib_seo",
@@ -2462,6 +3049,22 @@
       "confidence": "EXTRACTED",
       "source_file": "src/pages/[promotionCollection].astro",
       "source": "src_pages_promotioncollection_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_seo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/index.astro",
+      "source": "src_pages_promotions_index_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_seo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source": "src_pages_promotions_slug_astro",
       "target": "users_nursyazwani_documents_supermarket_src_lib_seo",
       "confidence_score": 1.0
     },
@@ -2546,17 +3149,6 @@
     },
     {
       "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/malls/index.astro",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "src_pages_malls_index_astro",
-      "target": "src_components_mallcard_astro",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "src/components/BrandCard.astro",
       "source": "src_components_brandcard_astro",
@@ -2598,6 +3190,14 @@
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
+      "source_file": "src/components/TaxonomyCard.astro",
+      "source": "src_components_taxonomycard_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_airtable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/brands/index.astro",
       "source": "src_pages_brands_index_astro",
       "target": "users_nursyazwani_documents_supermarket_src_lib_airtable",
@@ -2694,6 +3294,14 @@
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/mrt-stations/index.astro",
+      "source": "src_pages_mrt_stations_index_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_airtable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source": "src_pages_mrt_stations_slug_astro",
       "target": "users_nursyazwani_documents_supermarket_src_lib_airtable",
@@ -2720,6 +3328,22 @@
       "confidence": "EXTRACTED",
       "source_file": "src/pages/[promotionCollection].astro",
       "source": "src_pages_promotioncollection_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_airtable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/index.astro",
+      "source": "src_pages_promotions_index_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_airtable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source": "src_pages_promotions_slug_astro",
       "target": "users_nursyazwani_documents_supermarket_src_lib_airtable",
       "confidence_score": 1.0
     },
@@ -2760,6 +3384,14 @@
       "confidence": "EXTRACTED",
       "source_file": "src/components/NeighbourhoodCard.astro",
       "source": "src_components_neighbourhoodcard_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_content",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TaxonomyCard.astro",
+      "source": "src_components_taxonomycard_astro",
       "target": "users_nursyazwani_documents_supermarket_src_lib_content",
       "confidence_score": 1.0
     },
@@ -2846,6 +3478,22 @@
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/index.astro",
+      "source": "src_pages_promotions_index_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_content",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source": "src_pages_promotions_slug_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_content",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
       "source": "src_pages_supermarkets_slug_astro",
       "target": "users_nursyazwani_documents_supermarket_src_lib_content",
@@ -2865,7 +3513,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_components_listingcard_astro",
       "target": "components_listingcard_brand",
@@ -2875,7 +3523,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "src_components_listingcard_astro",
       "target": "components_listingcard_href",
@@ -2885,7 +3533,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "src_components_listingcard_astro",
       "target": "components_listingcard_initial",
@@ -2895,7 +3543,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "src_components_listingcard_astro",
       "target": "components_listingcard_mall",
@@ -2905,7 +3553,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_components_listingcard_astro",
       "target": "components_listingcard_mrt",
@@ -2915,7 +3563,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ListingCard.astro",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_components_listingcard_astro",
       "target": "components_listingcard_neighbourhood",
@@ -2940,6 +3588,17 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_components_listingcard_astro",
+      "target": "lib_directoryfilters_encodefiltervalues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ListingCard.astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_components_listingcard_astro",
       "target": "lib_seo_canonicalpath",
       "confidence_score": 1.0
     },
@@ -2962,7 +3621,26 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_components_listingcard_astro",
+      "target": "src_lib_directoryfilters_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ListingCard.astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_components_listingcard_astro",
       "target": "src_lib_seo_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ListingCard.astro",
+      "source": "src_components_listingcard_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_directoryfilters",
       "confidence_score": 1.0
     },
     {
@@ -2981,7 +3659,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/index.astro",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_index_astro",
       "target": "src_components_listingcard_astro",
@@ -3014,7 +3692,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/index.astro",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_pages_general_stores_index_astro",
       "target": "src_components_listingcard_astro",
@@ -3036,7 +3714,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/index.astro",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_index_astro",
       "target": "src_components_listingcard_astro",
@@ -3120,6 +3798,14 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/FilterBar.astro",
+      "source": "src_components_filterbar_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_directoryfilters",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -3180,6 +3866,16 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/OutletGallery.astro",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_components_outletgallery_astro",
+      "target": "components_outletgallery_imageurls",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -3224,6 +3920,50 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/convenience-stores/[slug].astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_convenience_stores_slug_astro",
+      "target": "src_components_outletmap_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/general-stores/[slug].astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_general_stores_slug_astro",
+      "target": "src_components_outletmap_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/grocery-stores/[slug].astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_grocery_stores_slug_astro",
+      "target": "src_components_outletmap_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "src_components_outletmap_astro",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -3232,6 +3972,17 @@
       "weight": 1.0,
       "source": "src_components_neighbourhoodcard_astro",
       "target": "lib_content_formatcount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/NeighbourhoodCard.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_neighbourhoodcard_astro",
+      "target": "lib_content_truncatewords",
       "confidence_score": 1.0
     },
     {
@@ -3342,6 +4093,14 @@
     },
     {
       "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/404.astro",
+      "source": "src_pages_404_astro",
+      "target": "src_components_layout_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/brands/index.astro",
@@ -3361,8 +4120,11 @@
     },
     {
       "relation": "imports_from",
+      "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/index.astro",
+      "source_location": "L3",
+      "weight": 1.0,
       "source": "src_pages_convenience_stores_index_astro",
       "target": "src_components_layout_astro",
       "confidence_score": 1.0
@@ -3388,8 +4150,11 @@
     },
     {
       "relation": "imports_from",
+      "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/index.astro",
+      "source_location": "L3",
+      "weight": 1.0,
       "source": "src_pages_general_stores_index_astro",
       "target": "src_components_layout_astro",
       "confidence_score": 1.0
@@ -3404,8 +4169,11 @@
     },
     {
       "relation": "imports_from",
+      "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/index.astro",
+      "source_location": "L3",
+      "weight": 1.0,
       "source": "src_pages_grocery_stores_index_astro",
       "target": "src_components_layout_astro",
       "confidence_score": 1.0
@@ -3448,6 +4216,14 @@
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/mrt-stations/index.astro",
+      "source": "src_pages_mrt_stations_index_astro",
+      "target": "src_components_layout_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source": "src_pages_mrt_stations_slug_astro",
       "target": "src_components_layout_astro",
@@ -3474,6 +4250,22 @@
       "confidence": "EXTRACTED",
       "source_file": "src/pages/[promotionCollection].astro",
       "source": "src_pages_promotioncollection_astro",
+      "target": "src_components_layout_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/index.astro",
+      "source": "src_pages_promotions_index_astro",
+      "target": "src_components_layout_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source": "src_pages_promotions_slug_astro",
       "target": "src_components_layout_astro",
       "confidence_score": 1.0
     },
@@ -3515,10 +4307,158 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Header.astro",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_components_header_astro",
+      "target": "components_header_promotionlinks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Header.astro",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_components_header_astro",
+      "target": "components_header_promotionmenu",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/filter-bar.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_filter_bar_test_ts",
+      "target": "lib_directoryfilters_cardmatchesfilters",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/filter-bar.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_filter_bar_test_ts",
+      "target": "lib_directoryfilters_encodefiltervalues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/filter-bar.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_filter_bar_test_ts",
+      "target": "lib_directoryfilters_splitfiltervalues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/filter-bar.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_filter_bar_test_ts",
+      "target": "src_lib_directoryfilters_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_components_filterbar_astro",
+      "target": "components_filterbar_brands",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_components_filterbar_astro",
+      "target": "components_filterbar_categories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_components_filterbar_astro",
+      "target": "components_filterbar_ids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_components_filterbar_astro",
+      "target": "components_filterbar_malls",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_components_filterbar_astro",
+      "target": "components_filterbar_mrtstations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/FilterBar.astro",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_components_filterbar_astro",
+      "target": "components_filterbar_neighbourhoods",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/convenience-stores/index.astro",
+      "source": "src_pages_convenience_stores_index_astro",
+      "target": "src_components_filterbar_astro",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/directory.astro",
       "source": "src_pages_directory_astro",
+      "target": "src_components_filterbar_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/general-stores/index.astro",
+      "source": "src_pages_general_stores_index_astro",
+      "target": "src_components_filterbar_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/grocery-stores/index.astro",
+      "source": "src_pages_grocery_stores_index_astro",
       "target": "src_components_filterbar_astro",
       "confidence_score": 1.0
     },
@@ -3568,7 +4508,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "src_components_promotioncard_astro",
@@ -3579,7 +4519,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "src_components_promotioncard_astro",
@@ -3590,7 +4530,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "src_components_promotioncard_astro",
@@ -3611,8 +4551,30 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/index.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_promotions_index_astro",
+      "target": "src_components_promotioncard_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_promotions_slug_astro",
+      "target": "src_components_promotioncard_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "src_components_promotioncard_astro",
@@ -3622,8 +4584,96 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/lib/seo.test.ts",
+      "source_file": "src/components/TaxonomyCard.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_taxonomycard_astro",
+      "target": "lib_content_formatcount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TaxonomyCard.astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_components_taxonomycard_astro",
+      "target": "lib_seo_canonicalpath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TaxonomyCard.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_taxonomycard_astro",
+      "target": "src_lib_content_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TaxonomyCard.astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_components_taxonomycard_astro",
+      "target": "src_lib_seo_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/malls/index.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_malls_index_astro",
+      "target": "src_components_taxonomycard_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mrt-stations/index.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mrt_stations_index_astro",
+      "target": "src_components_taxonomycard_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/social.test.ts",
       "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_lib_social_test_ts",
+      "target": "lib_social_getoutletsociallinks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/social.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_lib_social_test_ts",
+      "target": "src_lib_social_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/seo.test.ts",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_lib_seo_test_ts",
       "target": "lib_airtable_directorydata",
@@ -3634,18 +4684,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.test.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "src_lib_seo_test_ts",
-      "target": "lib_seo_buildfaqpageschema",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/seo.test.ts",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_lib_seo_test_ts",
       "target": "lib_seo_buildrobotstxt",
@@ -3656,7 +4695,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.test.ts",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_lib_seo_test_ts",
       "target": "lib_seo_buildsitemapxml",
@@ -3667,7 +4706,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.test.ts",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_lib_seo_test_ts",
       "target": "lib_seo_canonicalpath",
@@ -3678,7 +4717,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.test.ts",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_lib_seo_test_ts",
       "target": "lib_seo_getsitemappaths",
@@ -3689,7 +4728,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.test.ts",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_lib_seo_test_ts",
       "target": "lib_seo_resolvesiteurl",
@@ -3699,10 +4738,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.test.ts",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_lib_seo_test_ts",
       "target": "lib_seo_test_directorydata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/seo.test.ts",
+      "source_location": "L191",
+      "weight": 1.0,
+      "source": "src_lib_seo_test_ts",
+      "target": "lib_seo_test_projectroot",
       "confidence_score": 1.0
     },
     {
@@ -3710,7 +4759,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.test.ts",
-      "source_location": "L2",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_lib_seo_test_ts",
       "target": "src_lib_airtable_ts",
@@ -3721,7 +4770,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.test.ts",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_lib_seo_test_ts",
       "target": "src_lib_seo_ts",
@@ -3790,6 +4839,17 @@
       "source_location": "L2",
       "weight": 1.0,
       "source": "src_lib_airtable_test_ts",
+      "target": "lib_airtable_getsupermarketbrandpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_lib_airtable_test_ts",
       "target": "lib_airtable_isvalidneighbourhoodname",
       "confidence_score": 1.0
     },
@@ -3820,7 +4880,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.test.ts",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_lib_airtable_test_ts",
       "target": "lib_content_hastaxonomyimage",
@@ -3831,10 +4891,10 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.test.ts",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_lib_airtable_test_ts",
-      "target": "lib_content_parsefaqitems",
+      "target": "lib_content_splitdescriptionparagraphs",
       "confidence_score": 1.0
     },
     {
@@ -3842,10 +4902,10 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.test.ts",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_lib_airtable_test_ts",
-      "target": "lib_content_splitdescriptionparagraphs",
+      "target": "lib_content_truncatewords",
       "confidence_score": 1.0
     },
     {
@@ -3864,10 +4924,275 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.test.ts",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_lib_airtable_test_ts",
       "target": "src_lib_content_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_lib_faq_test_ts",
+      "target": "src_lib_faq_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_lib_faq_ts",
+      "target": "lib_faq_brandfaqitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_lib_faq_ts",
+      "target": "lib_faq_buildfaqpageschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "src_lib_faq_ts",
+      "target": "lib_faq_hasmarkedfaq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "src_lib_faq_ts",
+      "target": "lib_faq_isfaqheading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "src_lib_faq_ts",
+      "target": "lib_faq_isquestionline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_lib_faq_ts",
+      "target": "lib_faq_parsebrandfaq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "src_lib_faq_ts",
+      "target": "lib_faq_parsemarkedfaqblock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "src_lib_faq_ts",
+      "target": "lib_faq_parseplainfaq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "src_lib_faq_ts",
+      "target": "lib_faq_pushplainfaqitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "src_lib_faq_ts",
+      "target": "lib_faq_splitmarkedfaqblocks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/brands/[slug].astro",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_pages_brands_slug_astro",
+      "target": "src_lib_faq_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/[promotionCollection].astro",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_promotioncollection_astro",
+      "target": "src_lib_faq_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/[promotionCollection].astro",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_promotioncollection_astro",
+      "target": "lib_faq_brandfaqitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "lib_faq_parsebrandfaq",
+      "target": "lib_faq_hasmarkedfaq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "lib_faq_parsebrandfaq",
+      "target": "lib_faq_parseplainfaq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "lib_faq_parsebrandfaq",
+      "target": "lib_faq_splitmarkedfaqblocks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_lib_faq_test_ts",
+      "target": "lib_faq_parsebrandfaq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/brands/[slug].astro",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_pages_brands_slug_astro",
+      "target": "lib_faq_parsebrandfaq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_lib_faq_test_ts",
+      "target": "lib_faq_buildfaqpageschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/brands/[slug].astro",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_pages_brands_slug_astro",
+      "target": "lib_faq_buildfaqpageschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/[promotionCollection].astro",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_promotioncollection_astro",
+      "target": "lib_faq_buildfaqpageschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "lib_faq_parseplainfaq",
+      "target": "lib_faq_isfaqheading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "lib_faq_parseplainfaq",
+      "target": "lib_faq_isquestionline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/faq.ts",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "lib_faq_parseplainfaq",
+      "target": "lib_faq_pushplainfaqitem",
       "confidence_score": 1.0
     },
     {
@@ -3896,27 +5221,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/content.ts",
-      "source_location": "L60",
-      "weight": 1.0,
-      "source": "src_lib_content_ts",
-      "target": "lib_content_cleanfaqquestion",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/content.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "src_lib_content_ts",
-      "target": "lib_content_faqitem",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/content.ts",
-      "source_location": "L21",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_lib_content_ts",
       "target": "lib_content_formatcount",
@@ -3926,7 +5231,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/content.ts",
-      "source_location": "L25",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "src_lib_content_ts",
       "target": "lib_content_getprimary",
@@ -3936,7 +5241,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/content.ts",
-      "source_location": "L86",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "src_lib_content_ts",
       "target": "lib_content_getrelatedbyneighbourhood",
@@ -3946,7 +5251,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/content.ts",
-      "source_location": "L29",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "src_lib_content_ts",
       "target": "lib_content_hastaxonomyimage",
@@ -3956,7 +5261,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/content.ts",
-      "source_location": "L98",
+      "source_location": "L70",
       "weight": 1.0,
       "source": "src_lib_content_ts",
       "target": "lib_content_pagedescription",
@@ -3966,17 +5271,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/content.ts",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "src_lib_content_ts",
-      "target": "lib_content_parsefaqitems",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/content.ts",
-      "source_location": "L8",
+      "source_location": "L3",
       "weight": 1.0,
       "source": "src_lib_content_ts",
       "target": "lib_content_priority_neighbourhoods",
@@ -3986,7 +5281,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/content.ts",
-      "source_location": "L72",
+      "source_location": "L44",
       "weight": 1.0,
       "source": "src_lib_content_ts",
       "target": "lib_content_sortfeaturedneighbourhoods",
@@ -3996,10 +5291,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/content.ts",
-      "source_location": "L33",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "src_lib_content_ts",
       "target": "lib_content_splitdescriptionparagraphs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/content.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "src_lib_content_ts",
+      "target": "lib_content_truncatewords",
       "confidence_score": 1.0
     },
     {
@@ -4011,17 +5316,6 @@
       "weight": 1.0,
       "source": "src_lib_content_ts",
       "target": "src_lib_airtable_ts",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/seo.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "src_lib_seo_ts",
-      "target": "src_lib_content_ts",
       "confidence_score": 1.0
     },
     {
@@ -4040,7 +5334,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "src_lib_content_ts",
@@ -4051,7 +5345,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "src_lib_content_ts",
@@ -4062,7 +5356,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "src_lib_content_ts",
@@ -4138,22 +5432,33 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L8",
+      "source_file": "src/pages/promotions/index.astro",
+      "source_location": "L6",
       "weight": 1.0,
-      "source": "src_pages_supermarkets_slug_astro",
+      "source": "src_pages_promotions_index_astro",
       "target": "src_lib_content_ts",
       "confidence_score": 1.0
     },
     {
-      "relation": "imports",
+      "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/lib/seo.ts",
-      "source_location": "L2",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L5",
       "weight": 1.0,
-      "source": "src_lib_seo_ts",
-      "target": "lib_content_faqitem",
+      "source": "src_pages_promotions_slug_astro",
+      "target": "src_lib_content_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "src_lib_content_ts",
       "confidence_score": 1.0
     },
     {
@@ -4161,7 +5466,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/content.ts",
-      "source_location": "L100",
+      "source_location": "L72",
       "weight": 1.0,
       "source": "lib_content_pagedescription",
       "target": "lib_content_formatcount",
@@ -4226,8 +5531,30 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/index.astro",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_promotions_index_astro",
+      "target": "lib_content_formatcount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "lib_content_formatcount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "lib_content_getprimary",
@@ -4238,7 +5565,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "lib_content_getprimary",
@@ -4249,7 +5576,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "lib_content_getprimary",
@@ -4260,24 +5587,13 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L8",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "lib_content_getprimary",
       "confidence_score": 1.0
     },
     {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/content.ts",
-      "source_location": "L43",
-      "weight": 1.0,
-      "source": "lib_content_parsefaqitems",
-      "target": "lib_content_splitdescriptionparagraphs",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -4292,11 +5608,77 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/brands/[slug].astro",
-      "source_location": "L6",
+      "source_file": "src/pages/convenience-stores/[slug].astro",
+      "source_location": "L8",
       "weight": 1.0,
-      "source": "src_pages_brands_slug_astro",
-      "target": "lib_content_parsefaqitems",
+      "source": "src_pages_convenience_stores_slug_astro",
+      "target": "lib_content_splitdescriptionparagraphs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/general-stores/[slug].astro",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_pages_general_stores_slug_astro",
+      "target": "lib_content_splitdescriptionparagraphs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/grocery-stores/[slug].astro",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_pages_grocery_stores_slug_astro",
+      "target": "lib_content_splitdescriptionparagraphs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/malls/[slug].astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_malls_slug_astro",
+      "target": "lib_content_splitdescriptionparagraphs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/neighbourhoods/[slug].astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_neighbourhoods_slug_astro",
+      "target": "lib_content_splitdescriptionparagraphs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_promotions_slug_astro",
+      "target": "lib_content_splitdescriptionparagraphs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "lib_content_splitdescriptionparagraphs",
       "confidence_score": 1.0
     },
     {
@@ -4326,7 +5708,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "lib_content_getrelatedbyneighbourhood",
@@ -4337,7 +5719,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "lib_content_getrelatedbyneighbourhood",
@@ -4348,7 +5730,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "lib_content_getrelatedbyneighbourhood",
@@ -4359,7 +5741,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L8",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "lib_content_getrelatedbyneighbourhood",
@@ -4410,6 +5792,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "lib_content_pagedescription",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
@@ -4423,10 +5816,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L303",
+      "source_location": "L313",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_assertairtableenv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L771",
+      "weight": 1.0,
+      "source": "src_lib_airtable_ts",
+      "target": "lib_airtable_buildpromotionslug",
       "confidence_score": 1.0
     },
     {
@@ -4443,7 +5846,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L507",
+      "source_location": "L525",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_createlookup",
@@ -4453,7 +5856,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L71",
+      "source_location": "L78",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_directorydata",
@@ -4463,7 +5866,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L86",
+      "source_location": "L96",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_envsource",
@@ -4473,7 +5876,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L314",
+      "source_location": "L324",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_fetchairtablerecords",
@@ -4483,7 +5886,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L87",
+      "source_location": "L97",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_fetchlike",
@@ -4493,7 +5896,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L133",
+      "source_location": "L143",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_fields",
@@ -4503,7 +5906,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L620",
+      "source_location": "L714",
+      "weight": 1.0,
+      "source": "src_lib_airtable_ts",
+      "target": "lib_airtable_filterbrandsbyfeaturedoutlets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L639",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_findbrandbyslug",
@@ -4523,7 +5936,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L635",
+      "source_location": "L654",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_getbrandpromotions",
@@ -4533,7 +5946,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L375",
+      "source_location": "L385",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_getdirectorydata",
@@ -4543,7 +5956,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L352",
+      "source_location": "L362",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_getfirstinitial",
@@ -4553,10 +5966,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L640",
+      "source_location": "L659",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_getoutletpromotions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L665",
+      "weight": 1.0,
+      "source": "src_lib_airtable_ts",
+      "target": "lib_airtable_getsupermarketbrandpages",
       "confidence_score": 1.0
     },
     {
@@ -4573,7 +5996,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L347",
+      "source_location": "L702",
+      "weight": 1.0,
+      "source": "src_lib_airtable_ts",
+      "target": "lib_airtable_groupsupermarketbrandsfirst",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L357",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_isvalidneighbourhoodname",
@@ -4593,7 +6026,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L387",
+      "source_location": "L397",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_loaddirectorydata",
@@ -4603,7 +6036,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L728",
+      "source_location": "L783",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_normalizecomparable",
@@ -4613,7 +6046,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L532",
+      "source_location": "L550",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_normalizeoutlet",
@@ -4623,7 +6056,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L571",
+      "source_location": "L589",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_normalizepromotion",
@@ -4633,7 +6066,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L295",
+      "source_location": "L767",
+      "weight": 1.0,
+      "source": "src_lib_airtable_ts",
+      "target": "lib_airtable_normalizerouteslug",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L305",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_outletfieldsconfig",
@@ -4643,20 +6086,10 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L625",
+      "source_location": "L644",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_outlettolinkeditem",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/airtable.ts",
-      "source_location": "L704",
-      "weight": 1.0,
-      "source": "src_lib_airtable_ts",
-      "target": "lib_airtable_parsegalleryimageurls",
       "confidence_score": 1.0
     },
     {
@@ -4673,7 +6106,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L65",
+      "source_location": "L66",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_promotioncollection",
@@ -4683,7 +6116,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L126",
+      "source_location": "L115",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_promotioncollectionconfig",
@@ -4693,7 +6126,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L680",
+      "source_location": "L734",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_readfield",
@@ -4703,7 +6136,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L689",
+      "source_location": "L743",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_readfieldstring",
@@ -4713,7 +6146,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L698",
+      "source_location": "L752",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_readpostalcode",
@@ -4723,7 +6156,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L674",
+      "source_location": "L728",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_readstring",
@@ -4733,7 +6166,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L383",
+      "source_location": "L393",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_resetdirectorycachefortests",
@@ -4743,7 +6176,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L356",
+      "source_location": "L366",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_resolvelinks",
@@ -4753,7 +6186,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L717",
+      "source_location": "L758",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_slugify",
@@ -4763,7 +6196,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L711",
+      "source_location": "L777",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_summarizedescription",
@@ -4783,7 +6216,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L91",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "src_lib_airtable_ts",
+      "target": "lib_airtable_supermarketbrandpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L101",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_tables",
@@ -4803,7 +6246,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L670",
+      "source_location": "L724",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_uniqueoutletslug",
@@ -4813,7 +6256,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L664",
+      "source_location": "L696",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_uniquesorted",
@@ -4823,7 +6266,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L646",
+      "source_location": "L678",
       "weight": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_withcounts",
@@ -4867,7 +6310,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/index.astro",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_index_astro",
       "target": "src_lib_airtable_ts",
@@ -4878,7 +6321,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "src_lib_airtable_ts",
@@ -4900,7 +6343,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/index.astro",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_general_stores_index_astro",
       "target": "src_lib_airtable_ts",
@@ -4911,7 +6354,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "src_lib_airtable_ts",
@@ -4922,7 +6365,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/index.astro",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_index_astro",
       "target": "src_lib_airtable_ts",
@@ -4933,7 +6376,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "src_lib_airtable_ts",
@@ -4969,6 +6412,17 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_pages_malls_slug_astro",
+      "target": "src_lib_airtable_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mrt-stations/index.astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_mrt_stations_index_astro",
       "target": "src_lib_airtable_ts",
       "confidence_score": 1.0
     },
@@ -5020,6 +6474,28 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/index.astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_promotions_index_astro",
+      "target": "src_lib_airtable_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_promotions_slug_astro",
+      "target": "src_lib_airtable_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/sitemap.xml.ts",
       "source_location": "L1",
       "weight": 1.0,
@@ -5043,7 +6519,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "src_lib_airtable_ts",
@@ -5098,7 +6574,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "lib_airtable_supermarket",
@@ -5109,7 +6585,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "lib_airtable_grocerystore",
@@ -5120,7 +6596,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "lib_airtable_conveniencestore",
@@ -5131,10 +6607,21 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "lib_airtable_generalstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_promotions_slug_astro",
+      "target": "lib_airtable_promotion",
       "confidence_score": 1.0
     },
     {
@@ -5146,6 +6633,17 @@
       "weight": 1.0,
       "source": "src_pages_promotioncollection_astro",
       "target": "lib_airtable_promotioncollection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "lib_airtable_supermarketbrandpage",
       "confidence_score": 1.0
     },
     {
@@ -5164,7 +6662,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L388",
+      "source_location": "L398",
       "weight": 1.0,
       "source": "lib_airtable_loaddirectorydata",
       "target": "lib_airtable_assertairtableenv",
@@ -5175,7 +6673,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L390",
+      "source_location": "L400",
       "weight": 1.0,
       "source": "lib_airtable_loaddirectorydata",
       "target": "lib_airtable_fetchairtablerecords",
@@ -5186,7 +6684,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "lib_airtable_getfirstinitial",
@@ -5197,7 +6695,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "lib_airtable_getfirstinitial",
@@ -5208,7 +6706,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "lib_airtable_getfirstinitial",
@@ -5219,7 +6717,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "lib_airtable_getfirstinitial",
@@ -5230,7 +6728,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L547",
+      "source_location": "L565",
       "weight": 1.0,
       "source": "lib_airtable_normalizeoutlet",
       "target": "lib_airtable_resolvelinks",
@@ -5241,7 +6739,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L579",
+      "source_location": "L597",
       "weight": 1.0,
       "source": "lib_airtable_normalizepromotion",
       "target": "lib_airtable_resolvelinks",
@@ -5253,7 +6751,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/brands/[slug].astro",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "brands_slug_getstaticpaths",
       "target": "lib_airtable_getdirectorydata"
@@ -5264,7 +6762,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L11",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "convenience_stores_slug_getstaticpaths",
       "target": "lib_airtable_getdirectorydata"
@@ -5275,7 +6773,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L11",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "general_stores_slug_getstaticpaths",
       "target": "lib_airtable_getdirectorydata"
@@ -5286,7 +6784,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L11",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "grocery_stores_slug_getstaticpaths",
       "target": "lib_airtable_getdirectorydata"
@@ -5296,7 +6794,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L376",
+      "source_location": "L386",
       "weight": 1.0,
       "source": "lib_airtable_getdirectorydata",
       "target": "lib_airtable_loaddirectorydata",
@@ -5341,7 +6839,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/[promotionCollection].astro",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "pages_promotioncollection_getstaticpaths",
       "target": "lib_airtable_getdirectorydata"
@@ -5355,6 +6853,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "pages_sitemap_xml_get",
+      "target": "lib_airtable_getdirectorydata"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "promotions_slug_getstaticpaths",
       "target": "lib_airtable_getdirectorydata"
     },
     {
@@ -5384,7 +6893,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/index.astro",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_index_astro",
       "target": "lib_airtable_getdirectorydata",
@@ -5395,7 +6904,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "lib_airtable_getdirectorydata",
@@ -5417,7 +6926,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/index.astro",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_general_stores_index_astro",
       "target": "lib_airtable_getdirectorydata",
@@ -5428,7 +6937,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "lib_airtable_getdirectorydata",
@@ -5439,7 +6948,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/index.astro",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_index_astro",
       "target": "lib_airtable_getdirectorydata",
@@ -5450,7 +6959,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "lib_airtable_getdirectorydata",
@@ -5486,6 +6995,17 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_pages_malls_slug_astro",
+      "target": "lib_airtable_getdirectorydata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mrt-stations/index.astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_mrt_stations_index_astro",
       "target": "lib_airtable_getdirectorydata",
       "confidence_score": 1.0
     },
@@ -5537,6 +7057,28 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/index.astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_promotions_index_astro",
+      "target": "lib_airtable_getdirectorydata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_promotions_slug_astro",
+      "target": "lib_airtable_getdirectorydata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/sitemap.xml.ts",
       "source_location": "L1",
       "weight": 1.0,
@@ -5560,7 +7102,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "lib_airtable_getdirectorydata",
@@ -5572,7 +7114,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L12",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "supermarkets_slug_getstaticpaths",
       "target": "lib_airtable_getdirectorydata"
@@ -5582,7 +7124,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L396",
+      "source_location": "L406",
       "weight": 1.0,
       "source": "lib_airtable_loaddirectorydata",
       "target": "lib_airtable_createlookup",
@@ -5593,7 +7135,29 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L503",
+      "source_location": "L476",
+      "weight": 1.0,
+      "source": "lib_airtable_loaddirectorydata",
+      "target": "lib_airtable_filterbrandsbyfeaturedoutlets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L474",
+      "weight": 1.0,
+      "source": "lib_airtable_loaddirectorydata",
+      "target": "lib_airtable_groupsupermarketbrandsfirst",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L521",
       "weight": 1.0,
       "source": "lib_airtable_loaddirectorydata",
       "target": "lib_airtable_uniquesorted",
@@ -5604,7 +7168,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L460",
+      "source_location": "L470",
       "weight": 1.0,
       "source": "lib_airtable_loaddirectorydata",
       "target": "lib_airtable_withcounts",
@@ -5615,18 +7179,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L562",
-      "weight": 1.0,
-      "source": "lib_airtable_normalizeoutlet",
-      "target": "lib_airtable_parsegalleryimageurls",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/airtable.ts",
-      "source_location": "L547",
+      "source_location": "L565",
       "weight": 1.0,
       "source": "lib_airtable_normalizeoutlet",
       "target": "lib_airtable_readfield",
@@ -5637,7 +7190,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L544",
+      "source_location": "L562",
       "weight": 1.0,
       "source": "lib_airtable_normalizeoutlet",
       "target": "lib_airtable_readfieldstring",
@@ -5648,7 +7201,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L553",
+      "source_location": "L571",
       "weight": 1.0,
       "source": "lib_airtable_normalizeoutlet",
       "target": "lib_airtable_readpostalcode",
@@ -5659,7 +7212,18 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L580",
+      "source_location": "L607",
+      "weight": 1.0,
+      "source": "lib_airtable_normalizepromotion",
+      "target": "lib_airtable_buildpromotionslug",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L598",
       "weight": 1.0,
       "source": "lib_airtable_normalizepromotion",
       "target": "lib_airtable_findbrandbyslug",
@@ -5670,7 +7234,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L579",
+      "source_location": "L597",
       "weight": 1.0,
       "source": "lib_airtable_normalizepromotion",
       "target": "lib_airtable_readfield",
@@ -5681,7 +7245,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L585",
+      "source_location": "L603",
       "weight": 1.0,
       "source": "lib_airtable_normalizepromotion",
       "target": "lib_airtable_readfieldstring",
@@ -5692,7 +7256,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L589",
+      "source_location": "L607",
       "weight": 1.0,
       "source": "lib_airtable_normalizepromotion",
       "target": "lib_airtable_slugify",
@@ -5703,7 +7267,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L609",
+      "source_location": "L627",
       "weight": 1.0,
       "source": "lib_airtable_normalizepromotion",
       "target": "lib_airtable_summarizedescription",
@@ -5714,7 +7278,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L621",
+      "source_location": "L640",
       "weight": 1.0,
       "source": "lib_airtable_findbrandbyslug",
       "target": "lib_airtable_normalizecomparable",
@@ -5746,8 +7310,30 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_promotions_slug_astro",
+      "target": "lib_airtable_getbrandpromotions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "lib_airtable_getbrandpromotions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "lib_airtable_getoutletpromotions",
@@ -5758,7 +7344,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "lib_airtable_getoutletpromotions",
@@ -5769,7 +7355,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "lib_airtable_getoutletpromotions",
@@ -5780,7 +7366,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "lib_airtable_getoutletpromotions",
@@ -5790,28 +7376,95 @@
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/seo.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "lib_seo_getsitemappaths",
+      "target": "lib_airtable_getsupermarketbrandpages"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/seo.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_lib_seo_ts",
+      "target": "lib_airtable_getsupermarketbrandpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "lib_airtable_getsupermarketbrandpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "supermarkets_slug_getstaticpaths",
+      "target": "lib_airtable_getsupermarketbrandpages"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L691",
+      "source_location": "L745",
       "weight": 1.0,
       "source": "lib_airtable_readfieldstring",
       "target": "lib_airtable_readstring",
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "calls",
+      "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "src/lib/seo.ts",
-      "source_location": "L66",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L772",
       "weight": 1.0,
-      "source": "src_lib_seo_ts",
-      "target": "lib_seo_buildfaqpageschema",
+      "source": "lib_airtable_buildpromotionslug",
+      "target": "lib_airtable_slugify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L772",
+      "weight": 1.0,
+      "source": "lib_airtable_buildpromotionslug",
+      "target": "lib_airtable_normalizerouteslug",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L773",
+      "weight": 1.0,
+      "source": "lib_airtable_buildpromotionslug",
+      "target": "lib_airtable_normalizecomparable",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L56",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "src_lib_seo_ts",
       "target": "lib_seo_buildrobotstxt",
@@ -5821,7 +7474,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L42",
+      "source_location": "L44",
       "weight": 1.0,
       "source": "src_lib_seo_ts",
       "target": "lib_seo_buildsitemapxml",
@@ -5831,7 +7484,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L25",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_lib_seo_ts",
       "target": "lib_seo_canonicalpath",
@@ -5841,7 +7494,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L32",
+      "source_location": "L34",
       "weight": 1.0,
       "source": "src_lib_seo_ts",
       "target": "lib_seo_canonicalurl",
@@ -5851,7 +7504,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L81",
+      "source_location": "L68",
       "weight": 1.0,
       "source": "src_lib_seo_ts",
       "target": "lib_seo_escapexml",
@@ -5861,7 +7514,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L10",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_lib_seo_ts",
       "target": "lib_seo_getsitemappaths",
@@ -5871,7 +7524,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_lib_seo_ts",
       "target": "lib_seo_resolvesiteurl",
@@ -5881,7 +7534,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0,
       "source": "src_lib_seo_ts",
       "target": "lib_seo_static_sitemap_paths",
@@ -5892,7 +7545,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/brands/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_brands_slug_astro",
       "target": "src_lib_seo_ts",
@@ -5903,7 +7556,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "src_lib_seo_ts",
@@ -5914,7 +7567,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "src_lib_seo_ts",
@@ -5925,7 +7578,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "src_lib_seo_ts",
@@ -5947,9 +7600,31 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/[promotionCollection].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_promotioncollection_astro",
+      "target": "src_lib_seo_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/index.astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_promotions_index_astro",
+      "target": "src_lib_seo_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_promotions_slug_astro",
       "target": "src_lib_seo_ts",
       "confidence_score": 1.0
     },
@@ -5980,7 +7655,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L9",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "src_lib_seo_ts",
@@ -5991,7 +7666,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L57",
+      "source_location": "L59",
       "weight": 1.0,
       "source": "lib_seo_buildrobotstxt",
       "target": "lib_seo_resolvesiteurl",
@@ -6002,7 +7677,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L43",
+      "source_location": "L45",
       "weight": 1.0,
       "source": "lib_seo_buildsitemapxml",
       "target": "lib_seo_resolvesiteurl",
@@ -6013,7 +7688,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L39",
+      "source_location": "L41",
       "weight": 1.0,
       "source": "lib_seo_canonicalurl",
       "target": "lib_seo_resolvesiteurl",
@@ -6024,7 +7699,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "lib_seo_buildsitemapxml",
       "target": "lib_seo_getsitemappaths",
@@ -6035,7 +7710,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/seo.ts",
-      "source_location": "L35",
+      "source_location": "L37",
       "weight": 1.0,
       "source": "lib_seo_canonicalurl",
       "target": "lib_seo_canonicalpath",
@@ -6046,7 +7721,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/brands/[slug].astro",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_pages_brands_slug_astro",
       "target": "lib_seo_canonicalpath",
@@ -6057,7 +7732,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "lib_seo_canonicalpath",
@@ -6068,7 +7743,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "lib_seo_canonicalpath",
@@ -6079,7 +7754,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "lib_seo_canonicalpath",
@@ -6101,7 +7776,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/[promotionCollection].astro",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_promotioncollection_astro",
       "target": "lib_seo_canonicalpath",
@@ -6111,8 +7786,30 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/index.astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_promotions_index_astro",
+      "target": "lib_seo_canonicalpath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_promotions_slug_astro",
+      "target": "lib_seo_canonicalpath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L9",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "lib_seo_canonicalpath",
@@ -6163,25 +7860,242 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_lib_social_ts",
+      "target": "lib_social_detectlabel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_lib_social_ts",
+      "target": "lib_social_getoutletsociallinks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_lib_social_ts",
+      "target": "lib_social_social_hosts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_lib_social_ts",
+      "target": "lib_social_socialinput",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_lib_social_ts",
+      "target": "lib_social_sociallink",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/brands/[slug].astro",
-      "source_location": "L7",
+      "source_file": "src/pages/convenience-stores/[slug].astro",
+      "source_location": "L10",
       "weight": 1.0,
-      "source": "src_pages_brands_slug_astro",
-      "target": "lib_seo_buildfaqpageschema",
+      "source": "src_pages_convenience_stores_slug_astro",
+      "target": "src_lib_social_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/general-stores/[slug].astro",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_pages_general_stores_slug_astro",
+      "target": "src_lib_social_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/grocery-stores/[slug].astro",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_pages_grocery_stores_slug_astro",
+      "target": "src_lib_social_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "src_lib_social_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/social.ts",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "lib_social_getoutletsociallinks",
+      "target": "lib_social_detectlabel",
       "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/[promotionCollection].astro",
+      "source_file": "src/pages/convenience-stores/[slug].astro",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_pages_convenience_stores_slug_astro",
+      "target": "lib_social_getoutletsociallinks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/general-stores/[slug].astro",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_pages_general_stores_slug_astro",
+      "target": "lib_social_getoutletsociallinks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/grocery-stores/[slug].astro",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_pages_grocery_stores_slug_astro",
+      "target": "lib_social_getoutletsociallinks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "lib_social_getoutletsociallinks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_lib_directoryfilters_ts",
+      "target": "lib_directoryfilters_activefilter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_lib_directoryfilters_ts",
+      "target": "lib_directoryfilters_cardmatchesfilters",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_lib_directoryfilters_ts",
+      "target": "lib_directoryfilters_encodefiltervalues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_lib_directoryfilters_ts",
+      "target": "lib_directoryfilters_filterablelink",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/directoryFilters.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_lib_directoryfilters_ts",
+      "target": "lib_directoryfilters_splitfiltervalues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/taxonomy-index-pages.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_lib_taxonomy_index_pages_test_ts",
+      "target": "lib_taxonomy_index_pages_test_readsource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/taxonomy-index-pages.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_lib_taxonomy_index_pages_test_ts",
+      "target": "lib_taxonomy_index_pages_test_root",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/promotion-collection-pages.test.ts",
       "source_location": "L6",
       "weight": 1.0,
-      "source": "src_pages_promotioncollection_astro",
-      "target": "lib_seo_buildfaqpageschema",
+      "source": "src_lib_promotion_collection_pages_test_ts",
+      "target": "lib_promotion_collection_pages_test_pagesource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/promotion-collection-pages.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_lib_promotion_collection_pages_test_ts",
+      "target": "lib_promotion_collection_pages_test_projectroot",
       "confidence_score": 1.0
     },
     {
@@ -6198,10 +8112,36 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/[promotionCollection].astro",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_pages_promotioncollection_astro",
       "target": "pages_promotioncollection_getstaticpaths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/[promotionCollection].astro",
+      "source": "src_pages_promotioncollection_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_faq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/brands/[slug].astro",
+      "source": "src_pages_brands_slug_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_faq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/directory.astro",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_pages_directory_astro",
+      "target": "pages_directory_outlets",
       "confidence_score": 1.0
     },
     {
@@ -6248,17 +8188,49 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/general-stores/[slug].astro",
-      "source_location": "L10",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_pages_general_stores_slug_astro",
       "target": "general_stores_slug_getstaticpaths",
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/general-stores/[slug].astro",
+      "source": "src_pages_general_stores_slug_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_social",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/convenience-stores/[slug].astro",
+      "source": "src_pages_convenience_stores_slug_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_social",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/grocery-stores/[slug].astro",
+      "source": "src_pages_grocery_stores_slug_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_social",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/supermarkets/[slug].astro",
+      "source": "src_pages_supermarkets_slug_astro",
+      "target": "users_nursyazwani_documents_supermarket_src_lib_social",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/brands/[slug].astro",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_pages_brands_slug_astro",
       "target": "brands_slug_getstaticpaths",
@@ -6278,7 +8250,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/mrt-stations/[slug].astro",
-      "source_location": "L9",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_pages_mrt_stations_slug_astro",
+      "target": "mrt_stations_slug_grocerystoreoutlets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mrt-stations/[slug].astro",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_pages_mrt_stations_slug_astro",
       "target": "mrt_stations_slug_outlets",
@@ -6297,8 +8279,18 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/mrt-stations/[slug].astro",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_pages_mrt_stations_slug_astro",
+      "target": "mrt_stations_slug_supermarketoutlets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/supermarkets/[slug].astro",
-      "source_location": "L11",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "src_pages_supermarkets_slug_astro",
       "target": "supermarkets_slug_getstaticpaths",
@@ -6307,8 +8299,18 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/promotions/[slug].astro",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_pages_promotions_slug_astro",
+      "target": "promotions_slug_getstaticpaths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/grocery-stores/[slug].astro",
-      "source_location": "L10",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_pages_grocery_stores_slug_astro",
       "target": "grocery_stores_slug_getstaticpaths",
@@ -6338,7 +8340,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/convenience-stores/[slug].astro",
-      "source_location": "L10",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_pages_convenience_stores_slug_astro",
       "target": "convenience_stores_slug_getstaticpaths",
@@ -6452,6 +8454,16 @@
       "weight": 1.0,
       "source": "supermarket_readme_singapore_supermarket_directory",
       "target": "supermarket_readme_publishing_a_new_outlet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "agents_md",
+      "target": "supermarket_agents_graphify",
       "confidence_score": 1.0
     },
     {
@@ -6666,5 +8678,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ed05092737e0607ecea8fa158e00cf49a9604c31"
+  "built_at_commit": "b20cb6017ba6c2024528d2b176e7fc53aace6b65"
 }
