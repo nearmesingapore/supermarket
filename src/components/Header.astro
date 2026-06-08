@@ -1,15 +1,15 @@
 ---
+import { canonicalPath } from "@/lib/seo";
+
 const links = [
   { href: "/", label: "Home" },
   { href: "/directory", label: "Directory" },
   { href: "/supermarkets", label: "Supermarkets" },
-  { href: "/grocery-stores", label: "Grocery Stores" },
-  { href: "/brands", label: "Brands" },
-  { href: "/neighbourhoods", label: "Neighbourhoods" },
-  { href: "/malls", label: "Malls" },
-  { href: "/mrt-stations", label: "MRT" },
+  { href: "/sheng-siong-promotions", label: "Sheng Siong Promotions" },
+  { href: "/fairprice-promotions", label: "FairPrice Promotions" },
+  { href: "/giant-promotions", label: "Giant Promotions" },
   { href: "/search", label: "Search" }
-];
+].map((link) => ({ ...link, href: canonicalPath(link.href) }));
 ---
 
 <header class="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
@@ -17,12 +17,12 @@ const links = [
     <a href="/" class="shrink-0 font-serif text-2xl leading-none text-ink" aria-label="Singapore Supermarket Directory home">
       SG Supermarkets
     </a>
-    <nav class="hidden items-center gap-3 text-xs font-medium text-muted md:flex xl:gap-5 xl:text-sm" aria-label="Primary navigation">
+    <nav class="hidden items-center gap-3 text-xs font-medium text-muted md:flex xl:gap-4 xl:text-sm" aria-label="Primary navigation">
       {links.map((link) => (
         <a class="transition hover:text-ink" href={link.href}>{link.label}</a>
       ))}
     </nav>
-    <a href="/directory" class="ghost-button hidden sm:inline-flex">Browse</a>
+    <a href="/directory/" class="ghost-button hidden sm:inline-flex">Browse</a>
     <button
       class="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-line bg-white text-ink md:hidden"
       type="button"

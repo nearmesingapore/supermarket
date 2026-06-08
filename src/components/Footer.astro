@@ -1,3 +1,22 @@
+---
+import { canonicalPath } from "@/lib/seo";
+
+const links = [
+  { href: "/directory", label: "Directory" },
+  { href: "/brands", label: "Brands" },
+  { href: "/neighbourhoods", label: "Neighbourhoods" },
+  { href: "/malls", label: "Malls" },
+  { href: "/mrt-stations", label: "MRT Stations" },
+  { href: "/grocery-stores", label: "Grocery Stores" },
+  { href: "/convenience-stores", label: "Convenience Stores" },
+  { href: "/general-stores", label: "General Stores" },
+  { href: "/sheng-siong-promotions", label: "Sheng Siong Promotions" },
+  { href: "/fairprice-promotions", label: "FairPrice Promotions" },
+  { href: "/giant-promotions", label: "Giant Promotions" },
+  { href: "/search", label: "Search" }
+].map((link) => ({ ...link, href: canonicalPath(link.href) }));
+---
+
 <footer class="mt-24 border-t border-line bg-white">
   <div class="container-page grid gap-8 py-12 md:grid-cols-[1.2fr_0.8fr]">
     <div>
@@ -7,12 +26,7 @@
       </p>
     </div>
     <nav class="grid grid-cols-2 gap-3 text-sm text-muted sm:grid-cols-3 md:justify-self-end" aria-label="Footer navigation">
-      <a class="fine-link" href="/directory">Directory</a>
-      <a class="fine-link" href="/brands">Brands</a>
-      <a class="fine-link" href="/neighbourhoods">Neighbourhoods</a>
-      <a class="fine-link" href="/malls">Malls</a>
-      <a class="fine-link" href="/mrt-stations">MRT Stations</a>
-      <a class="fine-link" href="/search">Search</a>
+      {links.map((link) => <a class="fine-link" href={link.href}>{link.label}</a>)}
     </nav>
   </div>
 </footer>

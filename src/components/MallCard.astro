@@ -1,6 +1,7 @@
 ---
 import type { TaxonomyItem } from "@/lib/airtable";
 import { formatCount, hasTaxonomyImage } from "@/lib/content";
+import { canonicalPath } from "@/lib/seo";
 
 interface Props {
   mall: TaxonomyItem;
@@ -8,9 +9,10 @@ interface Props {
 
 const { mall } = Astro.props;
 const showImage = hasTaxonomyImage(mall.imageUrl);
+const href = canonicalPath(`/malls/${mall.slug}`);
 ---
 
-<a class="group flex h-full flex-col overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial" href={`/malls/${mall.slug}`}>
+<a class="group flex h-full flex-col overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-editorial" href={href}>
   {
     showImage && (
       <div class="aspect-[4/3] overflow-hidden bg-[#f1eee8]">

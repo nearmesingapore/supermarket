@@ -1,25 +1,24 @@
 ---
 import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
-import OutletDetails from "@/components/OutletDetails.astro";
 import OutletGallery from "@/components/OutletGallery.astro";
 import PromotionCard from "@/components/PromotionCard.astro";
-import { getDirectoryData, getFirstInitial, getOutletPromotions, type Supermarket } from "@/lib/airtable";
+import { getDirectoryData, getFirstInitial, getOutletPromotions, type ConvenienceStore } from "@/lib/airtable";
 import { getPrimary, getRelatedByNeighbourhood } from "@/lib/content";
 import { canonicalPath } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const data = await getDirectoryData();
-  return data.supermarkets.map((outlet) => ({ params: { slug: outlet.slug }, props: { outlet } }));
+  return data.convenienceStores.map((outlet) => ({ params: { slug: outlet.slug }, props: { outlet } }));
 }
 
-const { outlet } = Astro.props as { outlet: Supermarket };
+const { outlet } = Astro.props as { outlet: ConvenienceStore };
 const data = await getDirectoryData();
 const brand = getPrimary(outlet.brand);
 const neighbourhood = getPrimary(outlet.neighbourhood);
 const mall = getPrimary(outlet.mall);
 const mrt = getPrimary(outlet.mrt);
-const related = getRelatedByNeighbourhood(outlet, data.supermarkets);
+const related = getRelatedByNeighbourhood(outlet, data.convenienceStores);
 const promotions = getOutletPromotions(data.promotions, outlet, 3);
 const promotionCollection = brand
   ? data.promotionCollections.find((collection) => collection.brandSlug === brand.slug)
@@ -30,7 +29,7 @@ const initial = getFirstInitial(brand?.name || "", outlet.outletName);
 const fullAddress = [outlet.address, outlet.postalCode].filter(Boolean).join(" ");
 const schema = {
   "@context": "https://schema.org",
-  "@type": "GroceryStore",
+  "@type": "ConvenienceStore",
   name: outlet.outletName,
   address: {
     "@type": "PostalAddress",
@@ -39,12 +38,12 @@ const schema = {
     addressCountry: "SG"
   },
   telephone: outlet.phone,
-  url: outlet.googleMapsUrl,
+  url: outlet.websiteUrl || outlet.googleMapsUrl,
   openingHours: outlet.openingHours
 };
 ---
 
-<Layout title={title} description={description} image={outlet.imageUrl || undefined} canonical={`/supermarkets/${outlet.slug}`}>
+<Layout title={title} description={description} image={outlet.imageUrl || undefined} canonical={`/convenience-stores/${outlet.slug}`}>
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <article
@@ -70,10 +69,11 @@ const schema = {
             <p class="mt-4 whitespace-pre-line leading-7 text-muted">{outlet.openingHours}</p>
           </section>
         )}
-        {(outlet.facebookUrl || outlet.instagramUrl) && (
+        {(outlet.websiteUrl || outlet.facebookUrl || outlet.instagramUrl) && (
           <section class="border border-line bg-white p-6">
-            <h2 class="font-serif text-3xl">Social links</h2>
+            <h2 class="font-serif text-3xl">Links</h2>
             <div class="mt-4 flex flex-wrap gap-3 text-sm">
+              {outlet.websiteUrl && <a class="fine-link" href={outlet.websiteUrl} target="_blank" rel="noreferrer">Website</a>}
               {outlet.facebookUrl && <a class="fine-link" href={outlet.facebookUrl} target="_blank" rel="noreferrer">Facebook</a>}
               {outlet.instagramUrl && <a class="fine-link" href={outlet.instagramUrl} target="_blank" rel="noreferrer">Instagram</a>}
             </div>
@@ -89,10 +89,11 @@ const schema = {
 
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           {outlet.googleMapsUrl && <a class="soft-button w-full sm:w-auto" href={outlet.googleMapsUrl} target="_blank" rel="noreferrer">Open Google Maps</a>}
+          {outlet.websiteUrl && <a class="ghost-button w-full sm:w-auto" href={outlet.websiteUrl} target="_blank" rel="noreferrer">Visit website</a>}
           {outlet.phone && <a class="ghost-button w-full sm:w-auto" href={`tel:${outlet.phone}`}>{outlet.phone}</a>}
         </div>
 
-        <dl class="mt-10 grid gap-5 border-y border-line py-8">
+        <dl class="mt-10 grid gap-5 border-y border-line py-8 sm:grid-cols-2">
           {neighbourhood && (
             <div>
               <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-brass">Neighbourhood</dt>
@@ -111,12 +112,6 @@ const schema = {
               <dd class="mt-2"><a class="fine-link" href={canonicalPath(`/mrt-stations/${mrt.slug}`)}>{mrt.name} MRT</a></dd>
             </div>
           )}
-          <OutletDetails
-            gettingThereByCar={outlet.gettingThereByCar}
-            gettingThereByPublicTransport={outlet.gettingThereByPublicTransport}
-            nearbyBusServices={outlet.nearbyBusServices}
-            nearbyLandmarks={outlet.nearbyLandmarks}
-          />
         </dl>
       </div>
     </div>
@@ -144,9 +139,9 @@ const schema = {
   {related.length > 0 && (
     <section class="container-page pb-20">
       <p class="eyebrow">Related</p>
-      <h2 class="section-title mt-3">More in {neighbourhood?.name}</h2>
+      <h2 class="section-title mt-3">More convenience stores in {neighbourhood?.name}</h2>
       <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {related.map((item) => <ListingCard outlet={item} />)}
+        {related.map((item) => <ListingCard outlet={item} basePath="/convenience-stores" />)}
       </div>
     </section>
   )}

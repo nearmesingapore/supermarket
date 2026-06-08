@@ -2,15 +2,18 @@ import { afterEach, describe, expect, test, vi } from "vitest";
 import {
   assertAirtableEnv,
   fetchAirtableRecords,
+  getBrandPromotions,
   getDirectoryData,
   getFirstInitial,
   isValidNeighbourhoodName,
+  resetDirectoryCacheForTests,
   resolveLinks
 } from "./airtable";
-import { hasTaxonomyImage, splitDescriptionParagraphs } from "./content";
+import { hasTaxonomyImage, parseFaqItems, splitDescriptionParagraphs } from "./content";
 
 afterEach(() => {
   vi.restoreAllMocks();
+  resetDirectoryCacheForTests();
   delete process.env.AIRTABLE_API_KEY;
   delete process.env.AIRTABLE_BASE_ID;
 });
@@ -80,7 +83,7 @@ describe("getDirectoryData", () => {
     );
   });
 
-  test("loads supermarkets and grocery stores without removed Airtable fields", async () => {
+  test("loads supermarkets, grocery stores, convenience stores, and general stores without removed Airtable fields", async () => {
     process.env.AIRTABLE_API_KEY = "key";
     process.env.AIRTABLE_BASE_ID = "base";
 
@@ -99,7 +102,8 @@ describe("getDirectoryData", () => {
               fldPwU2iFk9wEsmba: "Brand",
               fldA09ghMk1pINerc: "brand",
               fldp86xMlykctfvv0: "https://example.com/brand.jpg",
-              fldgNoZbK2EY6KFWJ: "A useful brand description."
+              fldgNoZbK2EY6KFWJ: "A useful brand description.",
+              fldoS3tnGZ48XOqNn: "What is this brand known for?\nFresh groceries and weekly deals."
             }
           }
         ]
@@ -194,6 +198,52 @@ describe("getDirectoryData", () => {
         ]
       })
     } as Response);
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "convenience-store-1",
+            fields: {
+              fldU1hXFDewIqnsWb: "7-Eleven Orchard",
+              fld6hiqGFxpg0yD4a: "7-eleven-orchard",
+              fldsAJfHwpQcnltbc: "Convenience store with snacks, drinks, and daily essentials.",
+              fld2M1eGwvfmF8PHi: ["brand-1"],
+              fldSpjvzls4kxlMDQ: "Convenience Store",
+              fld80ifwu32W1vhV8: ["hood-1"],
+              fldghkPz2puG8JCxm: ["mall-1"],
+              fldbScVEU1WwLZD8G: "1 Orchard Road",
+              fldTTKHQClOVFh0PB: 238888,
+              fldci2d92Qe14atvS: "https://example.com/7-eleven",
+              fldituodlWxyfVlp6: "https://example.com/convenience-one.jpg, https://example.com/convenience-two.jpg"
+            }
+          }
+        ]
+      })
+    } as Response);
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "general-store-1",
+            fields: {
+              fldvWCMXQFzECkA4m: "ABC General Store",
+              fldHcDfYSYsccvLcl: "abc-general-store",
+              fld3v44ZJQT8ziBjn: "Neighbourhood general store with household staples.",
+              fldDHm3YJWiiR5XPt: ["brand-1"],
+              fldtkEkRyT7gJiUL1: "General Store",
+              fldJVD4OHu5Sdsp3j: ["hood-1"],
+              fldRcFERfQxCkGKFx: ["mall-1"],
+              fldMNxKW7sZsXWLgR: "10 Market Street",
+              flduO5w8PMRRRe8XM: 488888,
+              fldNdn2rfhhXg7BD3: "https://example.com/abc-general-store",
+              fldToPdvynAurStxh: "https://example.com/general-one.jpg, https://example.com/general-two.jpg"
+            }
+          }
+        ]
+      })
+    } as Response);
 
     const data = await getDirectoryData();
 
@@ -221,11 +271,38 @@ describe("getDirectoryData", () => {
         "https://example.com/grocery-two.jpg"
       ]
     });
+    expect(data.convenienceStores).toHaveLength(1);
+    expect(data.convenienceStores[0]).toMatchObject({
+      outletName: "7-Eleven Orchard",
+      slug: "7-eleven-orchard",
+      description: "Convenience store with snacks, drinks, and daily essentials.",
+      address: "1 Orchard Road",
+      postalCode: "238888",
+      websiteUrl: "https://example.com/7-eleven",
+      galleryImageUrls: [
+        "https://example.com/convenience-one.jpg",
+        "https://example.com/convenience-two.jpg"
+      ]
+    });
+    expect(data.generalStores).toHaveLength(1);
+    expect(data.generalStores[0]).toMatchObject({
+      outletName: "ABC General Store",
+      slug: "abc-general-store",
+      description: "Neighbourhood general store with household staples.",
+      address: "10 Market Street",
+      postalCode: "488888",
+      websiteUrl: "https://example.com/abc-general-store",
+      galleryImageUrls: [
+        "https://example.com/general-one.jpg",
+        "https://example.com/general-two.jpg"
+      ]
+    });
     expect(data.brands[0]).toMatchObject({
       name: "Brand",
       slug: "brand",
       imageUrl: "https://example.com/brand.jpg",
-      description: "A useful brand description."
+      description: "A useful brand description.",
+      brandFaq: "What is this brand known for?\nFresh groceries and weekly deals."
     });
     expect(data.neighbourhoods[0]).toMatchObject({
       name: "Hood",
@@ -246,8 +323,89 @@ describe("getDirectoryData", () => {
     expect(data.supermarkets[0]).not.toHaveProperty("deliveryLinks");
     expect(data.supermarkets[0]).not.toHaveProperty("published");
     expect(data.groceryStores[0]).not.toHaveProperty("published");
+    expect(data.convenienceStores[0]).not.toHaveProperty("published");
+    expect(data.generalStores[0]).not.toHaveProperty("published");
     expect(data).not.toHaveProperty("priceRanges");
     expect(data).not.toHaveProperty("halalOptions");
+  });
+
+  test("normalizes brand promotion tables and resolves them to the matching brand", async () => {
+    process.env.AIRTABLE_API_KEY = "key";
+    process.env.AIRTABLE_BASE_ID = "base";
+
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue({
+      ok: true,
+      json: async () => ({ records: [] })
+    } as Response);
+
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "brand-fairprice",
+            fields: {
+              fldPwU2iFk9wEsmba: "FairPrice",
+              fldA09ghMk1pINerc: "FairPrice"
+            }
+          }
+        ]
+      })
+    } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "supermarket-1",
+            fields: {
+              fldaSNrp6I8auhsxM: "FairPrice Tampines",
+              fldm8OUq811I4sDFL: "fairprice-tampines",
+              fldiDxIqZZROJ2PiT: ["brand-fairprice"]
+            }
+          }
+        ]
+      })
+    } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        records: [
+          {
+            id: "promo-1",
+            fields: {
+              fldrSaNXhuOTMYwvZ: "FairPrice Weekly Deals",
+              fldsobknyCZSzcvD4: "Fairprice-Promotions",
+              fldM0nFBIYYMSXafz: "21 May 2026 to 10 June 2026",
+              fldS9EKQmcjlegPgy: "Save on pantry staples.\n\nSource: FairPrice",
+              fld1umirXIZzBLFPP: "https://example.com/fairprice.jpg"
+            }
+          }
+        ]
+      })
+    } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
+
+    const data = await getDirectoryData();
+
+    expect(data.promotions).toHaveLength(1);
+    expect(data.promotions[0]).toMatchObject({
+      id: "promo-1",
+      title: "FairPrice Weekly Deals",
+      brand: { id: "brand-fairprice", name: "FairPrice", slug: "FairPrice" },
+      collectionSlug: "fairprice-promotions",
+      imageUrls: ["https://example.com/fairprice.jpg"],
+      shortDescription: "Save on pantry staples."
+    });
+    expect(data.promotions[0]).not.toHaveProperty("detailPath");
+    expect(getBrandPromotions(data.promotions, "brand-fairprice")).toHaveLength(1);
   });
 });
 
@@ -290,6 +448,21 @@ describe("splitDescriptionParagraphs", () => {
     expect(splitDescriptionParagraphs("First paragraph.\n\nSecond paragraph.\nThird line.")).toEqual([
       "First paragraph.",
       "Second paragraph.\nThird line."
+    ]);
+  });
+});
+
+describe("parseFaqItems", () => {
+  test("converts multiline FAQ text into question and answer pairs", () => {
+    expect(parseFaqItems("**What is the promotion today?**\nScroll up for current deals.\n\nWhen are offers updated?\nNew deals are added regularly.")).toEqual([
+      {
+        question: "What is the promotion today?",
+        answer: "Scroll up for current deals."
+      },
+      {
+        question: "When are offers updated?",
+        answer: "New deals are added regularly."
+      }
     ]);
   });
 });

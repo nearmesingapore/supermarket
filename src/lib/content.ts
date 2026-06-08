@@ -1,5 +1,10 @@
 import type { Supermarket, TaxonomyItem } from "./airtable";
 
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
 const PRIORITY_NEIGHBOURHOODS = [
   "Woodlands",
   "Tampines",
@@ -31,6 +36,36 @@ export function splitDescriptionParagraphs(description: string | undefined) {
       ?.split(/\n\s*\n/)
       .map((paragraph) => paragraph.trim())
       .filter(Boolean) ?? []
+  );
+}
+
+export function parseFaqItems(value: string | undefined): FaqItem[] {
+  return splitDescriptionParagraphs(value)
+    .map((block) => {
+      const lines = block
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean);
+      const [questionLine, ...answerLines] = lines;
+      const question = cleanFaqQuestion(questionLine);
+      const answer = answerLines.join("\n").trim();
+
+      if (!question || !answer) return undefined;
+
+      return { question, answer };
+    })
+    .filter((item): item is FaqItem => Boolean(item));
+}
+
+function cleanFaqQuestion(value: string | undefined) {
+  return (
+    value
+      ?.replace(/^\*\*/, "")
+      .replace(/\*\*$/, "")
+      .replace(/^#+\s*/, "")
+      .replace(/^[-*]\s*/, "")
+      .replace(/^Q:\s*/i, "")
+      .trim() ?? ""
   );
 }
 

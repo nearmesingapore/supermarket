@@ -3,6 +3,7 @@ import Layout from "@/components/Layout.astro";
 import ListingCard from "@/components/ListingCard.astro";
 import { getDirectoryData, type TaxonomyItem } from "@/lib/airtable";
 import { formatCount, pageDescription } from "@/lib/content";
+import { canonicalPath } from "@/lib/seo";
 export async function getStaticPaths() { const data = await getDirectoryData(); return data.neighbourhoods.map((neighbourhood) => ({ params: { slug: neighbourhood.slug }, props: { neighbourhood } })); }
 const { neighbourhood } = Astro.props as { neighbourhood: TaxonomyItem };
 const data = await getDirectoryData();
@@ -26,7 +27,7 @@ const description = neighbourhood.description || pageDescription(title, outlets.
         <div class="mt-10 border-y border-line py-6">
           <p class="text-sm font-semibold uppercase tracking-[0.16em] text-brass">Brands here</p>
           <div class="mt-4 flex flex-wrap gap-3">
-            {brands.map((brand) => <a class="pill-link" href={`/brands/${brand.slug}`}>{brand.name}</a>)}
+            {brands.map((brand) => <a class="pill-link" href={canonicalPath(`/brands/${brand.slug}`)}>{brand.name}</a>)}
           </div>
         </div>
       )}

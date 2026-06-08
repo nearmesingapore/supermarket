@@ -1,6 +1,7 @@
 ---
 import { getFirstInitial, type Supermarket } from "@/lib/airtable";
 import { getPrimary } from "@/lib/content";
+import { canonicalPath } from "@/lib/seo";
 
 interface Props {
   outlet: Supermarket;
@@ -13,7 +14,7 @@ const neighbourhood = getPrimary(outlet.neighbourhood);
 const mall = getPrimary(outlet.mall);
 const mrt = getPrimary(outlet.mrt);
 const initial = getFirstInitial(brand?.name || "", outlet.outletName);
-const href = `${basePath}/${outlet.slug}`;
+const href = canonicalPath(`${basePath}/${outlet.slug}`);
 ---
 
 <article
