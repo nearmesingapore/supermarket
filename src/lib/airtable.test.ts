@@ -101,7 +101,7 @@ describe("getDirectoryData", () => {
             id: "brand-1",
             fields: {
               fldPwU2iFk9wEsmba: "Supermarket Brand",
-              fldA09ghMk1pINerc: "supermarket-brand",
+              fldA09ghMk1pINerc: "Supermarket-Brand/",
               fldp86xMlykctfvv0: "https://example.com/brand.jpg",
               fldgNoZbK2EY6KFWJ: "A useful brand description.",
               fldoS3tnGZ48XOqNn: "Q: Does this brand have a FAQ?\nA: Yes, from Airtable."
@@ -141,7 +141,7 @@ describe("getDirectoryData", () => {
             id: "hood-1",
             fields: {
               fld9PsIecu0V0LYkd: "Hood",
-              fldEFQ1jysfxziqfM: "hood",
+              fldEFQ1jysfxziqfM: "/Hood/",
               fldhOHgO7KBCTidHJ: "https://example.com/hood.jpg",
               fldAVsFHnsfOYcDOZ: "A helpful neighbourhood description."
             }
@@ -157,7 +157,7 @@ describe("getDirectoryData", () => {
             id: "mall-1",
             fields: {
               fldiH8RSpJ81XjnTB: "Mall",
-              fld0cC7txqdeM3u83: "mall",
+              fld0cC7txqdeM3u83: "Mall",
               fldqvNsAVvEFOVRFn: "https://example.com/mall.jpg",
               fldAQDK706ZDbtQhk: "A useful mall description."
             }
@@ -177,7 +177,7 @@ describe("getDirectoryData", () => {
             id: "supermarket-1",
             fields: {
               fldaSNrp6I8auhsxM: "Brand Tampines",
-              fldm8OUq811I4sDFL: "brand-tampines",
+              fldm8OUq811I4sDFL: "Brand-Tampines/",
               fldIrfJrZTsErftMN: "A bright outlet with fresh produce and pantry staples.",
               fldiDxIqZZROJ2PiT: ["brand-1"],
               fld8gPZjOWGMBfMer: "Supermarket",
@@ -272,6 +272,7 @@ describe("getDirectoryData", () => {
 
     expect(data.supermarkets).toHaveLength(1);
     expect(data.supermarkets[0]).toMatchObject({
+      slug: "brand-tampines",
       description: "A bright outlet with fresh produce and pantry staples.",
       gettingThereByCar: "Park at the basement car park.\nUse lift lobby A.",
       gettingThereByPublicTransport: "Take the MRT to Ang Mo Kio.\nWalk through the town centre.",
@@ -415,11 +416,15 @@ describe("getDirectoryData", () => {
     expect(data.promotions[0]).toMatchObject({
       id: "promo-1",
       title: "FairPrice Weekly Deals",
-      brand: { id: "brand-fairprice", name: "FairPrice", slug: "FairPrice" },
+      brand: { id: "brand-fairprice", name: "FairPrice", slug: "fairprice" },
       collectionSlug: "fairprice-promotions",
-      detailPath: "/promotions/fairprice-promotions-Weekly-Deals",
+      detailPath: "/promotions/fairprice-promotions-weekly-deals",
       imageUrls: ["https://example.com/fairprice.jpg"],
       shortDescription: "Save on pantry staples."
+    });
+    expect(data.promotionCollections[1]).toMatchObject({
+      slug: "fairprice-promotions",
+      brandSlug: "fairprice"
     });
     expect(getBrandPromotions(data.promotions, "brand-fairprice")).toHaveLength(1);
   });

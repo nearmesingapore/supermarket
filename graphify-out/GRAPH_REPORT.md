@@ -1,13 +1,18 @@
-# Graph Report - .  (2026-06-08)
+# Graph Report - Supermarket  (2026-06-09)
 
 ## Corpus Check
-- 74 files · ~255,707 words
+- 69 files · ~255,717 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 273 nodes · 608 edges · 26 communities (22 shown, 4 thin omitted)
+- 273 nodes · 610 edges · 26 communities (22 shown, 4 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `a3efc3d9`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Airtable.Ts Promotion Slug|Airtable.Ts Promotion Slug]]
@@ -133,7 +138,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `name`, `version`, `private` to the rest of the system?**
   _100 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Airtable.Ts Promotion Slug` be split into smaller, more focused modules?**
-  _Cohesion score 0.0953058321479374 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09815078236130868 - nodes in this community are weakly interconnected._
 - **Should `Astro Filterbar.Astro Index.Astro` be split into smaller, more focused modules?**
   _Cohesion score 0.0855614973262032 - nodes in this community are weakly interconnected._
 - **Should `[Slug].Astro Get Astro` be split into smaller, more focused modules?**

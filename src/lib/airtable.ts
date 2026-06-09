@@ -514,8 +514,8 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     promotions,
     promotionCollections: PROMOTION_TABLES.map(({ label, slug, brandSlug }) => ({
       label,
-      slug,
-      brandSlug
+      slug: normalizeRouteSlug(slug),
+      brandSlug: normalizeRouteSlug(brandSlug)
     })),
     featuredSupermarkets: supermarkets.filter((outlet) => outlet.featured),
     categories: uniqueSorted(supermarkets.map((outlet) => outlet.category))
@@ -534,7 +534,7 @@ function createLookup(
     .map((record) => ({
       id: record.id,
       name: readFieldString(record.fields, nameField),
-      slug: readFieldString(record.fields, slugField) || slugify(readFieldString(record.fields, nameField)),
+      slug: normalizeRouteSlug(readFieldString(record.fields, slugField) || readFieldString(record.fields, nameField)),
       imageUrl: imageUrlField ? readFieldString(record.fields, imageUrlField) : undefined,
       description: descriptionField ? readFieldString(record.fields, descriptionField) : undefined,
       brandFaq: brandFaqField ? readFieldString(record.fields, brandFaqField) : undefined
@@ -560,7 +560,7 @@ function normalizeOutlet(
   return {
     id: record.id,
     outletName: readFieldString(fields, fieldsConfig.outletName),
-    slug: readFieldString(fields, fieldsConfig.slug),
+    slug: normalizeRouteSlug(readFieldString(fields, fieldsConfig.slug)),
     description: readFieldString(fields, fieldsConfig.description),
     brand: resolveLinks(readField(fields, fieldsConfig.brand), brands),
     category: readFieldString(fields, fieldsConfig.category),
@@ -765,7 +765,7 @@ function slugify(value: string) {
 }
 
 function normalizeRouteSlug(value: string) {
-  return value.trim().replace(/^\/+|\/+$/g, "");
+  return slugify(value.replace(/^\/+|\/+$/g, ""));
 }
 
 function buildPromotionSlug(collectionSlug: string, value: string) {
