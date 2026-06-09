@@ -1,0 +1,503 @@
+{
+  "communities": {
+    "0": [
+      "lib_airtable_airtablerecord",
+      "lib_airtable_assertairtableenv",
+      "lib_airtable_buildpromotionslug",
+      "lib_airtable_createlookup",
+      "lib_airtable_envsource",
+      "lib_airtable_fetchairtablerecords",
+      "lib_airtable_fetchlike",
+      "lib_airtable_fields",
+      "lib_airtable_filterbrandsbyfeaturedoutlets",
+      "lib_airtable_findbrandbyslug",
+      "lib_airtable_getbrandpromotions",
+      "lib_airtable_getfirstinitial",
+      "lib_airtable_groupsupermarketbrandsfirst",
+      "lib_airtable_isvalidneighbourhoodname",
+      "lib_airtable_linkeditem",
+      "lib_airtable_loaddirectorydata",
+      "lib_airtable_normalizecomparable",
+      "lib_airtable_normalizeoutlet",
+      "lib_airtable_normalizepromotion",
+      "lib_airtable_normalizerouteslug",
+      "lib_airtable_outletfieldsconfig",
+      "lib_airtable_outlettolinkeditem",
+      "lib_airtable_promotion",
+      "lib_airtable_promotioncollectionconfig",
+      "lib_airtable_readfield",
+      "lib_airtable_readfieldstring",
+      "lib_airtable_readpostalcode",
+      "lib_airtable_readstring",
+      "lib_airtable_resetdirectorycachefortests",
+      "lib_airtable_resolvelinks",
+      "lib_airtable_slugify",
+      "lib_airtable_summarizedescription",
+      "lib_airtable_tables",
+      "lib_airtable_uniqueoutletslug",
+      "lib_airtable_uniquesorted",
+      "lib_airtable_withcounts",
+      "src_lib_airtable_test_ts",
+      "src_lib_airtable_ts"
+    ],
+    "1": [
+      "lib_airtable_taxonomyitem",
+      "lib_content_formatcount",
+      "lib_content_hastaxonomyimage",
+      "lib_content_pagedescription",
+      "lib_content_priority_neighbourhoods",
+      "lib_content_sortfeaturedneighbourhoods",
+      "lib_content_splitdescriptionparagraphs",
+      "lib_content_truncatewords",
+      "lib_seo_canonicalpath",
+      "lib_seo_escapexml",
+      "lib_seo_static_sitemap_paths",
+      "mrt_stations_slug_grocerystoreoutlets",
+      "mrt_stations_slug_outlets",
+      "mrt_stations_slug_station",
+      "mrt_stations_slug_supermarketoutlets",
+      "neighbourhoods_index_neighbourhoods",
+      "pages_index_featuredneighbourhoods",
+      "src_components_brandcard_astro",
+      "src_components_mallcard_astro",
+      "src_components_neighbourhoodcard_astro",
+      "src_components_promotioncard_astro",
+      "src_components_taxonomycard_astro",
+      "src_lib_content_ts",
+      "src_lib_seo_ts",
+      "src_pages_brands_slug_astro",
+      "src_pages_index_astro",
+      "src_pages_malls_slug_astro",
+      "src_pages_mrt_stations_slug_astro",
+      "src_pages_neighbourhoods_index_astro",
+      "src_pages_neighbourhoods_slug_astro",
+      "src_pages_promotions_index_astro",
+      "src_pages_promotions_slug_astro",
+      "users_nursyazwani_documents_supermarket_src_lib_airtable",
+      "users_nursyazwani_documents_supermarket_src_lib_content",
+      "users_nursyazwani_documents_supermarket_src_lib_seo"
+    ],
+    "2": [
+      "brands_slug_getstaticpaths",
+      "components_filterbar_brands",
+      "components_filterbar_categories",
+      "components_filterbar_ids",
+      "components_filterbar_malls",
+      "components_filterbar_mrtstations",
+      "components_filterbar_neighbourhoods",
+      "components_footer_links",
+      "components_layout_canonicalurl",
+      "lib_airtable_getdirectorydata",
+      "malls_slug_getstaticpaths",
+      "mrt_stations_slug_getstaticpaths",
+      "neighbourhoods_slug_getstaticpaths",
+      "pages_directory_outlets",
+      "pages_search_params",
+      "pages_search_query",
+      "promotions_slug_getstaticpaths",
+      "src_components_filterbar_astro",
+      "src_components_footer_astro",
+      "src_components_herosection_astro",
+      "src_components_layout_astro",
+      "src_components_searchbox_astro",
+      "src_pages_404_astro",
+      "src_pages_brands_index_astro",
+      "src_pages_convenience_stores_index_astro",
+      "src_pages_directory_astro",
+      "src_pages_general_stores_index_astro",
+      "src_pages_grocery_stores_index_astro",
+      "src_pages_malls_index_astro",
+      "src_pages_mrt_stations_index_astro",
+      "src_pages_search_astro",
+      "src_pages_supermarkets_index_astro",
+      "users_nursyazwani_documents_supermarket_src_lib_directoryfilters",
+      "users_nursyazwani_documents_supermarket_src_styles_global_css"
+    ],
+    "3": [
+      "components_outletdetails_details",
+      "components_outletgallery_imageurls",
+      "convenience_stores_slug_getstaticpaths",
+      "general_stores_slug_getstaticpaths",
+      "grocery_stores_slug_getstaticpaths",
+      "lib_airtable_conveniencestore",
+      "lib_airtable_generalstore",
+      "lib_airtable_getoutletpromotions",
+      "lib_airtable_grocerystore",
+      "lib_airtable_supermarket",
+      "lib_airtable_supermarketbrandpage",
+      "lib_content_getprimary",
+      "lib_content_getrelatedbyneighbourhood",
+      "lib_social_detectlabel",
+      "lib_social_getoutletsociallinks",
+      "lib_social_social_hosts",
+      "lib_social_socialinput",
+      "lib_social_sociallink",
+      "src_components_outletdetails_astro",
+      "src_components_outletgallery_astro",
+      "src_components_outletmap_astro",
+      "src_lib_social_test_ts",
+      "src_lib_social_ts",
+      "src_pages_convenience_stores_slug_astro",
+      "src_pages_general_stores_slug_astro",
+      "src_pages_grocery_stores_slug_astro",
+      "src_pages_supermarkets_slug_astro",
+      "users_nursyazwani_documents_supermarket_src_lib_social"
+    ],
+    "4": [
+      "package_json",
+      "supermarket_package_dependencies",
+      "supermarket_package_dependencies_astro",
+      "supermarket_package_dependencies_astrojs_check",
+      "supermarket_package_dependencies_astrojs_tailwind",
+      "supermarket_package_dependencies_pagefind",
+      "supermarket_package_dependencies_tailwindcss",
+      "supermarket_package_dependencies_typescript",
+      "supermarket_package_devdependencies",
+      "supermarket_package_devdependencies_autoprefixer",
+      "supermarket_package_devdependencies_types_node",
+      "supermarket_package_devdependencies_vitest",
+      "supermarket_package_engines",
+      "supermarket_package_engines_node",
+      "supermarket_package_name",
+      "supermarket_package_private",
+      "supermarket_package_scripts",
+      "supermarket_package_scripts_build",
+      "supermarket_package_scripts_check",
+      "supermarket_package_scripts_dev",
+      "supermarket_package_scripts_preview",
+      "supermarket_package_scripts_test",
+      "supermarket_package_type",
+      "supermarket_package_version"
+    ],
+    "5": [
+      "lib_airtable_promotioncollection",
+      "lib_faq_brandfaqitem",
+      "lib_faq_buildfaqpageschema",
+      "lib_faq_hasmarkedfaq",
+      "lib_faq_isfaqheading",
+      "lib_faq_isquestionline",
+      "lib_faq_parsebrandfaq",
+      "lib_faq_parsemarkedfaqblock",
+      "lib_faq_parseplainfaq",
+      "lib_faq_pushplainfaqitem",
+      "lib_faq_splitmarkedfaqblocks",
+      "pages_promotioncollection_getstaticpaths",
+      "src_lib_faq_test_ts",
+      "src_lib_faq_ts",
+      "src_pages_promotioncollection_astro",
+      "users_nursyazwani_documents_supermarket_src_lib_faq"
+    ],
+    "6": [
+      "lib_airtable_directorydata",
+      "lib_airtable_getsupermarketbrandpages",
+      "lib_seo_buildrobotstxt",
+      "lib_seo_buildsitemapxml",
+      "lib_seo_canonicalurl",
+      "lib_seo_getsitemappaths",
+      "lib_seo_resolvesiteurl",
+      "lib_seo_test_directorydata",
+      "lib_seo_test_projectroot",
+      "pages_robots_txt_get",
+      "pages_sitemap_xml_get",
+      "src_lib_seo_test_ts",
+      "src_pages_robots_txt_ts",
+      "src_pages_sitemap_xml_ts",
+      "supermarkets_slug_getstaticpaths"
+    ],
+    "7": [
+      "components_listingcard_brand",
+      "components_listingcard_href",
+      "components_listingcard_initial",
+      "components_listingcard_mall",
+      "components_listingcard_mrt",
+      "components_listingcard_neighbourhood",
+      "lib_directoryfilters_activefilter",
+      "lib_directoryfilters_cardmatchesfilters",
+      "lib_directoryfilters_encodefiltervalues",
+      "lib_directoryfilters_filterablelink",
+      "lib_directoryfilters_splitfiltervalues",
+      "src_components_filter_bar_test_ts",
+      "src_components_listingcard_astro",
+      "src_lib_directoryfilters_ts"
+    ],
+    "8": [
+      "readme_md",
+      "supermarket_readme_cloudflare_pages_deployment",
+      "supermarket_readme_data_fetching",
+      "supermarket_readme_deploy_hook_setup",
+      "supermarket_readme_environment_variables",
+      "supermarket_readme_local_development",
+      "supermarket_readme_pagefind_search",
+      "supermarket_readme_prerequisites",
+      "supermarket_readme_project_structure",
+      "supermarket_readme_publishing_a_new_outlet",
+      "supermarket_readme_singapore_supermarket_directory"
+    ],
+    "9": [
+      "docs_superpowers_specs_2026_05_27_outlet_gallery_images_design_md",
+      "specs_2026_05_27_outlet_gallery_images_design_data_flow",
+      "specs_2026_05_27_outlet_gallery_images_design_goal",
+      "specs_2026_05_27_outlet_gallery_images_design_outlet_gallery_images_design",
+      "specs_2026_05_27_outlet_gallery_images_design_rendering",
+      "specs_2026_05_27_outlet_gallery_images_design_scope",
+      "specs_2026_05_27_outlet_gallery_images_design_verification"
+    ],
+    "10": [
+      "docs_superpowers_specs_2026_05_27_supermarket_directions_landmarks_design_md",
+      "specs_2026_05_27_supermarket_directions_landmarks_design_airtable_data",
+      "specs_2026_05_27_supermarket_directions_landmarks_design_goal",
+      "specs_2026_05_27_supermarket_directions_landmarks_design_presentation",
+      "specs_2026_05_27_supermarket_directions_landmarks_design_scope",
+      "specs_2026_05_27_supermarket_directions_landmarks_design_supermarket_directions_and_nearby_landmarks_design",
+      "specs_2026_05_27_supermarket_directions_landmarks_design_testing_and_verification"
+    ],
+    "11": [
+      "supermarket_tsconfig_compileroptions",
+      "supermarket_tsconfig_compileroptions_baseurl",
+      "supermarket_tsconfig_compileroptions_paths",
+      "supermarket_tsconfig_exclude",
+      "supermarket_tsconfig_extends",
+      "supermarket_tsconfig_paths",
+      "tsconfig_json"
+    ],
+    "12": [
+      "docs_superpowers_plans_2026_05_28_supermarket_directions_landmarks_md",
+      "plans_2026_05_28_supermarket_directions_landmarks_file_structure",
+      "plans_2026_05_28_supermarket_directions_landmarks_supermarket_directions_and_nearby_landmarks_implementation_plan",
+      "plans_2026_05_28_supermarket_directions_landmarks_task_1_normalize_supermarket_airtable_fields",
+      "plans_2026_05_28_supermarket_directions_landmarks_task_2_render_details_in_the_existing_supermarket_grid",
+      "plans_2026_05_28_supermarket_directions_landmarks_task_3_verify_commit_and_publish_to_main"
+    ],
+    "13": [
+      "docs_superpowers_plans_2026_05_27_outlet_gallery_images_md",
+      "plans_2026_05_27_outlet_gallery_images_outlet_gallery_images_implementation_plan",
+      "plans_2026_05_27_outlet_gallery_images_task_1_normalize_gallery_urls_from_airtable",
+      "plans_2026_05_27_outlet_gallery_images_task_2_render_the_shared_gallery_section",
+      "plans_2026_05_27_outlet_gallery_images_task_3_verify_and_publish"
+    ],
+    "14": [
+      "components_header_links",
+      "components_header_promotionlinks",
+      "components_header_promotionmenu",
+      "src_components_header_astro"
+    ],
+    "15": [
+      "codex_hooks_hooks",
+      "codex_hooks_hooks_pretooluse",
+      "codex_hooks_json"
+    ],
+    "16": [
+      "components_outlet_details_test_expectcontactdetailsundermap",
+      "components_outlet_details_test_read",
+      "src_components_outlet_details_test_ts"
+    ],
+    "17": [
+      "lib_promotion_collection_pages_test_pagesource",
+      "lib_promotion_collection_pages_test_projectroot",
+      "src_lib_promotion_collection_pages_test_ts"
+    ],
+    "18": [
+      "lib_taxonomy_index_pages_test_readsource",
+      "lib_taxonomy_index_pages_test_root",
+      "src_lib_taxonomy_index_pages_test_ts"
+    ],
+    "19": [
+      "agents_md",
+      "supermarket_agents_graphify"
+    ],
+    "20": [
+      "components_outlet_gallery_test_read",
+      "src_components_outlet_gallery_test_ts"
+    ],
+    "21": [
+      "components_outlet_map_test_read",
+      "src_components_outlet_map_test_ts"
+    ],
+    "22": [
+      "postcss_config_mjs"
+    ],
+    "23": [
+      "astro_config_mjs"
+    ],
+    "24": [
+      "tailwind_config_mjs"
+    ],
+    "25": [
+      "src_env_d_ts"
+    ]
+  },
+  "cohesion": {
+    "0": 0.0953058321479374,
+    "1": 0.1899159663865546,
+    "2": 0.0855614973262032,
+    "3": 0.1349206349206349,
+    "4": 0.08333333333333333,
+    "5": 0.20833333333333334,
+    "6": 0.18095238095238095,
+    "7": 0.18681318681318682,
+    "8": 0.18181818181818182,
+    "9": 0.2857142857142857,
+    "10": 0.2857142857142857,
+    "11": 0.2857142857142857,
+    "12": 0.3333333333333333,
+    "13": 0.4,
+    "14": 0.5,
+    "15": 0.6666666666666666,
+    "16": 0.6666666666666666,
+    "17": 0.6666666666666666,
+    "18": 0.6666666666666666,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0
+  },
+  "gods": [
+    {
+      "id": "lib_airtable_getdirectorydata",
+      "label": "getDirectoryData()",
+      "degree": 36
+    },
+    {
+      "id": "src_components_listingcard_astro",
+      "label": "@/components/ListingCard.astro",
+      "degree": 30
+    },
+    {
+      "id": "src_components_layout_astro",
+      "label": "@/components/Layout.astro",
+      "degree": 30
+    },
+    {
+      "id": "lib_seo_canonicalpath",
+      "label": "canonicalPath()",
+      "degree": 18
+    },
+    {
+      "id": "src_components_filterbar_astro",
+      "label": "@/components/FilterBar.astro",
+      "degree": 13
+    },
+    {
+      "id": "lib_content_formatcount",
+      "label": "formatCount()",
+      "degree": 13
+    },
+    {
+      "id": "src_components_promotioncard_astro",
+      "label": "@/components/PromotionCard.astro",
+      "degree": 12
+    },
+    {
+      "id": "src_components_neighbourhoodcard_astro",
+      "label": "@/components/NeighbourhoodCard.astro",
+      "degree": 10
+    },
+    {
+      "id": "lib_content_splitdescriptionparagraphs",
+      "label": "splitDescriptionParagraphs()",
+      "degree": 10
+    },
+    {
+      "id": "supermarket_readme_singapore_supermarket_directory",
+      "label": "Singapore Supermarket Directory",
+      "degree": 10
+    }
+  ],
+  "surprises": [
+    {
+      "source": "getStaticPaths()",
+      "target": "getDirectoryData()",
+      "source_files": [
+        "src/pages/convenience-stores/[slug].astro",
+        "src/lib/airtable.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `getStaticPaths()` unexpectedly reaches hub `getDirectoryData()`"
+    },
+    {
+      "source": "getStaticPaths()",
+      "target": "getDirectoryData()",
+      "source_files": [
+        "src/pages/general-stores/[slug].astro",
+        "src/lib/airtable.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `getStaticPaths()` unexpectedly reaches hub `getDirectoryData()`"
+    },
+    {
+      "source": "getStaticPaths()",
+      "target": "getDirectoryData()",
+      "source_files": [
+        "src/pages/grocery-stores/[slug].astro",
+        "src/lib/airtable.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `getStaticPaths()` unexpectedly reaches hub `getDirectoryData()`"
+    },
+    {
+      "source": "getStaticPaths()",
+      "target": "getDirectoryData()",
+      "source_files": [
+        "src/pages/[promotionCollection].astro",
+        "src/lib/airtable.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `getStaticPaths()` unexpectedly reaches hub `getDirectoryData()`"
+    },
+    {
+      "source": "getStaticPaths()",
+      "target": "getDirectoryData()",
+      "source_files": [
+        "src/pages/brands/[slug].astro",
+        "src/lib/airtable.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "peripheral node `getStaticPaths()` unexpectedly reaches hub `getDirectoryData()`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `@/components/ListingCard.astro` connect `Listingcard.Astro Directoryfilters.Ts Filter` to `Astro [Slug].Astro Content.Ts`, `Astro Filterbar.Astro Index.Astro`, `[Slug].Astro Get Astro`?",
+      "why": "High betweenness centrality (0.072) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `@/components/Layout.astro` connect `Astro Filterbar.Astro Index.Astro` to `Astro [Slug].Astro Content.Ts`, `[Slug].Astro Get Astro`, `Faq.Ts Faq`, `Seo.Ts Get Seo.Test.Ts`, `Header.Astro Promotion Links`?",
+      "why": "High betweenness centrality (0.055) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `getDirectoryData()` connect `Astro Filterbar.Astro Index.Astro` to `Airtable.Ts Promotion Slug`, `Astro [Slug].Astro Content.Ts`, `[Slug].Astro Get Astro`, `Faq.Ts Faq`, `Seo.Ts Get Seo.Test.Ts`?",
+      "why": "High betweenness centrality (0.039) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `name`, `version`, `private` to the rest of the system?",
+      "why": "100 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Airtable.Ts Promotion Slug` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.0953058321479374 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Astro Filterbar.Astro Index.Astro` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.0855614973262032 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `[Slug].Astro Get Astro` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1349206349206349 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
