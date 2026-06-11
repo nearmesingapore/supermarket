@@ -346,6 +346,81 @@ describe("getDirectoryData", () => {
     expect(data).not.toHaveProperty("halalOptions");
   });
 
+  test("joins affiliate banners from Category rows onto matching outlets", async () => {
+    process.env.AIRTABLE_API_KEY = "key";
+    process.env.AIRTABLE_BASE_ID = "base";
+
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const url = String(input);
+      const tableId = url.match(/\/base\/([^?]+)/)?.[1];
+      const recordsByTable: Record<string, unknown[]> = {
+        tblK5rFjHnVqd2g6U: [],
+        tblLPGvEo7lH4pLzR: [],
+        tblHHymwYJJQH5UK6: [],
+        tblxME1R6ILNCa8Af: [],
+        tblE6IK77xz0ChbMT: [
+          {
+            id: "supermarket-1",
+            fields: {
+              fldaSNrp6I8auhsxM: "FairPrice Tampines",
+              fldm8OUq811I4sDFL: "fairprice-tampines"
+            }
+          }
+        ],
+        tblBZ9jw8xUJ0ebtz: [
+          {
+            id: "grocery-store-1",
+            fields: {
+              fld7Le0O7ItTSeses: "Little Farms Katong Point",
+              fldj1ftP91mrspDmr: "little-farms-katong-point"
+            }
+          }
+        ],
+        tblofcgnE3Xyynbbi: [],
+        tblZax5FRu0uKkjjt: [],
+        tblqV5WUpFioRXHaj: [
+          {
+            id: "category-row-1",
+            fields: {
+              fldFoFDlEBejqe0dp: "FairPrice Tampines",
+              fldk8snhvkF8tDEce: "https://affiliate.example/fairprice",
+              fldmyBi6BM3Aqf6hM: [
+                {
+                  url: "https://cdn.example/fairprice-banner.jpg",
+                  filename: "fairprice-banner.jpg"
+                }
+              ]
+            }
+          },
+          {
+            id: "category-row-2",
+            fields: {
+              fldFoFDlEBejqe0dp: "Little Farms Katong Point",
+              fldk8snhvkF8tDEce: "https://affiliate.example/little-farms"
+            }
+          }
+        ],
+        tbl5kjc7ZgUDIn7ZV: [],
+        tblmrHqYjxANlyqqJ: [],
+        tblWdAbg7RqHoxFax: []
+      };
+
+      return {
+        ok: true,
+        json: async () => ({ records: recordsByTable[tableId || ""] || [] })
+      } as Response;
+    });
+
+    const data = await getDirectoryData();
+
+    expect(data.supermarkets[0].affiliateBanner).toEqual({
+      affiliateLink: "https://affiliate.example/fairprice",
+      imageUrl: "https://cdn.example/fairprice-banner.jpg",
+      altText: "FairPrice Tampines affiliate banner"
+    });
+    expect(data.groceryStores[0].affiliateBanner).toBeUndefined();
+  });
+
   test("normalizes brand promotion tables and resolves them to the matching brand", async () => {
     process.env.AIRTABLE_API_KEY = "key";
     process.env.AIRTABLE_BASE_ID = "base";
@@ -387,6 +462,7 @@ describe("getDirectoryData", () => {
         ]
       })
     } as Response);
+    fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
     fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
     fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);
     fetchMock.mockResolvedValueOnce({ ok: true, json: async () => ({ records: [] }) } as Response);

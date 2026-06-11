@@ -16,6 +16,12 @@ export type TaxonomyItem = LinkedItem & {
   count: number;
 };
 
+export type AffiliateBanner = {
+  affiliateLink: string;
+  imageUrl: string;
+  altText: string;
+};
+
 export type Supermarket = {
   id: string;
   outletName: string;
@@ -41,6 +47,7 @@ export type Supermarket = {
   gettingThereByPublicTransport: string;
   nearbyBusServices: string;
   nearbyLandmarks: string;
+  affiliateBanner?: AffiliateBanner;
   featured: boolean;
 };
 
@@ -107,6 +114,7 @@ const TABLES = {
   neighbourhoods: "tblLPGvEo7lH4pLzR",
   malls: "tblHHymwYJJQH5UK6",
   mrtStations: "tblxME1R6ILNCa8Af",
+  categories: "tblqV5WUpFioRXHaj",
   shengSiongPromotions: "tbl5kjc7ZgUDIn7ZV",
   fairpricePromotions: "tblmrHqYjxANlyqqJ",
   giantPromotions: "tblWdAbg7RqHoxFax"
@@ -268,6 +276,11 @@ const FIELDS = {
     name: ["fld5fDN0H0461Oq1V", "Name"],
     slug: ["fld4fkwSoz7qSoQEq", "Slug"]
   },
+  affiliateCategories: {
+    outletName: ["fldFoFDlEBejqe0dp", "Outlet Name"],
+    affiliateLink: ["fldk8snhvkF8tDEce", "Affiliate Link"],
+    bannerImage: ["fldmyBi6BM3Aqf6hM", "Banner Image"]
+  },
   promotions: {
     shengSiongPromotions: {
       title: ["fldaLMz6Xd8J9Nd4b", "Promotion Title"],
@@ -427,12 +440,14 @@ async function loadDirectoryData(): Promise<DirectoryData> {
   );
   const mrtStations = createLookup(mrtRecords, FIELDS.mrtStations.name, FIELDS.mrtStations.slug);
 
-  const [supermarketRecords, groceryStoreRecords, convenienceStoreRecords, generalStoreRecords] = await Promise.all([
+  const [supermarketRecords, groceryStoreRecords, convenienceStoreRecords, generalStoreRecords, affiliateCategoryRecords] = await Promise.all([
     fetchAirtableRecords(baseId, TABLES.supermarkets, apiKey),
     fetchAirtableRecords(baseId, TABLES.groceryStores, apiKey),
     fetchAirtableRecords(baseId, TABLES.convenienceStores, apiKey),
-    fetchAirtableRecords(baseId, TABLES.generalStores, apiKey)
+    fetchAirtableRecords(baseId, TABLES.generalStores, apiKey),
+    fetchAirtableRecords(baseId, TABLES.categories, apiKey)
   ]);
+  const affiliateBanners = createAffiliateBannerLookup(affiliateCategoryRecords);
 
   if (supermarketRecords.length === 0) {
     throw new Error(
@@ -442,21 +457,25 @@ async function loadDirectoryData(): Promise<DirectoryData> {
 
   const supermarkets = supermarketRecords
     .map((record) => normalizeOutlet(record, FIELDS.supermarkets, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
+    .map((outlet) => attachAffiliateBanner(outlet, affiliateBanners))
     .filter((outlet) => outlet.outletName && outlet.slug)
     .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
   const groceryStores = groceryStoreRecords
     .map((record) => normalizeOutlet(record, FIELDS.groceryStores, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
+    .map((outlet) => attachAffiliateBanner(outlet, affiliateBanners))
     .filter((outlet) => outlet.outletName && outlet.slug)
     .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
   const convenienceStores = convenienceStoreRecords
     .map((record) => normalizeOutlet(record, FIELDS.convenienceStores, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
+    .map((outlet) => attachAffiliateBanner(outlet, affiliateBanners))
     .filter((outlet) => outlet.outletName && outlet.slug)
     .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
   const generalStores = generalStoreRecords
     .map((record) => normalizeOutlet(record, FIELDS.generalStores, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
+    .map((outlet) => attachAffiliateBanner(outlet, affiliateBanners))
     .filter((outlet) => outlet.outletName && outlet.slug)
     .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
@@ -520,6 +539,31 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     featuredSupermarkets: supermarkets.filter((outlet) => outlet.featured),
     categories: uniqueSorted(supermarkets.map((outlet) => outlet.category))
   };
+}
+
+function createAffiliateBannerLookup(records: AirtableRecord[]) {
+  const banners = new Map<string, AffiliateBanner>();
+
+  for (const record of records) {
+    const outletName = readFieldString(record.fields, FIELDS.affiliateCategories.outletName);
+    const affiliateLink = readFieldString(record.fields, FIELDS.affiliateCategories.affiliateLink);
+    const imageUrl = readAttachmentUrl(readField(record.fields, FIELDS.affiliateCategories.bannerImage));
+
+    if (!outletName || !affiliateLink || !imageUrl) continue;
+
+    banners.set(normalizeComparable(outletName), {
+      affiliateLink,
+      imageUrl,
+      altText: `${outletName} affiliate banner`
+    });
+  }
+
+  return banners;
+}
+
+function attachAffiliateBanner<T extends Supermarket>(outlet: T, banners: Map<string, AffiliateBanner>): T {
+  const affiliateBanner = banners.get(normalizeComparable(outlet.outletName));
+  return affiliateBanner ? { ...outlet, affiliateBanner } : outlet;
 }
 
 function createLookup(
@@ -752,6 +796,17 @@ function readFieldString(source: Record<string, unknown>, keys: readonly string[
 function readPostalCode(value: unknown) {
   if (typeof value === "number") return String(Math.trunc(value)).padStart(6, "0");
   if (typeof value === "string") return value.trim();
+  return "";
+}
+
+function readAttachmentUrl(value: unknown) {
+  if (!Array.isArray(value)) return "";
+
+  for (const attachment of value) {
+    const url = readString(attachment, "url");
+    if (url) return url;
+  }
+
   return "";
 }
 

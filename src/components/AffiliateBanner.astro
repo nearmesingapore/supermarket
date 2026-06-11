@@ -1,0 +1,23 @@
+---
+import type { AffiliateBanner } from "@/lib/airtable";
+
+interface Props {
+  banner?: AffiliateBanner;
+}
+
+const { banner } = Astro.props;
+---
+
+{
+  banner && (
+    <a
+      class="mb-8 block overflow-hidden border border-line bg-white transition hover:-translate-y-0.5 hover:shadow-editorial"
+      href={banner.affiliateLink}
+      target="_blank"
+      rel="nofollow sponsored noopener noreferrer"
+      aria-label={`Open affiliate offer for ${banner.altText.replace(/ affiliate banner$/i, "")}`}
+    >
+      <img src={banner.imageUrl} alt={banner.altText} class="h-auto w-full object-cover" loading="eager" decoding="async" />
+    </a>
+  )
+}

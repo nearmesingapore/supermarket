@@ -110,8 +110,8 @@
     "semantic_hash": "e8f5c5b443c80687afe39232cae12f3d"
   },
   "/Users/nursyazwani/Documents/Supermarket/src/lib/airtable.test.ts": {
-    "mtime": 1781174081.9067323,
-    "ast_hash": "7c1dbbfae0c4fe568c1665ea5ad9b9a2",
+    "mtime": 1781013856.3918157,
+    "ast_hash": "6b38eb7ed27962c2bd6d724b322bcc7f",
     "semantic_hash": ""
   },
   "/Users/nursyazwani/Documents/Supermarket/src/lib/content.ts": {
@@ -120,8 +120,8 @@
     "semantic_hash": "e35d7ca94eb0102c67b42db8658c9ed4"
   },
   "/Users/nursyazwani/Documents/Supermarket/src/lib/airtable.ts": {
-    "mtime": 1781174037.9238758,
-    "ast_hash": "edb2c3aff113a13cfbe43d6d6ac99c6e",
+    "mtime": 1781013840.2680082,
+    "ast_hash": "de5be69a95f0599960edcab06e69fe43",
     "semantic_hash": ""
   },
   "/Users/nursyazwani/Documents/Supermarket/src/lib/seo.ts": {
@@ -165,9 +165,9 @@
     "semantic_hash": "6d90548e9925353535fb1757415afbca"
   },
   "/Users/nursyazwani/Documents/Supermarket/src/pages/general-stores/[slug].astro": {
-    "mtime": 1781174064.6955595,
-    "ast_hash": "9ce680d15a4f50a5bb00f1fde1629100",
-    "semantic_hash": ""
+    "mtime": 1780928932.872993,
+    "ast_hash": "63bfe52284fc8482171880e472a6a539",
+    "semantic_hash": "63bfe52284fc8482171880e472a6a539"
   },
   "/Users/nursyazwani/Documents/Supermarket/src/pages/brands/index.astro": {
     "mtime": 1780928932.8716016,
@@ -190,9 +190,9 @@
     "semantic_hash": "4016c43b9ed00807970fbf90cd175823"
   },
   "/Users/nursyazwani/Documents/Supermarket/src/pages/supermarkets/[slug].astro": {
-    "mtime": 1781174064.395134,
-    "ast_hash": "87597be425495e3579f2a4f05bab8522",
-    "semantic_hash": ""
+    "mtime": 1780928932.875431,
+    "ast_hash": "5726a2abac5bb7d9fa961142991699a6",
+    "semantic_hash": "5726a2abac5bb7d9fa961142991699a6"
   },
   "/Users/nursyazwani/Documents/Supermarket/src/pages/grocery-stores/index.astro": {
     "mtime": 1780928932.8738735,
@@ -200,9 +200,9 @@
     "semantic_hash": "ffc5ffaa7a358decf67f7366eee212f0"
   },
   "/Users/nursyazwani/Documents/Supermarket/src/pages/grocery-stores/[slug].astro": {
-    "mtime": 1781174064.4911098,
-    "ast_hash": "bac7e67e88f05e5c856d58251b1814b0",
-    "semantic_hash": ""
+    "mtime": 1780928932.873591,
+    "ast_hash": "41c771847c13eb6dea36f5567215e76d",
+    "semantic_hash": "41c771847c13eb6dea36f5567215e76d"
   },
   "/Users/nursyazwani/Documents/Supermarket/src/pages/neighbourhoods/index.astro": {
     "mtime": 1779315568.975139,
@@ -220,9 +220,9 @@
     "semantic_hash": "cd7286ae775481638179571cc0c1aa53"
   },
   "/Users/nursyazwani/Documents/Supermarket/src/pages/convenience-stores/[slug].astro": {
-    "mtime": 1781174064.594382,
-    "ast_hash": "fda7590318d9120812b8b1a067a15550",
-    "semantic_hash": ""
+    "mtime": 1780928932.872073,
+    "ast_hash": "09b8a56e7a98033c47efe3d2362419b2",
+    "semantic_hash": "09b8a56e7a98033c47efe3d2362419b2"
   },
   "/Users/nursyazwani/Documents/Supermarket/src/pages/malls/index.astro": {
     "mtime": 1780928932.8744764,
@@ -368,35 +368,5 @@
     "mtime": 1780928653.7685685,
     "ast_hash": "62c05a2bf20bf036a0b2633478663e64",
     "semantic_hash": "62c05a2bf20bf036a0b2633478663e64"
-  },
-  "/Users/nursyazwani/Documents/Supermarket/src/components/affiliate-banner.test.ts": {
-    "mtime": 1781173994.9249666,
-    "ast_hash": "a1c7c6890036346ce63b237799654128",
-    "semantic_hash": ""
-  },
-  "/Users/nursyazwani/Documents/Supermarket/src/components/AffiliateBanner.astro": {
-    "mtime": 1781174048.6577587,
-    "ast_hash": "61e225ad593d9ff53b0ddb2d98309f88",
-    "semantic_hash": ""
-  },
-  "/Users/nursyazwani/Documents/Supermarket/public/images/Chef-in-Box Japanese Teriyaki Chicken with Rice.png": {
-    "mtime": 1781146571.800388,
-    "ast_hash": "581fd9e6679eaead944c81440f87aeea",
-    "semantic_hash": ""
-  },
-  "/Users/nursyazwani/Documents/Supermarket/public/images/Wagh Bakri Instant Masala Tea 3 in 1 - Shop on Shopee.png": {
-    "mtime": 1781144779.3672895,
-    "ast_hash": "76bbb1665d5987eaab6a9e96d4d38756",
-    "semantic_hash": ""
-  },
-  "/Users/nursyazwani/Documents/Supermarket/public/images/Authentic Japanese Groceries Direct From Japan.png": {
-    "mtime": 1781173276.29921,
-    "ast_hash": "0a8b44df4cd3bfb890c22e650b9b2ede",
-    "semantic_hash": ""
-  },
-  "/Users/nursyazwani/Documents/Supermarket/public/images/payless-groceria-online-groeceries-shopee.png": {
-    "mtime": 1780075426.0906293,
-    "ast_hash": "df8807628efbc06132238052d79d2b25",
-    "semantic_hash": ""
   }
 }
