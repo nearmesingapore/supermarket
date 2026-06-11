@@ -22,6 +22,11 @@ export type AffiliateBanner = {
   altText: string;
 };
 
+type CategoryDetails = {
+  category?: string;
+  affiliateBanner?: AffiliateBanner;
+};
+
 export type Supermarket = {
   id: string;
   outletName: string;
@@ -278,6 +283,7 @@ const FIELDS = {
   },
   affiliateCategories: {
     outletName: ["fldFoFDlEBejqe0dp", "Outlet Name"],
+    category: ["fldJm83meJBBUanjh", "Category"],
     affiliateLink: ["fldk8snhvkF8tDEce", "Affiliate Link"],
     bannerImage: ["fldmyBi6BM3Aqf6hM", "Banner Image"]
   },
@@ -447,7 +453,7 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     fetchAirtableRecords(baseId, TABLES.generalStores, apiKey),
     fetchAirtableRecords(baseId, TABLES.categories, apiKey)
   ]);
-  const affiliateBanners = createAffiliateBannerLookup(affiliateCategoryRecords);
+  const categoryDetails = createCategoryDetailsLookup(affiliateCategoryRecords);
 
   if (supermarketRecords.length === 0) {
     throw new Error(
@@ -457,25 +463,25 @@ async function loadDirectoryData(): Promise<DirectoryData> {
 
   const supermarkets = supermarketRecords
     .map((record) => normalizeOutlet(record, FIELDS.supermarkets, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
-    .map((outlet) => attachAffiliateBanner(outlet, affiliateBanners))
+    .map((outlet) => attachCategoryDetails(outlet, categoryDetails))
     .filter((outlet) => outlet.outletName && outlet.slug)
     .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
   const groceryStores = groceryStoreRecords
     .map((record) => normalizeOutlet(record, FIELDS.groceryStores, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
-    .map((outlet) => attachAffiliateBanner(outlet, affiliateBanners))
+    .map((outlet) => attachCategoryDetails(outlet, categoryDetails))
     .filter((outlet) => outlet.outletName && outlet.slug)
     .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
   const convenienceStores = convenienceStoreRecords
     .map((record) => normalizeOutlet(record, FIELDS.convenienceStores, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
-    .map((outlet) => attachAffiliateBanner(outlet, affiliateBanners))
+    .map((outlet) => attachCategoryDetails(outlet, categoryDetails))
     .filter((outlet) => outlet.outletName && outlet.slug)
     .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
   const generalStores = generalStoreRecords
     .map((record) => normalizeOutlet(record, FIELDS.generalStores, brands.map, neighbourhoods.map, malls.map, mrtStations.map))
-    .map((outlet) => attachAffiliateBanner(outlet, affiliateBanners))
+    .map((outlet) => attachCategoryDetails(outlet, categoryDetails))
     .filter((outlet) => outlet.outletName && outlet.slug)
     .filter(uniqueOutletSlug)
     .sort((a, b) => a.outletName.localeCompare(b.outletName));
@@ -541,29 +547,42 @@ async function loadDirectoryData(): Promise<DirectoryData> {
   };
 }
 
-function createAffiliateBannerLookup(records: AirtableRecord[]) {
-  const banners = new Map<string, AffiliateBanner>();
+function createCategoryDetailsLookup(records: AirtableRecord[]) {
+  const details = new Map<string, CategoryDetails>();
 
   for (const record of records) {
     const outletName = readFieldString(record.fields, FIELDS.affiliateCategories.outletName);
+    const category = readFieldString(record.fields, FIELDS.affiliateCategories.category);
     const affiliateLink = readFieldString(record.fields, FIELDS.affiliateCategories.affiliateLink);
     const imageUrl = readAttachmentUrl(readField(record.fields, FIELDS.affiliateCategories.bannerImage));
 
-    if (!outletName || !affiliateLink || !imageUrl) continue;
+    if (!outletName || (!category && (!affiliateLink || !imageUrl))) continue;
 
-    banners.set(normalizeComparable(outletName), {
-      affiliateLink,
-      imageUrl,
-      altText: `${outletName} affiliate banner`
+    details.set(normalizeComparable(outletName), {
+      category,
+      affiliateBanner:
+        affiliateLink && imageUrl
+          ? {
+              affiliateLink,
+              imageUrl,
+              altText: `${outletName} affiliate banner`
+            }
+          : undefined
     });
   }
 
-  return banners;
+  return details;
 }
 
-function attachAffiliateBanner<T extends Supermarket>(outlet: T, banners: Map<string, AffiliateBanner>): T {
-  const affiliateBanner = banners.get(normalizeComparable(outlet.outletName));
-  return affiliateBanner ? { ...outlet, affiliateBanner } : outlet;
+function attachCategoryDetails<T extends Supermarket>(outlet: T, details: Map<string, CategoryDetails>): T {
+  const categoryDetails = details.get(normalizeComparable(outlet.outletName));
+  if (!categoryDetails) return outlet;
+
+  return {
+    ...outlet,
+    category: categoryDetails.category || outlet.category,
+    affiliateBanner: categoryDetails.affiliateBanner || outlet.affiliateBanner
+  };
 }
 
 function createLookup(

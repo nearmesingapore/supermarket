@@ -1,16 +1,16 @@
 # Graph Report - Supermarket  (2026-06-11)
 
 ## Corpus Check
-- 71 files · ~584,186 words
+- 71 files · ~584,227 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 280 nodes · 627 edges · 27 communities (22 shown, 5 thin omitted)
+- 283 nodes · 636 edges · 28 communities (23 shown, 5 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3454c5f0`
+- Built from commit: `71f6eb03`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -34,6 +34,7 @@
 - [[_COMMUNITY_Promotion-Collection-Pages.Test.Ts Page Source|Promotion-Collection-Pages.Test.Ts Page Source]]
 - [[_COMMUNITY_Taxonomy-Index-Pages.Test.Ts Read Source|Taxonomy-Index-Pages.Test.Ts Read Source]]
 - [[_COMMUNITY_Agents.Md Agent Graphify|Agents.Md Agent Graphify]]
+- [[_COMMUNITY_Community 27|Community 27]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `getDirectoryData()` - 36 edges
@@ -43,9 +44,9 @@
 5. `@/components/FilterBar.astro` - 13 edges
 6. `formatCount()` - 13 edges
 7. `@/components/PromotionCard.astro` - 12 edges
-8. `@/components/NeighbourhoodCard.astro` - 10 edges
-9. `splitDescriptionParagraphs()` - 10 edges
-10. `loadDirectoryData()` - 10 edges
+8. `loadDirectoryData()` - 11 edges
+9. `@/components/NeighbourhoodCard.astro` - 10 edges
+10. `splitDescriptionParagraphs()` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `getStaticPaths()` --calls--> `getDirectoryData()`  [EXTRACTED]
@@ -59,35 +60,35 @@
 - `getStaticPaths()` --calls--> `getDirectoryData()`  [EXTRACTED]
   src/pages/malls/[slug].astro → src/lib/airtable.ts
 
-## Communities (27 total, 5 thin omitted)
+## Communities (28 total, 5 thin omitted)
 
 ### Community 0 - "Airtable.Ts Promotion Slug"
 Cohesion: 0.09
-Nodes (39): AffiliateBanner, AirtableRecord, assertAirtableEnv(), attachAffiliateBanner(), buildPromotionSlug(), createAffiliateBannerLookup(), createLookup(), EnvSource (+31 more)
+Nodes (41): AffiliateBanner, AirtableRecord, assertAirtableEnv(), attachAffiliateBanner(), attachCategoryDetails(), buildPromotionSlug(), CategoryDetails, createAffiliateBannerLookup() (+33 more)
 
 ### Community 1 - "Astro [Slug].Astro Content.Ts"
-Cohesion: 0.13
-Nodes (33): links, links, promotionLinks, promotionMenu, canonicalUrl, details, getBrandPromotions(), getSupermarketBrandPages() (+25 more)
+Cohesion: 0.17
+Nodes (32): imageUrls, getStaticPaths(), getStaticPaths(), getStaticPaths(), ConvenienceStore, GeneralStore, getBrandPromotions(), getOutletPromotions() (+24 more)
 
 ### Community 2 - "Astro Filterbar.Astro Index.Astro"
-Cohesion: 0.08
-Nodes (31): getStaticPaths(), brands, categories, ids, malls, mrtStations, neighbourhoods, brand (+23 more)
+Cohesion: 0.06
+Nodes (39): getStaticPaths(), brands, categories, ids, malls, mrtStations, neighbourhoods, links (+31 more)
 
 ### Community 3 - "[Slug].Astro Get Astro"
-Cohesion: 0.15
-Nodes (19): imageUrls, getStaticPaths(), getStaticPaths(), getStaticPaths(), ConvenienceStore, GeneralStore, getOutletPromotions(), GroceryStore (+11 more)
+Cohesion: 0.38
+Nodes (5): detectLabel(), getOutletSocialLinks(), SOCIAL_HOSTS, SocialInput, SocialLink
 
 ### Community 4 - "Package.Json Astrojs Check"
 Cohesion: 0.08
 Nodes (23): dependencies, astro, @astrojs/check, @astrojs/tailwind, pagefind, tailwindcss, typescript, devDependencies (+15 more)
 
 ### Community 5 - "Faq.Ts Faq"
-Cohesion: 0.29
-Nodes (9): BrandFaqItem, buildFaqPageSchema(), hasMarkedFaq(), isFaqHeading(), isQuestionLine(), parseBrandFaq(), parsePlainFaq(), pushPlainFaqItem() (+1 more)
+Cohesion: 0.23
+Nodes (11): PromotionCollection, BrandFaqItem, buildFaqPageSchema(), hasMarkedFaq(), isFaqHeading(), isQuestionLine(), parseBrandFaq(), parsePlainFaq() (+3 more)
 
 ### Community 6 - "Seo.Ts Get Seo.Test.Ts"
-Cohesion: 0.24
-Nodes (9): DirectoryData, buildRobotsTxt(), buildSitemapXml(), getSitemapPaths(), resolveSiteUrl(), directoryData, projectRoot, GET() (+1 more)
+Cohesion: 0.18
+Nodes (12): DirectoryData, getSupermarketBrandPages(), buildRobotsTxt(), buildSitemapXml(), canonicalUrl(), getSitemapPaths(), resolveSiteUrl(), directoryData (+4 more)
 
 ### Community 7 - "Listingcard.Astro Directoryfilters.Ts Filter"
 Cohesion: 0.43
@@ -117,25 +118,29 @@ Nodes (5): File Structure, Supermarket Directions and Nearby Landmarks Implement
 Cohesion: 0.40
 Nodes (4): Outlet Gallery Images Implementation Plan, Task 1: Normalize Gallery URLs From Airtable, Task 2: Render the Shared Gallery Section, Task 3: Verify and Publish
 
+### Community 14 - "Header.Astro Promotion Links"
+Cohesion: 0.50
+Nodes (3): links, promotionLinks, promotionMenu
+
 ## Knowledge Gaps
-- **101 isolated node(s):** `name`, `version`, `private`, `type`, `dev` (+96 more)
+- **102 isolated node(s):** `name`, `version`, `private`, `type`, `dev` (+97 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `@/components/ListingCard.astro` connect `Astro Filterbar.Astro Index.Astro` to `Astro [Slug].Astro Content.Ts`, `[Slug].Astro Get Astro`, `Listingcard.Astro Directoryfilters.Ts Filter`?**
+- **Why does `@/components/ListingCard.astro` connect `Astro Filterbar.Astro Index.Astro` to `Astro [Slug].Astro Content.Ts`, `Listingcard.Astro Directoryfilters.Ts Filter`?**
   _High betweenness centrality (0.070) - this node is a cross-community bridge._
-- **Why does `@/components/Layout.astro` connect `Astro [Slug].Astro Content.Ts` to `Astro Filterbar.Astro Index.Astro`, `[Slug].Astro Get Astro`, `Header.Astro Promotion Links`?**
+- **Why does `@/components/Layout.astro` connect `Astro Filterbar.Astro Index.Astro` to `Astro [Slug].Astro Content.Ts`, `Faq.Ts Faq`, `Seo.Ts Get Seo.Test.Ts`, `Header.Astro Promotion Links`?**
   _High betweenness centrality (0.054) - this node is a cross-community bridge._
-- **Why does `getDirectoryData()` connect `Astro Filterbar.Astro Index.Astro` to `Airtable.Ts Promotion Slug`, `Astro [Slug].Astro Content.Ts`, `[Slug].Astro Get Astro`, `Seo.Ts Get Seo.Test.Ts`?**
+- **Why does `getDirectoryData()` connect `Astro Filterbar.Astro Index.Astro` to `Airtable.Ts Promotion Slug`, `Astro [Slug].Astro Content.Ts`, `Faq.Ts Faq`, `Seo.Ts Get Seo.Test.Ts`?**
   _High betweenness centrality (0.037) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `private` to the rest of the system?**
-  _101 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _102 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Airtable.Ts Promotion Slug` be split into smaller, more focused modules?**
-  _Cohesion score 0.08859357696567 - nodes in this community are weakly interconnected._
-- **Should `Astro [Slug].Astro Content.Ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.12858464384828863 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08888888888888889 - nodes in this community are weakly interconnected._
 - **Should `Astro Filterbar.Astro Index.Astro` be split into smaller, more focused modules?**
-  _Cohesion score 0.08292682926829269 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05957767722473605 - nodes in this community are weakly interconnected._
+- **Should `Package.Json Astrojs Check` be split into smaller, more focused modules?**
+  _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._

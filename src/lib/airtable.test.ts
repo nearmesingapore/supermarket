@@ -346,7 +346,7 @@ describe("getDirectoryData", () => {
     expect(data).not.toHaveProperty("halalOptions");
   });
 
-  test("joins affiliate banners from Category rows onto matching outlets", async () => {
+  test("joins Category rows onto matching outlets", async () => {
     process.env.AIRTABLE_API_KEY = "key";
     process.env.AIRTABLE_BASE_ID = "base";
 
@@ -383,6 +383,7 @@ describe("getDirectoryData", () => {
             id: "category-row-1",
             fields: {
               fldFoFDlEBejqe0dp: "FairPrice Tampines",
+              fldJm83meJBBUanjh: "Hypermarket",
               fldk8snhvkF8tDEce: "https://affiliate.example/fairprice",
               fldmyBi6BM3Aqf6hM: [
                 {
@@ -396,6 +397,7 @@ describe("getDirectoryData", () => {
             id: "category-row-2",
             fields: {
               fldFoFDlEBejqe0dp: "Little Farms Katong Point",
+              fldJm83meJBBUanjh: "Specialty Grocery",
               fldk8snhvkF8tDEce: "https://affiliate.example/little-farms"
             }
           }
@@ -413,6 +415,8 @@ describe("getDirectoryData", () => {
 
     const data = await getDirectoryData();
 
+    expect(data.supermarkets[0].category).toBe("Hypermarket");
+    expect(data.groceryStores[0].category).toBe("Specialty Grocery");
     expect(data.supermarkets[0].affiliateBanner).toEqual({
       affiliateLink: "https://affiliate.example/fairprice",
       imageUrl: "https://cdn.example/fairprice-banner.jpg",
