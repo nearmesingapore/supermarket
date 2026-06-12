@@ -6,7 +6,13 @@ import SearchBox from "@/components/SearchBox.astro";
 import { getDirectoryData } from "@/lib/airtable";
 
 const data = await getDirectoryData();
-const outlets = [...data.supermarkets, ...data.groceryStores];
+const outletGroups = [
+  { outlets: data.supermarkets, basePath: "/supermarkets" },
+  { outlets: data.groceryStores, basePath: "/grocery-stores" },
+  { outlets: data.convenienceStores, basePath: "/convenience-stores" },
+  { outlets: data.generalStores, basePath: "/general-stores" }
+];
+const outlets = outletGroups.flatMap((group) => group.outlets);
 ---
 
 <Layout
@@ -46,7 +52,8 @@ const outlets = [...data.supermarkets, ...data.groceryStores];
     data-pagefind-meta="title:Singapore Supermarket Directory"
     data-filter-results
   >
-    {data.supermarkets.map((outlet) => <ListingCard outlet={outlet} />)}
-    {data.groceryStores.map((outlet) => <ListingCard outlet={outlet} basePath="/grocery-stores" />)}
+    {outletGroups.map((group) =>
+      group.outlets.map((outlet) => <ListingCard outlet={outlet} basePath={group.basePath} />)
+    )}
   </section>
 </Layout>

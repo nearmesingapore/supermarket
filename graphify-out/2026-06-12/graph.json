@@ -370,7 +370,7 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_outletdetails_astro",
-      "community": 27,
+      "community": 3,
       "norm_label": "@/components/outletdetails.astro"
     },
     {
@@ -379,7 +379,7 @@
       "source_file": "src/components/OutletDetails.astro",
       "source_location": "L16",
       "id": "components_outletdetails_details",
-      "community": 27,
+      "community": 3,
       "norm_label": "details"
     },
     {
@@ -454,7 +454,7 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_footer_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "./footer.astro"
     },
     {
@@ -463,7 +463,7 @@
       "source_file": "src/components/Footer.astro",
       "source_location": "L4",
       "id": "components_footer_links",
-      "community": 2,
+      "community": 1,
       "norm_label": "links"
     },
     {
@@ -610,7 +610,7 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_outletgallery_astro",
-      "community": 1,
+      "community": 3,
       "norm_label": "@/components/outletgallery.astro"
     },
     {
@@ -619,7 +619,7 @@
       "source_file": "src/components/OutletGallery.astro",
       "source_location": "L8",
       "id": "components_outletgallery_imageurls",
-      "community": 1,
+      "community": 3,
       "norm_label": "imageurls"
     },
     {
@@ -629,7 +629,7 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_outletmap_astro",
-      "community": 1,
+      "community": 3,
       "norm_label": "@/components/outletmap.astro"
     },
     {
@@ -649,7 +649,7 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_layout_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "@/components/layout.astro"
     },
     {
@@ -658,7 +658,7 @@
       "source_file": "src/components/Layout.astro",
       "source_location": "L25",
       "id": "components_layout_canonicalurl",
-      "community": 2,
+      "community": 1,
       "norm_label": "canonicalurl"
     },
     {
@@ -667,7 +667,7 @@
       "source_file": "src/styles/global.css",
       "confidence": "EXTRACTED",
       "id": "users_nursyazwani_documents_supermarket_src_styles_global_css",
-      "community": 2,
+      "community": 1,
       "norm_label": "../styles/global.css"
     },
     {
@@ -807,7 +807,7 @@
       "source_location": "L1",
       "confidence": "EXTRACTED",
       "id": "src_components_affiliatebanner_astro",
-      "community": 1,
+      "community": 3,
       "norm_label": "@/components/affiliatebanner.astro"
     },
     {
@@ -987,7 +987,7 @@
       "source_file": "src/lib/content.ts",
       "source_location": "L20",
       "id": "lib_content_getprimary",
-      "community": 1,
+      "community": 3,
       "norm_label": "getprimary()"
     },
     {
@@ -1005,7 +1005,7 @@
       "source_file": "src/lib/content.ts",
       "source_location": "L28",
       "id": "lib_content_splitdescriptionparagraphs",
-      "community": 1,
+      "community": 3,
       "norm_label": "splitdescriptionparagraphs()"
     },
     {
@@ -1023,7 +1023,7 @@
       "source_file": "src/lib/content.ts",
       "source_location": "L44",
       "id": "lib_content_sortfeaturedneighbourhoods",
-      "community": 2,
+      "community": 1,
       "norm_label": "sortfeaturedneighbourhoods()"
     },
     {
@@ -1032,7 +1032,7 @@
       "source_file": "src/lib/content.ts",
       "source_location": "L58",
       "id": "lib_content_getrelatedbyneighbourhood",
-      "community": 1,
+      "community": 3,
       "norm_label": "getrelatedbyneighbourhood()"
     },
     {
@@ -1104,7 +1104,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L30",
       "id": "lib_airtable_supermarket",
-      "community": 1,
+      "community": 0,
       "norm_label": "supermarket"
     },
     {
@@ -1113,7 +1113,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L59",
       "id": "lib_airtable_grocerystore",
-      "community": 1,
+      "community": 0,
       "norm_label": "grocerystore"
     },
     {
@@ -1122,7 +1122,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L60",
       "id": "lib_airtable_conveniencestore",
-      "community": 1,
+      "community": 0,
       "norm_label": "conveniencestore"
     },
     {
@@ -1131,7 +1131,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L61",
       "id": "lib_airtable_generalstore",
-      "community": 1,
+      "community": 0,
       "norm_label": "generalstore"
     },
     {
@@ -1149,7 +1149,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L78",
       "id": "lib_airtable_promotioncollection",
-      "community": 5,
+      "community": 1,
       "norm_label": "promotioncollection"
     },
     {
@@ -1257,7 +1257,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L381",
       "id": "lib_airtable_getfirstinitial",
-      "community": 0,
+      "community": 3,
       "norm_label": "getfirstinitial()"
     },
     {
@@ -1270,10 +1270,19 @@
       "norm_label": "resolvelinks()"
     },
     {
-      "label": "getDirectoryData()",
+      "label": "resolveBrandLinks()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
       "source_location": "L404",
+      "id": "lib_airtable_resolvebrandlinks",
+      "community": 0,
+      "norm_label": "resolvebrandlinks()"
+    },
+    {
+      "label": "getDirectoryData()",
+      "file_type": "code",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L416",
       "id": "lib_airtable_getdirectorydata",
       "community": 2,
       "norm_label": "getdirectorydata()"
@@ -1282,7 +1291,7 @@
       "label": "resetDirectoryCacheForTests()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L412",
+      "source_location": "L424",
       "id": "lib_airtable_resetdirectorycachefortests",
       "community": 0,
       "norm_label": "resetdirectorycachefortests()"
@@ -1291,7 +1300,7 @@
       "label": "loadDirectoryData()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L416",
+      "source_location": "L428",
       "id": "lib_airtable_loaddirectorydata",
       "community": 0,
       "norm_label": "loaddirectorydata()"
@@ -1300,7 +1309,7 @@
       "label": "createCategoryDetailsLookup()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L550",
+      "source_location": "L563",
       "id": "lib_airtable_createcategorydetailslookup",
       "community": 0,
       "norm_label": "createcategorydetailslookup()"
@@ -1309,7 +1318,7 @@
       "label": "attachCategoryDetails()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L577",
+      "source_location": "L590",
       "id": "lib_airtable_attachcategorydetails",
       "community": 0,
       "norm_label": "attachcategorydetails()"
@@ -1318,16 +1327,25 @@
       "label": "createLookup()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L588",
+      "source_location": "L601",
       "id": "lib_airtable_createlookup",
       "community": 0,
       "norm_label": "createlookup()"
     },
     {
+      "label": "mergeLinkedItems()",
+      "file_type": "code",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L626",
+      "id": "lib_airtable_mergelinkeditems",
+      "community": 0,
+      "norm_label": "mergelinkeditems()"
+    },
+    {
       "label": "normalizeOutlet()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L613",
+      "source_location": "L630",
       "id": "lib_airtable_normalizeoutlet",
       "community": 0,
       "norm_label": "normalizeoutlet()"
@@ -1336,7 +1354,7 @@
       "label": "normalizePromotion()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L652",
+      "source_location": "L669",
       "id": "lib_airtable_normalizepromotion",
       "community": 0,
       "norm_label": "normalizepromotion()"
@@ -1345,7 +1363,7 @@
       "label": "findBrandBySlug()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L702",
+      "source_location": "L719",
       "id": "lib_airtable_findbrandbyslug",
       "community": 0,
       "norm_label": "findbrandbyslug()"
@@ -1354,7 +1372,7 @@
       "label": "outletToLinkedItem()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L707",
+      "source_location": "L724",
       "id": "lib_airtable_outlettolinkeditem",
       "community": 0,
       "norm_label": "outlettolinkeditem()"
@@ -1363,7 +1381,7 @@
       "label": "getBrandPromotions()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L717",
+      "source_location": "L734",
       "id": "lib_airtable_getbrandpromotions",
       "community": 1,
       "norm_label": "getbrandpromotions()"
@@ -1372,16 +1390,16 @@
       "label": "getOutletPromotions()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L722",
+      "source_location": "L739",
       "id": "lib_airtable_getoutletpromotions",
-      "community": 1,
+      "community": 3,
       "norm_label": "getoutletpromotions()"
     },
     {
       "label": "getSupermarketBrandPages()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L728",
+      "source_location": "L745",
       "id": "lib_airtable_getsupermarketbrandpages",
       "community": 6,
       "norm_label": "getsupermarketbrandpages()"
@@ -1390,7 +1408,7 @@
       "label": "withCounts()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L741",
+      "source_location": "L758",
       "id": "lib_airtable_withcounts",
       "community": 0,
       "norm_label": "withcounts()"
@@ -1399,7 +1417,7 @@
       "label": "uniqueSorted()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L759",
+      "source_location": "L776",
       "id": "lib_airtable_uniquesorted",
       "community": 0,
       "norm_label": "uniquesorted()"
@@ -1408,7 +1426,7 @@
       "label": "groupSupermarketBrandsFirst()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L765",
+      "source_location": "L782",
       "id": "lib_airtable_groupsupermarketbrandsfirst",
       "community": 0,
       "norm_label": "groupsupermarketbrandsfirst()"
@@ -1417,7 +1435,7 @@
       "label": "filterBrandsByFeaturedOutlets()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L777",
+      "source_location": "L794",
       "id": "lib_airtable_filterbrandsbyfeaturedoutlets",
       "community": 0,
       "norm_label": "filterbrandsbyfeaturedoutlets()"
@@ -1426,7 +1444,7 @@
       "label": "uniqueOutletSlug()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L787",
+      "source_location": "L804",
       "id": "lib_airtable_uniqueoutletslug",
       "community": 0,
       "norm_label": "uniqueoutletslug()"
@@ -1435,7 +1453,7 @@
       "label": "readString()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L791",
+      "source_location": "L808",
       "id": "lib_airtable_readstring",
       "community": 0,
       "norm_label": "readstring()"
@@ -1444,7 +1462,7 @@
       "label": "readField()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L797",
+      "source_location": "L814",
       "id": "lib_airtable_readfield",
       "community": 0,
       "norm_label": "readfield()"
@@ -1453,7 +1471,7 @@
       "label": "readFieldString()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L806",
+      "source_location": "L823",
       "id": "lib_airtable_readfieldstring",
       "community": 0,
       "norm_label": "readfieldstring()"
@@ -1462,7 +1480,7 @@
       "label": "readPostalCode()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L815",
+      "source_location": "L832",
       "id": "lib_airtable_readpostalcode",
       "community": 0,
       "norm_label": "readpostalcode()"
@@ -1471,7 +1489,7 @@
       "label": "readAttachmentUrl()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L821",
+      "source_location": "L838",
       "id": "lib_airtable_readattachmenturl",
       "community": 0,
       "norm_label": "readattachmenturl()"
@@ -1480,7 +1498,7 @@
       "label": "slugify()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L832",
+      "source_location": "L849",
       "id": "lib_airtable_slugify",
       "community": 0,
       "norm_label": "slugify()"
@@ -1489,7 +1507,7 @@
       "label": "normalizeRouteSlug()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L841",
+      "source_location": "L858",
       "id": "lib_airtable_normalizerouteslug",
       "community": 0,
       "norm_label": "normalizerouteslug()"
@@ -1498,7 +1516,7 @@
       "label": "buildPromotionSlug()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L845",
+      "source_location": "L862",
       "id": "lib_airtable_buildpromotionslug",
       "community": 0,
       "norm_label": "buildpromotionslug()"
@@ -1507,7 +1525,7 @@
       "label": "summarizeDescription()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L851",
+      "source_location": "L868",
       "id": "lib_airtable_summarizedescription",
       "community": 0,
       "norm_label": "summarizedescription()"
@@ -1516,7 +1534,7 @@
       "label": "normalizeComparable()",
       "file_type": "code",
       "source_file": "src/lib/airtable.ts",
-      "source_location": "L857",
+      "source_location": "L874",
       "id": "lib_airtable_normalizecomparable",
       "community": 0,
       "norm_label": "normalizecomparable()"
@@ -1536,7 +1554,7 @@
       "source_file": "src/lib/seo.ts",
       "source_location": "L1",
       "id": "src_lib_seo_ts",
-      "community": 1,
+      "community": 6,
       "norm_label": "seo.ts"
     },
     {
@@ -1545,7 +1563,7 @@
       "source_file": "src/lib/seo.ts",
       "source_location": "L3",
       "id": "lib_seo_static_sitemap_paths",
-      "community": 1,
+      "community": 6,
       "norm_label": "static_sitemap_paths"
     },
     {
@@ -1608,7 +1626,7 @@
       "source_file": "src/lib/seo.ts",
       "source_location": "L68",
       "id": "lib_seo_escapexml",
-      "community": 1,
+      "community": 6,
       "norm_label": "escapexml()"
     },
     {
@@ -1779,7 +1797,7 @@
       "source_file": "src/pages/sitemap.xml.ts",
       "source_location": "L1",
       "id": "src_pages_sitemap_xml_ts",
-      "community": 6,
+      "community": 2,
       "norm_label": "sitemap.xml.ts"
     },
     {
@@ -1788,7 +1806,7 @@
       "source_file": "src/pages/sitemap.xml.ts",
       "source_location": "L4",
       "id": "pages_sitemap_xml_get",
-      "community": 6,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -1797,7 +1815,7 @@
       "source_file": "src/pages/404.astro",
       "source_location": "L1",
       "id": "src_pages_404_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "404.astro"
     },
     {
@@ -1806,7 +1824,7 @@
       "source_file": "src/pages/[promotionCollection].astro",
       "source_location": "L1",
       "id": "src_pages_promotioncollection_astro",
-      "community": 5,
+      "community": 1,
       "norm_label": "[promotioncollection].astro"
     },
     {
@@ -1815,7 +1833,7 @@
       "source_file": "src/pages/[promotionCollection].astro",
       "source_location": "L9",
       "id": "pages_promotioncollection_getstaticpaths",
-      "community": 2,
+      "community": 1,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -1824,7 +1842,7 @@
       "source_file": "src/lib/faq",
       "confidence": "EXTRACTED",
       "id": "users_nursyazwani_documents_supermarket_src_lib_faq",
-      "community": 5,
+      "community": 1,
       "norm_label": "@/lib/faq"
     },
     {
@@ -1851,7 +1869,7 @@
       "source_file": "src/pages/index.astro",
       "source_location": "L1",
       "id": "src_pages_index_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "index.astro"
     },
     {
@@ -1860,7 +1878,7 @@
       "source_file": "src/pages/index.astro",
       "source_location": "L10",
       "id": "pages_index_featuredneighbourhoods",
-      "community": 2,
+      "community": 1,
       "norm_label": "featuredneighbourhoods"
     },
     {
@@ -1887,7 +1905,7 @@
       "source_file": "src/pages/search.astro",
       "source_location": "L1",
       "id": "src_pages_search_astro",
-      "community": 2,
+      "community": 27,
       "norm_label": "search.astro"
     },
     {
@@ -1896,7 +1914,7 @@
       "source_file": "src/pages/search.astro",
       "source_location": "L4",
       "id": "pages_search_params",
-      "community": 2,
+      "community": 27,
       "norm_label": "params"
     },
     {
@@ -1905,7 +1923,7 @@
       "source_file": "src/pages/search.astro",
       "source_location": "L4",
       "id": "pages_search_query",
-      "community": 2,
+      "community": 27,
       "norm_label": "query"
     },
     {
@@ -1923,7 +1941,7 @@
       "source_file": "src/pages/general-stores/[slug].astro",
       "source_location": "L1",
       "id": "src_pages_general_stores_slug_astro",
-      "community": 1,
+      "community": 3,
       "norm_label": "[slug].astro"
     },
     {
@@ -1932,7 +1950,7 @@
       "source_file": "src/pages/general-stores/[slug].astro",
       "source_location": "L13",
       "id": "general_stores_slug_getstaticpaths",
-      "community": 1,
+      "community": 2,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -1941,7 +1959,7 @@
       "source_file": "src/lib/social",
       "confidence": "EXTRACTED",
       "id": "users_nursyazwani_documents_supermarket_src_lib_social",
-      "community": 1,
+      "community": 3,
       "norm_label": "@/lib/social"
     },
     {
@@ -1950,7 +1968,7 @@
       "source_file": "src/pages/brands/index.astro",
       "source_location": "L1",
       "id": "src_pages_brands_index_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "index.astro"
     },
     {
@@ -1977,7 +1995,7 @@
       "source_file": "src/pages/mrt-stations/index.astro",
       "source_location": "L1",
       "id": "src_pages_mrt_stations_index_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "index.astro"
     },
     {
@@ -1986,7 +2004,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L1",
       "id": "src_pages_mrt_stations_slug_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "[slug].astro"
     },
     {
@@ -1995,7 +2013,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L6",
       "id": "mrt_stations_slug_getstaticpaths",
-      "community": 2,
+      "community": 1,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2004,7 +2022,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L7",
       "id": "mrt_stations_slug_station",
-      "community": 2,
+      "community": 1,
       "norm_label": "{ station }"
     },
     {
@@ -2013,7 +2031,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L9",
       "id": "mrt_stations_slug_supermarketoutlets",
-      "community": 2,
+      "community": 1,
       "norm_label": "supermarketoutlets"
     },
     {
@@ -2022,7 +2040,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L10",
       "id": "mrt_stations_slug_grocerystoreoutlets",
-      "community": 2,
+      "community": 1,
       "norm_label": "grocerystoreoutlets"
     },
     {
@@ -2031,7 +2049,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L11",
       "id": "mrt_stations_slug_outlets",
-      "community": 2,
+      "community": 1,
       "norm_label": "outlets"
     },
     {
@@ -2049,7 +2067,7 @@
       "source_file": "src/pages/supermarkets/[slug].astro",
       "source_location": "L1",
       "id": "src_pages_supermarkets_slug_astro",
-      "community": 1,
+      "community": 3,
       "norm_label": "[slug].astro"
     },
     {
@@ -2058,7 +2076,7 @@
       "source_file": "src/pages/supermarkets/[slug].astro",
       "source_location": "L22",
       "id": "supermarkets_slug_getstaticpaths",
-      "community": 6,
+      "community": 2,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2103,7 +2121,7 @@
       "source_file": "src/pages/grocery-stores/[slug].astro",
       "source_location": "L1",
       "id": "src_pages_grocery_stores_slug_astro",
-      "community": 1,
+      "community": 3,
       "norm_label": "[slug].astro"
     },
     {
@@ -2112,7 +2130,7 @@
       "source_file": "src/pages/grocery-stores/[slug].astro",
       "source_location": "L13",
       "id": "grocery_stores_slug_getstaticpaths",
-      "community": 1,
+      "community": 2,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2121,7 +2139,7 @@
       "source_file": "src/pages/neighbourhoods/index.astro",
       "source_location": "L1",
       "id": "src_pages_neighbourhoods_index_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "index.astro"
     },
     {
@@ -2130,7 +2148,7 @@
       "source_file": "src/pages/neighbourhoods/index.astro",
       "source_location": "L7",
       "id": "neighbourhoods_index_neighbourhoods",
-      "community": 2,
+      "community": 1,
       "norm_label": "neighbourhoods"
     },
     {
@@ -2166,7 +2184,7 @@
       "source_file": "src/pages/convenience-stores/[slug].astro",
       "source_location": "L1",
       "id": "src_pages_convenience_stores_slug_astro",
-      "community": 1,
+      "community": 3,
       "norm_label": "[slug].astro"
     },
     {
@@ -2175,7 +2193,7 @@
       "source_file": "src/pages/convenience-stores/[slug].astro",
       "source_location": "L13",
       "id": "convenience_stores_slug_getstaticpaths",
-      "community": 1,
+      "community": 2,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2184,7 +2202,7 @@
       "source_file": "src/pages/malls/index.astro",
       "source_location": "L1",
       "id": "src_pages_malls_index_astro",
-      "community": 2,
+      "community": 1,
       "norm_label": "index.astro"
     },
     {
@@ -6001,9 +6019,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L577",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_airtable_ts",
-      "target": "lib_airtable_attachcategorydetails",
-      "confidence_score": 1.0
+      "target": "lib_airtable_attachcategorydetails"
     },
     {
       "relation": "contains",
@@ -6021,9 +6039,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_airtable_ts",
-      "target": "lib_airtable_categorydetails",
-      "confidence_score": 1.0
+      "target": "lib_airtable_categorydetails"
     },
     {
       "relation": "contains",
@@ -6051,9 +6069,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L550",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_airtable_ts",
-      "target": "lib_airtable_createcategorydetailslookup",
-      "confidence_score": 1.0
+      "target": "lib_airtable_createcategorydetailslookup"
     },
     {
       "relation": "contains",
@@ -6249,6 +6267,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
+      "source_location": "L626",
+      "weight": 1.0,
+      "source": "src_lib_airtable_ts",
+      "target": "lib_airtable_mergelinkeditems",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
       "source_location": "L783",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6394,6 +6422,16 @@
       "confidence_score": 1.0,
       "source": "src_lib_airtable_ts",
       "target": "lib_airtable_resetdirectorycachefortests"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L404",
+      "weight": 1.0,
+      "source": "src_lib_airtable_ts",
+      "target": "lib_airtable_resolvebrandlinks",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6972,6 +7010,50 @@
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L405",
+      "weight": 1.0,
+      "source": "lib_airtable_resolvebrandlinks",
+      "target": "lib_airtable_resolvelinks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L645",
+      "weight": 1.0,
+      "source": "lib_airtable_normalizeoutlet",
+      "target": "lib_airtable_resolvebrandlinks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L409",
+      "weight": 1.0,
+      "source": "lib_airtable_resolvebrandlinks",
+      "target": "lib_airtable_normalizecomparable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
+      "source_location": "L413",
+      "weight": 1.0,
+      "source": "lib_airtable_resolvebrandlinks",
+      "target": "lib_airtable_slugify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/brands/[slug].astro",
       "source_location": "L11",
@@ -7360,9 +7442,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L456",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_loaddirectorydata",
-      "target": "lib_airtable_createcategorydetailslookup",
-      "confidence_score": 1.0
+      "target": "lib_airtable_createcategorydetailslookup"
     },
     {
       "relation": "calls",
@@ -7402,6 +7484,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/airtable.ts",
+      "source_location": "L508",
+      "weight": 1.0,
+      "source": "lib_airtable_loaddirectorydata",
+      "target": "lib_airtable_mergelinkeditems",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/airtable.ts",
       "source_location": "L521",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7426,9 +7519,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L561",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_createcategorydetailslookup",
-      "target": "lib_airtable_normalizecomparable",
-      "confidence_score": 1.0
+      "target": "lib_airtable_normalizecomparable"
     },
     {
       "relation": "calls",
@@ -7437,9 +7530,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L557",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_createcategorydetailslookup",
-      "target": "lib_airtable_readattachmenturl",
-      "confidence_score": 1.0
+      "target": "lib_airtable_readattachmenturl"
     },
     {
       "relation": "calls",
@@ -7448,9 +7541,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L557",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_createcategorydetailslookup",
-      "target": "lib_airtable_readfield",
-      "confidence_score": 1.0
+      "target": "lib_airtable_readfield"
     },
     {
       "relation": "calls",
@@ -7459,9 +7552,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L554",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_createcategorydetailslookup",
-      "target": "lib_airtable_readfieldstring",
-      "confidence_score": 1.0
+      "target": "lib_airtable_readfieldstring"
     },
     {
       "relation": "calls",
@@ -7470,9 +7563,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L578",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_attachcategorydetails",
-      "target": "lib_airtable_normalizecomparable",
-      "confidence_score": 1.0
+      "target": "lib_airtable_normalizecomparable"
     },
     {
       "relation": "calls",
@@ -9066,5 +9159,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "71f6eb033366484c23730dc97241c3e1a8be886f"
+  "built_at_commit": "aa8794e18772d040c4cf3f1192cab069b89336b1"
 }

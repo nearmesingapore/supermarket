@@ -686,7 +686,7 @@
       "source_file": "src/components/filter-bar.test.ts",
       "source_location": "L1",
       "id": "src_components_filter_bar_test_ts",
-      "community": 7,
+      "community": 2,
       "norm_label": "filter-bar.test.ts"
     },
     {
@@ -888,7 +888,7 @@
       "source_file": "src/lib/faq.ts",
       "source_location": "L22",
       "id": "lib_faq_buildfaqpageschema",
-      "community": 5,
+      "community": 1,
       "norm_label": "buildfaqpageschema()"
     },
     {
@@ -1149,7 +1149,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L78",
       "id": "lib_airtable_promotioncollection",
-      "community": 1,
+      "community": 0,
       "norm_label": "promotioncollection"
     },
     {
@@ -1284,7 +1284,7 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L416",
       "id": "lib_airtable_getdirectorydata",
-      "community": 2,
+      "community": 6,
       "norm_label": "getdirectorydata()"
     },
     {
@@ -1554,7 +1554,7 @@
       "source_file": "src/lib/seo.ts",
       "source_location": "L1",
       "id": "src_lib_seo_ts",
-      "community": 6,
+      "community": 1,
       "norm_label": "seo.ts"
     },
     {
@@ -1563,7 +1563,7 @@
       "source_file": "src/lib/seo.ts",
       "source_location": "L3",
       "id": "lib_seo_static_sitemap_paths",
-      "community": 6,
+      "community": 1,
       "norm_label": "static_sitemap_paths"
     },
     {
@@ -1572,7 +1572,7 @@
       "source_file": "src/lib/seo.ts",
       "source_location": "L5",
       "id": "lib_seo_resolvesiteurl",
-      "community": 6,
+      "community": 1,
       "norm_label": "resolvesiteurl()"
     },
     {
@@ -1599,7 +1599,7 @@
       "source_file": "src/lib/seo.ts",
       "source_location": "L34",
       "id": "lib_seo_canonicalurl",
-      "community": 6,
+      "community": 1,
       "norm_label": "canonicalurl()"
     },
     {
@@ -1626,7 +1626,7 @@
       "source_file": "src/lib/seo.ts",
       "source_location": "L68",
       "id": "lib_seo_escapexml",
-      "community": 6,
+      "community": 1,
       "norm_label": "escapexml()"
     },
     {
@@ -1689,7 +1689,7 @@
       "source_file": "src/lib/directoryFilters.ts",
       "source_location": "L1",
       "id": "src_lib_directoryfilters_ts",
-      "community": 7,
+      "community": 2,
       "norm_label": "directoryfilters.ts"
     },
     {
@@ -1698,7 +1698,7 @@
       "source_file": "src/lib/directoryFilters.ts",
       "source_location": "L3",
       "id": "lib_directoryfilters_activefilter",
-      "community": 7,
+      "community": 2,
       "norm_label": "activefilter"
     },
     {
@@ -1707,7 +1707,7 @@
       "source_file": "src/lib/directoryFilters.ts",
       "source_location": "L5",
       "id": "lib_directoryfilters_filterablelink",
-      "community": 7,
+      "community": 2,
       "norm_label": "filterablelink"
     },
     {
@@ -1716,7 +1716,7 @@
       "source_file": "src/lib/directoryFilters.ts",
       "source_location": "L9",
       "id": "lib_directoryfilters_encodefiltervalues",
-      "community": 7,
+      "community": 2,
       "norm_label": "encodefiltervalues()"
     },
     {
@@ -1725,7 +1725,7 @@
       "source_file": "src/lib/directoryFilters.ts",
       "source_location": "L16",
       "id": "lib_directoryfilters_splitfiltervalues",
-      "community": 7,
+      "community": 2,
       "norm_label": "splitfiltervalues()"
     },
     {
@@ -1734,7 +1734,7 @@
       "source_file": "src/lib/directoryFilters.ts",
       "source_location": "L23",
       "id": "lib_directoryfilters_cardmatchesfilters",
-      "community": 7,
+      "community": 2,
       "norm_label": "cardmatchesfilters()"
     },
     {
@@ -1797,7 +1797,7 @@
       "source_file": "src/pages/sitemap.xml.ts",
       "source_location": "L1",
       "id": "src_pages_sitemap_xml_ts",
-      "community": 2,
+      "community": 6,
       "norm_label": "sitemap.xml.ts"
     },
     {
@@ -1806,7 +1806,7 @@
       "source_file": "src/pages/sitemap.xml.ts",
       "source_location": "L4",
       "id": "pages_sitemap_xml_get",
-      "community": 2,
+      "community": 6,
       "norm_label": "get()"
     },
     {
@@ -1833,7 +1833,7 @@
       "source_file": "src/pages/[promotionCollection].astro",
       "source_location": "L9",
       "id": "pages_promotioncollection_getstaticpaths",
-      "community": 1,
+      "community": 6,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -1855,10 +1855,19 @@
       "norm_label": "directory.astro"
     },
     {
-      "label": "outlets",
+      "label": "outletGroups",
       "file_type": "code",
       "source_file": "src/pages/directory.astro",
       "source_location": "L9",
+      "id": "pages_directory_outletgroups",
+      "community": 2,
+      "norm_label": "outletgroups"
+    },
+    {
+      "label": "outlets",
+      "file_type": "code",
+      "source_file": "src/pages/directory.astro",
+      "source_location": "L15",
       "id": "pages_directory_outlets",
       "community": 2,
       "norm_label": "outlets"
@@ -1905,7 +1914,7 @@
       "source_file": "src/pages/search.astro",
       "source_location": "L1",
       "id": "src_pages_search_astro",
-      "community": 27,
+      "community": 14,
       "norm_label": "search.astro"
     },
     {
@@ -1914,7 +1923,7 @@
       "source_file": "src/pages/search.astro",
       "source_location": "L4",
       "id": "pages_search_params",
-      "community": 27,
+      "community": 14,
       "norm_label": "params"
     },
     {
@@ -1923,7 +1932,7 @@
       "source_file": "src/pages/search.astro",
       "source_location": "L4",
       "id": "pages_search_query",
-      "community": 27,
+      "community": 14,
       "norm_label": "query"
     },
     {
@@ -1950,7 +1959,7 @@
       "source_file": "src/pages/general-stores/[slug].astro",
       "source_location": "L13",
       "id": "general_stores_slug_getstaticpaths",
-      "community": 2,
+      "community": 6,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -1986,7 +1995,7 @@
       "source_file": "src/pages/brands/[slug].astro",
       "source_location": "L10",
       "id": "brands_slug_getstaticpaths",
-      "community": 2,
+      "community": 6,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2004,7 +2013,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L1",
       "id": "src_pages_mrt_stations_slug_astro",
-      "community": 1,
+      "community": 6,
       "norm_label": "[slug].astro"
     },
     {
@@ -2013,7 +2022,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L6",
       "id": "mrt_stations_slug_getstaticpaths",
-      "community": 1,
+      "community": 6,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2022,7 +2031,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L7",
       "id": "mrt_stations_slug_station",
-      "community": 1,
+      "community": 6,
       "norm_label": "{ station }"
     },
     {
@@ -2031,7 +2040,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L9",
       "id": "mrt_stations_slug_supermarketoutlets",
-      "community": 1,
+      "community": 6,
       "norm_label": "supermarketoutlets"
     },
     {
@@ -2040,7 +2049,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L10",
       "id": "mrt_stations_slug_grocerystoreoutlets",
-      "community": 1,
+      "community": 6,
       "norm_label": "grocerystoreoutlets"
     },
     {
@@ -2049,7 +2058,7 @@
       "source_file": "src/pages/mrt-stations/[slug].astro",
       "source_location": "L11",
       "id": "mrt_stations_slug_outlets",
-      "community": 1,
+      "community": 6,
       "norm_label": "outlets"
     },
     {
@@ -2076,7 +2085,7 @@
       "source_file": "src/pages/supermarkets/[slug].astro",
       "source_location": "L22",
       "id": "supermarkets_slug_getstaticpaths",
-      "community": 2,
+      "community": 6,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2103,7 +2112,7 @@
       "source_file": "src/pages/promotions/[slug].astro",
       "source_location": "L8",
       "id": "promotions_slug_getstaticpaths",
-      "community": 2,
+      "community": 6,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2130,7 +2139,7 @@
       "source_file": "src/pages/grocery-stores/[slug].astro",
       "source_location": "L13",
       "id": "grocery_stores_slug_getstaticpaths",
-      "community": 2,
+      "community": 6,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2166,7 +2175,7 @@
       "source_file": "src/pages/neighbourhoods/[slug].astro",
       "source_location": "L7",
       "id": "neighbourhoods_slug_getstaticpaths",
-      "community": 2,
+      "community": 6,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2193,7 +2202,7 @@
       "source_file": "src/pages/convenience-stores/[slug].astro",
       "source_location": "L13",
       "id": "convenience_stores_slug_getstaticpaths",
-      "community": 2,
+      "community": 6,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2220,7 +2229,7 @@
       "source_file": "src/pages/malls/[slug].astro",
       "source_location": "L6",
       "id": "malls_slug_getstaticpaths",
-      "community": 2,
+      "community": 6,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -6269,9 +6278,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L626",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_airtable_ts",
-      "target": "lib_airtable_mergelinkeditems",
-      "confidence_score": 1.0
+      "target": "lib_airtable_mergelinkeditems"
     },
     {
       "relation": "contains",
@@ -6429,9 +6438,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L404",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_airtable_ts",
-      "target": "lib_airtable_resolvebrandlinks",
-      "confidence_score": 1.0
+      "target": "lib_airtable_resolvebrandlinks"
     },
     {
       "relation": "contains",
@@ -7013,9 +7022,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L405",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_resolvebrandlinks",
-      "target": "lib_airtable_resolvelinks",
-      "confidence_score": 1.0
+      "target": "lib_airtable_resolvelinks"
     },
     {
       "relation": "calls",
@@ -7024,9 +7033,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L645",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_normalizeoutlet",
-      "target": "lib_airtable_resolvebrandlinks",
-      "confidence_score": 1.0
+      "target": "lib_airtable_resolvebrandlinks"
     },
     {
       "relation": "calls",
@@ -7035,9 +7044,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L409",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_resolvebrandlinks",
-      "target": "lib_airtable_normalizecomparable",
-      "confidence_score": 1.0
+      "target": "lib_airtable_normalizecomparable"
     },
     {
       "relation": "calls",
@@ -7046,9 +7055,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L413",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_resolvebrandlinks",
-      "target": "lib_airtable_slugify",
-      "confidence_score": 1.0
+      "target": "lib_airtable_slugify"
     },
     {
       "relation": "calls",
@@ -7486,9 +7495,9 @@
       "source_file": "src/lib/airtable.ts",
       "source_location": "L508",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_airtable_loaddirectorydata",
-      "target": "lib_airtable_mergelinkeditems",
-      "confidence_score": 1.0
+      "target": "lib_airtable_mergelinkeditems"
     },
     {
       "relation": "calls",
@@ -8621,6 +8630,16 @@
       "source_file": "src/pages/directory.astro",
       "source_location": "L9",
       "weight": 1.0,
+      "source": "src_pages_directory_astro",
+      "target": "pages_directory_outletgroups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/directory.astro",
+      "source_location": "L9",
+      "weight": 1.0,
       "confidence_score": 1.0,
       "source": "src_pages_directory_astro",
       "target": "pages_directory_outlets"
@@ -9159,5 +9178,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "aa8794e18772d040c4cf3f1192cab069b89336b1"
+  "built_at_commit": "5d6ef85c42b1733e7dca0602b75e29738361ddf1"
 }

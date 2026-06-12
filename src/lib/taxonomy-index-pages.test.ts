@@ -37,6 +37,17 @@ describe("taxonomy index pages", () => {
     expect(groceryStores).toContain('class="mt-4 font-serif text-6xl leading-none sm:text-7xl"');
   });
 
+  test("includes every store collection in the main directory filters and results", () => {
+    const directory = readSource("src/pages/directory.astro");
+
+    expect(directory).toContain("data.supermarkets");
+    expect(directory).toContain("data.groceryStores");
+    expect(directory).toContain("data.convenienceStores");
+    expect(directory).toContain("data.generalStores");
+    expect(directory).toContain('basePath: "/convenience-stores"');
+    expect(directory).toContain('basePath: "/general-stores"');
+  });
+
   test("groups supermarket and grocery store brands under separate headings", () => {
     const brands = readSource("src/pages/brands/index.astro");
 
