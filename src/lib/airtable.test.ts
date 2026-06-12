@@ -254,7 +254,7 @@ describe("getDirectoryData", () => {
               fldvWCMXQFzECkA4m: "ABC General Store",
               fldHcDfYSYsccvLcl: "abc-general-store",
               fld3v44ZJQT8ziBjn: "Neighbourhood general store with household staples.",
-              fldDHm3YJWiiR5XPt: ["brand-4"],
+              fldDHm3YJWiiR5XPt: "General Brand",
               fldtkEkRyT7gJiUL1: "General Store",
               fldJVD4OHu5Sdsp3j: ["hood-1"],
               fldRcFERfQxCkGKFx: ["mall-1"],
@@ -262,6 +262,16 @@ describe("getDirectoryData", () => {
               flduO5w8PMRRRe8XM: 488888,
               fldNdn2rfhhXg7BD3: "https://example.com/abc-general-store",
               fldToPdvynAurStxh: "https://example.com/general-one.jpg, https://example.com/general-two.jpg"
+            }
+          },
+          {
+            id: "general-store-2",
+            fields: {
+              fldvWCMXQFzECkA4m: "Daiso Orchard",
+              fldHcDfYSYsccvLcl: "daiso-orchard",
+              fld3v44ZJQT8ziBjn: "Japanese variety store with household goods.",
+              fldDHm3YJWiiR5XPt: "Daiso",
+              fldtkEkRyT7gJiUL1: "General Store"
             }
           }
         ]
@@ -297,15 +307,20 @@ describe("getDirectoryData", () => {
       websiteUrl: "https://example.com/7-eleven",
       galleryImagesUrl: "https://example.com/convenience-one.jpg, https://example.com/convenience-two.jpg"
     });
-    expect(data.generalStores).toHaveLength(1);
+    expect(data.generalStores).toHaveLength(2);
     expect(data.generalStores[0]).toMatchObject({
       outletName: "ABC General Store",
       slug: "abc-general-store",
       description: "Neighbourhood general store with household staples.",
+      brand: [{ id: "brand-4", name: "General Brand", slug: "general-brand" }],
       address: "10 Market Street",
       postalCode: "488888",
       websiteUrl: "https://example.com/abc-general-store",
       galleryImagesUrl: "https://example.com/general-one.jpg, https://example.com/general-two.jpg"
+    });
+    expect(data.generalStores[1]).toMatchObject({
+      outletName: "Daiso Orchard",
+      brand: [{ id: "daiso", name: "Daiso", slug: "daiso" }]
     });
     expect(data.brands[0]).toMatchObject({
       name: "Supermarket Brand",
@@ -322,7 +337,7 @@ describe("getDirectoryData", () => {
     });
     expect(data.featuredBrands.map((brand) => brand.slug)).toEqual(["supermarket-brand"]);
     expect(data.supermarketBrands.map((brand) => brand.slug)).toEqual(["supermarket-brand"]);
-    expect(data.groceryStoreBrands.map((brand) => brand.slug)).toEqual(["convenience-brand", "general-brand", "grocery-brand"]);
+    expect(data.groceryStoreBrands.map((brand) => brand.slug)).toEqual(["convenience-brand", "daiso", "general-brand", "grocery-brand"]);
     expect(data.neighbourhoods[0]).toMatchObject({
       name: "Hood",
       slug: "hood",

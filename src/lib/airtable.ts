@@ -401,6 +401,18 @@ export function resolveLinks(
     .filter((entry): entry is LinkedItem => Boolean(entry?.name));
 }
 
+function resolveBrandLinks(value: unknown, lookup: Map<string, LinkedItem>) {
+  const linkedBrands = resolveLinks(value, lookup);
+  if (linkedBrands.length > 0 || typeof value !== "string") return linkedBrands;
+
+  const name = value.trim();
+  const normalizedName = normalizeComparable(name);
+  if (!normalizedName) return [];
+
+  const matchedBrand = [...lookup.values()].find((item) => normalizeComparable(item.name) === normalizedName);
+  return matchedBrand ? [matchedBrand] : [{ id: slugify(name), name, slug: slugify(name) }];
+}
+
 export async function getDirectoryData(): Promise<DirectoryData> {
   directoryCache ||= loadDirectoryData().catch((error: unknown) => {
     directoryCache = undefined;
@@ -492,12 +504,13 @@ async function loadDirectoryData(): Promise<DirectoryData> {
     );
   }
 
-  const supermarketBrands = withCounts(brands.items, supermarkets, (outlet) => outlet.brand)
+  const allOutlets = [...supermarkets, ...groceryStores, ...convenienceStores, ...generalStores];
+  const brandItems = mergeLinkedItems(brands.items, allOutlets.flatMap((outlet) => outlet.brand));
+  const supermarketBrands = withCounts(brandItems, supermarkets, (outlet) => outlet.brand)
     .sort((a, b) => a.name.localeCompare(b.name));
-  const groceryStoreBrands = withCounts(brands.items, [...groceryStores, ...convenienceStores, ...generalStores], (outlet) => outlet.brand)
+  const groceryStoreBrands = withCounts(brandItems, [...groceryStores, ...convenienceStores, ...generalStores], (outlet) => outlet.brand)
     .sort((a, b) => a.name.localeCompare(b.name));
   const countedBrands = groupSupermarketBrandsFirst(supermarketBrands, groceryStoreBrands);
-  const allOutlets = [...supermarkets, ...groceryStores, ...convenienceStores, ...generalStores];
   const featuredBrands = filterBrandsByFeaturedOutlets(countedBrands, allOutlets);
   const countedNeighbourhoods = withCounts(neighbourhoods.items, allOutlets, (outlet) => outlet.neighbourhood)
     .filter((item) => isValidNeighbourhoodName(item.name));
@@ -610,6 +623,10 @@ function createLookup(
   };
 }
 
+function mergeLinkedItems(primaryItems: LinkedItem[], fallbackItems: LinkedItem[]) {
+  return [...new Map([...fallbackItems, ...primaryItems].map((item) => [item.id, item])).values()];
+}
+
 function normalizeOutlet(
   record: AirtableRecord,
   fieldsConfig: OutletFieldsConfig,
@@ -625,7 +642,7 @@ function normalizeOutlet(
     outletName: readFieldString(fields, fieldsConfig.outletName),
     slug: normalizeRouteSlug(readFieldString(fields, fieldsConfig.slug)),
     description: readFieldString(fields, fieldsConfig.description),
-    brand: resolveLinks(readField(fields, fieldsConfig.brand), brands),
+    brand: resolveBrandLinks(readField(fields, fieldsConfig.brand), brands),
     category: readFieldString(fields, fieldsConfig.category),
     neighbourhood: resolveLinks(readField(fields, fieldsConfig.neighbourhood), neighbourhoods),
     mall: resolveLinks(readField(fields, fieldsConfig.mall), malls),
