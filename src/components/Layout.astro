@@ -66,5 +66,23 @@ const imageUrl = image.startsWith("http") ? image : `${site}${image}`;
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      document.addEventListener("error", (event) => {
+        if (!(event.target instanceof HTMLImageElement)) return;
+
+        event.target.setAttribute("data-image-failed", "true");
+        event.target.setAttribute("aria-hidden", "true");
+        event.target.closest("[data-affiliate-banner]")?.setAttribute("hidden", "");
+
+        const frame = event.target.parentElement;
+        if (!frame || frame.querySelector("[data-image-fallback]")) return;
+
+        const fallback = document.createElement("span");
+        fallback.setAttribute("data-image-fallback", "true");
+        const label = event.target.dataset.imageFallbackLabel || event.target.alt;
+        fallback.textContent = label.trim().charAt(0).toUpperCase() || "S";
+        frame.append(fallback);
+      }, true);
+    </script>
   </body>
 </html>

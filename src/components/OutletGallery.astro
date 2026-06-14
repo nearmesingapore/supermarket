@@ -27,6 +27,7 @@ const imageUrls = galleryImagesUrl
               alt=""
               class="aspect-[4/3] h-full w-full object-cover"
               loading="lazy"
+              data-image-fallback-label={outletName}
             />
           </button>
           <dialog
@@ -48,6 +49,7 @@ const imageUrls = galleryImagesUrl
               src={imageUrl}
               alt={`${outletName} gallery image ${index + 1}`}
               class="mx-auto max-h-[80vh] w-auto max-w-full object-contain"
+              data-image-fallback-label={outletName}
             />
           </dialog>
         </>

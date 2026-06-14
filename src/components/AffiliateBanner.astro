@@ -16,8 +16,9 @@ const { banner } = Astro.props;
       target="_blank"
       rel="nofollow sponsored noopener noreferrer"
       aria-label={`Open affiliate offer for ${banner.altText.replace(/ affiliate banner$/i, "")}`}
+      data-affiliate-banner
     >
-      <img src={banner.imageUrl} alt={banner.altText} class="h-auto w-full object-cover" loading="eager" decoding="async" />
+      <img src={banner.imageUrl} alt={banner.altText} class="h-auto w-full object-cover" loading="eager" decoding="async" referrerpolicy="no-referrer" />
     </a>
   )
 }

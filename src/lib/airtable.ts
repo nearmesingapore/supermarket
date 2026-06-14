@@ -567,7 +567,7 @@ function createCategoryDetailsLookup(records: AirtableRecord[]) {
     const outletName = readFieldString(record.fields, FIELDS.affiliateCategories.outletName);
     const category = readFieldString(record.fields, FIELDS.affiliateCategories.category);
     const affiliateLink = readFieldString(record.fields, FIELDS.affiliateCategories.affiliateLink);
-    const imageUrl = readAttachmentUrl(readField(record.fields, FIELDS.affiliateCategories.bannerImage));
+    const imageUrl = readImageUrl(readField(record.fields, FIELDS.affiliateCategories.bannerImage));
 
     if (!outletName || (!category && (!affiliateLink || !imageUrl))) continue;
 
@@ -611,7 +611,7 @@ function createLookup(
       id: record.id,
       name: readFieldString(record.fields, nameField),
       slug: normalizeRouteSlug(readFieldString(record.fields, slugField) || readFieldString(record.fields, nameField)),
-      imageUrl: imageUrlField ? readFieldString(record.fields, imageUrlField) : undefined,
+      imageUrl: imageUrlField ? readImageUrl(readField(record.fields, imageUrlField)) : undefined,
       description: descriptionField ? readFieldString(record.fields, descriptionField) : undefined,
       brandFaq: brandFaqField ? readFieldString(record.fields, brandFaqField) : undefined
     }))
@@ -656,8 +656,8 @@ function normalizeOutlet(
     websiteUrl: readFieldString(fields, fieldsConfig.websiteUrl),
     facebookUrl: readFieldString(fields, fieldsConfig.facebookUrl),
     instagramUrl: readFieldString(fields, fieldsConfig.instagramUrl),
-    imageUrl: readFieldString(fields, fieldsConfig.imageUrl),
-    galleryImagesUrl: readFieldString(fields, fieldsConfig.galleryImagesUrl),
+    imageUrl: readImageUrl(readField(fields, fieldsConfig.imageUrl)),
+    galleryImagesUrl: readImageUrlList(readField(fields, fieldsConfig.galleryImagesUrl)).join(", "),
     gettingThereByCar: readFieldString(fields, fieldsConfig.gettingThereByCar),
     gettingThereByPublicTransport: readFieldString(fields, fieldsConfig.gettingThereByPublicTransport),
     nearbyBusServices: readFieldString(fields, fieldsConfig.nearbyBusServices),
@@ -707,9 +707,9 @@ function normalizePromotion(
     shortDescription: summarizeDescription(description),
     validity: readFieldString(fields, fieldsConfig.validity),
     imageUrls: [
-      readFieldString(fields, fieldsConfig.imageUrl1),
-      readFieldString(fields, fieldsConfig.imageUrl2)
-    ].filter(Boolean),
+      ...readImageUrlList(readField(fields, fieldsConfig.imageUrl1)),
+      ...readImageUrlList(readField(fields, fieldsConfig.imageUrl2))
+    ],
     brand,
     linkedOutlets: relevantOutlets,
     detailPath: `/promotions/${slug}`
@@ -835,17 +835,6 @@ function readPostalCode(value: unknown) {
   return "";
 }
 
-function readAttachmentUrl(value: unknown) {
-  if (!Array.isArray(value)) return "";
-
-  for (const attachment of value) {
-    const url = readString(attachment, "url");
-    if (url) return url;
-  }
-
-  return "";
-}
-
 function slugify(value: string) {
   return value
     .trim()
@@ -873,4 +862,27 @@ function summarizeDescription(value: string) {
 
 function normalizeComparable(value: string) {
   return value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "");
+}
+
+function readImageUrl(value: unknown) {
+  return readImageUrlList(value)[0] || "";
+}
+
+function readImageUrlList(value: unknown): string[] {
+  if (typeof value === "string") {
+    return value
+      .split(/[,\n]+/)
+      .map((url) => url.trim())
+      .filter(isImageUrl);
+  }
+
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((attachment) => readString(attachment, "url"))
+    .filter(isImageUrl);
+}
+
+function isImageUrl(value: string) {
+  return value.startsWith("http://") || value.startsWith("https://") || value.startsWith("/");
 }

@@ -184,6 +184,22 @@ describe("getDirectoryData", () => {
               fldoROJgXxEo5phwJ: ["hood-1"],
               fldw8QjjvT68cDC8X: ["mall-1"],
               fldUPgDqc9H0DwX1l: true,
+              fldOPTYb27sd4K4aZ: [
+                {
+                  url: "https://cdn.example/supermarket-main.jpg",
+                  filename: "supermarket-main.jpg"
+                }
+              ],
+              fldyk0SXOq90jPl0H: [
+                {
+                  url: "https://cdn.example/supermarket-gallery-one.jpg",
+                  filename: "supermarket-gallery-one.jpg"
+                },
+                {
+                  url: "https://cdn.example/supermarket-gallery-two.jpg",
+                  filename: "supermarket-gallery-two.jpg"
+                }
+              ],
               fldbEV2NcQ7bZ0M0a: "Park at the basement car park.\nUse lift lobby A.",
               fldYCaW3KbZmmJS4I: "Take the MRT to Ang Mo Kio.\nWalk through the town centre.",
               fld3d3y5k1e72EAHK: "Bus 22, 25, 73",
@@ -284,6 +300,8 @@ describe("getDirectoryData", () => {
     expect(data.supermarkets[0]).toMatchObject({
       slug: "brand-tampines",
       description: "A bright outlet with fresh produce and pantry staples.",
+      imageUrl: "https://cdn.example/supermarket-main.jpg",
+      galleryImagesUrl: "https://cdn.example/supermarket-gallery-one.jpg, https://cdn.example/supermarket-gallery-two.jpg",
       gettingThereByCar: "Park at the basement car park.\nUse lift lobby A.",
       gettingThereByPublicTransport: "Take the MRT to Ang Mo Kio.\nWalk through the town centre.",
       nearbyBusServices: "Bus 22, 25, 73",

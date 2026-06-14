@@ -31,6 +31,14 @@
   select {
     @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
   }
+
+  img[data-image-failed="true"] {
+    display: none;
+  }
+
+  [data-image-fallback] {
+    @apply flex h-full min-h-32 w-full items-center justify-center bg-[#f2efe9] font-serif text-6xl text-brass;
+  }
 }
 
 @layer components {

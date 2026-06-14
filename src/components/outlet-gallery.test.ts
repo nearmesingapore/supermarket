@@ -35,5 +35,6 @@ describe("outlet gallery rendering", () => {
     expect(gallery).toContain("Close expanded image");
     expect(gallery).toContain('loading="lazy"');
     expect(gallery).toContain("gallery image ${index + 1}");
+    expect(gallery).toContain("data-image-fallback-label");
   });
 });

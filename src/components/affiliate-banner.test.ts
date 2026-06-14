@@ -28,5 +28,16 @@ describe("affiliate banner rendering", () => {
     expect(component).toContain("imageUrl");
     expect(component).toContain('target="_blank"');
     expect(component).toContain('rel="nofollow sponsored noopener noreferrer"');
+    expect(component).toContain("data-affiliate-banner");
+    expect(component).toContain('referrerpolicy="no-referrer"');
+  });
+
+  it("installs a global fallback for third-party images that fail to load", () => {
+    const layout = read("src/components/Layout.astro");
+
+    expect(layout).toContain('addEventListener("error"');
+    expect(layout).toContain("HTMLImageElement");
+    expect(layout).toContain("data-image-failed");
+    expect(layout).toContain("data-image-fallback");
   });
 });
