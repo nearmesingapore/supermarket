@@ -1,3 +1,7 @@
+import { existsSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
 export type AirtableRecord = {
   id: string;
   fields: Record<string, unknown>;
@@ -328,6 +332,7 @@ type OutletFieldsConfig =
   | typeof FIELDS.generalStores;
 
 let directoryCache: Promise<DirectoryData> | undefined;
+const projectRoot = dirname(dirname(dirname(fileURLToPath(import.meta.url))));
 
 export function assertAirtableEnv(env: EnvSource = process.env) {
   const apiKey = env.AIRTABLE_API_KEY || env.AIRTABLE_PERSONAL_ACCESS_TOKEN;
@@ -567,7 +572,7 @@ function createCategoryDetailsLookup(records: AirtableRecord[]) {
     const outletName = readFieldString(record.fields, FIELDS.affiliateCategories.outletName);
     const category = readFieldString(record.fields, FIELDS.affiliateCategories.category);
     const affiliateLink = readFieldString(record.fields, FIELDS.affiliateCategories.affiliateLink);
-    const imageUrl = readImageUrl(readField(record.fields, FIELDS.affiliateCategories.bannerImage));
+    const imageUrl = readCategoryBannerImageUrl(readField(record.fields, FIELDS.affiliateCategories.bannerImage));
 
     if (!outletName || (!category && (!affiliateLink || !imageUrl))) continue;
 
@@ -866,6 +871,29 @@ function normalizeComparable(value: string) {
 
 function readImageUrl(value: unknown) {
   return readImageUrlList(value)[0] || "";
+}
+
+function readCategoryBannerImageUrl(value: unknown) {
+  return readLocalAttachmentImageUrl(value) || readImageUrl(value);
+}
+
+function readLocalAttachmentImageUrl(value: unknown) {
+  if (!Array.isArray(value)) return "";
+
+  for (const attachment of value) {
+    const imageUrl = publicImageUrlForAttachment(readString(attachment, "filename"));
+    if (imageUrl) return imageUrl;
+  }
+
+  return "";
+}
+
+function publicImageUrlForAttachment(filename: string) {
+  const safeFilename = filename.trim().split(/[\\/]/).pop() || "";
+  if (!safeFilename) return "";
+
+  const imagePath = join(projectRoot, "public", "images", safeFilename);
+  return existsSync(imagePath) ? `/images/${encodeURIComponent(safeFilename)}` : "";
 }
 
 function readImageUrlList(value: unknown): string[] {

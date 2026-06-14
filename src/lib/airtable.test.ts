@@ -184,12 +184,7 @@ describe("getDirectoryData", () => {
               fldoROJgXxEo5phwJ: ["hood-1"],
               fldw8QjjvT68cDC8X: ["mall-1"],
               fldUPgDqc9H0DwX1l: true,
-              fldOPTYb27sd4K4aZ: [
-                {
-                  url: "https://cdn.example/supermarket-main.jpg",
-                  filename: "supermarket-main.jpg"
-                }
-              ],
+              fldOPTYb27sd4K4aZ: "https://cdn.example/supermarket-main.jpg",
               fldyk0SXOq90jPl0H: [
                 {
                   url: "https://cdn.example/supermarket-gallery-one.jpg",
@@ -421,7 +416,7 @@ describe("getDirectoryData", () => {
               fldmyBi6BM3Aqf6hM: [
                 {
                   url: "https://cdn.example/fairprice-banner.jpg",
-                  filename: "fairprice-banner.jpg"
+                  filename: "payless-groceria-online-groeceries-shopee.png"
                 }
               ]
             }
@@ -452,7 +447,7 @@ describe("getDirectoryData", () => {
     expect(data.groceryStores[0].category).toBe("Specialty Grocery");
     expect(data.supermarkets[0].affiliateBanner).toEqual({
       affiliateLink: "https://affiliate.example/fairprice",
-      imageUrl: "https://cdn.example/fairprice-banner.jpg",
+      imageUrl: "/images/payless-groceria-online-groeceries-shopee.png",
       altText: "FairPrice Tampines affiliate banner"
     });
     expect(data.groceryStores[0].affiliateBanner).toBeUndefined();
