@@ -418,6 +418,13 @@ describe("getDirectoryData", () => {
                   url: "https://cdn.example/fairprice-banner.jpg",
                   filename: "payless-groceria-online-groeceries-shopee.png"
                 }
+              ],
+              "Affiliate 2": "https://affiliate.example/fairprice-second",
+              "Banner 2": [
+                {
+                  url: "https://cdn.example/fairprice-banner-2.jpg",
+                  filename: "air fryer paper liner singapore portrait.png"
+                }
               ]
             }
           },
@@ -450,7 +457,13 @@ describe("getDirectoryData", () => {
       imageUrl: "/images/payless-groceria-online-groeceries-shopee.png",
       altText: "FairPrice Tampines affiliate banner"
     });
+    expect(data.supermarkets[0].affiliateBanner2).toEqual({
+      affiliateLink: "https://affiliate.example/fairprice-second",
+      imageUrl: "/images/air%20fryer%20paper%20liner%20singapore%20portrait.png",
+      altText: "FairPrice Tampines affiliate banner 2"
+    });
     expect(data.groceryStores[0].affiliateBanner).toBeUndefined();
+    expect(data.groceryStores[0].affiliateBanner2).toBeUndefined();
   });
 
   test("normalizes brand promotion tables and resolves them to the matching brand", async () => {

@@ -29,6 +29,7 @@ export type AffiliateBanner = {
 type CategoryDetails = {
   category?: string;
   affiliateBanner?: AffiliateBanner;
+  affiliateBanner2?: AffiliateBanner;
 };
 
 export type Supermarket = {
@@ -57,6 +58,7 @@ export type Supermarket = {
   nearbyBusServices: string;
   nearbyLandmarks: string;
   affiliateBanner?: AffiliateBanner;
+  affiliateBanner2?: AffiliateBanner;
   featured: boolean;
 };
 
@@ -289,7 +291,9 @@ const FIELDS = {
     outletName: ["fldFoFDlEBejqe0dp", "Outlet Name"],
     category: ["fldJm83meJBBUanjh", "Category"],
     affiliateLink: ["fldk8snhvkF8tDEce", "Affiliate Link"],
-    bannerImage: ["fldmyBi6BM3Aqf6hM", "Banner Image"]
+    bannerImage: ["fldmyBi6BM3Aqf6hM", "Banner Image"],
+    affiliateLink2: ["Affiliate 2"],
+    bannerImage2: ["Banner 2"]
   },
   promotions: {
     shengSiongPromotions: {
@@ -573,8 +577,10 @@ function createCategoryDetailsLookup(records: AirtableRecord[]) {
     const category = readFieldString(record.fields, FIELDS.affiliateCategories.category);
     const affiliateLink = readFieldString(record.fields, FIELDS.affiliateCategories.affiliateLink);
     const imageUrl = readCategoryBannerImageUrl(readField(record.fields, FIELDS.affiliateCategories.bannerImage));
+    const affiliateLink2 = readFieldString(record.fields, FIELDS.affiliateCategories.affiliateLink2);
+    const imageUrl2 = readCategoryBannerImageUrl(readField(record.fields, FIELDS.affiliateCategories.bannerImage2));
 
-    if (!outletName || (!category && (!affiliateLink || !imageUrl))) continue;
+    if (!outletName || (!category && (!affiliateLink || !imageUrl) && (!affiliateLink2 || !imageUrl2))) continue;
 
     details.set(normalizeComparable(outletName), {
       category,
@@ -584,6 +590,14 @@ function createCategoryDetailsLookup(records: AirtableRecord[]) {
               affiliateLink,
               imageUrl,
               altText: `${outletName} affiliate banner`
+            }
+          : undefined,
+      affiliateBanner2:
+        affiliateLink2 && imageUrl2
+          ? {
+              affiliateLink: affiliateLink2,
+              imageUrl: imageUrl2,
+              altText: `${outletName} affiliate banner 2`
             }
           : undefined
     });
@@ -599,7 +613,8 @@ function attachCategoryDetails<T extends Supermarket>(outlet: T, details: Map<st
   return {
     ...outlet,
     category: categoryDetails.category || outlet.category,
-    affiliateBanner: categoryDetails.affiliateBanner || outlet.affiliateBanner
+    affiliateBanner: categoryDetails.affiliateBanner || outlet.affiliateBanner,
+    affiliateBanner2: categoryDetails.affiliateBanner2 || outlet.affiliateBanner2
   };
 }
 
