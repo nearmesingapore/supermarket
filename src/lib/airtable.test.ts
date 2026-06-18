@@ -419,8 +419,8 @@ describe("getDirectoryData", () => {
                   filename: "payless-groceria-online-groeceries-shopee.png"
                 }
               ],
-              "Affiliate 2": "https://affiliate.example/fairprice-second",
-              "Banner 2": [
+              fld087EOtyfvfCRXu: "https://affiliate.example/fairprice-second",
+              fld83zBs06obBUZAy: [
                 {
                   url: "https://cdn.example/fairprice-banner-2.jpg",
                   filename: "air fryer paper liner singapore portrait.png"

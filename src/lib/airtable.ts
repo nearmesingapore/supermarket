@@ -290,10 +290,10 @@ const FIELDS = {
   affiliateCategories: {
     outletName: ["fldFoFDlEBejqe0dp", "Outlet Name"],
     category: ["fldJm83meJBBUanjh", "Category"],
-    affiliateLink: ["fldk8snhvkF8tDEce", "Affiliate Link"],
-    bannerImage: ["fldmyBi6BM3Aqf6hM", "Banner Image"],
-    affiliateLink2: ["Affiliate 2"],
-    bannerImage2: ["Banner 2"]
+    affiliateLink: ["fldk8snhvkF8tDEce", "Affiliate Link 1", "Affiliate Link"],
+    bannerImage: ["fldmyBi6BM3Aqf6hM", "Banner Image 1", "Banner Image"],
+    affiliateLink2: ["fld087EOtyfvfCRXu", "Affiliate Link 2", "Affiliate 2"],
+    bannerImage2: ["fld83zBs06obBUZAy", "Banner 2"]
   },
   promotions: {
     shengSiongPromotions: {
